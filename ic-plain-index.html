@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>IC Plain (P1) · คลังความรู้เตรียมสอบ</title>
+<meta name="description" content="คลังความรู้เตรียมสอบผู้แนะนำการลงทุนตราสารทั่วไป (IC Plain · Paper 1) — สรุปเนื้อหา 3 หมวด สูตรคำนวณ และกลยุทธ์การสอบ" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: { sans: ['Prompt', 'sans-serif'] },
+        colors: {
+          gold: { DEFAULT: '#c9a86a', soft: '#d9c191' },
+          emerald2: { DEFAULT: '#3f9d7e', soft: '#5cb89a' }
+        }
+      }
+    }
+  }
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Prompt', sans-serif; -webkit-font-smoothing: antialiased; }
+  ::selection { background: #c9a86a; color: #0f172a; }
+
+  /* slim, elegant scrollbar */
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: #0f172a; }
+  ::-webkit-scrollbar-thumb { background: #334155; border-radius: 9999px; }
+  ::-webkit-scrollbar-thumb:hover { background: #475569; }
+
+  .kb-card { transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+  .kb-card:hover { transform: translateY(-4px); box-shadow: 0 24px 48px -24px rgba(0,0,0,.65); }
+
+  .fade-in { animation: fade .4s ease both; }
+  @keyframes fade { from { opacity: 0; transform: translateY(8px);} to { opacity:1; transform:none;} }
+
+  /* readable body text inside light cards */
+  .prose-th p { line-height: 1.85; }
+  .prose-th li { line-height: 1.8; }
+</style>
+</head>
+
+<body class="bg-slate-900 text-slate-200 antialiased">
+
+  <!-- ================= NAVBAR ================= -->
+  <header class="sticky top-0 z-40 border-b border-slate-800/80 bg-slate-900/80 backdrop-blur-xl">
+    <nav class="mx-auto flex max-w-6xl items-center justify-between px-5 py-3.5">
+      <a href="#top" class="flex items-center gap-2.5">
+        <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-gold to-gold-soft text-slate-900 font-bold text-sm shadow-lg shadow-gold/10">IC</span>
+        <span class="text-sm font-semibold tracking-wide text-slate-100">IC&nbsp;Plain <span class="text-slate-500 font-normal">· P1</span></span>
+      </a>
+
+      <div class="hidden items-center gap-1 md:flex">
+        <a href="#overview"  class="rounded-md px-3 py-2 text-sm text-slate-400 transition hover:text-slate-100">ภาพรวม</a>
+        <a href="#knowledge" class="rounded-md px-3 py-2 text-sm text-slate-400 transition hover:text-slate-100">คลังความรู้</a>
+        <a href="#formulas"  class="rounded-md px-3 py-2 text-sm text-slate-400 transition hover:text-slate-100">สูตรคำนวณ</a>
+        <a href="#strategy"  class="rounded-md px-3 py-2 text-sm text-slate-400 transition hover:text-slate-100">กลยุทธ์สอบ</a>
+        <a href="#exam"      class="rounded-md px-3 py-2 text-sm text-slate-400 transition hover:text-slate-100">ข้อสอบเก่า</a>
+      </div>
+
+      <a href="#knowledge" class="rounded-lg bg-emerald2 px-4 py-2 text-sm font-medium text-white shadow-lg shadow-emerald2/20 transition hover:bg-emerald2-soft">
+        เริ่มอ่าน
+      </a>
+    </nav>
+  </header>
+
+  <main id="top">
+
+    <!-- ================= HERO ================= -->
+    <section class="relative overflow-hidden">
+      <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_50%_at_50%_0%,rgba(63,157,126,0.10),transparent_70%)]"></div>
+      <div class="mx-auto max-w-6xl px-5 pt-20 pb-16 text-center">
+        <span class="inline-flex items-center gap-2 rounded-full border border-slate-700/70 bg-slate-800/40 px-4 py-1.5 text-xs font-medium tracking-wide text-slate-300">
+          <span class="h-1.5 w-1.5 rounded-full bg-emerald2"></span>
+          ผู้แนะนำการลงทุนตราสารทั่วไป · Investment Consultant
+        </span>
+
+        <h1 class="mx-auto mt-7 max-w-3xl text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl">
+          คลังความรู้เตรียมสอบ<br class="hidden sm:block" />
+          <span class="bg-gradient-to-r from-gold-soft to-gold bg-clip-text text-transparent">IC Plain (Paper&nbsp;1)</span>
+        </h1>
+
+        <p class="mx-auto mt-5 max-w-xl text-base leading-relaxed text-slate-400">
+          สรุปเนื้อหาครบ 3 หมวด · สูตรคำนวณที่ต้องจำ · เทคนิคทำข้อสอบ
+          ออกแบบให้อ่านง่าย โฟกัสจุดที่ออกสอบบ่อย
+        </p>
+
+        <!-- exam stat chips -->
+        <div class="mx-auto mt-9 flex max-w-xl flex-wrap items-center justify-center gap-3">
+          <div class="flex items-center gap-2 rounded-xl border border-slate-700/70 bg-slate-800/40 px-5 py-3">
+            <span class="text-2xl font-bold text-white">100</span><span class="text-sm text-slate-400">ข้อ</span>
+          </div>
+          <div class="flex items-center gap-2 rounded-xl border border-slate-700/70 bg-slate-800/40 px-5 py-3">
+            <span class="text-2xl font-bold text-white">2:30</span><span class="text-sm text-slate-400">ชม.</span>
+          </div>
+          <div class="flex items-center gap-2 rounded-xl border border-slate-700/70 bg-slate-800/40 px-5 py-3">
+            <span class="text-2xl font-bold text-emerald2-soft">70%</span><span class="text-sm text-slate-400">เกณฑ์ผ่าน</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= OVERVIEW / EXAM STRUCTURE ================= -->
+    <section id="overview" class="mx-auto max-w-6xl px-5 py-14 scroll-mt-20">
+      <div class="mb-9">
+        <h2 class="text-xl font-semibold text-white">โครงสร้างข้อสอบ</h2>
+        <p class="mt-1.5 text-sm text-slate-400">3 หมวด · รวม 100 ข้อ — ต้องได้รวม ≥ 70 ข้อ และ หมวด 2 ต้องได้ ≥ 14/20</p>
+      </div>
+
+      <div class="grid gap-5 sm:grid-cols-3">
+        <!-- หมวด 1 -->
+        <div class="rounded-xl border border-slate-700/60 bg-slate-800/40 p-6">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-medium uppercase tracking-wider text-slate-500">หมวด 1</span>
+            <span class="rounded-md bg-slate-700/50 px-2.5 py-1 text-xs font-semibold text-slate-200">30 ข้อ</span>
+          </div>
+          <h3 class="mt-3 text-base font-semibold text-white">ความรู้พื้นฐานด้านการเงินและการลงทุน</h3>
+          <p class="mt-2 text-sm leading-relaxed text-slate-400">ระบบการเงิน · มูลค่าเงินตามเวลา · ผลตอบแทน/ความเสี่ยง · วิเคราะห์เศรษฐกิจและบริษัท</p>
+        </div>
+        <!-- หมวด 2 -->
+        <div class="rounded-xl border border-gold/30 bg-gold/[0.06] p-6">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-medium uppercase tracking-wider text-gold-soft">หมวด 2 · จุดตาย</span>
+            <span class="rounded-md bg-gold/20 px-2.5 py-1 text-xs font-semibold text-gold-soft">20 ข้อ</span>
+          </div>
+          <h3 class="mt-3 text-base font-semibold text-white">กฎระเบียบ · การให้คำแนะนำ · จรรยาบรรณ</h3>
+          <p class="mt-2 text-sm leading-relaxed text-slate-300">ต้องได้ ≥ 14/20 ถึงจะผ่าน — เป็นความจำล้วน เก็บให้แม่นที่สุด</p>
+        </div>
+        <!-- หมวด 3 -->
+        <div class="rounded-xl border border-slate-700/60 bg-slate-800/40 p-6">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-medium uppercase tracking-wider text-slate-500">หมวด 3</span>
+            <span class="rounded-md bg-slate-700/50 px-2.5 py-1 text-xs font-semibold text-slate-200">50 ข้อ</span>
+          </div>
+          <h3 class="mt-3 text-base font-semibold text-white">ผลิตภัณฑ์ตลาดทุน: ตราสารทั่วไป</h3>
+          <p class="mt-2 text-sm leading-relaxed text-slate-400">ตราสารหนี้ · ตราสารทุน · กองทุนรวม — เน้นความสัมพันธ์ราคา-ดอกเบี้ยและการคำนวณ</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= KNOWLEDGE BASE ================= -->
+    <section id="knowledge" class="mx-auto max-w-6xl px-5 py-14 scroll-mt-20">
+      <div class="mb-7 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <h2 class="text-xl font-semibold text-white">คลังความรู้</h2>
+          <p class="mt-1.5 text-sm text-slate-400">คลิกการ์ดเพื่อดูสรุปเนื้อหาแบบเต็ม · กรองตามหมวด</p>
+        </div>
+
+        <!-- filters -->
+        <div id="filters" class="flex flex-wrap gap-2">
+          <button data-filter="all" class="filter-btn rounded-lg border border-slate-600 bg-slate-700/60 px-3.5 py-2 text-sm font-medium text-white">ทั้งหมด</button>
+          <button data-filter="1"   class="filter-btn rounded-lg border border-slate-700 px-3.5 py-2 text-sm text-slate-400 transition hover:text-white">หมวด 1</button>
+          <button data-filter="2"   class="filter-btn rounded-lg border border-slate-700 px-3.5 py-2 text-sm text-slate-400 transition hover:text-white">หมวด 2</button>
+          <button data-filter="3"   class="filter-btn rounded-lg border border-slate-700 px-3.5 py-2 text-sm text-slate-400 transition hover:text-white">หมวด 3</button>
+        </div>
+      </div>
+
+      <div id="kb-grid" class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <!-- cards injected by JS -->
+      </div>
+    </section>
+
+    <!-- ================= FORMULA SHEET ================= -->
+    <section id="formulas" class="mx-auto max-w-6xl px-5 py-14 scroll-mt-20">
+      <div class="mb-7">
+        <h2 class="text-xl font-semibold text-white">สูตรคำนวณที่ต้องจำ</h2>
+        <p class="mt-1.5 text-sm text-slate-400">Formula Sheet — ถ้าจำสูตรแม่นจะได้คะแนนข้อคำนวณแบบฟรี ๆ</p>
+      </div>
+
+      <div class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xl shadow-black/40">
+        <table class="w-full text-left text-sm text-slate-700">
+          <thead>
+            <tr class="border-b border-slate-200 bg-slate-50 text-slate-500">
+              <th class="px-6 py-4 font-semibold">เรื่อง</th>
+              <th class="px-6 py-4 font-semibold">สูตร</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">
+            <tr><td class="px-6 py-3.5 font-medium text-slate-900">มูลค่าอนาคต (FV)</td><td class="px-6 py-3.5 font-mono">FV = PV × (1 + i)ⁿ</td></tr>
+            <tr class="bg-slate-50/60"><td class="px-6 py-3.5 font-medium text-slate-900">มูลค่าปัจจุบัน (PV)</td><td class="px-6 py-3.5 font-mono">PV = FV / (1 + i)ⁿ</td></tr>
+            <tr><td class="px-6 py-3.5 font-medium text-slate-900">ผลตอบแทนถือครอง (HPR)</td><td class="px-6 py-3.5 font-mono">[(รายได้ + กำไรส่วนทุน) / ราคาซื้อ] × 100</td></tr>
+            <tr class="bg-slate-50/60"><td class="px-6 py-3.5 font-medium text-slate-900">ผลตอบแทนคาดหวัง E(R)</td><td class="px-6 py-3.5 font-mono">E(R) = Σ (Pᵢ × Rᵢ)</td></tr>
+            <tr><td class="px-6 py-3.5 font-medium text-slate-900">ผลตอบแทนที่แท้จริง</td><td class="px-6 py-3.5 font-mono">Real ≈ Nominal − เงินเฟ้อ</td></tr>
+            <tr class="bg-slate-50/60"><td class="px-6 py-3.5 font-medium text-slate-900">CAPM</td><td class="px-6 py-3.5 font-mono">E(R) = Rf + β(Rm − Rf)</td></tr>
+            <tr><td class="px-6 py-3.5 font-medium text-slate-900">มูลค่าหุ้น (Gordon)</td><td class="px-6 py-3.5 font-mono">P = D₁ / (k − g)</td></tr>
+            <tr class="bg-slate-50/60"><td class="px-6 py-3.5 font-medium text-slate-900">P/E</td><td class="px-6 py-3.5 font-mono">ราคา / EPS</td></tr>
+            <tr><td class="px-6 py-3.5 font-medium text-slate-900">EPS</td><td class="px-6 py-3.5 font-mono">กำไรสุทธิ / จำนวนหุ้นสามัญ</td></tr>
+            <tr class="bg-slate-50/60"><td class="px-6 py-3.5 font-medium text-slate-900">Dividend Yield</td><td class="px-6 py-3.5 font-mono">เงินปันผลต่อหุ้น / ราคา</td></tr>
+            <tr><td class="px-6 py-3.5 font-medium text-slate-900">NAV ต่อหน่วย</td><td class="px-6 py-3.5 font-mono">(สินทรัพย์ − หนี้สิน) / จำนวนหน่วย</td></tr>
+            <tr class="bg-slate-50/60"><td class="px-6 py-3.5 font-medium text-slate-900">ราคาตราสารหนี้</td><td class="px-6 py-3.5 font-mono">Σ PV(คูปอง) + PV(เงินต้น) คิดลดด้วย YTM</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ================= STRATEGY / CHECKLIST ================= -->
+    <section id="strategy" class="mx-auto max-w-6xl px-5 py-14 scroll-mt-20">
+      <div class="mb-7">
+        <h2 class="text-xl font-semibold text-white">กลยุทธ์สอบ & เช็กลิสต์ก่อนสอบ</h2>
+        <p class="mt-1.5 text-sm text-slate-400">บริหารเวลา ~1.5 นาที/ข้อ · ข้อไหนไม่แน่ใจทำเครื่องหมายแล้วข้ามก่อน — ไม่หักคะแนนข้อผิด ต้องตอบทุกข้อ</p>
+      </div>
+
+      <div class="grid gap-5 lg:grid-cols-2">
+        <!-- checklist -->
+        <div class="rounded-2xl border border-slate-700/60 bg-slate-800/40 p-7">
+          <h3 class="mb-4 text-base font-semibold text-white">เทคนิคจำ (Keyword)</h3>
+          <ul class="space-y-3 text-sm leading-relaxed text-slate-300">
+            <li class="flex gap-3"><span class="mt-1 h-1.5 w-1.5 flex-none rounded-full bg-emerald2"></span><span><b class="text-white">ราคาตราสารหนี้ ↔ ดอกเบี้ย = ผกผัน</b> เสมอ (ออกแน่)</span></li>
+            <li class="flex gap-3"><span class="mt-1 h-1.5 w-1.5 flex-none rounded-full bg-emerald2"></span><span>ผกผัน: ดอกขึ้นราคาลง / ดอกลงราคาขึ้น · <b class="text-white">ยาว/คูปองต่ำ = อ่อนไหวมาก</b></span></li>
+            <li class="flex gap-3"><span class="mt-1 h-1.5 w-1.5 flex-none rounded-full bg-emerald2"></span><span>ความเสี่ยงกระจายได้ = ไม่เป็นระบบ (เฉพาะตัว) · กระจายไม่ได้ = เป็นระบบ (β)</span></li>
+            <li class="flex gap-3"><span class="mt-1 h-1.5 w-1.5 flex-none rounded-full bg-emerald2"></span><span><b class="text-white">BBB− ขึ้นไป = Investment Grade</b></span></li>
+            <li class="flex gap-3"><span class="mt-1 h-1.5 w-1.5 flex-none rounded-full bg-emerald2"></span><span>กองทุนความเสี่ยง 1 (ตลาดเงิน) → 8 (สินทรัพย์ทางเลือก)</span></li>
+            <li class="flex gap-3"><span class="mt-1 h-1.5 w-1.5 flex-none rounded-full bg-emerald2"></span><span><b class="text-white">RMF:</b> ลงทุนถึง 55 ปี + ลงทุนมาแล้ว ≥ 5 ปี · <b class="text-white">SSF:</b> ถือ ≥ 10 ปี</span></li>
+            <li class="flex gap-3"><span class="mt-1 h-1.5 w-1.5 flex-none rounded-full bg-emerald2"></span><span>Suitability ทบทวนทุก ≥ 2 ปี</span></li>
+          </ul>
+        </div>
+
+        <!-- exam-day tips (gold accent) -->
+        <div class="rounded-2xl border border-gold/30 bg-gold/[0.06] p-7">
+          <h3 class="mb-4 text-base font-semibold text-gold-soft">โฟกัสจุดออกสอบบ่อย</h3>
+          <ul class="space-y-3 text-sm leading-relaxed text-slate-300">
+            <li class="flex gap-3"><span class="mt-1 h-1.5 w-1.5 flex-none rounded-full bg-gold"></span><span>อ่านโจทย์หา keyword <b class="text-white">"ผกผัน / มากที่สุด / ไม่ใช่ / ยกเว้น"</b> ให้ดี</span></li>
+            <li class="flex gap-3"><span class="mt-1 h-1.5 w-1.5 flex-none rounded-full bg-gold"></span><span>ข้อจรรยาบรรณมักมีตัวเลือก <b class="text-white">"เห็นแก่ตัว / รับประกัน / ทำแทนลูกค้า"</b> = มักเป็นข้อที่ผิด</span></li>
+            <li class="flex gap-3"><span class="mt-1 h-1.5 w-1.5 flex-none rounded-full bg-gold"></span><span>หมวดจรรยาบรรณ: ผลประโยชน์ลูกค้ามาก่อน · ห้ามรับประกันผลตอบแทน · ห้าม churning · ห้ามเทรดแทนโดยพลการ</span></li>
+            <li class="flex gap-3"><span class="mt-1 h-1.5 w-1.5 flex-none rounded-full bg-gold"></span><span>เก็บหมวด 2 ให้แม่นที่สุด — เป็นความจำ ทำคะแนนได้ง่าย และเป็นเกณฑ์ตัดผ่าน</span></li>
+            <li class="flex gap-3"><span class="mt-1 h-1.5 w-1.5 flex-none rounded-full bg-gold"></span><span>ข้อคำนวณตราสารหนี้/กองทุน เก็บไว้ทำตอนท้าย ถ้าจำสูตรแม่นได้ฟรี</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= EXAM / QUIZ ================= -->
+    <section id="exam" class="mx-auto max-w-6xl px-5 py-14 scroll-mt-20">
+      <div class="mb-7 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <h2 class="text-xl font-semibold text-white">ข้อสอบเก่า · Mock Exam 100 ข้อ</h2>
+          <p class="mt-1.5 text-sm text-slate-400">เลือกคำตอบเพื่อดูเฉลยและคำอธิบายทันที · กรองตามหมวดเพื่อฝึกเฉพาะส่วน</p>
+        </div>
+        <div class="flex flex-col items-start gap-3 sm:items-end">
+          <div class="rounded-xl border border-slate-700/70 bg-slate-800/40 px-5 py-3 text-sm">
+            <span class="text-slate-400">ตอบถูก</span>
+            <span id="score" class="ml-1 font-bold text-emerald2-soft">0</span>
+            <span class="text-slate-500">/ <span id="answered">0</span> ตอบแล้ว</span>
+            <span class="mx-2 text-slate-600">·</span>
+            <button id="quiz-reset" class="text-slate-400 underline-offset-2 transition hover:text-white hover:underline">เริ่มใหม่</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="quiz-filters" class="mb-7 flex flex-wrap gap-2">
+        <button data-qfilter="all" class="qfilter-btn rounded-lg border border-slate-600 bg-slate-700/60 px-3.5 py-2 text-sm font-medium text-white">ทั้งหมด (100)</button>
+        <button data-qfilter="1"   class="qfilter-btn rounded-lg border border-slate-700 px-3.5 py-2 text-sm text-slate-400 transition hover:text-white">หมวด 1 · การเงินและการลงทุน (30)</button>
+        <button data-qfilter="2"   class="qfilter-btn rounded-lg border border-slate-700 px-3.5 py-2 text-sm text-slate-400 transition hover:text-white">หมวด 2 · กฎระเบียบ/จรรยาบรรณ (20)</button>
+        <button data-qfilter="3"   class="qfilter-btn rounded-lg border border-slate-700 px-3.5 py-2 text-sm text-slate-400 transition hover:text-white">หมวด 3 · ผลิตภัณฑ์ (50)</button>
+      </div>
+
+      <div id="quiz-list" class="mx-auto flex max-w-3xl flex-col gap-5">
+        <!-- questions injected by JS -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="border-t border-slate-800/80 bg-slate-900">
+    <div class="mx-auto max-w-6xl px-5 py-10">
+      <div class="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
+        <div class="flex items-center gap-2.5">
+          <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-gold to-gold-soft text-slate-900 font-bold text-xs">IC</span>
+          <span class="text-sm font-medium text-slate-300">IC Plain (P1) · คลังความรู้เตรียมสอบ</span>
+        </div>
+        <div class="flex gap-5 text-sm text-slate-500">
+          <a href="#overview" class="transition hover:text-slate-300">ภาพรวม</a>
+          <a href="#knowledge" class="transition hover:text-slate-300">คลังความรู้</a>
+          <a href="#formulas" class="transition hover:text-slate-300">สูตร</a>
+          <a href="#strategy" class="transition hover:text-slate-300">กลยุทธ์</a>
+          <a href="#exam" class="transition hover:text-slate-300">ข้อสอบเก่า</a>
+        </div>
+      </div>
+      <p class="mt-7 text-xs leading-relaxed text-slate-600">
+        เอกสารนี้จัดทำเพื่อการเตรียมสอบเท่านั้น โปรดตรวจสอบหลักเกณฑ์ จำนวนข้อ และเงื่อนไขฉบับล่าสุดจากเว็บไซต์ตลาดหลักทรัพย์ฯ (SET) และ ก.ล.ต. ก่อนสอบจริง
+      </p>
+    </div>
+  </footer>
+
+  <!-- ================= MODAL ================= -->
+  <div id="modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
+    <div id="modal-overlay" class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm"></div>
+    <div id="modal-card" class="relative z-10 max-h-[85vh] w-full max-w-2xl overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xl">
+      <div class="flex items-start justify-between gap-4 border-b border-slate-100 px-7 py-5">
+        <div>
+          <span id="modal-tag" class="text-xs font-medium uppercase tracking-wider text-emerald2"></span>
+          <h3 id="modal-title" class="mt-1 text-lg font-semibold text-slate-900"></h3>
+        </div>
+        <button id="modal-close" class="flex h-8 w-8 flex-none items-center justify-center rounded-lg text-slate-400 transition hover:bg-slate-100 hover:text-slate-700" aria-label="ปิด">✕</button>
+      </div>
+      <div id="modal-body" class="prose-th max-h-[calc(85vh-86px)] overflow-y-auto px-7 py-6 text-sm text-slate-700"></div>
+    </div>
+  </div>
+
+<script>
+/* ---------- Knowledge base content ---------- */
+const TOPICS = [
+  // ===== หมวด 1 =====
+  { cat:'1', tag:'หมวด 1 · 1.1', title:'ระบบการเงินและตลาดการเงิน',
+    summary:'ตลาดเงิน vs ตลาดทุน · ตลาดแรก vs ตลาดรอง · การระดมทุนทางตรง/ทางอ้อม',
+    body:`
+    <ul class="list-disc space-y-2 pl-5">
+      <li><b>ตลาดเงิน (Money Market):</b> ตราสารอายุ <b>ไม่เกิน 1 ปี</b> เช่น ตั๋วเงินคลัง (T-Bill), ตั๋วแลกเงิน (B/E), ตั๋วสัญญาใช้เงิน (P/N), บัตรเงินฝาก (NCD) — เน้นสภาพคล่อง ความเสี่ยงต่ำ</li>
+      <li><b>ตลาดทุน (Capital Market):</b> ตราสารอายุ <b>เกิน 1 ปี</b> เช่น พันธบัตร หุ้นกู้ หุ้นสามัญ — เน้นระดมทุนระยะยาว</li>
+      <li><b>ตลาดแรก (Primary):</b> ออกขายหลักทรัพย์ครั้งแรก เงินเข้าบริษัทผู้ออก (เช่น IPO)</li>
+      <li><b>ตลาดรอง (Secondary):</b> ซื้อขายเปลี่ยนมือระหว่างผู้ลงทุน เงินไม่เข้าบริษัท ทำหน้าที่สร้างสภาพคล่อง (SET, mai)</li>
+      <li><b>ระดมทุนทางตรง</b> (ออกตราสารขายผู้ลงทุน) vs <b>ทางอ้อม</b> (ผ่านตัวกลาง เช่น ธนาคาร)</li>
+    </ul>` },
+
+  { cat:'1', tag:'หมวด 1 · 1.2', title:'มูลค่าเงินตามเวลา (Time Value of Money)',
+    summary:'FV / PV / Annuity · ยิ่ง i หรือ n สูง → FV สูง / PV ต่ำ · ดอกเบี้ยทบต้น',
+    body:`
+    <p class="mb-3">เงินวันนี้มีค่ามากกว่าเงินจำนวนเท่ากันในอนาคต (เพราะนำไปลงทุนสร้างผลตอบแทนได้)</p>
+    <div class="rounded-lg bg-slate-50 p-4 font-mono text-slate-800">
+      มูลค่าอนาคต: FV = PV × (1 + i)ⁿ<br>
+      มูลค่าปัจจุบัน: PV = FV / (1 + i)ⁿ<br>
+      เงินงวด (Annuity): FV = PMT × [((1+i)ⁿ − 1) / i]
+    </div>
+    <p class="mt-3">i = อัตราดอกเบี้ย/ผลตอบแทนต่องวด, n = จำนวนงวด · ดอกเบี้ยทบต้น (compound) ถี่ขึ้น (รายวัน&gt;รายเดือน&gt;รายปี) ทำให้ Effective rate สูงขึ้น</p>` },
+
+  { cat:'1', tag:'หมวด 1 · 1.3', title:'อัตราผลตอบแทน (Return)',
+    summary:'HPR · E(R) · Nominal vs Real vs Required return',
+    body:`
+    <div class="rounded-lg bg-slate-50 p-4 font-mono text-slate-800">
+      HPR = [(เงินปันผล/ดอกเบี้ย) + (ราคาขาย − ราคาซื้อ)] / ราคาซื้อ<br>
+      E(R) = Σ [โอกาส × ผลตอบแทนแต่ละกรณี]
+    </div>
+    <ul class="mt-4 list-disc space-y-2 pl-5">
+      <li><b>Nominal return:</b> ผลตอบแทนที่เป็นตัวเงิน ยังไม่หักเงินเฟ้อ</li>
+      <li><b>Real return:</b> ≈ Nominal − อัตราเงินเฟ้อ (ผลตอบแทนที่แท้จริง / อำนาจซื้อ)</li>
+      <li><b>Required return:</b> ผลตอบแทนขั้นต่ำที่ผู้ลงทุนต้องการชดเชยความเสี่ยง</li>
+    </ul>` },
+
+  { cat:'1', tag:'หมวด 1 · 1.4', title:'ความเสี่ยง (Risk) และการกระจายความเสี่ยง',
+    summary:'SD/σ · ความเสี่ยงเป็นระบบ (β) vs ไม่เป็นระบบ · CAPM · Correlation',
+    body:`
+    <ul class="list-disc space-y-2 pl-5">
+      <li>วัดความเสี่ยงด้วย <b>ส่วนเบี่ยงเบนมาตรฐาน (SD/σ)</b> หรือความแปรปรวน (Variance) — ยิ่งสูง ยิ่งเสี่ยงมาก</li>
+      <li><b>ความเสี่ยงที่เป็นระบบ (Systematic / Market risk):</b> กระจายไม่ได้ เช่น เศรษฐกิจ ดอกเบี้ย การเมือง สงคราม — วัดด้วย <b>เบต้า (β)</b></li>
+      <li><b>ความเสี่ยงที่ไม่เป็นระบบ (Unsystematic / Specific):</b> เฉพาะบริษัท/อุตสาหกรรม <b>กระจายได้</b> ด้วยการถือหลายหลักทรัพย์</li>
+      <li>Diversification ได้ผลดีเมื่อสินทรัพย์มี <b>Correlation ต่ำหรือติดลบ</b> (ใกล้ −1 ดีสุด)</li>
+    </ul>
+    <div class="mt-4 rounded-lg bg-slate-50 p-4 font-mono text-slate-800">
+      เบต้า: β=1 เท่าตลาด | β&gt;1 ผันผวนมากกว่า (เชิงรุก) | β&lt;1 น้อยกว่า (เชิงรับ) | β&lt;0 สวนตลาด<br>
+      CAPM: E(R) = Rf + β × (Rm − Rf)
+    </div>` },
+
+  { cat:'1', tag:'หมวด 1 · 1.5', title:'การวิเคราะห์เศรษฐกิจมหภาค (Top-down)',
+    summary:'ลำดับ เศรษฐกิจ → อุตสาหกรรม → บริษัท · ผลของ GDP/เงินเฟ้อ/ดอกเบี้ย/นโยบาย',
+    body:`
+    <p class="mb-3">ลำดับการวิเคราะห์ Top-down: <b>เศรษฐกิจ → อุตสาหกรรม → บริษัท</b></p>
+    <table class="w-full text-left text-sm">
+      <thead><tr class="border-b border-slate-200 text-slate-500"><th class="py-2 pr-4">ปัจจัย</th><th class="py-2">ผลต่อการลงทุน</th></tr></thead>
+      <tbody class="divide-y divide-slate-100">
+        <tr><td class="py-2 pr-4 font-medium">GDP เติบโต</td><td class="py-2">เศรษฐกิจดี กำไรบริษัทเพิ่ม โดยทั่วไปบวกต่อหุ้น</td></tr>
+        <tr><td class="py-2 pr-4 font-medium">เงินเฟ้อสูง</td><td class="py-2">ธปท. มักขึ้นดอกเบี้ย ลบต่อหุ้นและตราสารหนี้</td></tr>
+        <tr><td class="py-2 pr-4 font-medium">ดอกเบี้ยขึ้น</td><td class="py-2">ราคาตราสารหนี้ลง ต้นทุนกู้สูงขึ้น มักลบต่อหุ้น</td></tr>
+        <tr><td class="py-2 pr-4 font-medium">นโยบายการเงิน</td><td class="py-2">ธปท. คุมปริมาณเงิน/ดอกเบี้ย (ผ่อนคลาย = ลดดอกเบี้ย)</td></tr>
+        <tr><td class="py-2 pr-4 font-medium">นโยบายการคลัง</td><td class="py-2">รัฐบาล: ภาษี + การใช้จ่ายภาครัฐ</td></tr>
+      </tbody>
+    </table>
+    <p class="mt-3">วัฏจักรเศรษฐกิจ: ฟื้นตัว → รุ่งเรือง → ถดถอย → ตกต่ำ · หุ้นกลุ่ม Cyclical (อ่อนไหวภาวะ ศก.) vs Defensive (ทนทาน เช่น สาธารณูปโภค อาหาร ยา)</p>` },
+
+  { cat:'1', tag:'หมวด 1 · 1.6', title:'การวิเคราะห์บริษัท (งบการเงิน & อัตราส่วน)',
+    summary:'P/E · P/BV · EPS · ROE · D/E · Current ratio · Fundamental vs Technical',
+    body:`
+    <table class="w-full text-left text-sm">
+      <thead><tr class="border-b border-slate-200 text-slate-500"><th class="py-2 pr-4">อัตราส่วน</th><th class="py-2">สูตร / ความหมาย</th></tr></thead>
+      <tbody class="divide-y divide-slate-100">
+        <tr><td class="py-2 pr-4 font-medium">P/E</td><td class="py-2">ราคา / กำไรต่อหุ้น — ยิ่งต่ำยิ่งถูก (เทียบกลุ่ม)</td></tr>
+        <tr><td class="py-2 pr-4 font-medium">P/BV</td><td class="py-2">ราคา / มูลค่าทางบัญชีต่อหุ้น</td></tr>
+        <tr><td class="py-2 pr-4 font-medium">EPS</td><td class="py-2">กำไรสุทธิ / จำนวนหุ้นสามัญ</td></tr>
+        <tr><td class="py-2 pr-4 font-medium">ROE</td><td class="py-2">กำไรสุทธิ / ส่วนของผู้ถือหุ้น — ความสามารถทำกำไร</td></tr>
+        <tr><td class="py-2 pr-4 font-medium">D/E</td><td class="py-2">หนี้สิน / ส่วนของผู้ถือหุ้น — ยิ่งสูงเสี่ยงทางการเงินมาก</td></tr>
+        <tr><td class="py-2 pr-4 font-medium">Current ratio</td><td class="py-2">สินทรัพย์หมุนเวียน / หนี้สินหมุนเวียน — สภาพคล่อง</td></tr>
+        <tr><td class="py-2 pr-4 font-medium">Dividend Yield</td><td class="py-2">เงินปันผลต่อหุ้น / ราคา</td></tr>
+      </tbody>
+    </table>
+    <p class="mt-3"><b>วิเคราะห์ปัจจัยพื้นฐาน (Fundamental):</b> หามูลค่าที่แท้จริง เพื่อลงทุนระยะยาว · <b>วิเคราะห์ทางเทคนิค (Technical):</b> ดูกราฟราคา/ปริมาณ คาดการณ์ทิศทางระยะสั้น</p>` },
+
+  // ===== หมวด 2 =====
+  { cat:'2', tag:'หมวด 2 · 2.1', title:'โครงสร้างการกำกับดูแล',
+    summary:'ก.ล.ต. (SEC) · ตลาดหลักทรัพย์ (SET) · พ.ร.บ.หลักทรัพย์ฯ · IC ต้องได้รับความเห็นชอบ',
+    body:`
+    <ul class="list-disc space-y-2 pl-5">
+      <li><b>ก.ล.ต. (SEC):</b> หน่วยงานกำกับดูแลตลาดทุน ออกเกณฑ์ คุ้มครองผู้ลงทุน ให้/เพิกถอนความเห็นชอบผู้แนะนำการลงทุน</li>
+      <li><b>ตลาดหลักทรัพย์ (SET):</b> ศูนย์ซื้อขาย กำกับการซื้อขาย/บริษัทจดทะเบียน</li>
+      <li><b>พ.ร.บ.หลักทรัพย์และตลาดหลักทรัพย์</b> เป็นกฎหมายหลัก</li>
+      <li>ผู้แนะนำการลงทุน (IC) ต้องได้รับ <b>ความเห็นชอบจาก ก.ล.ต.</b> และสังกัดบริษัทหลักทรัพย์/ตัวกลาง จึงจะแนะนำได้</li>
+    </ul>` },
+
+  { cat:'2', tag:'หมวด 2 · 2.2', title:'การรู้จักลูกค้า (KYC/CDD) และความเหมาะสม (Suitability)',
+    summary:'KYC/CDD · Suitability Test ทบทวนทุก ≥ 2 ปี · จัดสรรสินทรัพย์ตามระดับเสี่ยง',
+    body:`
+    <ul class="list-disc space-y-2 pl-5">
+      <li><b>KYC / CDD:</b> พิสูจน์ตัวตน เก็บข้อมูลลูกค้าก่อนเปิดบัญชี/ให้บริการ</li>
+      <li><b>Suitability Test:</b> ประเมินระดับความเสี่ยงที่ลูกค้ารับได้ ต้องทบทวน <b>อย่างน้อยทุก 2 ปี</b></li>
+      <li>ต้องแนะนำผลิตภัณฑ์ที่ <b>เหมาะสมกับระดับความเสี่ยงและวัตถุประสงค์</b> ของลูกค้า</li>
+      <li>หากลูกค้าจะลงทุนในผลิตภัณฑ์ <b>เสี่ยงเกินระดับที่รับได้</b> ต้องเตือน และให้ลูกค้าลงนามรับทราบ</li>
+    </ul>
+    <table class="mt-4 w-full text-left text-sm">
+      <thead><tr class="border-b border-slate-200 text-slate-500"><th class="py-2 pr-4">ระดับเสี่ยงลูกค้า</th><th class="py-2">การจัดสรรสินทรัพย์ (แนวทาง)</th></tr></thead>
+      <tbody class="divide-y divide-slate-100">
+        <tr><td class="py-2 pr-4 font-medium">รับเสี่ยงต่ำ (อนุรักษ์นิยม)</td><td class="py-2">เน้นเงินฝาก/ตราสารหนี้ภาครัฐระยะสั้น</td></tr>
+        <tr><td class="py-2 pr-4 font-medium">รับเสี่ยงปานกลาง</td><td class="py-2">ผสมตราสารหนี้ + หุ้น/กองทุนผสม</td></tr>
+        <tr><td class="py-2 pr-4 font-medium">รับเสี่ยงสูง</td><td class="py-2">เพิ่มสัดส่วนหุ้น/สินทรัพย์เสี่ยง</td></tr>
+      </tbody>
+    </table>` },
+
+  { cat:'2', tag:'หมวด 2 · 2.3–2.4', title:'ประเภทลูกค้า & การเปิดเผยข้อมูล',
+    summary:'Retail / HNW / Institutional · Prospectus · Fund Fact Sheet · ผลตอบแทนอดีตไม่รับประกันอนาคต',
+    body:`
+    <p class="font-medium text-slate-900">ประเภทลูกค้า</p>
+    <ul class="mt-2 list-disc space-y-2 pl-5">
+      <li><b>ผู้ลงทุนรายย่อย (Retail):</b> ได้รับความคุ้มครองสูงสุด</li>
+      <li><b>รายใหญ่ (HNW) / รายใหญ่พิเศษ (UHNW):</b> มีเกณฑ์สินทรัพย์/รายได้</li>
+      <li><b>ผู้ลงทุนสถาบัน (Institutional):</b> เช่น ธนาคาร บลจ. ประกัน — คุ้มครองน้อยกว่าเพราะมีความรู้</li>
+    </ul>
+    <p class="mt-4 font-medium text-slate-900">การเปิดเผยข้อมูล</p>
+    <ul class="mt-2 list-disc space-y-2 pl-5">
+      <li><b>หนังสือชี้ชวน (Prospectus):</b> ข้อมูลผลิตภัณฑ์ฉบับเต็ม</li>
+      <li><b>Fund Fact Sheet:</b> สรุปข้อมูลกองทุน 1 หน้า (นโยบาย ความเสี่ยง ผลตอบแทนย้อนหลัง ค่าธรรมเนียม)</li>
+      <li>ต้องให้ข้อมูลครบถ้วน ถูกต้อง เป็นปัจจุบัน ไม่ปิดบังข้อเท็จจริงสำคัญ ไม่โฆษณาเกินจริง</li>
+      <li><b>ผลตอบแทนในอดีตไม่ได้รับประกัน</b>ผลตอบแทนในอนาคต — ต้องระบุเสมอ</li>
+    </ul>` },
+
+  { cat:'2', tag:'หมวด 2 · 2.5', title:'จรรยาบรรณ & มาตรฐานการปฏิบัติงาน',
+    summary:'หัวใจของหมวดนี้ · ผลประโยชน์ลูกค้ามาก่อน · Conflict of Interest',
+    body:`
+    <ol class="list-decimal space-y-2 pl-5">
+      <li><b>ซื่อสัตย์สุจริต</b> และรักษาผลประโยชน์ของลูกค้าเป็นสำคัญ (ก่อนผลประโยชน์ตน/บริษัท)</li>
+      <li><b>ความรู้ความสามารถและความระมัดระวัง</b>เยี่ยงผู้ประกอบวิชาชีพ</li>
+      <li><b>ปฏิบัติตามกฎหมาย กฎเกณฑ์</b> และไม่สนับสนุนการกระทำผิด</li>
+      <li><b>รักษาความลับลูกค้า</b> ไม่นำข้อมูลไปใช้แสวงประโยชน์</li>
+      <li><b>ให้ข้อมูลที่ถูกต้องเพียงพอ</b> เหมาะกับลูกค้า ไม่ทำให้เข้าใจผิด</li>
+      <li><b>จัดการความขัดแย้งทางผลประโยชน์ (Conflict of Interest)</b> อย่างเป็นธรรมและเปิดเผย</li>
+    </ol>
+    <div class="mt-4 rounded-lg border border-rose-200 bg-rose-50 p-4">
+      <p class="font-semibold text-rose-700">ข้อห้ามสำคัญ (มักออกสอบ)</p>
+      <ul class="mt-2 list-disc space-y-1.5 pl-5 text-rose-900">
+        <li>ห้าม <b>รับประกันผลตอบแทน</b> หรือรับประกันไม่ขาดทุน</li>
+        <li>ห้าม <b>ตัดสินใจซื้อขายแทนลูกค้า</b> โดยไม่ได้รับมอบหมายเป็นลายลักษณ์อักษร (discretionary โดยพลการ)</li>
+        <li>ห้าม <b>ทำธุรกรรมในบัญชีลูกค้าบ่อยเกินจำเป็นเพื่อหวังค่าคอมฯ (Churning)</b></li>
+        <li>ห้ามแนะนำให้ซื้อขายเกินฐานะ/เกินความเหมาะสม</li>
+        <li>ห้ามยืม/รับฝากเงินหรือทรัพย์สินลูกค้าไว้กับตนเอง</li>
+      </ul>
+    </div>` },
+
+  { cat:'2', tag:'หมวด 2 · 2.6–2.7', title:'Market Misconduct & การป้องกันการฟอกเงิน (AML/CFT)',
+    summary:'Insider Trading · ปั่นหุ้น · Front Running · ข่าวเท็จ · รายงาน ปปง.',
+    body:`
+    <table class="w-full text-left text-sm">
+      <thead><tr class="border-b border-slate-200 text-slate-500"><th class="py-2 pr-4">พฤติกรรม</th><th class="py-2">คำอธิบาย</th></tr></thead>
+      <tbody class="divide-y divide-slate-100">
+        <tr><td class="py-2 pr-4 font-medium">Insider Trading</td><td class="py-2">ใช้ข้อมูลภายในที่ยังไม่เปิดเผยหาประโยชน์ — ผิดกฎหมาย</td></tr>
+        <tr><td class="py-2 pr-4 font-medium">การสร้างราคา (ปั่นหุ้น)</td><td class="py-2">สร้างราคา/ปริมาณซื้อขายลวงให้ผู้อื่นเข้าใจผิด</td></tr>
+        <tr><td class="py-2 pr-4 font-medium">Front Running</td><td class="py-2">ส่งคำสั่งของตนตัดหน้าคำสั่งลูกค้าเพื่อหากำไร</td></tr>
+        <tr><td class="py-2 pr-4 font-medium">การเผยแพร่ข่าวเท็จ</td><td class="py-2">กระจายข้อมูลเท็จเพื่อกระทบราคา</td></tr>
+      </tbody>
+    </table>
+    <p class="mt-4 font-medium text-slate-900">AML/CFT (ปปง.)</p>
+    <ul class="mt-2 list-disc space-y-2 pl-5">
+      <li>พิสูจน์ทราบตัวตนลูกค้า รายงานธุรกรรมที่ <b>มีเหตุอันควรสงสัย</b> และธุรกรรมเงินสด/ทรัพย์สินตามเกณฑ์ต่อ <b>ปปง. (AMLO)</b></li>
+      <li>ห้ามให้บริการแก่ลูกค้าที่ปกปิดตัวตน หรือใช้ชื่อปลอม</li>
+    </ul>` },
+
+  // ===== หมวด 3 =====
+  { cat:'3', tag:'หมวด 3 · 3.1', title:'ตราสารหนี้ (Fixed Income)',
+    summary:'ประเภท T-Bill/พันธบัตร/หุ้นกู้ · ราคา ↔ YTM ผกผัน · Duration · Credit Rating',
+    body:`
+    <table class="w-full text-left text-sm">
+      <thead><tr class="border-b border-slate-200 text-slate-500"><th class="py-2 pr-4">ผู้ออก / ประเภท</th><th class="py-2">ลักษณะ</th></tr></thead>
+      <tbody class="divide-y divide-slate-100">
+        <tr><td class="py-2 pr-4 font-medium">ตั๋วเงินคลัง (T-Bill)</td><td class="py-2">รัฐบาลออก อายุ ≤ 1 ปี ไม่มีดอกเบี้ย ขายลดราคา เสี่ยงต่ำสุด</td></tr>
+        <tr><td class="py-2 pr-4 font-medium">พันธบัตรรัฐบาล</td><td class="py-2">รัฐบาลออก อายุ &gt; 1 ปี เสี่ยงผิดนัดต่ำมาก</td></tr>
+        <tr><td class="py-2 pr-4 font-medium">หุ้นกู้ (Debenture)</td><td class="py-2">บริษัทเอกชนออก ผลตอบแทนสูงกว่าพันธบัตร เพราะเสี่ยงมากกว่า</td></tr>
+        <tr><td class="py-2 pr-4 font-medium">หุ้นกู้ด้อยสิทธิ</td><td class="py-2">สิทธิเรียกร้องชำระหนี้ทีหลัง → เสี่ยงสูงกว่า ผลตอบแทนสูงกว่า</td></tr>
+        <tr><td class="py-2 pr-4 font-medium">หุ้นกู้แปลงสภาพ</td><td class="py-2">แปลงเป็นหุ้นสามัญได้</td></tr>
+      </tbody>
+    </table>
+    <div class="mt-4 rounded-lg border border-emerald-200 bg-emerald-50 p-4 text-emerald-900">
+      <p class="font-semibold">ความสัมพันธ์ที่ออกสอบบ่อยสุด — ราคากับ YTM เป็น "ผกผัน"</p>
+      <ul class="mt-2 list-disc space-y-1.5 pl-5">
+        <li>ดอกเบี้ยตลาด (YTM) <b>ขึ้น</b> → ราคาตราสารหนี้ <b>ลง</b></li>
+        <li>ดอกเบี้ยตลาด (YTM) <b>ลง</b> → ราคาตราสารหนี้ <b>ขึ้น</b></li>
+        <li>Coupon = YTM → ราคา = par | Coupon &gt; YTM → Premium | Coupon &lt; YTM → Discount</li>
+      </ul>
+    </div>
+    <ul class="mt-4 list-disc space-y-2 pl-5">
+      <li><b>Duration:</b> ยิ่งอายุยาว → ราคายิ่งอ่อนไหวต่อการเปลี่ยนดอกเบี้ยมาก · คูปองยิ่งต่ำ → duration ยิ่งยาว → อ่อนไหวมากกว่า</li>
+      <li><b>Credit Rating:</b> Investment Grade = BBB− ขึ้นไป (น่าเชื่อถือ) · ต่ำกว่านั้น = High Yield (เสี่ยงสูง ผลตอบแทนสูง) · rating ยิ่งต่ำ → yield ที่เรียกยิ่งสูง</li>
+    </ul>` },
+
+  { cat:'3', tag:'หมวด 3 · 3.2', title:'ตราสารทุน (Equity)',
+    summary:'หุ้นสามัญ / บุริมสิทธิ / Warrant · ลำดับสิทธิเรียกร้อง · Gordon · P/E approach',
+    body:`
+    <table class="w-full text-left text-sm">
+      <thead><tr class="border-b border-slate-200 text-slate-500"><th class="py-2 pr-4">ประเภท</th><th class="py-2">ลักษณะ</th></tr></thead>
+      <tbody class="divide-y divide-slate-100">
+        <tr><td class="py-2 pr-4 font-medium">หุ้นสามัญ (Common)</td><td class="py-2">มีสิทธิออกเสียง รับปันผลตามผลกำไร เสี่ยงสูงสุด รับเงินคืนลำดับท้ายสุดเมื่อเลิกบริษัท</td></tr>
+        <tr><td class="py-2 pr-4 font-medium">หุ้นบุริมสิทธิ (Preferred)</td><td class="py-2">รับปันผลก่อนหุ้นสามัญ (มักอัตราคงที่) สิทธิออกเสียงจำกัด</td></tr>
+        <tr><td class="py-2 pr-4 font-medium">ใบสำคัญแสดงสิทธิ (Warrant)</td><td class="py-2">สิทธิซื้อหุ้นในราคา/เวลาที่กำหนด</td></tr>
+      </tbody>
+    </table>
+    <p class="mt-3">ลำดับสิทธิเรียกร้องเมื่อเลิกกิจการ: <b>เจ้าหนี้/ผู้ถือหุ้นกู้ → หุ้นบุริมสิทธิ → หุ้นสามัญ</b></p>
+    <div class="mt-4 rounded-lg bg-slate-50 p-4 font-mono text-slate-800">
+      Dividend Discount Model (Gordon): P = D₁ / (k − g)<br>
+      D₁ = เงินปันผลปีหน้า, k = ผลตอบแทนที่ต้องการ, g = อัตราเติบโตปันผล (k ต้อง &gt; g)<br>
+      P/E approach: ราคาเหมาะสม = EPS × P/E ที่เหมาะสม
+    </div>` },
+
+  { cat:'3', tag:'หมวด 3 · 3.3', title:'กองทุนรวม (Mutual Fund)',
+    summary:'บลจ. + Trustee · NAV · ระดับเสี่ยง 1–8 · Open/Closed-end · RMF/SSF/Thai ESG · ค่าธรรมเนียม',
+    body:`
+    <ul class="list-disc space-y-2 pl-5">
+      <li>นำเงินผู้ลงทุนหลายรายมารวมกัน บริหารโดย <b>บลจ.</b> ภายใต้ <b>ผู้ดูแลผลประโยชน์ (Trustee)</b> ที่เป็นอิสระ</li>
+      <li><b>NAV = (สินทรัพย์สุทธิของกองทุน) / จำนวนหน่วยลงทุน</b> — ใช้เป็นราคาซื้อขายหน่วย</li>
+    </ul>
+    <table class="mt-4 w-full text-left text-sm">
+      <thead><tr class="border-b border-slate-200 text-slate-500"><th class="py-2 pr-4">ประเภท</th><th class="py-2 pr-4">ระดับเสี่ยง</th><th class="py-2">ลงทุนใน</th></tr></thead>
+      <tbody class="divide-y divide-slate-100">
+        <tr><td class="py-2 pr-4 font-medium">กองทุนตลาดเงิน</td><td class="py-2 pr-4">1–2 ต่ำสุด</td><td class="py-2">ตราสารหนี้ระยะสั้น ≤ 1 ปี</td></tr>
+        <tr><td class="py-2 pr-4 font-medium">กองทุนตราสารหนี้</td><td class="py-2 pr-4">3–4</td><td class="py-2">พันธบัตร หุ้นกู้</td></tr>
+        <tr><td class="py-2 pr-4 font-medium">กองทุนผสม</td><td class="py-2 pr-4">5</td><td class="py-2">ตราสารหนี้ + หุ้น</td></tr>
+        <tr><td class="py-2 pr-4 font-medium">กองทุนตราสารทุน</td><td class="py-2 pr-4">6</td><td class="py-2">หุ้นเป็นหลัก</td></tr>
+        <tr><td class="py-2 pr-4 font-medium">กองหมวด/ต่างประเทศ (FIF)</td><td class="py-2 pr-4">7</td><td class="py-2">กระจุกตัว/ต่างประเทศ</td></tr>
+        <tr><td class="py-2 pr-4 font-medium">สินทรัพย์ทางเลือก</td><td class="py-2 pr-4">8 สูงสุด</td><td class="py-2">ทองคำ น้ำมัน อนุพันธ์</td></tr>
+      </tbody>
+    </table>
+    <ul class="mt-4 list-disc space-y-2 pl-5">
+      <li><b>Open-end:</b> ซื้อขายคืนหน่วยกับ บลจ. จำนวนหน่วยเปลี่ยนแปลงได้ (พบมากสุด) · <b>Closed-end:</b> หน่วยคงที่ ไม่รับซื้อคืนระหว่างทาง อาจจดทะเบียนซื้อขายในตลาดรอง</li>
+      <li><b>RMF:</b> ลงทุนต่อเนื่องถึงอายุ 55 ปี และลงทุนมาแล้ว ≥ 5 ปี · ห้ามเว้นเกิน 1 ปีติดต่อกัน ไม่จ่ายปันผล</li>
+      <li><b>SSF:</b> ถือครอง ≥ 10 ปีนับจากวันซื้อ</li>
+      <li><b>Thai ESG:</b> ลงทุนในกิจการไทยที่เน้นความยั่งยืน มีเงื่อนไขถือครองตามเกณฑ์</li>
+    </ul>
+    <p class="mt-3 font-medium text-slate-900">ค่าธรรมเนียม & การวัดผล</p>
+    <ul class="mt-2 list-disc space-y-2 pl-5">
+      <li>Front-end load (ขาเข้า) · Back-end load (ขาออก) · Management fee · <b>TER</b> ยิ่งสูง → ผลตอบแทนสุทธิยิ่งลด</li>
+      <li><b>Benchmark:</b> ดัชนีอ้างอิงเทียบผล (เช่น SET TRI) · <b>Tracking error:</b> กองดัชนี (Passive) ต้องต่ำ</li>
+      <li><b>Active</b> มุ่งเอาชนะดัชนี vs <b>Passive</b> เลียนแบบดัชนี (ค่าธรรมเนียมต่ำกว่า) · <b>DCA:</b> ลงทุนสม่ำเสมอ ลดความเสี่ยงจังหวะเวลา</li>
+    </ul>` },
+];
+
+/* ---------- Render cards ---------- */
+const grid = document.getElementById('kb-grid');
+const catStyle = {
+  '1': { ring:'border-slate-700/60', dot:'bg-emerald2' },
+  '2': { ring:'border-gold/30',      dot:'bg-gold' },
+  '3': { ring:'border-slate-700/60', dot:'bg-emerald2' },
+};
+
+function renderCards(filter){
+  grid.innerHTML = '';
+  TOPICS.filter(t => filter === 'all' || t.cat === filter).forEach((t, i) => {
+    const s = catStyle[t.cat];
+    const el = document.createElement('button');
+    el.className = `kb-card fade-in group flex flex-col rounded-xl border ${s.ring} bg-gray-50 p-6 text-left`;
+    el.style.animationDelay = (i * 30) + 'ms';
+    el.innerHTML = `
+      <div class="flex items-center gap-2">
+        <span class="h-1.5 w-1.5 rounded-full ${s.dot}"></span>
+        <span class="text-xs font-medium uppercase tracking-wider text-slate-500">${t.tag}</span>
+      </div>
+      <h3 class="mt-3 text-base font-semibold text-slate-900">${t.title}</h3>
+      <p class="mt-2 flex-1 text-sm leading-relaxed text-slate-500">${t.summary}</p>
+      <span class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-emerald2 transition group-hover:gap-2">
+        อ่านสรุปเต็ม <span aria-hidden="true">→</span>
+      </span>`;
+    el.addEventListener('click', () => openModal(t));
+    grid.appendChild(el);
+  });
+}
+
+/* ---------- Filters ---------- */
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => {
+      b.classList.remove('border-slate-600','bg-slate-700/60','text-white');
+      b.classList.add('border-slate-700','text-slate-400');
+    });
+    btn.classList.add('border-slate-600','bg-slate-700/60','text-white');
+    btn.classList.remove('border-slate-700','text-slate-400');
+    renderCards(btn.dataset.filter);
+  });
+});
+
+/* ---------- Modal ---------- */
+const modal = document.getElementById('modal');
+function openModal(t){
+  document.getElementById('modal-tag').textContent = t.tag;
+  document.getElementById('modal-title').textContent = t.title;
+  document.getElementById('modal-body').innerHTML = t.body;
+  modal.classList.remove('hidden');
+  modal.classList.add('flex');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(){
+  modal.classList.add('hidden');
+  modal.classList.remove('flex');
+  document.body.style.overflow = '';
+}
+document.getElementById('modal-close').addEventListener('click', closeModal);
+document.getElementById('modal-overlay').addEventListener('click', closeModal);
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
+
+renderCards('all');
+
+/* ---------- Mock exam (100 questions) ---------- */
+/* a = answer index (0=ก,1=ข,2=ค,3=ง) */
+const QUESTIONS = [
+  // ===== หมวด 1 (1–30) =====
+  {n:1,cat:'1',q:'ข้อใดเป็นตราสารในตลาดเงิน (Money Market)',o:['พันธบัตรรัฐบาลอายุ 10 ปี','ตั๋วเงินคลัง (T-Bill)','หุ้นสามัญ','หุ้นกู้อายุ 5 ปี'],a:1,e:'ตลาดเงินคือตราสารหนี้อายุไม่เกิน 1 ปี ตั๋วเงินคลังเข้าข่าย ส่วน ก,ง เป็นตลาดทุน และ ค เป็นตราสารทุน'},
+  {n:2,cat:'1',q:'ข้อใดถูกต้องเกี่ยวกับ "ตลาดแรก" (Primary Market)',o:['เป็นการซื้อขายเปลี่ยนมือระหว่างผู้ลงทุน','บริษัทผู้ออกหลักทรัพย์ได้รับเงินจากการขาย','ไม่มีการระดมทุนใหม่','ทำหน้าที่สร้างสภาพคล่องเป็นหลัก'],a:1,e:'ตลาดแรกคือการเสนอขายครั้งแรก เงินจากการขายเข้าสู่บริษัทผู้ออก (เช่น IPO)'},
+  {n:3,cat:'1',q:'หน้าที่หลักของตลาดรอง (Secondary Market) คือข้อใด',o:['ให้บริษัทระดมทุนครั้งแรก','สร้างสภาพคล่องให้ผู้ลงทุนซื้อขายเปลี่ยนมือได้','กำหนดอัตราดอกเบี้ยนโยบาย','ออกหลักทรัพย์ใหม่'],a:1,e:'ตลาดรองทำหน้าที่เปลี่ยนมือหลักทรัพย์ สร้างสภาพคล่อง เงินไม่เข้าบริษัท'},
+  {n:4,cat:'1',q:'ลงทุน 100,000 บาท ผลตอบแทน 5% ทบต้นต่อปี เป็นเวลา 2 ปี จะได้มูลค่าอนาคตเท่าใด',o:['110,000 บาท','110,250 บาท','105,000 บาท','115,762 บาท'],a:1,e:'FV = 100,000 × (1.05)² = 110,250 บาท'},
+  {n:5,cat:'1',q:'เงินจำนวน 110,250 บาทที่จะได้รับในอีก 2 ปีข้างหน้า คิดลดด้วยอัตรา 5% ต่อปี มีมูลค่าปัจจุบันเท่าใด',o:['100,000 บาท','105,000 บาท','99,750 บาท','110,250 บาท'],a:0,e:'PV = 110,250 / (1.05)² = 100,000 บาท'},
+  {n:6,cat:'1',q:'ถ้าผลตอบแทนที่เป็นตัวเงิน (nominal) เท่ากับ 7% และอัตราเงินเฟ้อ 3% ผลตอบแทนที่แท้จริง (real return) ประมาณเท่าใด',o:['10%','4%','3%','21%'],a:1,e:'Real ≈ Nominal − เงินเฟ้อ = 7% − 3% = 4%'},
+  {n:7,cat:'1',q:'โดยทั่วไปใช้ค่าใดวัด "ความเสี่ยงรวม" ของหลักทรัพย์',o:['ค่าเฉลี่ยเลขคณิต','ส่วนเบี่ยงเบนมาตรฐาน (SD)','ค่ามัธยฐาน','อัตราเงินปันผล'],a:1,e:'ความเสี่ยงรวมวัดด้วยส่วนเบี่ยงเบนมาตรฐาน (SD) ของผลตอบแทน'},
+  {n:8,cat:'1',q:'ความเสี่ยงประเภทใดสามารถลดได้ด้วยการกระจายการลงทุน (diversification)',o:['ความเสี่ยงที่เป็นระบบ','ความเสี่ยงด้านตลาด','ความเสี่ยงที่ไม่เป็นระบบ (เฉพาะตัว)','ความเสี่ยงจากอัตราดอกเบี้ย'],a:2,e:'เฉพาะความเสี่ยงที่ไม่เป็นระบบ (เฉพาะตัว) ที่กระจายได้ ส่วนความเสี่ยงระบบ/ตลาด/ดอกเบี้ยกระจายไม่ได้'},
+  {n:9,cat:'1',q:'ข้อใดเป็นความเสี่ยงที่เป็นระบบ (systematic risk)',o:['บริษัทถูกฟ้องร้อง','โรงงานของบริษัทไฟไหม้','การเปลี่ยนแปลงอัตราดอกเบี้ยและภาวะเศรษฐกิจ','ผู้บริหารบริษัทลาออก'],a:2,e:'ดอกเบี้ย/เศรษฐกิจกระทบทั้งตลาด = ความเสี่ยงระบบ ส่วน ก/ข/ง เป็นเรื่องเฉพาะบริษัท'},
+  {n:10,cat:'1',q:'หุ้นที่มีค่าเบต้า (β) = 1.5 หมายความว่าอย่างไร',o:['เคลื่อนไหวเท่ากับตลาด','ผันผวนมากกว่าตลาด (เชิงรุก)','ผันผวนน้อยกว่าตลาด','เคลื่อนไหวสวนทางตลาด'],a:1,e:'β = 1.5 > 1 ราคาผันผวนมากกว่าตลาด 1.5 เท่า (หุ้นเชิงรุก)'},
+  {n:11,cat:'1',q:'การจับคู่สินทรัพย์ที่มีค่าสหสัมพันธ์ (correlation) เท่าใด ช่วยลดความเสี่ยงของพอร์ตได้มากที่สุด',o:['+1.0','0','+0.5','−1.0'],a:3,e:'correlation ยิ่งเข้าใกล้ −1 ยิ่งช่วยลดความเสี่ยงพอร์ตได้มากที่สุด'},
+  {n:12,cat:'1',q:'ตาม CAPM ถ้า Rf = 2%, Rm = 10%, β = 1.2 ผลตอบแทนที่ต้องการของหุ้นเท่ากับเท่าใด',o:['9.6%','11.6%','12.0%','14.4%'],a:1,e:'CAPM: 2% + 1.2 × (10% − 2%) = 2% + 9.6% = 11.6%'},
+  {n:13,cat:'1',q:'โครงการลงทุนมีโอกาส 50% ได้ผลตอบแทน 20% และโอกาส 50% ได้ 0% ผลตอบแทนคาดหวัง E(R) เท่ากับเท่าใด',o:['20%','10%','0%','5%'],a:1,e:'E(R) = 0.5 × 20% + 0.5 × 0% = 10%'},
+  {n:14,cat:'1',q:'การวิเคราะห์แบบ Top-down เรียงลำดับอย่างไร',o:['บริษัท → อุตสาหกรรม → เศรษฐกิจ','เศรษฐกิจ → อุตสาหกรรม → บริษัท','อุตสาหกรรม → บริษัท → เศรษฐกิจ','บริษัท → เศรษฐกิจ → อุตสาหกรรม'],a:1,e:'Top-down: เศรษฐกิจมหภาค → อุตสาหกรรม → บริษัท'},
+  {n:15,cat:'1',q:'เมื่อเงินเฟ้อสูงขึ้นมาก ธนาคารกลาง (ธปท.) มักดำเนินนโยบายใด',o:['ลดอัตราดอกเบี้ยนโยบาย','ขึ้นอัตราดอกเบี้ยนโยบาย','เพิ่มการใช้จ่ายภาครัฐ','ลดภาษีเงินได้'],a:1,e:'เงินเฟ้อสูง ธนาคารกลางมักขึ้นดอกเบี้ยเพื่อชะลอเงินเฟ้อ'},
+  {n:16,cat:'1',q:'ข้อใดเป็นเครื่องมือของ "นโยบายการคลัง"',o:['การกำหนดอัตราดอกเบี้ยนโยบาย','การกำหนดอัตราเงินสดสำรอง','การเก็บภาษีและการใช้จ่ายของรัฐบาล','การซื้อขายพันธบัตรของธนาคารกลาง'],a:2,e:'นโยบายการคลัง = ภาษี + การใช้จ่ายภาครัฐ ส่วน ก/ข/ง เป็นเครื่องมือนโยบายการเงิน'},
+  {n:17,cat:'1',q:'นโยบายการเงิน (Monetary Policy) อยู่ในความรับผิดชอบของหน่วยงานใด',o:['กระทรวงการคลัง','ธนาคารแห่งประเทศไทย','ตลาดหลักทรัพย์ฯ','ก.ล.ต.'],a:1,e:'นโยบายการเงินอยู่ในความรับผิดชอบของธนาคารแห่งประเทศไทย'},
+  {n:18,cat:'1',q:'ข้อใดเป็นหุ้นกลุ่ม Defensive (ทนทานต่อภาวะเศรษฐกิจ)',o:['กลุ่มยานยนต์','กลุ่มอสังหาริมทรัพย์','กลุ่มสาธารณูปโภค / อาหาร / ยา','กลุ่มท่องเที่ยว'],a:2,e:'Defensive = สาธารณูปโภค/อาหาร/ยา ความต้องการคงที่ ทนทานต่อภาวะเศรษฐกิจ'},
+  {n:19,cat:'1',q:'หากบริษัทสองแห่งในกลุ่มเดียวกันมีกำไรใกล้เคียงกัน บริษัทที่มีอัตราส่วน P/E ต่ำกว่าโดยทั่วไปหมายความว่าอย่างไร',o:['ราคาหุ้นแพงกว่า','ราคาหุ้นค่อนข้างถูกกว่าเมื่อเทียบกำไร','จ่ายปันผลสูงกว่าเสมอ','มีหนี้สินมากกว่า'],a:1,e:'P/E ต่ำกว่า (เมื่อกำไรใกล้กัน) สะท้อนราคาถูกกว่าเชิงเปรียบเทียบ'},
+  {n:20,cat:'1',q:'อัตราส่วน ROE คำนวณจากข้อใด',o:['กำไรสุทธิ / สินทรัพย์รวม','กำไรสุทธิ / ส่วนของผู้ถือหุ้น','หนี้สิน / ส่วนของผู้ถือหุ้น','ราคา / กำไรต่อหุ้น'],a:1,e:'ROE = กำไรสุทธิ / ส่วนของผู้ถือหุ้น'},
+  {n:21,cat:'1',q:'บริษัทมีกำไรสุทธิ 20 ล้านบาท มีหุ้นสามัญ 10 ล้านหุ้น กำไรต่อหุ้น (EPS) เท่ากับเท่าใด',o:['0.5 บาท','2 บาท','10 บาท','200 บาท'],a:1,e:'EPS = 20 ล้าน / 10 ล้านหุ้น = 2 บาท'},
+  {n:22,cat:'1',q:'จากข้อ 21 ถ้าราคาหุ้นเท่ากับ 30 บาท อัตราส่วน P/E เท่ากับเท่าใด',o:['60 เท่า','15 เท่า','1.5 เท่า','6 เท่า'],a:1,e:'P/E = 30 / 2 = 15 เท่า'},
+  {n:23,cat:'1',q:'อัตราส่วนหนี้สินต่อส่วนของผู้ถือหุ้น (D/E) ที่สูงสะท้อนข้อใด',o:['สภาพคล่องสูง','ความเสี่ยงทางการเงินสูง','กำไรต่อหุ้นสูง','ความเสี่ยงต่ำ'],a:1,e:'D/E สูง = พึ่งพาหนี้มาก ความเสี่ยงทางการเงินสูง'},
+  {n:24,cat:'1',q:'หุ้นจ่ายปันผล 2 บาทต่อหุ้น ราคาตลาด 40 บาท อัตราเงินปันผลตอบแทน (Dividend Yield) เท่ากับเท่าใด',o:['20%','5%','2%','8%'],a:1,e:'Dividend yield = 2 / 40 = 5%'},
+  {n:25,cat:'1',q:'การวิเคราะห์ทางเทคนิค (Technical Analysis) เน้นพิจารณาข้อใด',o:['งบการเงินและกำไรของบริษัท','กราฟราคาและปริมาณการซื้อขายในอดีต','นโยบายการเงินของธนาคารกลาง','มูลค่าที่แท้จริงของกิจการ'],a:1,e:'เทคนิคเน้นกราฟราคาและปริมาณการซื้อขาย ไม่ใช่ปัจจัยพื้นฐาน'},
+  {n:26,cat:'1',q:'หากความถี่ในการทบต้นดอกเบี้ยเพิ่มขึ้น (เช่น จากรายปีเป็นรายเดือน) ผลตอบแทนที่แท้จริง (effective rate) จะเป็นอย่างไร',o:['ลดลง','เพิ่มขึ้น','เท่าเดิม','กลายเป็นศูนย์'],a:1,e:'ทบต้นถี่ขึ้น ผลตอบแทนที่แท้จริง (effective rate) สูงขึ้น'},
+  {n:27,cat:'1',q:'ซื้อหุ้นราคา 100 บาท ปีถัดมาได้ปันผล 5 บาท และขายได้ที่ 110 บาท ผลตอบแทนถือครอง (HPR) เท่ากับเท่าใด',o:['10%','5%','15%','20%'],a:2,e:'HPR = (5 + (110 − 100)) / 100 = 15 / 100 = 15%'},
+  {n:28,cat:'1',q:'สินทรัพย์ในข้อใดมีสภาพคล่องสูงที่สุด',o:['อสังหาริมทรัพย์','เงินฝาก / ตราสารตลาดเงิน','หุ้นกู้เอกชนที่ไม่มีการซื้อขาย','ทองคำแท่ง'],a:1,e:'เงินฝาก/ตราสารตลาดเงินเปลี่ยนเป็นเงินสดได้เร็วที่สุด สภาพคล่องสูงสุด'},
+  {n:29,cat:'1',q:'ข้อใด "ไม่ใช่" ความเสี่ยงที่เป็นระบบ',o:['ความเสี่ยงจากอัตราดอกเบี้ย','ความเสี่ยงจากภาวะเศรษฐกิจถดถอย','ความเสี่ยงจากการบริหารงานผิดพลาดของบริษัทหนึ่ง','ความเสี่ยงจากเหตุการณ์ทางการเมือง'],a:2,e:'การบริหารผิดพลาดของบริษัทหนึ่ง = ความเสี่ยงเฉพาะตัว (ไม่เป็นระบบ)'},
+  {n:30,cat:'1',q:'ในภาวะเศรษฐกิจถดถอย ผู้ลงทุนที่ต้องการลดความเสี่ยงควรเพิ่มน้ำหนักการลงทุนในกลุ่มใด',o:['หุ้นกลุ่มวัฏจักร (Cyclical)','หุ้นกลุ่ม Defensive และตราสารหนี้คุณภาพดี','สินค้าโภคภัณฑ์เก็งกำไร','หุ้นกู้ด้อยสิทธิ'],a:1,e:'ภาวะถดถอยควรเน้น Defensive + ตราสารหนี้คุณภาพดี เพื่อลดความเสี่ยง'},
+
+  // ===== หมวด 2 (31–50) =====
+  {n:31,cat:'2',q:'หน่วยงานหลักที่กำกับดูแลตลาดทุนไทยและให้ความเห็นชอบผู้แนะนำการลงทุนคือข้อใด',o:['ธนาคารแห่งประเทศไทย','สำนักงาน ก.ล.ต.','กระทรวงพาณิชย์','ปปง.'],a:1,e:'ก.ล.ต. กำกับตลาดทุนและให้ความเห็นชอบผู้แนะนำการลงทุน'},
+  {n:32,cat:'2',q:'บุคคลที่จะทำหน้าที่ผู้แนะนำการลงทุน (IC) ได้ต้องมีคุณสมบัติข้อใด',o:['เป็นผู้ถือหุ้นของบริษัทหลักทรัพย์','ได้รับความเห็นชอบจาก ก.ล.ต. และสังกัดผู้ประกอบธุรกิจ','มีเงินลงทุนขั้นต่ำ 1 ล้านบาท','จบปริญญาโทขึ้นไป'],a:1,e:'IC ต้องได้รับความเห็นชอบจาก ก.ล.ต. และสังกัดผู้ประกอบธุรกิจที่ได้รับอนุญาต'},
+  {n:33,cat:'2',q:'กระบวนการ KYC/CDD ควรดำเนินการเมื่อใด',o:['หลังลูกค้าขาดทุน','ก่อนเปิดบัญชี/เริ่มให้บริการลูกค้า','เฉพาะลูกค้าสถาบัน','ทุก 5 ปีเท่านั้น'],a:1,e:'KYC/CDD ต้องทำก่อนเปิดบัญชี/เริ่มให้บริการ เพื่อรู้จักตัวตนและความเหมาะสม'},
+  {n:34,cat:'2',q:'แบบประเมินความเหมาะสมในการลงทุน (Suitability Test) ควรทบทวนอย่างน้อยทุกกี่ปี',o:['ทุก 1 ปี','ทุก 2 ปี','ทุก 5 ปี','ไม่ต้องทบทวน'],a:1,e:'แบบประเมินความเหมาะสมควรทบทวนอย่างน้อยทุก 2 ปี'},
+  {n:35,cat:'2',q:'ลูกค้าที่รับความเสี่ยงได้ต่ำ (อนุรักษ์นิยม) ควรได้รับคำแนะนำให้ลงทุนในข้อใดเป็นหลัก',o:['หุ้นเก็งกำไร','กองทุนทองคำ','เงินฝาก/ตราสารหนี้ภาครัฐระยะสั้น','หุ้นกู้ด้อยสิทธิ'],a:2,e:'ลูกค้ารับเสี่ยงต่ำควรเน้นเงินฝาก/ตราสารหนี้ภาครัฐระยะสั้น'},
+  {n:36,cat:'2',q:'หากลูกค้ายืนยันจะลงทุนในผลิตภัณฑ์ที่เสี่ยงเกินระดับที่ตนรับได้ ผู้แนะนำการลงทุนควรทำอย่างไร',o:['ปฏิเสธทันทีทุกกรณี','ดำเนินการให้โดยไม่ต้องแจ้งอะไร','แจ้งเตือนความเสี่ยงและให้ลูกค้าลงนามรับทราบ','เปลี่ยนผลิตภัณฑ์ให้เองโดยไม่บอกลูกค้า'],a:2,e:'ต้องแจ้งเตือนความเสี่ยงและให้ลูกค้าลงนามรับทราบก่อนดำเนินการ'},
+  {n:37,cat:'2',q:'เอกสารที่สรุปข้อมูลสำคัญของกองทุนรวมไว้โดยย่อ (ประมาณ 1 หน้า) คือข้อใด',o:['หนังสือชี้ชวนส่วนข้อมูลโครงการ','Fund Fact Sheet','งบการเงินกองทุน','รายงานประจำปี'],a:1,e:'Fund Fact Sheet สรุปข้อมูลกองทุนโดยย่อ ~1 หน้า'},
+  {n:38,cat:'2',q:'การกระทำใดของผู้แนะนำการลงทุน "ผิด" จรรยาบรรณ',o:['เปิดเผยความเสี่ยงของผลิตภัณฑ์','รับประกันผลตอบแทนว่าจะไม่ขาดทุน','ทำแบบประเมินความเสี่ยงให้ลูกค้า','ให้ข้อมูลที่เป็นปัจจุบัน'],a:1,e:'การรับประกันผลตอบแทน/ไม่ขาดทุนเป็นข้อห้ามและผิดจรรยาบรรณ'},
+  {n:39,cat:'2',q:'การซื้อขายในบัญชีลูกค้าบ่อยครั้งเกินจำเป็นเพื่อหวังค่าธรรมเนียม เรียกว่าอะไร',o:['Front running','Insider trading','Churning','Window dressing'],a:2,e:'Churning = การซื้อขายถี่เกินจำเป็นเพื่อหวังค่าธรรมเนียม'},
+  {n:40,cat:'2',q:'การใช้ข้อมูลภายในที่ยังไม่เปิดเผยต่อสาธารณะเพื่อหาประโยชน์ในการซื้อขายหลักทรัพย์ เรียกว่าอะไร',o:['การสร้างราคา','Insider trading (การใช้ข้อมูลภายใน)','Front running','Arbitrage'],a:1,e:'Insider trading = การใช้ข้อมูลภายในที่ยังไม่เปิดเผยเพื่อหาประโยชน์'},
+  {n:41,cat:'2',q:'การส่งคำสั่งซื้อขายของตนเองตัดหน้าคำสั่งของลูกค้าเพื่อทำกำไร เรียกว่าอะไร',o:['Churning','Front running','Short selling','Hedging'],a:1,e:'Front running = ส่งคำสั่งตนตัดหน้าคำสั่งลูกค้า'},
+  {n:42,cat:'2',q:'ข้อใดสอดคล้องกับหลักการ "รักษาความลับของลูกค้า"',o:['นำข้อมูลพอร์ตลูกค้าไปบอกเพื่อนเพื่อนำมาหุ้น','ไม่เปิดเผยข้อมูลลูกค้าและไม่นำไปใช้แสวงประโยชน์','เผยแพร่ผลตอบแทนลูกค้าเพื่อการตลาด','ใช้ข้อมูลลูกค้าซื้อขายตามเพื่อทำกำไรส่วนตัว'],a:1,e:'ต้องไม่เปิดเผย/ไม่นำข้อมูลลูกค้าไปใช้แสวงประโยชน์'},
+  {n:43,cat:'2',q:'เมื่อเกิดความขัดแย้งทางผลประโยชน์ (Conflict of Interest) ผู้แนะนำการลงทุนควรทำอย่างไร',o:['เลือกผลประโยชน์ของบริษัทก่อนเสมอ','ปกปิดไม่ให้ลูกค้าทราบ','คำนึงถึงประโยชน์ลูกค้าเป็นสำคัญและเปิดเผยอย่างเป็นธรรม','เลือกผลประโยชน์ของตนเองก่อน'],a:2,e:'ต้องคำนึงประโยชน์ลูกค้าเป็นสำคัญ จัดการและเปิดเผยอย่างเป็นธรรม'},
+  {n:44,cat:'2',q:'เมื่อเทียบกับผู้ลงทุนรายย่อย ผู้ลงทุนสถาบันโดยทั่วไปได้รับความคุ้มครองอย่างไร',o:['มากกว่ารายย่อย','น้อยกว่ารายย่อย เพราะถือว่ามีความรู้/ประสบการณ์','เท่ากันทุกประการ','ไม่ได้รับความคุ้มครองใด ๆ'],a:1,e:'ผู้ลงทุนสถาบันได้รับความคุ้มครองน้อยกว่ารายย่อย เพราะถือว่ามีความรู้/ประสบการณ์'},
+  {n:45,cat:'2',q:'การโฆษณาผลการดำเนินงานในอดีตของกองทุน ต้องระบุข้อความใด',o:['รับประกันผลตอบแทนในอนาคต','ผลการดำเนินงานในอดีตไม่ได้รับประกันผลในอนาคต','การลงทุนนี้ไม่มีความเสี่ยง','ผลตอบแทนจะเพิ่มขึ้นต่อเนื่อง'],a:1,e:'ต้องระบุว่า "ผลการดำเนินงานในอดีตไม่ได้รับประกันผลในอนาคต"'},
+  {n:46,cat:'2',q:'การรายงานธุรกรรมที่มีเหตุอันควรสงสัยตามกฎหมายป้องกันการฟอกเงิน ต้องรายงานต่อหน่วยงานใด',o:['ก.ล.ต.','ตลาดหลักทรัพย์ฯ','สำนักงาน ปปง. (AMLO)','ธนาคารแห่งประเทศไทย'],a:2,e:'รายงานธุรกรรมที่น่าสงสัยต่อสำนักงาน ปปง. (AMLO)'},
+  {n:47,cat:'2',q:'ผู้แนะนำการลงทุนจะตัดสินใจซื้อขายแทนลูกค้าได้ในกรณีใด',o:['ทำได้ทุกเมื่อเพื่อประโยชน์ลูกค้า','เมื่อได้รับมอบหมายเป็นลายลักษณ์อักษรตามที่กฎเกณฑ์กำหนด','เมื่อมั่นใจว่าจะกำไร','เมื่อหุ้นกำลังขึ้นเท่านั้น'],a:1,e:'ทำได้เฉพาะเมื่อได้รับมอบหมายเป็นลายลักษณ์อักษรตามที่กฎเกณฑ์กำหนด ห้ามทำโดยพลการ'},
+  {n:48,cat:'2',q:'หากลูกค้าต้องการเปิดบัญชีโดยปกปิดตัวตนหรือใช้ชื่อบุคคลอื่น ผู้ประกอบธุรกิจควรทำอย่างไร',o:['ให้บริการตามปกติ','ไม่ให้บริการ เพราะขัดหลักการรู้จักลูกค้า/ป้องกันการฟอกเงิน','ให้บริการแต่คิดค่าธรรมเนียมเพิ่ม','ให้บริการเฉพาะวงเงินสูง'],a:1,e:'ห้ามให้บริการแก่ลูกค้าที่ปกปิดตัวตน/ใช้ชื่อผู้อื่น ขัดหลัก KYC และ AML'},
+  {n:49,cat:'2',q:'ในการให้บริการ ผู้แนะนำการลงทุนต้องคำนึงถึงผลประโยชน์ของใครเป็นสำคัญที่สุด',o:['ตนเอง','บริษัทต้นสังกัด','ลูกค้า','ผู้บริหารบริษัทจดทะเบียน'],a:2,e:'ต้องคำนึงถึงผลประโยชน์ของลูกค้าเป็นสำคัญที่สุด'},
+  {n:50,cat:'2',q:'การสร้างราคา (ปั่นหุ้น) ถือเป็นการกระทำผิดเพราะเหตุใด',o:['ทำให้สภาพคล่องในตลาดเพิ่มขึ้น','สร้างราคา/ปริมาณซื้อขายลวงให้ผู้อื่นเข้าใจผิดและตัดสินใจผิดพลาด','ช่วยให้ราคาสะท้อนพื้นฐานเร็วขึ้น','เป็นการลงทุนระยะยาว'],a:1,e:'การปั่นหุ้นสร้างราคา/ปริมาณลวงให้ผู้อื่นเข้าใจผิด จึงเป็นการกระทำผิด'},
+
+  // ===== หมวด 3 (51–100) =====
+  {n:51,cat:'3',q:'ตั๋วเงินคลัง (Treasury Bill) มีลักษณะตามข้อใด',o:['ออกโดยเอกชน อายุเกิน 1 ปี','ออกโดยรัฐบาล อายุไม่เกิน 1 ปี ความเสี่ยงผิดนัดต่ำมาก','เป็นตราสารทุน','จ่ายเงินปันผล'],a:1,e:'ตั๋วเงินคลังออกโดยรัฐบาล อายุ ≤ 1 ปี เสี่ยงผิดนัดต่ำมาก'},
+  {n:52,cat:'3',q:'ความสัมพันธ์ระหว่างราคาตราสารหนี้กับอัตราผลตอบแทน (yield) เป็นอย่างไร',o:['ทิศทางเดียวกัน','ผกผันกัน (ตรงข้าม)','ไม่สัมพันธ์กัน','คงที่เสมอ'],a:1,e:'ราคาตราสารหนี้กับอัตราผลตอบแทนเป็นความสัมพันธ์ผกผัน'},
+  {n:53,cat:'3',q:'หากอัตราดอกเบี้ยในตลาดปรับสูงขึ้น ราคาหุ้นกู้ที่ถืออยู่จะเป็นอย่างไร',o:['สูงขึ้น','ลดลง','เท่าเดิม','เพิ่มเป็นสองเท่า'],a:1,e:'ดอกเบี้ยตลาดขึ้น → ราคาตราสารหนี้ลง'},
+  {n:54,cat:'3',q:'หากอัตราดอกเบี้ยหน้าตั๋ว (coupon) สูงกว่าอัตราผลตอบแทนที่ตลาดต้องการ (YTM) ตราสารหนี้จะซื้อขายที่ราคาใด',o:['ต่ำกว่าราคาพาร์ (Discount)','เท่ากับราคาพาร์','สูงกว่าราคาพาร์ (Premium)','เท่ากับศูนย์'],a:2,e:'coupon > YTM → ขายสูงกว่าพาร์ (Premium)'},
+  {n:55,cat:'3',q:'ถ้า coupon ต่ำกว่า YTM ตราสารหนี้จะซื้อขายที่ราคาใด',o:['สูงกว่าพาร์','ต่ำกว่าพาร์ (Discount)','เท่ากับพาร์','ไม่สามารถซื้อขายได้'],a:1,e:'coupon < YTM → ขายต่ำกว่าพาร์ (Discount)'},
+  {n:56,cat:'3',q:'ถ้า coupon เท่ากับ YTM ราคาตราสารหนี้จะเป็นอย่างไร',o:['เท่ากับราคาพาร์','สูงกว่าพาร์','ต่ำกว่าพาร์','เป็นศูนย์'],a:0,e:'coupon = YTM → ราคาเท่ากับพาร์'},
+  {n:57,cat:'3',q:'หุ้นกู้ด้อยสิทธิ (Subordinated bond) มีลักษณะอย่างไร',o:['ได้รับชำระหนี้ก่อนเจ้าหนี้สามัญ ความเสี่ยงต่ำ','ได้รับชำระหนี้ทีหลังเจ้าหนี้สามัญ จึงเสี่ยงสูงกว่าและให้ผลตอบแทนสูงกว่า','เป็นหุ้นสามัญประเภทหนึ่ง','ไม่มีดอกเบี้ย'],a:1,e:'หุ้นกู้ด้อยสิทธิรับชำระหลังเจ้าหนี้สามัญ เสี่ยงสูงกว่า ผลตอบแทนสูงกว่า'},
+  {n:58,cat:'3',q:'อันดับความน่าเชื่อถือต่ำสุดที่ยังถือเป็น "ระดับน่าลงทุน" (Investment Grade) คือข้อใด',o:['AAA','A','BBB−','BB'],a:2,e:'Investment grade ต่ำสุดคือ BBB− (ต่ำกว่านั้นเป็น speculative)'},
+  {n:59,cat:'3',q:'ตราสารหนี้ที่มีอันดับเครดิตต่ำลง มักให้อัตราผลตอบแทน (yield) เป็นอย่างไร',o:['ต่ำลง','สูงขึ้น เพื่อชดเชยความเสี่ยงผิดนัดที่มากขึ้น','เท่าเดิม','เป็นศูนย์'],a:1,e:'เครดิตต่ำลง ความเสี่ยงผิดนัดสูง ผู้ลงทุนเรียก yield สูงขึ้น'},
+  {n:60,cat:'3',q:'ความเสี่ยงที่สำคัญที่สุดของพันธบัตรรัฐบาลระยะยาวคือข้อใด (เนื่องจากความเสี่ยงผิดนัดต่ำมาก)',o:['ความเสี่ยงด้านเครดิต','ความเสี่ยงด้านอัตราดอกเบี้ย','ความเสี่ยงจากการถูกฟ้องร้อง','ความเสี่ยงด้านอัตราแลกเปลี่ยนเสมอ'],a:1,e:'พันธบัตรรัฐบาลเสี่ยงผิดนัดต่ำมาก ความเสี่ยงเด่นจึงเป็นด้านอัตราดอกเบี้ย'},
+  {n:61,cat:'3',q:'เมื่อเทียบกันที่อายุเท่ากัน หุ้นกู้เอกชนกับพันธบัตรรัฐบาล ข้อใดถูกต้อง',o:['หุ้นกู้เอกชนเสี่ยงต่ำกว่าและให้ผลตอบแทนต่ำกว่า','หุ้นกู้เอกชนเสี่ยงสูงกว่าและให้ผลตอบแทนสูงกว่า','ทั้งสองเสี่ยงเท่ากัน','พันธบัตรรัฐบาลเสี่ยงสูงกว่า'],a:1,e:'หุ้นกู้เอกชนเสี่ยงสูงกว่าพันธบัตร จึงให้ผลตอบแทนสูงกว่า'},
+  {n:62,cat:'3',q:'ตราสารหนี้ที่มีอายุ (duration) ยาวกว่า มีลักษณะอย่างไรเมื่อดอกเบี้ยเปลี่ยนแปลง',o:['ราคาอ่อนไหวต่อการเปลี่ยนแปลงดอกเบี้ยมากกว่า','ราคาอ่อนไหวน้อยกว่า','ราคาไม่เปลี่ยนแปลง','ไม่มีความเสี่ยงดอกเบี้ย'],a:0,e:'duration ยาว → ราคาอ่อนไหวต่อการเปลี่ยนดอกเบี้ยมากกว่า'},
+  {n:63,cat:'3',q:'ความเสี่ยงจากการนำดอกเบี้ยที่ได้รับไปลงทุนต่อในอัตราที่ต่ำลง เรียกว่าอะไร',o:['Credit risk','Reinvestment risk','Liquidity risk','Inflation risk'],a:1,e:'Reinvestment risk = นำคูปองไปลงทุนต่อในอัตราที่ต่ำลง'},
+  {n:64,cat:'3',q:'ความเสี่ยงจากการที่ผู้ออกเรียกไถ่ถอนตราสารหนี้คืนก่อนกำหนด (มักเกิดเมื่อดอกเบี้ยลดลง) คือข้อใด',o:['Call risk','Default risk','Market risk','Currency risk'],a:0,e:'Call risk = ผู้ออกไถ่ถอนก่อนกำหนด มักเกิดเมื่อดอกเบี้ยลดลง'},
+  {n:65,cat:'3',q:'โดยหลักการ ราคาตลาดของตราสารหนี้เท่ากับข้อใด',o:['ผลรวมของมูลค่าปัจจุบันของกระแสเงินสดในอนาคต (คูปอง + เงินต้น)','มูลค่าหน้าตั๋วเสมอ','ดอกเบี้ยที่จ่ายปีแรก','ราคาที่ออกครั้งแรกเท่านั้น'],a:0,e:'ราคาตราสารหนี้ = ผลรวม PV ของกระแสเงินสด (คูปอง + เงินต้น) คิดลดด้วย YTM'},
+  {n:66,cat:'3',q:'ตั๋วเงินคลังโดยทั่วไปขายในลักษณะใด',o:['ขายแบบมีคูปองรายปี','ขายแบบส่วนลด (Discount) ไม่มีดอกเบี้ยรายงวด','ขายพร้อมจ่ายปันผล','ขายเหนือราคาพาร์เสมอ'],a:1,e:'ตั๋วเงินคลังขายแบบส่วนลด ไม่มีคูปอง ผลตอบแทน = ส่วนต่างราคา'},
+  {n:67,cat:'3',q:'มูลค่าหน้าตั๋ว (Par/Face value) หมายถึงข้อใด',o:['ดอกเบี้ยรวมตลอดอายุ','เงินต้นที่ผู้ถือจะได้รับคืนเมื่อครบกำหนดไถ่ถอน','ราคาตลาดปัจจุบัน','กำไรจากการขาย'],a:1,e:'Par/Face value = เงินต้นที่ได้คืนเมื่อครบกำหนดไถ่ถอน'},
+  {n:68,cat:'3',q:'หุ้นกู้มีประกัน เทียบกับหุ้นกู้ไม่มีประกัน (ของผู้ออกเดียวกัน) เป็นอย่างไร',o:['มีประกันเสี่ยงสูงกว่า ผลตอบแทนสูงกว่า','มีประกันเสี่ยงต่ำกว่า ผลตอบแทนมักต่ำกว่า','เหมือนกันทุกประการ','มีประกันไม่ต้องจ่ายดอกเบี้ย'],a:1,e:'มีประกันเสี่ยงต่ำกว่า ผู้ลงทุนจึงยอมรับผลตอบแทนที่ต่ำกว่า'},
+  {n:69,cat:'3',q:'เส้นอัตราผลตอบแทน (Yield Curve) แบบปกติ (Normal) มีลักษณะอย่างไร',o:['ตราสารระยะยาวให้ yield ต่ำกว่าระยะสั้น','ตราสารระยะยาวให้ yield สูงกว่าระยะสั้น','yield เท่ากันทุกช่วงอายุ','yield ติดลบทุกช่วง'],a:1,e:'Yield curve ปกติลาดขึ้น: ระยะยาวให้ yield สูงกว่าระยะสั้น'},
+  {n:70,cat:'3',q:'ตราสารหนี้ไม่มีคูปอง (zero-coupon) อายุ 1 ปี มูลค่าหน้าตั๋ว 1,000 บาท ถ้า YTM = 5% ราคาปัจจุบันประมาณเท่าใด',o:['1,050.00 บาท','1,000.00 บาท','952.38 บาท','950.00 บาท'],a:2,e:'ราคา = 1,000 / 1.05 = 952.38 บาท'},
+  {n:71,cat:'3',q:'ผู้ถือหุ้นสามัญมีสิทธิตามข้อใด',o:['ได้รับดอกเบี้ยคงที่','มีสิทธิออกเสียงและรับเงินปันผลตามผลกำไร','ได้รับเงินต้นคืนก่อนเจ้าหนี้','ได้รับการรับประกันเงินต้น'],a:1,e:'หุ้นสามัญมีสิทธิออกเสียงและรับปันผลตามผลกำไร ไม่มีการรับประกัน'},
+  {n:72,cat:'3',q:'เมื่อบริษัทเลิกกิจการ ผู้ถือหลักทรัพย์ประเภทใดได้รับชำระเป็นลำดับสุดท้าย',o:['เจ้าหนี้/ผู้ถือหุ้นกู้','ผู้ถือหุ้นบุริมสิทธิ','ผู้ถือหุ้นสามัญ','กรมสรรพากร'],a:2,e:'เมื่อเลิกกิจการ ผู้ถือหุ้นสามัญได้รับชำระเป็นลำดับสุดท้าย'},
+  {n:73,cat:'3',q:'หุ้นบุริมสิทธิ (Preferred stock) แตกต่างจากหุ้นสามัญอย่างไร',o:['ได้รับเงินปันผลก่อนหุ้นสามัญ มักในอัตราที่กำหนด และสิทธิออกเสียงจำกัด','มีสิทธิออกเสียงมากกว่าหุ้นสามัญ','เป็นตราสารหนี้','ไม่มีสิทธิรับปันผล'],a:0,e:'หุ้นบุริมสิทธิรับปันผลก่อนหุ้นสามัญ (มักอัตราคงที่) สิทธิออกเสียงจำกัด'},
+  {n:74,cat:'3',q:'ตามแบบจำลองเงินปันผล (Gordon) ถ้า D₁ = 2 บาท, k = 10%, g = 5% มูลค่าหุ้นเท่ากับเท่าใด',o:['20 บาท','40 บาท','13.3 บาท','50 บาท'],a:1,e:'Gordon: P = D₁/(k−g) = 2 / (0.10 − 0.05) = 2 / 0.05 = 40 บาท'},
+  {n:75,cat:'3',q:'ถ้าหุ้นมี EPS = 3 บาท และนักวิเคราะห์ประเมิน P/E ที่เหมาะสม = 12 เท่า มูลค่าหุ้นที่เหมาะสมเท่ากับเท่าใด',o:['4 บาท','15 บาท','36 บาท','9 บาท'],a:2,e:'มูลค่าเหมาะสม = EPS × P/E = 3 × 12 = 36 บาท'},
+  {n:76,cat:'3',q:'ใบสำคัญแสดงสิทธิ (Warrant) ให้สิทธิแก่ผู้ถือในข้อใด',o:['สิทธิในการซื้อหุ้นสามัญตามราคาและระยะเวลาที่กำหนด','สิทธิได้รับดอกเบี้ยคงที่','สิทธิได้รับเงินต้นคืนก่อน','สิทธิเป็นเจ้าหนี้บริษัท'],a:0,e:'Warrant = สิทธิซื้อหุ้นสามัญตามราคา/เวลาที่กำหนด'},
+  {n:77,cat:'3',q:'เมื่อเทียบกับหุ้นกู้ของบริษัทเดียวกัน หุ้นสามัญมีความเสี่ยงอย่างไร',o:['ต่ำกว่า','สูงกว่า เพราะรับผลตอบแทนและเงินคืนเป็นลำดับท้าย','เท่ากัน','ไม่มีความเสี่ยง'],a:1,e:'หุ้นสามัญเสี่ยงสูงกว่าหุ้นกู้ เพราะรับผลตอบแทน/เงินคืนลำดับท้าย'},
+  {n:78,cat:'3',q:'ข้อใดถูกต้องเกี่ยวกับเงินปันผลของหุ้นสามัญ',o:['บริษัทต้องจ่ายทุกปีในอัตราคงที่','จ่ายจากผลกำไรของบริษัท และไม่ได้รับการรับประกัน','เป็นภาระหนี้ที่บริษัทต้องจ่ายก่อนดอกเบี้ย','จ่ายเท่ากับมูลค่าหน้าหุ้นเสมอ'],a:1,e:'เงินปันผลจ่ายจากผลกำไรและไม่ได้รับการรับประกัน'},
+  {n:79,cat:'3',q:'หุ้นจ่ายปันผล 1.5 บาท ราคา 30 บาท อัตราเงินปันผลตอบแทนเท่ากับเท่าใด',o:['2%','5%','20%','45%'],a:1,e:'Dividend yield = 1.5 / 30 = 5%'},
+  {n:80,cat:'3',q:'ปัจจัยใดมีผลต่อราคาหุ้นในระยะยาวมากที่สุดตามแนววิเคราะห์ปัจจัยพื้นฐาน',o:['ข่าวลือรายวัน','ผลประกอบการและแนวโน้มกำไรในอนาคตของบริษัท','รูปแบบกราฟราคาระยะสั้น','จำนวนผู้ติดตามในโซเชียล'],a:1,e:'ปัจจัยพื้นฐานเน้นผลประกอบการและแนวโน้มกำไรในอนาคตของบริษัท'},
+  {n:81,cat:'3',q:'NAV (Net Asset Value) ต่อหน่วยของกองทุนรวมหมายถึงข้อใด',o:['ราคาพาร์ของหน่วยลงทุน','มูลค่าทรัพย์สินสุทธิของกองทุนหารด้วยจำนวนหน่วย','ผลตอบแทนรวมตั้งแต่จัดตั้ง','ค่าธรรมเนียมการจัดการ'],a:1,e:'NAV/หน่วย = (มูลค่าทรัพย์สินสุทธิ) / จำนวนหน่วยลงทุน'},
+  {n:82,cat:'3',q:'ใครเป็นผู้บริหารจัดการกองทุนรวม',o:['ผู้ดูแลผลประโยชน์','บริษัทหลักทรัพย์จัดการกองทุน (บลจ.)','ก.ล.ต.','ตลาดหลักทรัพย์ฯ'],a:1,e:'บริหารโดยบริษัทหลักทรัพย์จัดการกองทุน (บลจ.)'},
+  {n:83,cat:'3',q:'ผู้ดูแลผลประโยชน์ (Trustee) ของกองทุนรวมมีบทบาทอย่างไร',o:['เป็นผู้ตัดสินใจลงทุนแทน บลจ.','เป็นบุคคลที่เป็นอิสระ ทำหน้าที่เก็บรักษาทรัพย์สินและดูแลผลประโยชน์ผู้ถือหน่วย','เป็นผู้ขายหน่วยลงทุน','เป็นผู้กำหนดค่าธรรมเนียม'],a:1,e:'Trustee เป็นบุคคลอิสระ เก็บรักษาทรัพย์สินและดูแลผลประโยชน์ผู้ถือหน่วย'},
+  {n:84,cat:'3',q:'กองทุนรวมประเภทใดมีระดับความเสี่ยงต่ำที่สุด',o:['กองทุนรวมตราสารทุน','กองทุนรวมตลาดเงิน (Money Market Fund)','กองทุนรวมทองคำ','กองทุนรวมผสม'],a:1,e:'กองตลาดเงินลงทุนตราสารหนี้ระยะสั้น ความเสี่ยงต่ำสุด'},
+  {n:85,cat:'3',q:'ตามมาตรฐานระดับความเสี่ยงกองทุน 8 ระดับ กองทุนที่ลงทุนในสินทรัพย์ทางเลือก เช่น ทองคำ/น้ำมัน อยู่ในระดับใด',o:['ระดับ 1','ระดับ 4','ระดับ 8 (สูงสุด)','ระดับ 6'],a:2,e:'กองสินทรัพย์ทางเลือก (ทองคำ/น้ำมัน/อนุพันธ์) = ความเสี่ยงระดับ 8'},
+  {n:86,cat:'3',q:'กองทุนเปิด (Open-end fund) มีลักษณะอย่างไร',o:['จำนวนหน่วยคงที่ ไม่รับซื้อคืน','ผู้ถือหน่วยสามารถซื้อ/ขายคืนหน่วยกับ บลจ. ได้ตามเงื่อนไข จำนวนหน่วยเปลี่ยนแปลงได้','ต้องซื้อขายในตลาดหลักทรัพย์เท่านั้น','ไม่มี NAV'],a:1,e:'กองทุนเปิดซื้อขายคืนหน่วยกับ บลจ. ได้ จำนวนหน่วยเปลี่ยนแปลงได้'},
+  {n:87,cat:'3',q:'เงื่อนไขสำคัญของกองทุนรวมเพื่อการเลี้ยงชีพ (RMF) คือข้อใด',o:['ถือครองอย่างน้อย 10 ปีนับจากวันซื้อ','ลงทุนต่อเนื่องและถือจนอายุครบ 55 ปีบริบูรณ์ และลงทุนมาแล้วไม่น้อยกว่า 5 ปี','ขายคืนได้ทุกเมื่อโดยไม่เสียสิทธิภาษี','ต้องจ่ายเงินปันผลทุกปี'],a:1,e:'RMF ต้องลงทุนต่อเนื่องถึงอายุ 55 ปี และลงทุนมาแล้วไม่น้อยกว่า 5 ปี'},
+  {n:88,cat:'3',q:'กองทุนรวมเพื่อการออม (SSF) มีเงื่อนไขการถือครองอย่างไร',o:['ถือครองไม่น้อยกว่า 10 ปีนับจากวันที่ซื้อ','ถือครอง 1 ปี','ถือจนอายุ 55 ปี','ไม่มีเงื่อนไขถือครอง'],a:0,e:'SSF ต้องถือครองไม่น้อยกว่า 10 ปีนับจากวันที่ซื้อ'},
+  {n:89,cat:'3',q:'ค่าธรรมเนียมการจัดการ (Management fee) ส่งผลอย่างไรต่อผู้ลงทุน',o:['ไม่มีผลต่อผลตอบแทน','ยิ่งสูง ยิ่งลดผลตอบแทนสุทธิที่ผู้ลงทุนได้รับ','เพิ่มผลตอบแทนให้ผู้ลงทุน','จ่ายโดยผู้ดูแลผลประโยชน์'],a:1,e:'Management fee ยิ่งสูง ยิ่งลดผลตอบแทนสุทธิของผู้ลงทุน'},
+  {n:90,cat:'3',q:'ค่าธรรมเนียมขาเข้า (Front-end load) เก็บจากผู้ลงทุนเมื่อใด',o:['ตอนขายคืนหน่วยลงทุน','ตอนซื้อหน่วยลงทุน','เมื่อกองทุนจ่ายปันผล','เมื่อเลิกกองทุน'],a:1,e:'Front-end load เก็บตอนซื้อหน่วยลงทุน'},
+  {n:91,cat:'3',q:'กองทุนมีสินทรัพย์รวม 110 ล้านบาท หนี้สิน 10 ล้านบาท จำนวนหน่วย 10 ล้านหน่วย NAV ต่อหน่วยเท่ากับเท่าใด',o:['11 บาท','10 บาท','12 บาท','1 บาท'],a:1,e:'NAV = (110 − 10) / 10 = 100/10 = 10 บาท/หน่วย'},
+  {n:92,cat:'3',q:'Benchmark ของกองทุนรวมหมายถึงข้อใด',o:['ค่าธรรมเนียมมาตรฐาน','ดัชนีอ้างอิงที่ใช้เปรียบเทียบผลการดำเนินงานของกองทุน','ระดับความเสี่ยงของกองทุน','จำนวนผู้ถือหน่วย'],a:1,e:'Benchmark = ดัชนีอ้างอิงเปรียบเทียบผลการดำเนินงาน'},
+  {n:93,cat:'3',q:'กองทุนแบบ Passive (เชิงรับ) มีเป้าหมายอย่างไร',o:['เอาชนะดัชนีให้มากที่สุด','สร้างผลตอบแทนให้ใกล้เคียงดัชนีอ้างอิง โดยมักมีค่าธรรมเนียมต่ำกว่า','ลงทุนในหุ้นเก็งกำไรเท่านั้น','ไม่อ้างอิงดัชนีใด'],a:1,e:'Passive มุ่งให้ผลตอบแทนใกล้เคียงดัชนี ค่าธรรมเนียมมักต่ำกว่า Active'},
+  {n:94,cat:'3',q:'Tracking error หมายถึงข้อใด',o:['ความผิดพลาดในการคำนวณ NAV','ส่วนต่างระหว่างผลตอบแทนของกองทุนกับ benchmark','ค่าธรรมเนียมขาออก','ความเสี่ยงด้านเครดิต'],a:1,e:'Tracking error = ส่วนต่างผลตอบแทนกองทุนกับ benchmark'},
+  {n:95,cat:'3',q:'กลยุทธ์การลงทุนแบบเฉลี่ยต้นทุน (DCA) มีข้อดีอย่างไร',o:['รับประกันกำไร','ลงทุนเป็นงวดสม่ำเสมอ ช่วยลดความเสี่ยงจากการจับจังหวะตลาด','ทำให้ค่าธรรมเนียมเป็นศูนย์','หลีกเลี่ยงความเสี่ยงได้ทั้งหมด'],a:1,e:'DCA ลงทุนเป็นงวดสม่ำเสมอ ช่วยลดความเสี่ยงจากการจับจังหวะตลาด'},
+  {n:96,cat:'3',q:'กองทุนรวมที่ลงทุนในต่างประเทศเรียกว่าอะไร',o:['RMF','FIF (Foreign Investment Fund)','Money Market Fund','Index Fund'],a:1,e:'FIF = กองทุนที่ลงทุนในต่างประเทศ'},
+  {n:97,cat:'3',q:'กองทุนรวมผสม (Mixed/Balanced Fund) มีลักษณะอย่างไร',o:['ลงทุนในเงินฝากเท่านั้น','ลงทุนทั้งตราสารหนี้และตราสารทุน มีความเสี่ยงระดับปานกลาง','ลงทุนในทองคำเท่านั้น','ลงทุนในหุ้น 100% เสมอ'],a:1,e:'กองผสมลงทุนทั้งตราสารหนี้และหุ้น ความเสี่ยงปานกลาง'},
+  {n:98,cat:'3',q:'ข้อใด "ไม่ใช่" ข้อดีของการลงทุนผ่านกองทุนรวมสำหรับผู้ลงทุนรายย่อย',o:['มีการกระจายความเสี่ยง','บริหารโดยผู้จัดการกองทุนมืออาชีพ','ใช้เงินลงทุนเริ่มต้นไม่มาก','รับประกันผลตอบแทนและเงินต้น'],a:3,e:'กองทุนรวมไม่รับประกันผลตอบแทน/เงินต้น จึงไม่ใช่ข้อดี (ข้ออื่นเป็นข้อดีจริง)'},
+  {n:99,cat:'3',q:'กองทุนรวมโดยทั่วไป "ไม่เหมาะ" กับลูกค้าประเภทใด',o:['ต้องการกระจายความเสี่ยง','ต้องการการรับประกันเงินต้นและผลตอบแทนแน่นอน 100%','มีเงินลงทุนไม่มากแต่ต้องการลงทุนหลากหลาย','ไม่มีเวลาบริหารพอร์ตเอง'],a:1,e:'ผู้ที่ต้องการรับประกันเงินต้น/ผลตอบแทน 100% ไม่เหมาะกับกองทุนรวมที่มีความเสี่ยง'},
+  {n:100,cat:'3',q:'ก่อนตัดสินใจลงทุนในกองทุนรวม ผู้ลงทุนควรศึกษาเอกสารใดเป็นสำคัญ',o:['ใบโฆษณาเท่านั้น','หนังสือชี้ชวนและ Fund Fact Sheet','ข่าวจากโซเชียลมีเดีย','คำบอกเล่าจากเพื่อน'],a:1,e:'ควรศึกษาหนังสือชี้ชวนและ Fund Fact Sheet ก่อนลงทุน'},
+];
+
+const CHO = ['ก','ข','ค','ง'];
+const quizList = document.getElementById('quiz-list');
+const scoreEl = document.getElementById('score');
+const answeredEl = document.getElementById('answered');
+let answeredSet = {}; // n -> correct(bool)
+
+function updateScore(){
+  const keys = Object.keys(answeredSet);
+  const correct = keys.filter(k => answeredSet[k]).length;
+  scoreEl.textContent = correct;
+  answeredEl.textContent = keys.length;
+}
+
+function renderQuiz(filter){
+  quizList.innerHTML = '';
+  QUESTIONS.filter(q => filter === 'all' || q.cat === filter).forEach(q => {
+    const card = document.createElement('div');
+    card.className = 'fade-in rounded-xl border border-slate-200 bg-gray-50 p-6';
+    const opts = q.o.map((opt, i) => `
+      <button data-q="${q.n}" data-i="${i}" class="opt group flex w-full items-start gap-3 rounded-lg border border-slate-200 bg-white px-4 py-3 text-left text-sm text-slate-700 transition hover:border-slate-300 hover:bg-slate-50">
+        <span class="flex h-6 w-6 flex-none items-center justify-center rounded-md bg-slate-100 text-xs font-semibold text-slate-500">${CHO[i]}</span>
+        <span class="pt-0.5">${opt}</span>
+      </button>`).join('');
+    card.innerHTML = `
+      <div class="mb-3 flex items-center gap-2">
+        <span class="flex h-7 min-w-7 items-center justify-center rounded-md bg-slate-800 px-1.5 text-xs font-bold text-white">${q.n}</span>
+        <span class="text-xs font-medium uppercase tracking-wider text-slate-400">หมวด ${q.cat}</span>
+      </div>
+      <p class="mb-4 text-[15px] font-medium leading-relaxed text-slate-900">${q.q}</p>
+      <div class="flex flex-col gap-2.5">${opts}</div>
+      <div class="explain mt-4 hidden rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm leading-relaxed text-slate-600"></div>`;
+    quizList.appendChild(card);
+  });
+
+  // restore any previously answered state for the filtered view
+  quizList.querySelectorAll('.opt').forEach(btn => {
+    const n = btn.dataset.q;
+    if (answeredSet[n] !== undefined) lockCard(btn.closest('div.fade-in'), parseInt(n));
+  });
+}
+
+function lockCard(card, n){
+  const q = QUESTIONS.find(x => x.n === n);
+  const opts = card.querySelectorAll('.opt');
+  opts.forEach(o => {
+    o.disabled = true;
+    o.classList.add('cursor-default');
+    o.classList.remove('hover:border-slate-300','hover:bg-slate-50');
+    const i = parseInt(o.dataset.i);
+    if (i === q.a){
+      o.classList.add('border-emerald-400','bg-emerald-50');
+      o.querySelector('span').classList.add('!bg-emerald-500','!text-white');
+    }
+  });
+  const ex = card.querySelector('.explain');
+  ex.classList.remove('hidden');
+  ex.innerHTML = `<span class="font-semibold text-slate-900">เฉลย: ${CHO[q.a]}</span> — ${q.e}`;
+}
+
+quizList.addEventListener('click', e => {
+  const btn = e.target.closest('.opt');
+  if (!btn || btn.disabled) return;
+  const n = parseInt(btn.dataset.q);
+  const i = parseInt(btn.dataset.i);
+  const q = QUESTIONS.find(x => x.n === n);
+  const card = btn.closest('div.fade-in');
+
+  // mark chosen wrong answer in rose if incorrect
+  if (i !== q.a){
+    btn.classList.add('border-rose-300','bg-rose-50');
+    btn.querySelector('span').classList.add('!bg-rose-500','!text-white');
+  }
+  lockCard(card, n);
+  if (answeredSet[n] === undefined){ answeredSet[n] = (i === q.a); updateScore(); }
+});
+
+document.querySelectorAll('.qfilter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.qfilter-btn').forEach(b => {
+      b.classList.remove('border-slate-600','bg-slate-700/60','text-white');
+      b.classList.add('border-slate-700','text-slate-400');
+    });
+    btn.classList.add('border-slate-600','bg-slate-700/60','text-white');
+    btn.classList.remove('border-slate-700','text-slate-400');
+    renderQuiz(btn.dataset.qfilter);
+  });
+});
+
+document.getElementById('quiz-reset').addEventListener('click', () => {
+  answeredSet = {};
+  updateScore();
+  const active = document.querySelector('.qfilter-btn.bg-slate-700\\/60');
+  renderQuiz(active ? active.dataset.qfilter : 'all');
+});
+
+renderQuiz('all');
+</script>
+</body>
+</html>
