@@ -5,6 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>IC Plain (P1) · คลังความรู้เตรียมสอบ</title>
 <meta name="description" content="คลังความรู้เตรียมสอบผู้แนะนำการลงทุนตราสารทั่วไป (IC Plain · Paper 1) — สรุปเนื้อหา 3 หมวด สูตรคำนวณ และกลยุทธ์การสอบ" />
+<meta name="author" content="veekeancodemaipen" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23c9a86a'/><text x='16' y='23' font-family='Arial,sans-serif' font-size='16' font-weight='bold' text-anchor='middle' fill='%230f172a'>IC</text></svg>" />
+<meta property="og:title" content="IC Plain (P1) · คลังความรู้เตรียมสอบ" />
+<meta property="og:description" content="สรุปเนื้อหา 3 หมวด · สูตรคำนวณ · กลยุทธ์สอบ · ข้อสอบเก่า 100 ข้อแบบอินเทอร์แอกทีฟ" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
 
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -49,6 +55,9 @@
 </head>
 
 <body class="bg-slate-900 text-slate-200 antialiased">
+
+  <!-- reading / scroll progress -->
+  <div id="scroll-progress" class="fixed left-0 top-0 z-[60] h-0.5 w-0 bg-gradient-to-r from-gold to-emerald2-soft"></div>
 
   <!-- ================= NAVBAR ================= -->
   <header class="sticky top-0 z-40 border-b border-slate-800/80 bg-slate-900/80 backdrop-blur-xl">
@@ -255,11 +264,68 @@
         </div>
       </div>
 
-      <div id="quiz-filters" class="mb-7 flex flex-wrap gap-2">
+      <div id="quiz-filters" class="mb-4 flex flex-wrap gap-2">
         <button data-qfilter="all" class="qfilter-btn rounded-lg border border-slate-600 bg-slate-700/60 px-3.5 py-2 text-sm font-medium text-white">ทั้งหมด (100)</button>
         <button data-qfilter="1"   class="qfilter-btn rounded-lg border border-slate-700 px-3.5 py-2 text-sm text-slate-400 transition hover:text-white">หมวด 1 · การเงินและการลงทุน (30)</button>
         <button data-qfilter="2"   class="qfilter-btn rounded-lg border border-slate-700 px-3.5 py-2 text-sm text-slate-400 transition hover:text-white">หมวด 2 · กฎระเบียบ/จรรยาบรรณ (20)</button>
         <button data-qfilter="3"   class="qfilter-btn rounded-lg border border-slate-700 px-3.5 py-2 text-sm text-slate-400 transition hover:text-white">หมวด 3 · ผลิตภัณฑ์ (50)</button>
+      </div>
+
+      <!-- ===== study-mode controls: review wrong/unanswered · search · shuffle ===== -->
+      <div class="mb-7 flex flex-col gap-3 rounded-xl border border-slate-700/60 bg-slate-800/30 p-3.5 sm:flex-row sm:items-center sm:justify-between">
+        <div id="quiz-modes" class="flex flex-wrap gap-2">
+          <button data-qmode="all"        class="qmode-btn rounded-lg border border-slate-600 bg-slate-700/60 px-3 py-1.5 text-xs font-medium text-white">ทุกข้อ</button>
+          <button data-qmode="unanswered" class="qmode-btn rounded-lg border border-slate-700 px-3 py-1.5 text-xs text-slate-400 transition hover:text-white">ยังไม่ได้ทำ <span id="m-unans" class="text-slate-500">(100)</span></button>
+          <button data-qmode="wrong"      class="qmode-btn rounded-lg border border-slate-700 px-3 py-1.5 text-xs text-slate-400 transition hover:text-white">ทบทวนข้อผิด <span id="m-wrong" class="text-slate-500">(0)</span></button>
+        </div>
+        <div class="flex items-center gap-2">
+          <div class="relative flex-1 sm:flex-none">
+            <input id="quiz-search" type="search" inputmode="search" placeholder="ค้นหาคำในโจทย์…"
+              class="w-full rounded-lg border border-slate-700 bg-slate-900/60 py-1.5 pl-8 pr-3 text-xs text-slate-200 placeholder:text-slate-500 transition focus:border-slate-500 focus:outline-none sm:w-56" />
+            <span class="pointer-events-none absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-500">⌕</span>
+          </div>
+          <button id="quiz-shuffle" class="rounded-lg border border-slate-700 px-3 py-1.5 text-xs text-slate-400 transition hover:text-white" aria-pressed="false">⤨ สลับข้อ</button>
+        </div>
+      </div>
+
+      <!-- ===== live scoreboard (per-category, reflects real pass rule) ===== -->
+      <div id="quiz-scoreboard" class="mx-auto mb-7 max-w-3xl rounded-2xl border border-slate-700/60 bg-slate-800/40 p-5">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <p class="text-sm text-slate-300">
+            ทำแล้ว <span id="answered2" class="font-semibold text-white">0</span><span class="text-slate-500">/100</span> ข้อ
+            <span class="mx-1.5 text-slate-600">·</span>
+            ตอบถูก <span id="score2" class="font-bold text-emerald2-soft">0</span>
+            <span id="score-pct" class="text-slate-500">(0%)</span>
+          </p>
+          <span id="pass-status" class="rounded-md bg-slate-700/60 px-2.5 py-1 text-xs font-medium text-slate-300">ทำครบ 100 ข้อเพื่อประเมินผลสอบ</span>
+        </div>
+        <div class="mt-3 h-2 w-full overflow-hidden rounded-full bg-slate-700/60">
+          <div id="progress-bar" class="h-full rounded-full bg-gradient-to-r from-emerald2 to-emerald2-soft transition-all duration-500" style="width:0%"></div>
+        </div>
+        <div class="mt-4 grid gap-3 sm:grid-cols-3">
+          <div class="rounded-xl border border-slate-700/60 bg-slate-900/40 p-3.5">
+            <div class="flex items-center justify-between text-xs">
+              <span class="font-medium uppercase tracking-wider text-slate-500">หมวด 1</span>
+              <span class="text-slate-400">ถูก <span id="cat1-correct" class="font-semibold text-slate-200">0</span>/<span id="cat1-ans">0</span> · จาก 30</span>
+            </div>
+            <div class="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-slate-700/50"><div id="cat1-bar" class="h-full rounded-full bg-slate-400 transition-all duration-500" style="width:0%"></div></div>
+          </div>
+          <div class="rounded-xl border border-gold/30 bg-gold/[0.06] p-3.5">
+            <div class="flex items-center justify-between text-xs">
+              <span class="font-medium uppercase tracking-wider text-gold-soft">หมวด 2 · จุดตัดผ่าน</span>
+              <span class="text-slate-400">ถูก <span id="cat2-correct" class="font-semibold text-gold-soft">0</span>/<span id="cat2-ans">0</span> · จาก 20</span>
+            </div>
+            <div class="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-slate-700/50"><div id="cat2-bar" class="h-full rounded-full bg-gold transition-all duration-500" style="width:0%"></div></div>
+            <p id="cat2-hint" class="mt-2 text-[11px] text-slate-500">ต้องตอบถูก ≥ 14/20 ถึงจะผ่านหมวดนี้</p>
+          </div>
+          <div class="rounded-xl border border-slate-700/60 bg-slate-900/40 p-3.5">
+            <div class="flex items-center justify-between text-xs">
+              <span class="font-medium uppercase tracking-wider text-slate-500">หมวด 3</span>
+              <span class="text-slate-400">ถูก <span id="cat3-correct" class="font-semibold text-slate-200">0</span>/<span id="cat3-ans">0</span> · จาก 50</span>
+            </div>
+            <div class="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-slate-700/50"><div id="cat3-bar" class="h-full rounded-full bg-slate-400 transition-all duration-500" style="width:0%"></div></div>
+          </div>
+        </div>
       </div>
 
       <div id="quiz-list" class="mx-auto flex max-w-3xl flex-col gap-5">
@@ -288,8 +354,20 @@
       <p class="mt-7 text-xs leading-relaxed text-slate-600">
         เอกสารนี้จัดทำเพื่อการเตรียมสอบเท่านั้น โปรดตรวจสอบหลักเกณฑ์ จำนวนข้อ และเงื่อนไขฉบับล่าสุดจากเว็บไซต์ตลาดหลักทรัพย์ฯ (SET) และ ก.ล.ต. ก่อนสอบจริง
       </p>
+      <p class="mt-4 flex flex-wrap items-center gap-1.5 text-xs text-slate-600">
+        <span>จัดทำและดูแลโดย</span>
+        <a href="https://github.com/veekeancodemaipen" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 font-medium text-slate-400 underline-offset-2 transition hover:text-gold-soft hover:underline">
+          <svg viewBox="0 0 16 16" class="h-3.5 w-3.5 fill-current" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          veekeancodemaipen
+        </a>
+        <span class="text-slate-700">·</span>
+        <a href="https://github.com/veekeancodemaipen/ic-plain-prep" target="_blank" rel="noopener noreferrer" class="text-slate-500 underline-offset-2 transition hover:text-slate-300 hover:underline">ดูซอร์สโค้ดบน GitHub</a>
+      </p>
     </div>
   </footer>
+
+  <!-- back-to-top -->
+  <button id="to-top" class="fixed bottom-6 right-6 z-50 hidden h-11 w-11 items-center justify-center rounded-full border border-slate-700 bg-slate-800/90 text-lg text-slate-300 shadow-lg shadow-black/30 backdrop-blur transition hover:border-slate-500 hover:text-white" aria-label="กลับขึ้นบนสุด">↑</button>
 
   <!-- ================= MODAL ================= -->
   <div id="modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
@@ -734,17 +812,104 @@ const quizList = document.getElementById('quiz-list');
 const scoreEl = document.getElementById('score');
 const answeredEl = document.getElementById('answered');
 let answeredSet = {}; // n -> correct(bool)
+let chosenSet = {};   // n -> chosen option index (for restoring the user's pick)
+
+/* ---------- progress persistence (survives reloads) ---------- */
+const LS_KEY = 'ic-plain-quiz-v1';
+function saveProgress(){
+  try { localStorage.setItem(LS_KEY, JSON.stringify({ a: answeredSet, c: chosenSet })); } catch(e){}
+}
+function loadProgress(){
+  try {
+    const raw = localStorage.getItem(LS_KEY);
+    if (raw){ const d = JSON.parse(raw) || {}; answeredSet = d.a || {}; chosenSet = d.c || {}; }
+  } catch(e){ answeredSet = {}; chosenSet = {}; }
+}
+
+function catStats(cat){
+  let ans = 0, correct = 0;
+  Object.keys(answeredSet).forEach(k => {
+    const q = QUESTIONS.find(x => x.n === parseInt(k));
+    if (q && q.cat === cat){ ans++; if (answeredSet[k]) correct++; }
+  });
+  return { ans, correct };
+}
+function setCat(id, s, total){
+  document.getElementById(id + '-correct').textContent = s.correct;
+  document.getElementById(id + '-ans').textContent = s.ans;
+  document.getElementById(id + '-bar').style.width = (s.ans / total * 100) + '%';
+}
 
 function updateScore(){
   const keys = Object.keys(answeredSet);
   const correct = keys.filter(k => answeredSet[k]).length;
+  const answered = keys.length;
   scoreEl.textContent = correct;
-  answeredEl.textContent = keys.length;
+  answeredEl.textContent = answered;
+
+  // scoreboard
+  document.getElementById('score2').textContent = correct;
+  document.getElementById('answered2').textContent = answered;
+  const pct = answered ? Math.round(correct / answered * 100) : 0;
+  document.getElementById('score-pct').textContent = '(' + pct + '%)';
+  document.getElementById('progress-bar').style.width = answered + '%'; // out of 100
+
+  const c1 = catStats('1'), c2 = catStats('2'), c3 = catStats('3');
+  setCat('cat1', c1, 30); setCat('cat2', c2, 20); setCat('cat3', c3, 50);
+
+  // หมวด 2 threshold hint colour
+  const hint = document.getElementById('cat2-hint');
+  hint.classList.toggle('text-emerald2-soft', c2.correct >= 14);
+  hint.classList.toggle('text-slate-500', c2.correct < 14);
+
+  // overall pass status (รวม ≥70 และ หมวด2 ≥14)
+  const badge = document.getElementById('pass-status');
+  if (answered < 100){
+    badge.textContent = 'ทำแล้ว ' + answered + '/100 — ทำครบเพื่อประเมินผลสอบ';
+    badge.className = 'rounded-md bg-slate-700/60 px-2.5 py-1 text-xs font-medium text-slate-300';
+  } else if (correct >= 70 && c2.correct >= 14){
+    badge.textContent = '🎉 ผ่านเกณฑ์ (รวม ' + correct + '/100 · หมวด2 ' + c2.correct + '/20)';
+    badge.className = 'rounded-md bg-emerald2/20 px-2.5 py-1 text-xs font-semibold text-emerald2-soft';
+  } else {
+    const why = correct < 70 ? 'รวมยังไม่ถึง 70' : 'หมวด 2 ยังไม่ถึง 14';
+    badge.textContent = 'ยังไม่ผ่าน — ' + why;
+    badge.className = 'rounded-md bg-rose-500/15 px-2.5 py-1 text-xs font-semibold text-rose-300';
+  }
+
+  // study-mode chip counts (ยังไม่ได้ทำ / ทบทวนข้อผิด)
+  const mu = document.getElementById('m-unans');
+  const mw = document.getElementById('m-wrong');
+  if (mu) mu.textContent = '(' + (100 - answered) + ')';
+  if (mw) mw.textContent = '(' + keys.filter(k => answeredSet[k] === false).length + ')';
+
+  saveProgress();
 }
 
-function renderQuiz(filter){
+/* ---------- quiz study-mode state (category · review mode · search · shuffle) ---------- */
+const qState = { cat:'all', mode:'all', term:'', shuffle:false };
+let quizOrder = QUESTIONS.map(q => q.n);
+
+function shuffleArr(a){ for (let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function rebuildOrder(){ quizOrder = qState.shuffle ? shuffleArr(QUESTIONS.map(q=>q.n)) : QUESTIONS.map(q=>q.n); }
+function matchQ(q){
+  if (qState.cat !== 'all' && q.cat !== qState.cat) return false;
+  if (qState.mode === 'unanswered' && answeredSet[q.n] !== undefined) return false;
+  if (qState.mode === 'wrong' && answeredSet[q.n] !== false) return false; // answered-incorrectly only
+  if (qState.term){
+    const hay = (q.q + ' ' + q.o.join(' ') + ' ' + (q.e || '')).toLowerCase();
+    if (!hay.includes(qState.term)) return false;
+  }
+  return true;
+}
+
+function renderQuiz(){
   quizList.innerHTML = '';
-  QUESTIONS.filter(q => filter === 'all' || q.cat === filter).forEach(q => {
+  const list = quizOrder.map(n => QUESTIONS.find(x => x.n === n)).filter(matchQ);
+  if (!list.length){
+    quizList.innerHTML = '<div class="rounded-xl border border-dashed border-slate-700 bg-slate-800/30 px-6 py-12 text-center text-sm text-slate-400">ไม่พบข้อสอบที่ตรงเงื่อนไข — ลองปรับตัวกรอง/คำค้น หรือกด “ทุกข้อ”</div>';
+    return;
+  }
+  list.forEach(q => {
     const card = document.createElement('div');
     card.className = 'fade-in rounded-xl border border-slate-200 bg-gray-50 p-6';
     const opts = q.o.map((opt, i) => `
@@ -764,9 +929,23 @@ function renderQuiz(filter){
   });
 
   // restore any previously answered state for the filtered view
-  quizList.querySelectorAll('.opt').forEach(btn => {
-    const n = btn.dataset.q;
-    if (answeredSet[n] !== undefined) lockCard(btn.closest('div.fade-in'), parseInt(n));
+  quizList.querySelectorAll('div.fade-in').forEach(card => {
+    const first = card.querySelector('.opt');
+    if (!first) return;
+    const n = first.dataset.q;
+    if (answeredSet[n] === undefined) return;
+    const nn = parseInt(n);
+    lockCard(card, nn);
+    // re-mark the user's own (wrong) pick in rose
+    const chosen = chosenSet[n];
+    const q = QUESTIONS.find(x => x.n === nn);
+    if (chosen !== undefined && q && chosen !== q.a){
+      const wrong = card.querySelector('.opt[data-i="' + chosen + '"]');
+      if (wrong){
+        wrong.classList.add('border-rose-300','bg-rose-50');
+        wrong.querySelector('span').classList.add('!bg-rose-500','!text-white');
+      }
+    }
   });
 }
 
@@ -802,29 +981,82 @@ quizList.addEventListener('click', e => {
     btn.querySelector('span').classList.add('!bg-rose-500','!text-white');
   }
   lockCard(card, n);
-  if (answeredSet[n] === undefined){ answeredSet[n] = (i === q.a); updateScore(); }
+  if (answeredSet[n] === undefined){ answeredSet[n] = (i === q.a); chosenSet[n] = i; updateScore(); }
 });
+
+function activateChip(btn, group, onCls, offCls){
+  document.querySelectorAll(group).forEach(b => {
+    b.classList.remove(...onCls); b.classList.add(...offCls);
+  });
+  btn.classList.add(...onCls); btn.classList.remove(...offCls);
+}
 
 document.querySelectorAll('.qfilter-btn').forEach(btn => {
   btn.addEventListener('click', () => {
-    document.querySelectorAll('.qfilter-btn').forEach(b => {
-      b.classList.remove('border-slate-600','bg-slate-700/60','text-white');
-      b.classList.add('border-slate-700','text-slate-400');
-    });
-    btn.classList.add('border-slate-600','bg-slate-700/60','text-white');
-    btn.classList.remove('border-slate-700','text-slate-400');
-    renderQuiz(btn.dataset.qfilter);
+    activateChip(btn, '.qfilter-btn', ['border-slate-600','bg-slate-700/60','text-white'], ['border-slate-700','text-slate-400']);
+    qState.cat = btn.dataset.qfilter;
+    renderQuiz();
   });
 });
 
-document.getElementById('quiz-reset').addEventListener('click', () => {
-  answeredSet = {};
-  updateScore();
-  const active = document.querySelector('.qfilter-btn.bg-slate-700\\/60');
-  renderQuiz(active ? active.dataset.qfilter : 'all');
+document.querySelectorAll('.qmode-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    activateChip(btn, '.qmode-btn', ['border-slate-600','bg-slate-700/60','text-white'], ['border-slate-700','text-slate-400']);
+    qState.mode = btn.dataset.qmode;
+    renderQuiz();
+  });
 });
 
-renderQuiz('all');
+const searchEl = document.getElementById('quiz-search');
+let searchTimer;
+searchEl.addEventListener('input', () => {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(() => {
+    qState.term = searchEl.value.trim().toLowerCase();
+    renderQuiz();
+  }, 180);
+});
+
+const shuffleBtn = document.getElementById('quiz-shuffle');
+shuffleBtn.addEventListener('click', () => {
+  qState.shuffle = !qState.shuffle;
+  shuffleBtn.setAttribute('aria-pressed', String(qState.shuffle));
+  shuffleBtn.classList.toggle('border-slate-600', qState.shuffle);
+  shuffleBtn.classList.toggle('bg-slate-700/60', qState.shuffle);
+  shuffleBtn.classList.toggle('text-white', qState.shuffle);
+  shuffleBtn.classList.toggle('text-slate-400', !qState.shuffle);
+  rebuildOrder();
+  renderQuiz();
+});
+
+document.getElementById('quiz-reset').addEventListener('click', () => {
+  if (Object.keys(answeredSet).length && !confirm('ล้างคำตอบและคะแนนทั้งหมด เริ่มทำใหม่?')) return;
+  answeredSet = {};
+  chosenSet = {};
+  try { localStorage.removeItem(LS_KEY); } catch(e){}
+  updateScore();
+  renderQuiz();
+});
+
+loadProgress();   // restore saved answers before first render
+renderQuiz();
+updateScore();
+
+/* ---------- scroll progress bar + back-to-top ---------- */
+(function(){
+  const sp = document.getElementById('scroll-progress');
+  const tt = document.getElementById('to-top');
+  function onScroll(){
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    sp.style.width = (h > 0 ? (window.scrollY / h * 100) : 0) + '%';
+    const show = window.scrollY >= 400;
+    tt.classList.toggle('hidden', !show);
+    tt.classList.toggle('flex', show);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  tt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  onScroll();
+})();
 </script>
 </body>
 </html>
