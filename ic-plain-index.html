@@ -1239,33 +1239,251 @@ updateScore();
 
 <!-- ===== โหมดพิมพ์ / บันทึกเป็น PDF (เพิ่ม 2026-06-06) ===== -->
 <style>
-@media print {
-  /* ประหยัดหมึก: พื้นหลังขาว ตัวอักษรเข้ม */
-  html, body { background:#ffffff !important; }
-  *, *::before, *::after {
-    color:#111827 !important;
-    background:transparent !important;
-    box-shadow:none !important;
-    text-shadow:none !important;
-    border-color:#cbd5e1 !important;
-  }
-  /* ซ่อนส่วนที่กดได้/ตกแต่ง ที่ไม่จำเป็นบนกระดาษ */
-  #scroll-progress, #to-top, #print-fab, #timer-fab, #timer-panel, #modal, nav { display:none !important; }
-  a[href]::after { content:""; }      /* ไม่พิมพ์ URL ต่อท้ายลิงก์ */
-  section, .rounded-2xl, .rounded-xl, .rounded-lg { break-inside:avoid; page-break-inside:avoid; }
-  .max-w-3xl, .max-w-5xl, .max-w-6xl, .max-w-4xl { max-width:100% !important; }
-  @page { margin:14mm; }
+/* ===== เอกสารพิมพ์/บันทึก PDF แบบจัดหน้าสวย (สร้างแยกจากหน้าเว็บ) ===== */
+#print-doc{ display:none; }
+
+@media print{
+  /* ซ่อนทุกอย่างบนหน้าเว็บ เหลือเฉพาะเอกสารที่จัดหน้าไว้ */
+  body > *:not(#print-doc){ display:none !important; }
+  #print-doc{ display:block !important; }
+  html, body{ background:#ffffff !important; }
+  @page{ margin:16mm 15mm 18mm; }
 }
+
+/* ----- รูปแบบเอกสาร (ใช้ทั้งบนจอเวลา preview และตอนพิมพ์) ----- */
+#print-doc{
+  font-family:'Prompt',system-ui,sans-serif;
+  color:#23303f; background:#fff; line-height:1.6;
+  -webkit-print-color-adjust:exact; print-color-adjust:exact;
+}
+#print-doc *{ color:#23303f !important; box-shadow:none !important; text-shadow:none !important; }
+/* ล้างพื้นหลัง/เส้นขอบโทนมืดที่ติดมากับเนื้อหาที่ clone มาจากหน้าเว็บ */
+#print-doc [class*="bg-slate-7"], #print-doc [class*="bg-slate-8"], #print-doc [class*="bg-slate-9"],
+#print-doc [class*="bg-slate-950"]{ background:transparent !important; }
+#print-doc [class*="border-slate-7"], #print-doc [class*="border-slate-6"]{ border-color:#dbe1ea !important; }
+
+/* คอนเทนต์หลัก */
+#print-doc .pd-page{ max-width:185mm; margin:0 auto; }
+
+/* หน้าปก */
+#print-doc .pd-cover{ page-break-after:always; padding-top:48mm; text-align:center; }
+#print-doc .pd-kicker{ letter-spacing:.22em; font-size:12px; font-weight:600; color:#a87b1b !important; text-transform:uppercase; }
+#print-doc .pd-cover h1{ font-size:30px; font-weight:700; margin:14px 0 8px; line-height:1.25; }
+#print-doc .pd-cover .pd-sub{ font-size:14px; color:#5b6675 !important; max-width:150mm; margin:0 auto; }
+#print-doc .pd-cover .pd-rule{ width:64px; height:4px; background:#a87b1b !important; border-radius:99px; margin:22px auto; }
+#print-doc .pd-cover .pd-meta{ font-size:12px; color:#7a8492 !important; margin-top:6px; }
+#print-doc .pd-toc{ text-align:left; max-width:130mm; margin:34px auto 0; border:1px solid #e3e8ef; border-radius:12px; padding:18px 22px; background:#f8fafc !important; }
+#print-doc .pd-toc h4{ font-size:13px; font-weight:700; margin:0 0 8px; color:#5b6675 !important; letter-spacing:.04em; }
+#print-doc .pd-toc ol{ margin:0; padding-left:20px; font-size:13px; }
+#print-doc .pd-toc li{ margin:3px 0; }
+
+/* ป้ายส่วน (PART) ขึ้นหน้าใหม่ */
+#print-doc .pd-part{ page-break-before:always; margin:0 0 18px; padding:14px 18px; border-radius:12px;
+  background:#0f1b2e !important; }
+#print-doc .pd-part *{ color:#fff !important; }
+#print-doc .pd-part .pd-eyebrow{ font-size:11px; letter-spacing:.2em; color:#e7c873 !important; font-weight:600; }
+#print-doc .pd-part h2{ font-size:19px; font-weight:700; margin:2px 0 0; }
+#print-doc .pd-part .pd-note{ font-size:12px; color:#c3ccd8 !important; margin-top:4px; }
+
+/* หัวข้อย่อย */
+#print-doc .pd-sub{ font-size:15px; font-weight:700; margin:22px 0 10px; padding-bottom:6px;
+  border-bottom:2px solid #a87b1b; color:#0f1b2e !important; }
+
+/* การ์ดความรู้ */
+#print-doc .pd-topic{ break-inside:avoid; margin:0 0 14px; padding:12px 16px; border:1px solid #e3e8ef;
+  border-left:4px solid #0b7a5b; border-radius:10px; }
+#print-doc .pd-topic-t{ font-size:14px; font-weight:700; color:#0f1b2e !important; margin-bottom:4px; }
+#print-doc .pd-body{ font-size:13px; }
+#print-doc .pd-body ul{ list-style:disc; padding-left:20px; margin:6px 0; }
+#print-doc .pd-body ol{ list-style:decimal; padding-left:20px; margin:6px 0; }
+#print-doc .pd-body li{ margin:3px 0; }
+#print-doc .pd-body p{ margin:6px 0; }
+#print-doc .pd-body [class*="bg-slate-50"], #print-doc .pd-body .rounded-lg{
+  background:#f4f7fa !important; border:1px solid #e1e7ef; border-radius:8px; padding:10px 12px; margin:8px 0; }
+#print-doc .pd-body .font-mono, #print-doc .pd-body code{ font-family:ui-monospace,'Cascadia Code',monospace; }
+
+/* ตารางสูตร */
+#print-doc .pd-table table{ width:100%; border-collapse:collapse; font-size:12.5px; margin-top:4px; }
+#print-doc .pd-table th{ background:#f1f4f8 !important; text-align:left; font-weight:700; }
+#print-doc .pd-table th, #print-doc .pd-table td{ border:1px solid #dbe1ea; padding:6px 10px; }
+#print-doc .pd-table .font-mono{ font-family:ui-monospace,'Cascadia Code',monospace; }
+
+/* กลยุทธ์/อัปเดต (clone จากหน้าเว็บ) */
+#print-doc .pd-clone [class*="rounded-2xl"], #print-doc .pd-clone [class*="rounded-xl"]{
+  background:#f8fafc !important; border:1px solid #e3e8ef !important; border-radius:10px !important;
+  padding:14px 16px !important; margin:0 0 12px !important; break-inside:avoid; }
+#print-doc .pd-clone .grid{ display:block !important; }
+#print-doc .pd-clone span[class*="rounded-full"]{ background:#a87b1b !important; }
+#print-doc .pd-clone h3{ font-size:14px; font-weight:700; color:#0f1b2e !important; margin-bottom:8px; }
+#print-doc .pd-clone ul{ list-style:none; padding:0; margin:0; font-size:12.5px; }
+#print-doc .pd-clone table{ width:100%; border-collapse:collapse; font-size:12.5px; }
+#print-doc .pd-clone td, #print-doc .pd-clone th{ border:1px solid #dbe1ea; padding:6px 9px; text-align:left; }
+
+/* ข้อสอบ */
+#print-doc .pd-q{ break-inside:avoid; margin:0 0 12px; padding-bottom:10px; border-bottom:1px dashed #e1e7ef; }
+#print-doc .pd-q-head{ display:flex; align-items:baseline; gap:8px; margin-bottom:4px; }
+#print-doc .pd-q-n{ font-weight:700; color:#0b7a5b !important; font-size:14px; min-width:30px; }
+#print-doc .pd-q-cat{ font-size:10.5px; color:#8a93a1 !important; border:1px solid #e1e7ef; border-radius:99px; padding:1px 8px; }
+#print-doc .pd-q-text{ font-size:13.5px; font-weight:600; color:#1a2230 !important; }
+#print-doc .pd-opts{ list-style:none; padding:0; margin:6px 0 0; font-size:13px; }
+#print-doc .pd-opts li{ margin:2px 0 2px 4px; }
+#print-doc .pd-ch{ font-weight:700; color:#5b6675 !important; margin-right:6px; }
+#print-doc .pd-twocol{ column-count:1; }
+
+/* เฉลย */
+#print-doc .pd-akey{ font-size:12px; }
+#print-doc .pd-a{ break-inside:avoid; margin:0 0 7px; padding:6px 10px; border:1px solid #eef1f5; border-radius:8px; }
+#print-doc .pd-a-n{ font-weight:700; color:#0f1b2e !important; }
+#print-doc .pd-a-c{ display:inline-block; min-width:20px; text-align:center; font-weight:700;
+  color:#0b7a5b !important; border:1px solid #b8e0d2; border-radius:6px; padding:0 6px; margin:0 6px; background:#eefaf5 !important; }
+#print-doc .pd-a-e{ color:#4a5563 !important; }
 </style>
+
 <button id="print-fab" type="button"
   class="fixed bottom-6 left-6 z-50 inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-800/90 px-4 h-11 text-sm font-medium text-slate-200 shadow-lg shadow-black/30 backdrop-blur transition hover:border-gold hover:text-white"
-  aria-label="พิมพ์หรือบันทึกหน้านี้เป็น PDF">
+  aria-label="สร้างเอกสารสรุป + ข้อสอบ แล้วบันทึกเป็น PDF">
   <span aria-hidden="true">🖨️</span><span>บันทึก PDF</span>
 </button>
+
+<!-- ที่วางเอกสารพิมพ์ (เติมเนื้อหาเมื่อกดปุ่ม) -->
+<div id="print-doc" aria-hidden="true"></div>
+
 <script>
 (function(){
-  var b = document.getElementById('print-fab');
-  if (b) b.addEventListener('click', function(){ window.print(); });
+  var btn = document.getElementById('print-fab');
+  var doc = document.getElementById('print-doc');
+  if(!btn || !doc) return;
+
+  var CH = ['ก','ข','ค','ง'];
+  var CATNAME = {
+    '1':'หมวด 1 · ความรู้พื้นฐานการเงินและการลงทุน',
+    '2':'หมวด 2 · กฎระเบียบและจรรยาบรรณ',
+    '3':'หมวด 3 · ผลิตภัณฑ์ในตลาดทุน'
+  };
+
+  function esc(s){ return String(s==null?'':s); }
+
+  function partBanner(eyebrow, title, note){
+    return '<div class="pd-part"><div class="pd-eyebrow">'+eyebrow+'</div><h2>'+title+'</h2>'+
+           (note?'<div class="pd-note">'+note+'</div>':'')+'</div>';
+  }
+
+  function cheatSheet(){
+    var h = partBanner('PART 1', 'สรุปเนื้อหา (Cheat Sheet)',
+            'คลังความรู้ 3 หมวด · สูตรคำนวณที่ต้องจำ · กลยุทธ์และจุดออกสอบบ่อย');
+
+    // 1) คลังความรู้ จาก TOPICS
+    if (typeof TOPICS !== 'undefined' && TOPICS.length){
+      ['1','2','3'].forEach(function(c){
+        var items = TOPICS.filter(function(t){ return t.cat===c; });
+        if(!items.length) return;
+        h += '<h3 class="pd-sub">'+(CATNAME[c]||('หมวด '+c))+'</h3>';
+        items.forEach(function(t){
+          h += '<div class="pd-topic"><div class="pd-topic-t">'+esc(t.title)+'</div>'+
+               '<div class="pd-body">'+(t.body||'')+'</div></div>';
+        });
+      });
+    }
+
+    // 2) สูตรคำนวณ (clone ตารางจากหน้าเว็บ)
+    var fTable = document.querySelector('#formulas table');
+    if (fTable){
+      h += '<h3 class="pd-sub">สูตรคำนวณที่ต้องจำ</h3>'+
+           '<div class="pd-table">'+fTable.outerHTML+'</div>';
+    }
+
+    // 3) กลยุทธ์สอบ (clone)
+    var sGrid = document.querySelector('#strategy .grid');
+    if (sGrid){
+      h += '<h3 class="pd-sub">กลยุทธ์สอบ &amp; จุดออกสอบบ่อย</h3>'+
+           '<div class="pd-clone">'+sGrid.outerHTML+'</div>';
+    }
+
+    // 4) อัปเดตเนื้อหา (clone เฉพาะเนื้อหา ตัดหัวข้อ section เดิม)
+    var upd = document.querySelector('#updates');
+    if (upd){
+      var clone = upd.cloneNode(true);
+      var head = clone.querySelector('.mb-7'); if(head) head.remove();
+      h += '<h3 class="pd-sub">อัปเดตเนื้อหา (ของใหม่ที่ออกสอบ)</h3>'+
+           '<div class="pd-clone">'+clone.innerHTML+'</div>';
+    }
+    return h;
+  }
+
+  function questionList(arr){
+    return arr.map(function(q){
+      var opts = (q.o||[]).map(function(opt,i){
+        return '<li><span class="pd-ch">'+CH[i]+'.</span>'+esc(opt)+'</li>';
+      }).join('');
+      return '<div class="pd-q"><div class="pd-q-head">'+
+             '<span class="pd-q-n">'+q.n+'.</span>'+
+             '<span class="pd-q-cat">หมวด '+esc(q.cat)+'</span></div>'+
+             '<div class="pd-q-text">'+esc(q.q)+'</div>'+
+             '<ol class="pd-opts">'+opts+'</ol></div>';
+    }).join('');
+  }
+
+  function answerKey(title, arr){
+    var rows = arr.map(function(q){
+      return '<div class="pd-a"><span class="pd-a-n">'+q.n+'.</span>'+
+             '<span class="pd-a-c">'+(CH[q.a]||'-')+'</span>'+
+             '<span class="pd-a-e">'+esc(q.e||'')+'</span></div>';
+    }).join('');
+    return '<h3 class="pd-sub">'+title+'</h3><div class="pd-akey">'+rows+'</div>';
+  }
+
+  function buildDoc(){
+    var mock = (typeof QUESTIONS !== 'undefined') ? QUESTIONS : [];
+    var off  = (window.OFFICIAL || []);
+    var today = new Date().toLocaleDateString('th-TH', {year:'numeric',month:'long',day:'numeric'});
+
+    var html = '<div class="pd-page">';
+
+    // ----- หน้าปก -----
+    html += '<section class="pd-cover">'+
+      '<div class="pd-kicker">IC Plain · Paper 1</div>'+
+      '<h1>คู่มือเตรียมสอบ<br>ผู้แนะนำการลงทุนตราสารทั่วไป</h1>'+
+      '<div class="pd-rule"></div>'+
+      '<p class="pd-sub" style="border:0">สรุปเนื้อหา 3 หมวด · สูตรคำนวณ · กลยุทธ์สอบ และคลังข้อสอบ '+
+        (mock.length+off.length)+' ข้อ พร้อมเฉลยละเอียด</p>'+
+      '<div class="pd-meta">จัดทำเมื่อ '+today+' · ic-plain-prep</div>'+
+      '<div class="pd-toc"><h4>สารบัญ</h4><ol>'+
+        '<li>สรุปเนื้อหา (Cheat Sheet) — คลังความรู้ · สูตร · กลยุทธ์</li>'+
+        '<li>ข้อสอบ Mock Exam '+mock.length+' ข้อ</li>'+
+        '<li>ข้อสอบทางการ '+off.length+' ข้อ</li>'+
+        '<li>เฉลยและคำอธิบาย</li>'+
+      '</ol></div>'+
+    '</section>';
+
+    // ----- ส่วนที่ 1: สรุป -----
+    html += cheatSheet();
+
+    // ----- ส่วนที่ 2: Mock -----
+    html += partBanner('PART 2', 'ข้อสอบ Mock Exam '+mock.length+' ข้อ',
+            'ลองทำก่อนดูเฉลยท้ายเล่ม · เกณฑ์ผ่าน ≥ 70/100 และหมวด 2 ≥ 14/20');
+    html += '<div class="pd-twocol">'+questionList(mock)+'</div>';
+
+    // ----- ส่วนที่ 3: ข้อสอบทางการ -----
+    if (off.length){
+      html += partBanner('PART 3', 'ข้อสอบทางการ '+off.length+' ข้อ',
+              'ชุดตัวอย่างแนวข้อสอบจริง');
+      html += '<div class="pd-twocol">'+questionList(off)+'</div>';
+    }
+
+    // ----- เฉลยท้ายเล่ม -----
+    html += partBanner('เฉลย', 'เฉลย & คำอธิบาย', 'ตรวจคำตอบและทบทวนเหตุผลของแต่ละข้อ');
+    html += answerKey('เฉลย Mock Exam ('+mock.length+' ข้อ)', mock);
+    if (off.length) html += answerKey('เฉลยข้อสอบทางการ ('+off.length+' ข้อ)', off);
+
+    html += '</div>';
+    doc.innerHTML = html;
+  }
+
+  btn.addEventListener('click', function(){
+    try { buildDoc(); } catch(e){ console.error('print build error', e); }
+    // รอ render รอบหนึ่งก่อนเปิดหน้าต่างพิมพ์
+    setTimeout(function(){ window.print(); }, 60);
+  });
 })();
 </script>
 
