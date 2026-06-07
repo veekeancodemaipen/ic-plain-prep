@@ -1482,7 +1482,7 @@ updateScore();
         if (!doneFired){ doneFired = true; panel.classList.add('ic-timer-done'); beep(); sub.textContent = 'หมดเวลา! ⏰'; }
         setTrend('bear');
       } else {
-        setTrend(active ? 'bear' : 'flat');
+        setTrend(rem <= 300 ? 'bear' : 'flat'); // แดงเฉพาะ 5 นาทีสุดท้าย
         sub.textContent = st.running ? 'กำลังนับถอยหลัง…' : (e>0 ? 'หยุดชั่วคราว' : '');
       }
     } else {
