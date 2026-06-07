@@ -1272,48 +1272,135 @@ updateScore();
 <!-- ===== ตัวจับเวลา/ฝึกคุมเวลาสอบ (เพิ่ม 2026-06-06 รอบที่ 2) ===== -->
 <!-- บล็อกอิสระ: ใช้ DOM และ localStorage ของตัวเองเท่านั้น ไม่แตะคลังข้อสอบ/สูตร/สรุป/ตรรกะควิซ -->
 <style>
-  @keyframes ic-timer-flash { 0%,100%{ box-shadow:0 0 0 0 rgba(244,63,94,0); } 50%{ box-shadow:0 0 0 4px rgba(244,63,94,.55); } }
+  /* ===== ตัวจับเวลาสไตล์เทอร์มินัลหุ้น (redesign 2026-06-07) ===== */
+  #timer-fab{
+    position:fixed; bottom:5rem; left:1.5rem; z-index:50;
+    display:inline-flex; align-items:center; gap:.5rem;
+    height:2.75rem; padding:0 1.05rem; border-radius:9999px;
+    font-size:.8rem; font-weight:600; letter-spacing:.02em; color:#e2e8f0; cursor:pointer;
+    background:linear-gradient(135deg,#0b1220,#0f1b2e); border:1px solid #1f3350;
+    box-shadow:0 8px 24px rgba(0,0,0,.45), inset 0 0 0 1px rgba(52,211,153,.06);
+    transition:.2s;
+  }
+  #timer-fab:hover{ border-color:#34d399; color:#fff; box-shadow:0 10px 28px rgba(0,0,0,.5),0 0 18px rgba(52,211,153,.25); }
+  #timer-fab .dot{ width:7px;height:7px;border-radius:9999px;background:#34d399;box-shadow:0 0 8px #34d399;animation:ic-pulse 1.4s infinite; }
+
+  #timer-panel{
+    position:fixed; bottom:9rem; left:1.5rem; z-index:50; width:18.75rem;
+    color:#e6edf6; overflow:hidden; border-radius:1rem; border:1px solid #21324d;
+    background:radial-gradient(120% 80% at 0% 0%, rgba(52,211,153,.08), transparent 55%),
+               linear-gradient(160deg,#0a111d 0%,#0c1626 100%);
+    box-shadow:0 24px 60px rgba(0,0,0,.55), inset 0 0 0 1px rgba(255,255,255,.02);
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  #timer-panel.is-bull{ border-color:rgba(52,211,153,.45); }
+  #timer-panel.is-bear{ border-color:rgba(248,113,113,.5); }
+  #timer-panel::before{
+    content:""; position:absolute; inset:0; pointer-events:none; opacity:.5;
+    background-image:linear-gradient(rgba(148,163,184,.06) 1px,transparent 1px),
+                     linear-gradient(90deg,rgba(148,163,184,.06) 1px,transparent 1px);
+    background-size:22px 22px;
+    -webkit-mask-image:linear-gradient(180deg,#000,transparent 72%);
+            mask-image:linear-gradient(180deg,#000,transparent 72%);
+  }
+  #timer-head{
+    display:flex; align-items:center; gap:.5rem; padding:.6rem .75rem;
+    cursor:grab; user-select:none; touch-action:none;
+    border-bottom:1px solid #182742; background:linear-gradient(180deg,rgba(255,255,255,.03),transparent);
+  }
+  #timer-head:active{ cursor:grabbing; }
+  #timer-head .grip{ color:#3b4d6b; font-size:.85rem; letter-spacing:-1px; }
+  #timer-head .tkr{ font-size:.72rem; font-weight:700; letter-spacing:.08em; color:#9fb3cc; }
+  #timer-head .tkr b{ color:#34d399; }
+  #timer-head .live{ display:inline-flex;align-items:center;gap:.3rem;font-size:.58rem;letter-spacing:.12em;color:#64748b;transition:color .2s; }
+  #timer-head .live i{ width:6px;height:6px;border-radius:9999px;background:#475569;transition:.2s; }
+  #timer-head .live.is-live{ color:#34d399; }
+  #timer-head .live.is-live i{ background:#34d399;box-shadow:0 0 8px #34d399;animation:ic-pulse 1.4s infinite; }
+  #timer-head .live.is-pause{ color:#fbbf24; }
+  #timer-head .live.is-pause i{ background:#fbbf24;box-shadow:0 0 8px rgba(251,191,36,.7);animation:ic-pulse 1.4s infinite; }
+  #timer-head .live.is-idle{ color:#64748b; }
+  #timer-head .live.is-idle i{ background:#475569;box-shadow:none;animation:none; }
+  #timer-x{ margin-left:auto; width:1.6rem;height:1.6rem;border-radius:.5rem;border:0;background:transparent;color:#64748b;cursor:pointer;transition:.15s;font-size:.8rem; }
+  #timer-x:hover{ background:rgba(248,113,113,.15); color:#fca5a5; }
+
+  #timer-body{ position:relative; padding:.75rem .85rem .9rem; }
+
+  .ic-seg{ display:grid;grid-template-columns:1fr 1fr;gap:.25rem;padding:.2rem;margin-bottom:.7rem;border-radius:.6rem;background:rgba(2,6,14,.6);border:1px solid #16243c; }
+  .ic-tmode{ border:0;border-radius:.45rem;padding:.42rem;font:inherit;font-size:.72rem;font-weight:600;color:#7c8ba3;background:transparent;cursor:pointer;transition:.15s;letter-spacing:.02em; }
+  .ic-tmode:hover{ color:#cdd9ea; }
+  .ic-tmode.bg-emerald2{ background:linear-gradient(180deg,#0f3a2e,#0b2b22)!important;color:#5eead4!important;box-shadow:inset 0 0 0 1px rgba(52,211,153,.4),0 0 12px rgba(52,211,153,.18); }
+
+  #timer-quote{ position:relative; z-index:1; display:flex; align-items:baseline; justify-content:center; gap:.4rem; }
+  #timer-arrow{ font-size:1.05rem; color:#64748b; }
+  #timer-display{ font-variant-numeric:tabular-nums; font-weight:800; font-size:2.6rem; line-height:1.05; letter-spacing:.01em; color:#e6edf6; }
+  .is-bull #timer-display,.is-bull #timer-arrow{ color:#34d399; text-shadow:0 0 18px rgba(52,211,153,.35); }
+  .is-bear #timer-display,.is-bear #timer-arrow{ color:#f87171; text-shadow:0 0 18px rgba(248,113,113,.3); }
+  #timer-sub{ text-align:center;font-size:.66rem;color:#7c8ba3;letter-spacing:.04em;margin-top:.15rem; }
+
+  #timer-spark{ display:block;width:100%;height:36px;margin:.55rem 0 .65rem;opacity:.95; }
+
+  #timer-presets{ display:flex;flex-wrap:wrap;justify-content:center;gap:.35rem;margin-bottom:.7rem; }
+  .ic-preset{ font:inherit;font-size:.68rem;font-weight:600;color:#9fb3cc;cursor:pointer;padding:.3rem .62rem;border-radius:.5rem;border:1px solid #21324d;background:rgba(2,6,14,.5);transition:.15s; }
+  .ic-preset:hover{ border-color:#34d399;color:#fff;box-shadow:0 0 12px rgba(52,211,153,.2); }
+
+  .ic-actions{ display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:.4rem; }
+  .ic-btn{ font:inherit;font-size:.72rem;font-weight:700;letter-spacing:.04em;cursor:pointer;border-radius:.55rem;padding:.52rem .3rem;border:1px solid transparent;transition:.15s; }
+  #timer-start{ color:#04130d;background:linear-gradient(180deg,#34d399,#10b981);box-shadow:0 6px 16px rgba(16,185,129,.3); }
+  #timer-start:hover{ filter:brightness(1.08);box-shadow:0 8px 20px rgba(16,185,129,.45); }
+  #timer-pause{ color:#fde68a;border-color:#5b4a16;background:rgba(245,158,11,.1); }
+  #timer-pause:hover{ background:rgba(245,158,11,.18);color:#fff; }
+  #timer-reset{ color:#fca5a5;border-color:#5b1d22;background:rgba(248,113,113,.08); }
+  #timer-reset:hover{ background:rgba(248,113,113,.16);color:#fff; }
+
+  @keyframes ic-pulse{ 0%,100%{opacity:1} 50%{opacity:.25} }
+  @keyframes ic-timer-flash { 0%,100%{ box-shadow:0 24px 60px rgba(0,0,0,.55),0 0 0 0 rgba(248,113,113,0);} 50%{ box-shadow:0 24px 60px rgba(0,0,0,.55),0 0 0 4px rgba(248,113,113,.55);} }
   .ic-timer-done { animation: ic-timer-flash 1s ease-in-out 3; border-color:#fb7185 !important; }
 </style>
 <button id="timer-fab" type="button"
-  class="fixed bottom-20 left-6 z-50 inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-800/90 px-4 h-11 text-sm font-medium text-slate-200 shadow-lg shadow-black/30 backdrop-blur transition hover:border-emerald2 hover:text-white"
   aria-label="เปิดตัวจับเวลาฝึกคุมเวลาสอบ" aria-expanded="false">
-  <span aria-hidden="true">⏱️</span><span>จับเวลา</span>
+  <span class="dot" aria-hidden="true"></span><span>จับเวลา</span>
 </button>
 
-<div id="timer-panel"
-  class="fixed bottom-36 left-6 z-50 hidden w-72 rounded-2xl border border-slate-700 bg-slate-800/95 p-4 text-slate-200 shadow-2xl shadow-black/40 backdrop-blur">
-  <div class="mb-3 flex items-center justify-between">
-    <h4 class="text-sm font-semibold text-white">ฝึกคุมเวลาสอบ</h4>
-    <button id="timer-x" class="flex h-7 w-7 items-center justify-center rounded-lg text-slate-400 transition hover:bg-slate-700/60 hover:text-white" aria-label="ปิด">✕</button>
+<div id="timer-panel" class="hidden">
+  <div id="timer-head">
+    <span class="grip" aria-hidden="true">⠿</span>
+    <span class="tkr">EXAM<b>:TIME</b></span>
+    <span class="live is-idle" id="timer-live"><i></i><span class="lbl">IDLE</span></span>
+    <button id="timer-x" aria-label="ปิด">✕</button>
   </div>
 
-  <div class="mb-3 grid grid-cols-2 gap-1 rounded-lg bg-slate-900/60 p-1 text-xs">
-    <button data-tmode="down" class="ic-tmode rounded-md px-2 py-1.5 font-medium text-slate-300 transition">นับถอยหลัง</button>
-    <button data-tmode="up"   class="ic-tmode rounded-md px-2 py-1.5 font-medium text-slate-300 transition">นับขึ้น</button>
-  </div>
+  <div id="timer-body">
+    <div class="ic-seg">
+      <button data-tmode="down" class="ic-tmode">▼ นับถอยหลัง</button>
+      <button data-tmode="up"   class="ic-tmode">▲ นับขึ้น</button>
+    </div>
 
-  <div id="timer-display" class="mb-1 text-center font-mono text-4xl font-bold tracking-tight text-white tabular-nums">00:00</div>
-  <p id="timer-sub" class="mb-3 text-center text-[11px] text-slate-400">ตั้งเวลาเป้าหมายแล้วกดเริ่ม</p>
+    <div id="timer-quote">
+      <span id="timer-arrow" aria-hidden="true">•</span>
+      <span id="timer-display">00:00</span>
+    </div>
+    <p id="timer-sub">ตั้งเวลาเป้าหมายแล้วกดเริ่ม</p>
 
-  <div id="timer-presets" class="mb-3 flex flex-wrap justify-center gap-1.5">
-    <button data-min="30"  class="ic-preset rounded-lg border border-slate-700 px-2.5 py-1 text-xs text-slate-300 transition hover:border-emerald2 hover:text-white">30น.</button>
-    <button data-min="60"  class="ic-preset rounded-lg border border-slate-700 px-2.5 py-1 text-xs text-slate-300 transition hover:border-emerald2 hover:text-white">60น.</button>
-    <button data-min="90"  class="ic-preset rounded-lg border border-slate-700 px-2.5 py-1 text-xs text-slate-300 transition hover:border-emerald2 hover:text-white">90น.</button>
-    <button data-min="120" class="ic-preset rounded-lg border border-slate-700 px-2.5 py-1 text-xs text-slate-300 transition hover:border-emerald2 hover:text-white">120น.</button>
-  </div>
+    <canvas id="timer-spark" width="300" height="64" aria-hidden="true"></canvas>
 
-  <div class="grid grid-cols-3 gap-2">
-    <button id="timer-start" class="col-span-1 rounded-lg bg-emerald2 px-2 py-2 text-xs font-semibold text-white transition hover:bg-emerald2-soft">เริ่ม</button>
-    <button id="timer-pause" class="col-span-1 rounded-lg border border-slate-600 px-2 py-2 text-xs font-medium text-slate-200 transition hover:bg-slate-700/60">หยุด</button>
-    <button id="timer-reset" class="col-span-1 rounded-lg border border-slate-600 px-2 py-2 text-xs font-medium text-slate-200 transition hover:bg-slate-700/60">รีเซ็ต</button>
+    <div id="timer-presets">
+      <button data-min="1"  class="ic-preset">+1น.</button>
+      <button data-min="5"  class="ic-preset">+5น.</button>
+      <button data-min="30" class="ic-preset">+30น.</button>
+      <button data-min="60" class="ic-preset">+60น.</button>
+    </div>
+
+    <div class="ic-actions">
+      <button id="timer-start" class="ic-btn">▲ เริ่ม</button>
+      <button id="timer-pause" class="ic-btn">หยุด</button>
+      <button id="timer-reset" class="ic-btn">รีเซ็ต</button>
+    </div>
   </div>
-  <p class="mt-3 text-center text-[10px] leading-relaxed text-slate-500">เคล็ดลับ: ลองจับเวลาทำข้อสอบให้เหมือนห้องสอบจริง เพื่อฝึกจังหวะและไม่ตื่นเวลา</p>
 </div>
 
 <script>
 (function(){
-  var KEY = 'ic_timer_v1';
+  var KEY = 'ic_timer_v2';
   var fab   = document.getElementById('timer-fab');
   var panel = document.getElementById('timer-panel');
   if (!fab || !panel) return;
@@ -1325,7 +1412,7 @@ updateScore();
   var btnReset = document.getElementById('timer-reset');
 
   // state: mode 'down'|'up', targetSec (for down), running, startTs(ms), accSec(elapsed while paused)
-  var st = { mode:'down', targetSec:60*60, running:false, startTs:0, accSec:0 };
+  var st = { mode:'down', targetSec:0, running:false, startTs:0, accSec:0 };
   try { var saved = JSON.parse(localStorage.getItem(KEY)); if (saved && typeof saved==='object') st = Object.assign(st, saved); } catch(e){}
 
   function save(){ try { localStorage.setItem(KEY, JSON.stringify(st)); } catch(e){} }
@@ -1359,22 +1446,51 @@ updateScore();
   }
 
   var doneFired = false;
+  var arrow = document.getElementById('timer-arrow');
+  var liveEl = document.getElementById('timer-live');
+  var liveLbl = liveEl ? liveEl.querySelector('.lbl') : null;
+  function updateLive(){
+    if (!liveEl) return;
+    var e = elapsed();
+    var state = st.running ? 'live' : (e>0 ? 'pause' : 'idle');
+    liveEl.classList.toggle('is-live', state==='live');
+    liveEl.classList.toggle('is-pause', state==='pause');
+    liveEl.classList.toggle('is-idle', state==='idle');
+    if (liveLbl) liveLbl.textContent = state==='live' ? 'LIVE' : state==='pause' ? 'PAUSED' : 'IDLE';
+  }
+  function setTrend(dir){ // 'bull' | 'bear' | 'flat'
+    panel.classList.toggle('is-bull', dir==='bull');
+    panel.classList.toggle('is-bear', dir==='bear');
+    if (arrow) arrow.textContent = dir==='bull' ? '▴' : dir==='bear' ? '▾' : '•';
+  }
   function render(){
     var e = elapsed();
+    var active = st.running || e>0;
     if (st.mode === 'down'){
+      if (st.targetSec <= 0 && !st.running && st.accSec === 0){
+        disp.textContent = '00:00';
+        setTrend('flat');
+        sub.textContent = '';
+        updateLive();
+        return;
+      }
       var rem = st.targetSec - e;
       disp.textContent = fmt(rem);
       if (rem <= 0){
         disp.textContent = '00:00';
         if (st.running){ st.running = false; st.accSec = st.targetSec; save(); }
-        if (!doneFired){ doneFired = true; panel.classList.add('ic-timer-done'); disp.classList.remove('ic-timer-done'); beep(); sub.textContent = 'หมดเวลา! ⏰'; }
+        if (!doneFired){ doneFired = true; panel.classList.add('ic-timer-done'); beep(); sub.textContent = 'หมดเวลา! ⏰'; }
+        setTrend('bear');
       } else {
+        setTrend(active ? 'bear' : 'flat');
         sub.textContent = st.running ? 'กำลังนับถอยหลัง…' : (e>0 ? 'หยุดชั่วคราว' : 'เป้าหมาย ' + Math.round(st.targetSec/60) + ' นาที');
       }
     } else {
       disp.textContent = fmt(e);
+      setTrend(active ? 'bull' : 'flat');
       sub.textContent = st.running ? 'กำลังจับเวลา…' : (e>0 ? 'หยุดชั่วคราว' : 'กดเริ่มเพื่อนับเวลา');
     }
+    updateLive();
   }
 
   var ticker = null;
@@ -1384,6 +1500,7 @@ updateScore();
 
   function start(){
     if (st.running) return;
+    if (st.mode==='down' && st.targetSec <= 0) return; // ยังไม่ได้ตั้งเวลา (กดปุ่ม +นาที ก่อน)
     if (st.mode==='down' && (st.targetSec - st.accSec) <= 0){ st.accSec = 0; } // restart if already finished
     doneFired = false; panel.classList.remove('ic-timer-done');
     st.running = true; st.startTs = Date.now(); save(); startTicker(); render();
@@ -1392,8 +1509,8 @@ updateScore();
     if (!st.running) return;
     st.accSec = elapsed(); st.running = false; st.startTs = 0; save(); render();
   }
-  function reset(){
-    st.running = false; st.startTs = 0; st.accSec = 0; doneFired = false;
+  function reset(){ // ล้างเวลาทั้งหมดกลับเป็น 0
+    st.running = false; st.startTs = 0; st.accSec = 0; st.targetSec = 0; doneFired = false;
     panel.classList.remove('ic-timer-done'); save(); render();
   }
 
@@ -1405,13 +1522,99 @@ updateScore();
     b.addEventListener('click', function(){ st.mode = b.dataset.tmode; reset(); syncModeUI(); render(); });
   });
   document.querySelectorAll('.ic-preset').forEach(function(b){
-    b.addEventListener('click', function(){ st.targetSec = parseInt(b.dataset.min,10)*60; st.mode='down'; reset(); syncModeUI(); render(); });
+    b.addEventListener('click', function(){
+      var add = parseInt(b.dataset.min,10)*60;
+      st.mode = 'down';
+      // ถ้าจับเวลาก่อนหน้าหมดแล้ว (หรือเพิ่งสลับมาจากนับขึ้น) ให้เริ่มสะสมใหม่จากศูนย์
+      if (!st.running && (st.targetSec - elapsed()) <= 0){
+        st.accSec = 0; st.startTs = 0; st.targetSec = 0;
+        doneFired = false; panel.classList.remove('ic-timer-done');
+      }
+      st.targetSec += add;            // บวกสะสม (stack)
+      save(); syncModeUI(); render();
+    });
   });
+
+  // ----- สปาร์คไลน์ตกแต่ง (กราฟหุ้นจำลอง) -----
+  var spark = document.getElementById('timer-spark');
+  var sctx = (spark && spark.getContext) ? spark.getContext('2d') : null;
+  var SN = 64, pts = [];
+  for (var _i=0; _i<SN; _i++) pts.push(0.5);
+  function pushPt(){
+    var bull = panel.classList.contains('is-bull');
+    var bear = panel.classList.contains('is-bear');
+    var drift = bull ? 0.012 : bear ? -0.012 : 0;
+    var vol = st.running ? 0.10 : 0.03;
+    var v = pts[pts.length-1] + drift + (Math.random()-0.5)*vol;
+    if (v>0.95) v=0.95; if (v<0.05) v=0.05;
+    pts.push(v); if (pts.length>SN) pts.shift();
+  }
+  function drawSpark(){
+    if (!sctx) return;
+    var w=spark.width, h=spark.height; sctx.clearRect(0,0,w,h);
+    var bull = panel.classList.contains('is-bull');
+    var bear = panel.classList.contains('is-bear');
+    var col = bull ? '#34d399' : bear ? '#f87171' : '#64748b';
+    var cell=4, gap=1, cw=cell+gap;             // ขนาดพิกเซลแต่ละบล็อก
+    var cols=Math.floor(w/cw), rows=Math.floor(h/cw);
+    for (var c=0;c<cols;c++){
+      var idx=(c/(cols-1))*(pts.length-1);
+      var i0=Math.floor(idx), i1=Math.min(pts.length-1,i0+1), f=idx-i0;
+      var val=pts[i0]*(1-f)+pts[i1]*f;          // 0..1 จาก random walk
+      var topRow=Math.round((1-val)*(rows-1));
+      if (topRow<0) topRow=0; if (topRow>rows-1) topRow=rows-1;
+      var x=c*cw;
+      for (var r=rows-1;r>=topRow;r--){
+        var head=(r===topRow);                  // บล็อกบนสุด = เส้น, ล่างลงไป = พื้นจาง
+        sctx.globalAlpha = head ? 1 : 0.07 + 0.16*((rows-1-r)/(rows-1));
+        sctx.fillStyle = col;
+        sctx.fillRect(x, r*cw, cell, cell);
+      }
+    }
+    sctx.globalAlpha=1;
+  }
+  var lastPush=0;
+  function sparkLoop(ts){
+    if (!panel.classList.contains('hidden')){
+      if (!lastPush || ts-lastPush>120){ pushPt(); lastPush=ts; }
+      drawSpark();
+    }
+    requestAnimationFrame(sparkLoop);
+  }
+  requestAnimationFrame(sparkLoop);
+
+  // ----- ลากย้ายแผง + จำตำแหน่ง -----
+  var head = document.getElementById('timer-head');
+  var PKEY = 'ic_timer_pos_v1';
+  function clamp(v,min,max){ return Math.max(min, Math.min(max, v)); }
+  function applyPos(x,y){
+    var w=panel.offsetWidth||300, h=panel.offsetHeight||340;
+    x=clamp(x,6,window.innerWidth-w-6); y=clamp(y,6,window.innerHeight-h-6);
+    panel.style.left=x+'px'; panel.style.top=y+'px'; panel.style.right='auto'; panel.style.bottom='auto';
+  }
+  function loadPos(){ try{ var p=JSON.parse(localStorage.getItem(PKEY)); if(p&&typeof p.x==='number') return p; }catch(e){} return null; }
+  function savePos(x,y){ try{ localStorage.setItem(PKEY, JSON.stringify({x:x,y:y})); }catch(e){} }
+  function restorePos(){ var p=loadPos(); if(p) applyPos(p.x,p.y); }
+  var drag=null;
+  head.addEventListener('pointerdown', function(ev){
+    if (ev.target.closest('#timer-x')) return;
+    var r=panel.getBoundingClientRect();
+    drag={ dx:ev.clientX-r.left, dy:ev.clientY-r.top };
+    panel.style.left=r.left+'px'; panel.style.top=r.top+'px'; panel.style.right='auto'; panel.style.bottom='auto';
+    try{ head.setPointerCapture(ev.pointerId); }catch(e){}
+    ev.preventDefault();
+  });
+  head.addEventListener('pointermove', function(ev){ if(drag) applyPos(ev.clientX-drag.dx, ev.clientY-drag.dy); });
+  function endDrag(){ if(!drag) return; drag=null; var r=panel.getBoundingClientRect(); savePos(r.left, r.top); }
+  head.addEventListener('pointerup', endDrag);
+  head.addEventListener('pointercancel', endDrag);
+  window.addEventListener('resize', function(){ if(loadPos()){ var r=panel.getBoundingClientRect(); applyPos(r.left, r.top); } });
 
   function togglePanel(force){
     var open = (typeof force === 'boolean') ? force : panel.classList.contains('hidden');
     panel.classList.toggle('hidden', !open);
     fab.setAttribute('aria-expanded', String(open));
+    if (open) restorePos();
   }
   fab.addEventListener('click', function(){ togglePanel(); });
   document.getElementById('timer-x').addEventListener('click', function(){ togglePanel(false); });
