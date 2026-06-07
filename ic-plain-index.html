@@ -1483,7 +1483,7 @@ updateScore();
         setTrend('bear');
       } else {
         setTrend(active ? 'bear' : 'flat');
-        sub.textContent = st.running ? 'กำลังนับถอยหลัง…' : (e>0 ? 'หยุดชั่วคราว' : 'เป้าหมาย ' + Math.round(st.targetSec/60) + ' นาที');
+        sub.textContent = st.running ? 'กำลังนับถอยหลัง…' : (e>0 ? 'หยุดชั่วคราว' : '');
       }
     } else {
       disp.textContent = fmt(e);
