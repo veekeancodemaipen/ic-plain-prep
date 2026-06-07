@@ -1413,9 +1413,8 @@ updateScore();
 
   // state: mode 'down'|'up', targetSec (for down), running, startTs(ms), accSec(elapsed while paused)
   var st = { mode:'down', targetSec:0, running:false, startTs:0, accSec:0 };
-  try { var saved = JSON.parse(localStorage.getItem(KEY)); if (saved && typeof saved==='object') st = Object.assign(st, saved); } catch(e){}
-
-  function save(){ try { localStorage.setItem(KEY, JSON.stringify(st)); } catch(e){} }
+  // ไม่จำสถานะเวลา — เริ่มใหม่ทุกครั้งที่เปิด/รีเฟรชหน้า
+  function save(){ /* no-op: ไม่บันทึกสถานะเวลา */ }
   function elapsed(){ return st.accSec + (st.running ? (Date.now()-st.startTs)/1000 : 0); }
   function fmt(total){
     total = Math.max(0, Math.floor(total));
