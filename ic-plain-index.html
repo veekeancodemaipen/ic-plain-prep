@@ -1540,13 +1540,15 @@ updateScore();
   var sctx = (spark && spark.getContext) ? spark.getContext('2d') : null;
   var SN = 64, pts = [];
   for (var _i=0; _i<SN; _i++) pts.push(0.5);
+  var vel = 0;
   function pushPt(){
-    var bull = panel.classList.contains('is-bull');
-    var bear = panel.classList.contains('is-bear');
-    var drift = bull ? 0.012 : bear ? -0.012 : 0;
-    var vol = st.running ? 0.10 : 0.03;
-    var v = pts[pts.length-1] + drift + (Math.random()-0.5)*vol;
-    if (v>0.95) v=0.95; if (v<0.05) v=0.05;
+    var last = pts[pts.length-1];
+    vel += (Math.random()-0.5)*0.16;   // อิมพัลส์สุ่ม
+    vel += (0.5-last)*0.02;             // ดึงกลับเข้ากลาง กันติดขอบ
+    vel *= 0.82;                        // ความหน่วง ให้เส้นลื่น
+    var v = last + vel;
+    if (v>0.96){ v=0.96; vel*=-0.5; }   // เด้งกลับเมื่อชนขอบบน
+    if (v<0.04){ v=0.04; vel*=-0.5; }   // เด้งกลับเมื่อชนขอบล่าง
     pts.push(v); if (pts.length>SN) pts.shift();
   }
   function drawSpark(){
