@@ -60,6 +60,15 @@
     transform: translateY(-3px);
     box-shadow: 0 18px 38px -22px rgba(0,0,0,.55);
   }
+
+  /* mobile section-chip bar: hide its scrollbar */
+  .mnav-scroll { scrollbar-width: none; -ms-overflow-style: none; }
+  .mnav-scroll::-webkit-scrollbar { display: none; }
+
+  /* on mobile the header is taller (nav + chip bar), so push anchor targets down */
+  @media (max-width: 767px) {
+    main section[id] { scroll-margin-top: 112px; }
+  }
 </style>
 </head>
 
@@ -103,6 +112,19 @@
         เริ่มอ่าน
       </a>
     </nav>
+
+    <!-- ===== mobile section nav (horizontal-scroll chips) ===== -->
+    <div class="md:hidden border-t border-slate-800/70">
+      <div class="mnav-scroll flex items-center gap-2 overflow-x-auto px-4 py-2.5">
+        <a href="#overview"  class="shrink-0 rounded-full border border-slate-700/70 bg-slate-800/50 px-3.5 py-1.5 text-xs font-medium text-slate-300 transition active:bg-emerald2 active:text-white">ภาพรวม</a>
+        <a href="#knowledge" class="shrink-0 rounded-full border border-slate-700/70 bg-slate-800/50 px-3.5 py-1.5 text-xs font-medium text-slate-300 transition active:bg-emerald2 active:text-white">คลังความรู้</a>
+        <a href="#formulas"  class="shrink-0 rounded-full border border-slate-700/70 bg-slate-800/50 px-3.5 py-1.5 text-xs font-medium text-slate-300 transition active:bg-emerald2 active:text-white">สูตรคำนวณ</a>
+        <a href="#strategy"  class="shrink-0 rounded-full border border-slate-700/70 bg-slate-800/50 px-3.5 py-1.5 text-xs font-medium text-slate-300 transition active:bg-emerald2 active:text-white">กลยุทธ์สอบ</a>
+        <a href="#updates"   class="shrink-0 rounded-full border border-slate-700/70 bg-slate-800/50 px-3.5 py-1.5 text-xs font-medium text-slate-300 transition active:bg-emerald2 active:text-white">อัปเดตล่าสุด</a>
+        <a href="#exam"      class="shrink-0 rounded-full border border-slate-700/70 bg-slate-800/50 px-3.5 py-1.5 text-xs font-medium text-slate-300 transition active:bg-emerald2 active:text-white">ข้อสอบเก่า</a>
+        <a href="#official"  class="shrink-0 rounded-full border border-slate-700/70 bg-slate-800/50 px-3.5 py-1.5 text-xs font-medium text-slate-300 transition active:bg-emerald2 active:text-white">ข้อสอบทางการ</a>
+      </div>
+    </div>
   </header>
 
   <main id="top">
