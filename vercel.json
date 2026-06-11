@@ -1,7 +1,8 @@
 {
   "rewrites": [
     { "source": "/p1", "destination": "/ic-plain-index.html" },
-    { "source": "/p2", "destination": "/ic-p2-index.html" }
+    { "source": "/p2", "destination": "/ic-p2-index.html" },
+    { "source": "/p3", "destination": "/ic-p3-index.html" }
   ],
   "headers": [
     {
