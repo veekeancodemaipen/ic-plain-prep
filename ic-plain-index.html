@@ -81,18 +81,135 @@
 </script>
 
 <style>
+  /* ============ IC Plain · Premium design system (redesign 2026-06-11) ============ */
   html { scroll-behavior: smooth; }
-  body { font-family: 'Prompt', sans-serif; -webkit-font-smoothing: antialiased; }
+  body {
+    font-family: 'Prompt', sans-serif; -webkit-font-smoothing: antialiased;
+    background:
+      radial-gradient(1100px 720px at 88% -8%, rgba(201,168,106,.075), transparent 62%),
+      radial-gradient(950px 650px at -8% 12%, rgba(63,157,126,.07), transparent 56%),
+      radial-gradient(900px 600px at 50% 110%, rgba(201,168,106,.045), transparent 60%),
+      linear-gradient(180deg, #0a1020 0%, #0f172a 55%, #0c1424 100%);
+    background-attachment: fixed;
+  }
   ::selection { background: #c9a86a; color: #0f172a; }
 
   /* slim, elegant scrollbar */
   ::-webkit-scrollbar { width: 10px; height: 10px; }
-  ::-webkit-scrollbar-track { background: #0f172a; }
-  ::-webkit-scrollbar-thumb { background: #334155; border-radius: 9999px; }
-  ::-webkit-scrollbar-thumb:hover { background: #475569; }
+  ::-webkit-scrollbar-track { background: #0c1424; }
+  ::-webkit-scrollbar-thumb { background: #2b3a52; border-radius: 9999px; border: 2px solid #0c1424; }
+  ::-webkit-scrollbar-thumb:hover { background: #c9a86a; }
+
+  /* ---- premium glass card ---- */
+  .pcard {
+    position: relative; border-radius: 1.25rem;
+    border: 1px solid rgba(148,163,184,.14);
+    background: linear-gradient(165deg, rgba(30,41,59,.55), rgba(15,23,42,.35));
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.045), 0 12px 32px -20px rgba(0,0,0,.65);
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .pcard:hover {
+    transform: translateY(-3px);
+    border-color: rgba(201,168,106,.35);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 26px 52px -26px rgba(0,0,0,.75), 0 0 0 1px rgba(201,168,106,.07);
+  }
+  .pcard-gold {
+    border-color: rgba(201,168,106,.32);
+    background: linear-gradient(165deg, rgba(201,168,106,.11), rgba(15,23,42,.42));
+  }
+  .pcard-gold:hover { border-color: rgba(201,168,106,.55); }
+  .pcard-static, .pcard-static:hover { transform: none; }
+
+  /* ---- section heading kit ---- */
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: .5rem;
+    font-size: .68rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
+    color: #d9c191;
+  }
+  .eyebrow::before { content: ""; width: 1.4rem; height: 1px; background: linear-gradient(90deg, transparent, #c9a86a); }
+  .sec-rule { height: 1px; background: linear-gradient(90deg, rgba(201,168,106,.45), rgba(148,163,184,.12) 40%, transparent 80%); }
+
+  /* ---- shimmering gold gradient text ---- */
+  .grad-gold {
+    background: linear-gradient(100deg, #d9c191 0%, #c9a86a 32%, #f3e3ba 50%, #c9a86a 68%, #d9c191 100%);
+    background-size: 220% 100%;
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    animation: shimmer 7s linear infinite;
+  }
+  @keyframes shimmer { to { background-position: -220% 0; } }
+
+  /* ---- buttons ---- */
+  .btn-glow { position: relative; overflow: hidden; }
+  .btn-glow::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(110deg, transparent 25%, rgba(255,255,255,.22) 50%, transparent 75%);
+    background-size: 250% 100%; background-position: 200% 0;
+    transition: background-position .7s ease; pointer-events: none;
+  }
+  .btn-glow:hover::after { background-position: -50% 0; }
+
+  /* ---- header glass hairline ---- */
+  .header-glass { position: sticky; }
+  .header-glass::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(201,168,106,.4) 30%, rgba(92,184,154,.35) 70%, transparent);
+    pointer-events: none;
+  }
+  .nav-link { position: relative; }
+  .nav-link.active { color: #fff; background: rgba(201,168,106,.10); }
+  .nav-link.active::after {
+    content: ""; position: absolute; left: .75rem; right: .75rem; bottom: .3rem; height: 2px; border-radius: 99px;
+    background: linear-gradient(90deg, #c9a86a, #5cb89a);
+  }
+  .mchip.active { border-color: rgba(201,168,106,.55) !important; background: rgba(201,168,106,.14) !important; color: #fff !important; }
+
+  /* ---- reveal on scroll ---- */
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .65s ease, transform .65s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .grad-gold { animation: none; }
+  }
+
+  /* ---- hero aurora ---- */
+  .hero-aurora {
+    background:
+      radial-gradient(58% 52% at 50% 0%, rgba(63,157,126,.13), transparent 70%),
+      radial-gradient(40% 38% at 78% 18%, rgba(201,168,106,.10), transparent 70%),
+      radial-gradient(34% 30% at 18% 26%, rgba(92,184,154,.07), transparent 70%);
+  }
+  .hero-grid-lines {
+    background-image:
+      linear-gradient(rgba(148,163,184,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(148,163,184,.05) 1px, transparent 1px);
+    background-size: 44px 44px;
+    -webkit-mask-image: radial-gradient(60% 55% at 50% 18%, #000 30%, transparent 75%);
+            mask-image: radial-gradient(60% 55% at 50% 18%, #000 30%, transparent 75%);
+  }
+  @keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
+  /* ---- flashcards (ท่องจำหมวด 2) ---- */
+  .fc-scene { perspective: 1400px; }
+  .fc-card {
+    position: relative; width: 100%; min-height: 300px;
+    transform-style: preserve-3d; cursor: pointer;
+    transition: transform .55s cubic-bezier(.2,.7,.3,1);
+  }
+  .fc-card.flip { transform: rotateY(180deg); }
+  .fc-face {
+    position: absolute; inset: 0; display: flex; flex-direction: column; gap: .75rem;
+    padding: 1.75rem; overflow-y: auto;
+    -webkit-backface-visibility: hidden; backface-visibility: hidden;
+  }
+  .fc-face p { margin: auto 0; font-size: 1.05rem; line-height: 1.85; font-weight: 500; color: #e8eef7; text-align: center; }
+  .fc-back { transform: rotateY(180deg); }
+  .fc-tag { font-size: .64rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: #94a3b8; }
+  .fc-hint { font-size: .7rem; color: #64748b; text-align: center; }
+  @media (prefers-reduced-motion: reduce) { .fc-card { transition: none; } }
 
   .kb-card { transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
-  .kb-card:hover { transform: translateY(-4px); box-shadow: 0 24px 48px -24px rgba(0,0,0,.65); }
+  .kb-card:hover { transform: translateY(-4px); border-color: rgba(201,168,106,.55); box-shadow: 0 26px 52px -24px rgba(0,0,0,.7), 0 0 0 1px rgba(201,168,106,.12); }
 
   .fade-in { animation: fade .4s ease both; }
   @keyframes fade { from { opacity: 0; transform: translateY(8px);} to { opacity:1; transform:none;} }
@@ -100,15 +217,6 @@
   /* readable body text inside light cards */
   .prose-th p { line-height: 1.85; }
   .prose-th li { line-height: 1.8; }
-
-  /* A+C polish: subtle hover-lift on content cards (scoped to avoid the scoreboard) */
-  #overview .grid > div, #knowledge .grid > div, #updates .grid > div {
-    transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
-  }
-  #overview .grid > div:hover, #knowledge .grid > div:hover, #updates .grid > div:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 18px 38px -22px rgba(0,0,0,.55);
-  }
 
   /* mobile section-chip bar: hide its scrollbar */
   .mnav-scroll { scrollbar-width: none; -ms-overflow-style: none; }
@@ -140,24 +248,25 @@
   </a>
 
   <!-- ================= NAVBAR ================= -->
-  <header class="sticky top-0 z-40 border-b border-slate-800/80 bg-slate-900/80 backdrop-blur-xl">
+  <header class="header-glass sticky top-0 z-40 bg-slate-900/70 backdrop-blur-xl">
     <nav class="mx-auto flex max-w-6xl items-center justify-between px-5 py-3.5">
-      <a href="#top" class="flex items-center gap-2.5">
-        <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-gold to-gold-soft text-slate-900 font-bold text-sm shadow-lg shadow-gold/10">IC</span>
+      <a href="#top" class="group flex items-center gap-2.5">
+        <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-gold to-gold-soft text-slate-900 font-bold text-sm shadow-lg shadow-gold/20 ring-1 ring-white/20 transition group-hover:shadow-gold/40">IC</span>
         <span class="text-sm font-semibold tracking-wide text-slate-100">IC&nbsp;Plain <span class="text-slate-500 font-normal">· P1</span></span>
       </a>
 
-      <div class="hidden items-center gap-1 md:flex">
-        <a href="#overview"  class="rounded-md px-3 py-2 text-sm text-slate-400 transition hover:text-slate-100">ภาพรวม</a>
-        <a href="#knowledge" class="rounded-md px-3 py-2 text-sm text-slate-400 transition hover:text-slate-100">คลังความรู้</a>
-        <a href="#formulas"  class="rounded-md px-3 py-2 text-sm text-slate-400 transition hover:text-slate-100">สูตรคำนวณ</a>
-        <a href="#strategy"  class="rounded-md px-3 py-2 text-sm text-slate-400 transition hover:text-slate-100">กลยุทธ์สอบ</a>
-        <a href="#updates"   class="rounded-md px-3 py-2 text-sm text-slate-400 transition hover:text-slate-100">อัปเดตล่าสุด</a>
-        <a href="#exam"      class="rounded-md px-3 py-2 text-sm text-slate-400 transition hover:text-slate-100">ข้อสอบเก่า</a>
-        <a href="#official"  class="rounded-md px-3 py-2 text-sm text-slate-400 transition hover:text-slate-100">ข้อสอบทางการ</a>
+      <div class="hidden items-center gap-0.5 md:flex">
+        <a href="#overview"  class="nav-link rounded-lg px-3 py-2 text-sm text-slate-400 transition hover:bg-white/[0.04] hover:text-slate-100">ภาพรวม</a>
+        <a href="#knowledge" class="nav-link rounded-lg px-3 py-2 text-sm text-slate-400 transition hover:bg-white/[0.04] hover:text-slate-100">คลังความรู้</a>
+        <a href="#formulas"  class="nav-link rounded-lg px-3 py-2 text-sm text-slate-400 transition hover:bg-white/[0.04] hover:text-slate-100">สูตรคำนวณ</a>
+        <a href="#strategy"  class="nav-link rounded-lg px-3 py-2 text-sm text-slate-400 transition hover:bg-white/[0.04] hover:text-slate-100">กลยุทธ์สอบ</a>
+        <a href="#updates"   class="nav-link rounded-lg px-3 py-2 text-sm text-slate-400 transition hover:bg-white/[0.04] hover:text-slate-100">อัปเดตล่าสุด</a>
+        <a href="#exam"      class="nav-link rounded-lg px-3 py-2 text-sm text-slate-400 transition hover:bg-white/[0.04] hover:text-slate-100">ข้อสอบเก่า</a>
+        <a href="#official"  class="nav-link rounded-lg px-3 py-2 text-sm text-slate-400 transition hover:bg-white/[0.04] hover:text-slate-100">ข้อสอบทางการ</a>
+        <a href="#flashcards" class="nav-link rounded-lg px-3 py-2 text-sm text-slate-400 transition hover:bg-white/[0.04] hover:text-slate-100">ท่องจำ</a>
       </div>
 
-      <a href="#knowledge" class="rounded-lg bg-emerald2 px-4 py-2 text-sm font-medium text-white shadow-lg shadow-emerald2/20 transition hover:bg-emerald2-soft">
+      <a href="#knowledge" class="btn-glow rounded-xl bg-gradient-to-br from-emerald2 to-emerald2-soft px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-emerald2/30 ring-1 ring-white/15 transition hover:shadow-emerald2/50">
         เริ่มอ่าน
       </a>
     </nav>
@@ -165,13 +274,14 @@
     <!-- ===== mobile section nav (horizontal-scroll chips) ===== -->
     <div class="md:hidden border-t border-slate-800/70">
       <div class="mnav-scroll flex items-center gap-2 overflow-x-auto px-4 py-2.5">
-        <a href="#overview"  class="shrink-0 rounded-full border border-slate-700/70 bg-slate-800/50 px-3.5 py-1.5 text-xs font-medium text-slate-300 transition active:bg-emerald2 active:text-white">ภาพรวม</a>
-        <a href="#knowledge" class="shrink-0 rounded-full border border-slate-700/70 bg-slate-800/50 px-3.5 py-1.5 text-xs font-medium text-slate-300 transition active:bg-emerald2 active:text-white">คลังความรู้</a>
-        <a href="#formulas"  class="shrink-0 rounded-full border border-slate-700/70 bg-slate-800/50 px-3.5 py-1.5 text-xs font-medium text-slate-300 transition active:bg-emerald2 active:text-white">สูตรคำนวณ</a>
-        <a href="#strategy"  class="shrink-0 rounded-full border border-slate-700/70 bg-slate-800/50 px-3.5 py-1.5 text-xs font-medium text-slate-300 transition active:bg-emerald2 active:text-white">กลยุทธ์สอบ</a>
-        <a href="#updates"   class="shrink-0 rounded-full border border-slate-700/70 bg-slate-800/50 px-3.5 py-1.5 text-xs font-medium text-slate-300 transition active:bg-emerald2 active:text-white">อัปเดตล่าสุด</a>
-        <a href="#exam"      class="shrink-0 rounded-full border border-slate-700/70 bg-slate-800/50 px-3.5 py-1.5 text-xs font-medium text-slate-300 transition active:bg-emerald2 active:text-white">ข้อสอบเก่า</a>
-        <a href="#official"  class="shrink-0 rounded-full border border-slate-700/70 bg-slate-800/50 px-3.5 py-1.5 text-xs font-medium text-slate-300 transition active:bg-emerald2 active:text-white">ข้อสอบทางการ</a>
+        <a href="#overview"  class="mchip shrink-0 rounded-full border border-slate-700/70 bg-slate-800/50 px-3.5 py-1.5 text-xs font-medium text-slate-300 transition active:bg-emerald2 active:text-white">ภาพรวม</a>
+        <a href="#knowledge" class="mchip shrink-0 rounded-full border border-slate-700/70 bg-slate-800/50 px-3.5 py-1.5 text-xs font-medium text-slate-300 transition active:bg-emerald2 active:text-white">คลังความรู้</a>
+        <a href="#formulas"  class="mchip shrink-0 rounded-full border border-slate-700/70 bg-slate-800/50 px-3.5 py-1.5 text-xs font-medium text-slate-300 transition active:bg-emerald2 active:text-white">สูตรคำนวณ</a>
+        <a href="#strategy"  class="mchip shrink-0 rounded-full border border-slate-700/70 bg-slate-800/50 px-3.5 py-1.5 text-xs font-medium text-slate-300 transition active:bg-emerald2 active:text-white">กลยุทธ์สอบ</a>
+        <a href="#updates"   class="mchip shrink-0 rounded-full border border-slate-700/70 bg-slate-800/50 px-3.5 py-1.5 text-xs font-medium text-slate-300 transition active:bg-emerald2 active:text-white">อัปเดตล่าสุด</a>
+        <a href="#exam"      class="mchip shrink-0 rounded-full border border-slate-700/70 bg-slate-800/50 px-3.5 py-1.5 text-xs font-medium text-slate-300 transition active:bg-emerald2 active:text-white">ข้อสอบเก่า</a>
+        <a href="#official"  class="mchip shrink-0 rounded-full border border-slate-700/70 bg-slate-800/50 px-3.5 py-1.5 text-xs font-medium text-slate-300 transition active:bg-emerald2 active:text-white">ข้อสอบทางการ</a>
+        <a href="#flashcards" class="mchip shrink-0 rounded-full border border-slate-700/70 bg-slate-800/50 px-3.5 py-1.5 text-xs font-medium text-slate-300 transition active:bg-emerald2 active:text-white">ท่องจำ</a>
       </div>
     </div>
   </header>
@@ -180,34 +290,35 @@
 
     <!-- ================= HERO ================= -->
     <section class="relative overflow-hidden">
-      <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_50%_at_50%_0%,rgba(63,157,126,0.10),transparent_70%)]"></div>
-      <div class="mx-auto max-w-6xl px-5 pt-20 pb-16 text-center">
-        <span class="inline-flex items-center gap-2 rounded-full border border-slate-700/70 bg-slate-800/40 px-4 py-1.5 text-xs font-medium tracking-wide text-slate-300">
-          <span class="h-1.5 w-1.5 rounded-full bg-emerald2"></span>
+      <div class="hero-aurora pointer-events-none absolute inset-0"></div>
+      <div class="hero-grid-lines pointer-events-none absolute inset-0"></div>
+      <div class="relative mx-auto max-w-6xl px-5 pt-24 pb-20 text-center">
+        <span class="inline-flex items-center gap-2 rounded-full border border-gold/25 bg-gold/[0.07] px-4 py-1.5 text-xs font-medium tracking-wide text-gold-soft shadow-[0_0_24px_-8px_rgba(201,168,106,0.45)]">
+          <span class="relative flex h-1.5 w-1.5"><span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald2-soft opacity-75"></span><span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald2"></span></span>
           ผู้แนะนำการลงทุนตราสารทั่วไป · Investment Consultant
         </span>
 
-        <h1 class="mx-auto mt-7 max-w-3xl text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl">
+        <h1 class="mx-auto mt-8 max-w-3xl text-[2.6rem] font-bold leading-[1.15] tracking-tight text-white sm:text-6xl">
           คลังความรู้เตรียมสอบ<br class="hidden sm:block" />
-          <span class="bg-gradient-to-r from-gold-soft to-gold bg-clip-text text-transparent">IC Plain (Paper&nbsp;1)</span>
+          <span class="grad-gold">IC Plain (Paper&nbsp;1)</span>
         </h1>
 
-        <p class="mx-auto mt-5 max-w-xl text-base leading-relaxed text-slate-400">
-          สรุปเนื้อหาครบ 3 หมวด · สูตรคำนวณที่ต้องจำ · ข้อสอบ <span class="font-semibold text-slate-200">150 ข้อ</span> พร้อมเฉลยละเอียด — โฟกัสจุดที่ออกสอบบ่อย
+        <p class="mx-auto mt-6 max-w-xl text-base leading-relaxed text-slate-400 sm:text-lg">
+          สรุปเนื้อหาครบ 3 หมวด · สูตรคำนวณที่ต้องจำ · ข้อสอบ <span class="font-semibold text-slate-100">150 ข้อ</span> พร้อมเฉลยละเอียด — โฟกัสจุดที่ออกสอบบ่อย
         </p>
 
         <!-- CTAs -->
-        <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
-          <a href="#exam" class="rounded-lg bg-emerald2 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-emerald2/25 transition hover:bg-emerald2-soft">เริ่มทำข้อสอบ →</a>
-          <a href="#knowledge" class="rounded-lg border border-slate-700 px-6 py-3 text-sm font-medium text-slate-200 transition hover:border-slate-500">อ่านสรุปเนื้อหา</a>
+        <div class="mt-9 flex flex-wrap items-center justify-center gap-3">
+          <a href="#exam" class="btn-glow rounded-xl bg-gradient-to-br from-emerald2 to-emerald2-soft px-7 py-3.5 text-sm font-semibold text-white shadow-xl shadow-emerald2/30 ring-1 ring-white/15 transition hover:-translate-y-0.5 hover:shadow-emerald2/50">เริ่มทำข้อสอบ →</a>
+          <a href="#knowledge" class="rounded-xl border border-slate-700/80 bg-white/[0.03] px-7 py-3.5 text-sm font-medium text-slate-200 backdrop-blur transition hover:-translate-y-0.5 hover:border-gold/50 hover:text-white">อ่านสรุปเนื้อหา</a>
         </div>
 
         <!-- exam stat band -->
-        <div class="mx-auto mt-11 grid max-w-2xl grid-cols-2 gap-px overflow-hidden rounded-2xl border border-slate-800 bg-slate-800/40 sm:grid-cols-4">
-          <div class="bg-slate-900/40 px-4 py-5"><div class="text-2xl font-bold text-gold-soft">100</div><div class="mt-0.5 text-xs text-slate-400">Mock ข้อสอบ</div></div>
-          <div class="bg-slate-900/40 px-4 py-5"><div class="text-2xl font-bold text-gold-soft">50</div><div class="mt-0.5 text-xs text-slate-400">ข้อสอบทางการ</div></div>
-          <div class="bg-slate-900/40 px-4 py-5"><div class="text-2xl font-bold text-gold-soft">3</div><div class="mt-0.5 text-xs text-slate-400">หมวดเนื้อหา</div></div>
-          <div class="bg-slate-900/40 px-4 py-5"><div class="text-2xl font-bold text-emerald2-soft">70%</div><div class="mt-0.5 text-xs text-slate-400">เกณฑ์ผ่าน</div></div>
+        <div class="mx-auto mt-14 grid max-w-2xl grid-cols-2 gap-3 sm:grid-cols-4">
+          <div class="pcard px-4 py-5"><div class="text-3xl font-bold tracking-tight text-gold-soft">100</div><div class="mt-1 text-xs text-slate-400">Mock ข้อสอบ</div></div>
+          <div class="pcard px-4 py-5"><div class="text-3xl font-bold tracking-tight text-gold-soft">50</div><div class="mt-1 text-xs text-slate-400">ข้อสอบทางการ</div></div>
+          <div class="pcard px-4 py-5"><div class="text-3xl font-bold tracking-tight text-gold-soft">3</div><div class="mt-1 text-xs text-slate-400">หมวดเนื้อหา</div></div>
+          <div class="pcard px-4 py-5"><div class="text-3xl font-bold tracking-tight text-emerald2-soft">70%</div><div class="mt-1 text-xs text-slate-400">เกณฑ์ผ่าน</div></div>
         </div>
       </div>
     </section>
@@ -215,13 +326,15 @@
     <!-- ================= OVERVIEW / EXAM STRUCTURE ================= -->
     <section id="overview" class="mx-auto max-w-6xl px-5 py-14 scroll-mt-20">
       <div class="mb-9">
-        <h2 class="text-xl font-semibold text-white">โครงสร้างข้อสอบ</h2>
-        <p class="mt-1.5 text-sm text-slate-400">3 หมวด · รวม 100 ข้อ — ต้องได้รวม ≥ 70 ข้อ และ หมวด 2 ต้องได้ ≥ 14/20</p>
+        <span class="eyebrow">Exam Blueprint</span>
+        <h2 class="mt-2 text-2xl font-bold tracking-tight text-white">โครงสร้างข้อสอบ</h2>
+        <p class="mt-2 text-sm text-slate-400">3 หมวด · รวม 100 ข้อ — ต้องได้รวม ≥ 70 ข้อ และ หมวด 2 ต้องได้ ≥ 14/20</p>
+        <div class="sec-rule mt-5"></div>
       </div>
 
       <div class="grid gap-5 sm:grid-cols-3">
         <!-- หมวด 1 -->
-        <div class="rounded-xl border border-slate-700/60 bg-slate-800/40 p-6">
+        <div class="pcard p-6">
           <div class="flex items-center justify-between">
             <span class="text-xs font-medium uppercase tracking-wider text-slate-500">หมวด 1</span>
             <span class="rounded-md bg-slate-700/50 px-2.5 py-1 text-xs font-semibold text-slate-200">30 ข้อ</span>
@@ -230,7 +343,7 @@
           <p class="mt-2 text-sm leading-relaxed text-slate-400">ระบบการเงิน · มูลค่าเงินตามเวลา · ผลตอบแทน/ความเสี่ยง · วิเคราะห์เศรษฐกิจและบริษัท</p>
         </div>
         <!-- หมวด 2 -->
-        <div class="rounded-xl border border-gold/30 bg-gold/[0.06] p-6">
+        <div class="pcard pcard-gold p-6">
           <div class="flex items-center justify-between">
             <span class="text-xs font-medium uppercase tracking-wider text-gold-soft">หมวด 2 · จุดตาย</span>
             <span class="rounded-md bg-gold/20 px-2.5 py-1 text-xs font-semibold text-gold-soft">20 ข้อ</span>
@@ -239,7 +352,7 @@
           <p class="mt-2 text-sm leading-relaxed text-slate-300">ต้องได้ ≥ 14/20 ถึงจะผ่าน — เป็นความจำล้วน เก็บให้แม่นที่สุด</p>
         </div>
         <!-- หมวด 3 -->
-        <div class="rounded-xl border border-slate-700/60 bg-slate-800/40 p-6">
+        <div class="pcard p-6">
           <div class="flex items-center justify-between">
             <span class="text-xs font-medium uppercase tracking-wider text-slate-500">หมวด 3</span>
             <span class="rounded-md bg-slate-700/50 px-2.5 py-1 text-xs font-semibold text-slate-200">50 ข้อ</span>
@@ -254,8 +367,9 @@
     <section id="knowledge" class="mx-auto max-w-6xl px-5 py-14 scroll-mt-20">
       <div class="mb-7 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h2 class="text-xl font-semibold text-white">คลังความรู้</h2>
-          <p class="mt-1.5 text-sm text-slate-400">คลิกการ์ดเพื่อดูสรุปเนื้อหาแบบเต็ม · กรองตามหมวด</p>
+          <span class="eyebrow">Knowledge Base</span>
+          <h2 class="mt-2 text-2xl font-bold tracking-tight text-white">คลังความรู้</h2>
+          <p class="mt-2 text-sm text-slate-400">คลิกการ์ดเพื่อดูสรุปเนื้อหาแบบเต็ม · กรองตามหมวด</p>
         </div>
 
         <!-- filters -->
@@ -275,31 +389,33 @@
     <!-- ================= FORMULA SHEET ================= -->
     <section id="formulas" class="mx-auto max-w-6xl px-5 py-14 scroll-mt-20">
       <div class="mb-7">
-        <h2 class="text-xl font-semibold text-white">สูตรคำนวณที่ต้องจำ</h2>
-        <p class="mt-1.5 text-sm text-slate-400">Formula Sheet — ถ้าจำสูตรแม่นจะได้คะแนนข้อคำนวณแบบฟรี ๆ</p>
+        <span class="eyebrow">Formula Sheet</span>
+        <h2 class="mt-2 text-2xl font-bold tracking-tight text-white">สูตรคำนวณที่ต้องจำ</h2>
+        <p class="mt-2 text-sm text-slate-400">ถ้าจำสูตรแม่นจะได้คะแนนข้อคำนวณแบบฟรี ๆ</p>
+        <div class="sec-rule mt-5"></div>
       </div>
 
-      <div class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xl shadow-black/40">
-        <table class="w-full text-left text-sm text-slate-700">
+      <div class="pcard pcard-static overflow-hidden !rounded-2xl">
+        <table class="w-full text-left text-sm text-slate-300">
           <thead>
-            <tr class="border-b border-slate-200 bg-slate-50 text-slate-500">
-              <th class="px-6 py-4 font-semibold">เรื่อง</th>
-              <th class="px-6 py-4 font-semibold">สูตร</th>
+            <tr class="border-b border-gold/20 bg-slate-900/60 text-gold-soft">
+              <th class="px-6 py-4 text-xs font-semibold uppercase tracking-wider">เรื่อง</th>
+              <th class="px-6 py-4 text-xs font-semibold uppercase tracking-wider">สูตร</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-slate-100">
-            <tr><td class="px-6 py-3.5 font-medium text-slate-900">มูลค่าอนาคต (FV)</td><td class="px-6 py-3.5 font-mono">FV = PV × (1 + i)ⁿ</td></tr>
-            <tr class="bg-slate-50/60"><td class="px-6 py-3.5 font-medium text-slate-900">มูลค่าปัจจุบัน (PV)</td><td class="px-6 py-3.5 font-mono">PV = FV / (1 + i)ⁿ</td></tr>
-            <tr><td class="px-6 py-3.5 font-medium text-slate-900">ผลตอบแทนถือครอง (HPR)</td><td class="px-6 py-3.5 font-mono">[(รายได้ + กำไรส่วนทุน) / ราคาซื้อ] × 100</td></tr>
-            <tr class="bg-slate-50/60"><td class="px-6 py-3.5 font-medium text-slate-900">ผลตอบแทนคาดหวัง E(R)</td><td class="px-6 py-3.5 font-mono">E(R) = Σ (Pᵢ × Rᵢ)</td></tr>
-            <tr><td class="px-6 py-3.5 font-medium text-slate-900">ผลตอบแทนที่แท้จริง</td><td class="px-6 py-3.5 font-mono">Real ≈ Nominal − เงินเฟ้อ</td></tr>
-            <tr class="bg-slate-50/60"><td class="px-6 py-3.5 font-medium text-slate-900">CAPM</td><td class="px-6 py-3.5 font-mono">E(R) = Rf + β(Rm − Rf)</td></tr>
-            <tr><td class="px-6 py-3.5 font-medium text-slate-900">มูลค่าหุ้น (Gordon)</td><td class="px-6 py-3.5 font-mono">P = D₁ / (k − g)</td></tr>
-            <tr class="bg-slate-50/60"><td class="px-6 py-3.5 font-medium text-slate-900">P/E</td><td class="px-6 py-3.5 font-mono">ราคา / EPS</td></tr>
-            <tr><td class="px-6 py-3.5 font-medium text-slate-900">EPS</td><td class="px-6 py-3.5 font-mono">กำไรสุทธิ / จำนวนหุ้นสามัญ</td></tr>
-            <tr class="bg-slate-50/60"><td class="px-6 py-3.5 font-medium text-slate-900">Dividend Yield</td><td class="px-6 py-3.5 font-mono">เงินปันผลต่อหุ้น / ราคา</td></tr>
-            <tr><td class="px-6 py-3.5 font-medium text-slate-900">NAV ต่อหน่วย</td><td class="px-6 py-3.5 font-mono">(สินทรัพย์ − หนี้สิน) / จำนวนหน่วย</td></tr>
-            <tr class="bg-slate-50/60"><td class="px-6 py-3.5 font-medium text-slate-900">ราคาตราสารหนี้</td><td class="px-6 py-3.5 font-mono">Σ PV(คูปอง) + PV(เงินต้น) คิดลดด้วย YTM</td></tr>
+          <tbody class="divide-y divide-slate-700/40">
+            <tr><td class="px-6 py-3.5 font-medium text-white">มูลค่าอนาคต (FV)</td><td class="px-6 py-3.5 font-mono text-gold-soft/90">FV = PV × (1 + i)ⁿ</td></tr>
+            <tr class="bg-white/[0.025]"><td class="px-6 py-3.5 font-medium text-white">มูลค่าปัจจุบัน (PV)</td><td class="px-6 py-3.5 font-mono text-gold-soft/90">PV = FV / (1 + i)ⁿ</td></tr>
+            <tr><td class="px-6 py-3.5 font-medium text-white">ผลตอบแทนถือครอง (HPR)</td><td class="px-6 py-3.5 font-mono text-gold-soft/90">[(รายได้ + กำไรส่วนทุน) / ราคาซื้อ] × 100</td></tr>
+            <tr class="bg-white/[0.025]"><td class="px-6 py-3.5 font-medium text-white">ผลตอบแทนคาดหวัง E(R)</td><td class="px-6 py-3.5 font-mono text-gold-soft/90">E(R) = Σ (Pᵢ × Rᵢ)</td></tr>
+            <tr><td class="px-6 py-3.5 font-medium text-white">ผลตอบแทนที่แท้จริง</td><td class="px-6 py-3.5 font-mono text-gold-soft/90">Real ≈ Nominal − เงินเฟ้อ</td></tr>
+            <tr class="bg-white/[0.025]"><td class="px-6 py-3.5 font-medium text-white">CAPM</td><td class="px-6 py-3.5 font-mono text-gold-soft/90">E(R) = Rf + β(Rm − Rf)</td></tr>
+            <tr><td class="px-6 py-3.5 font-medium text-white">มูลค่าหุ้น (Gordon)</td><td class="px-6 py-3.5 font-mono text-gold-soft/90">P = D₁ / (k − g)</td></tr>
+            <tr class="bg-white/[0.025]"><td class="px-6 py-3.5 font-medium text-white">P/E</td><td class="px-6 py-3.5 font-mono text-gold-soft/90">ราคา / EPS</td></tr>
+            <tr><td class="px-6 py-3.5 font-medium text-white">EPS</td><td class="px-6 py-3.5 font-mono text-gold-soft/90">กำไรสุทธิ / จำนวนหุ้นสามัญ</td></tr>
+            <tr class="bg-white/[0.025]"><td class="px-6 py-3.5 font-medium text-white">Dividend Yield</td><td class="px-6 py-3.5 font-mono text-gold-soft/90">เงินปันผลต่อหุ้น / ราคา</td></tr>
+            <tr><td class="px-6 py-3.5 font-medium text-white">NAV ต่อหน่วย</td><td class="px-6 py-3.5 font-mono text-gold-soft/90">(สินทรัพย์ − หนี้สิน) / จำนวนหน่วย</td></tr>
+            <tr class="bg-white/[0.025]"><td class="px-6 py-3.5 font-medium text-white">ราคาตราสารหนี้</td><td class="px-6 py-3.5 font-mono text-gold-soft/90">Σ PV(คูปอง) + PV(เงินต้น) คิดลดด้วย YTM</td></tr>
           </tbody>
         </table>
       </div>
@@ -308,13 +424,15 @@
     <!-- ================= STRATEGY / CHECKLIST ================= -->
     <section id="strategy" class="mx-auto max-w-6xl px-5 py-14 scroll-mt-20">
       <div class="mb-7">
-        <h2 class="text-xl font-semibold text-white">กลยุทธ์สอบ & เช็กลิสต์ก่อนสอบ</h2>
-        <p class="mt-1.5 text-sm text-slate-400">บริหารเวลา ~1.5 นาที/ข้อ · ข้อไหนไม่แน่ใจทำเครื่องหมายแล้วข้ามก่อน — ไม่หักคะแนนข้อผิด ต้องตอบทุกข้อ</p>
+        <span class="eyebrow">Strategy</span>
+        <h2 class="mt-2 text-2xl font-bold tracking-tight text-white">กลยุทธ์สอบ & เช็กลิสต์ก่อนสอบ</h2>
+        <p class="mt-2 text-sm text-slate-400">บริหารเวลา ~1.5 นาที/ข้อ · ข้อไหนไม่แน่ใจทำเครื่องหมายแล้วข้ามก่อน — ไม่หักคะแนนข้อผิด ต้องตอบทุกข้อ</p>
+        <div class="sec-rule mt-5"></div>
       </div>
 
       <div class="grid gap-5 lg:grid-cols-2">
         <!-- checklist -->
-        <div class="rounded-2xl border border-slate-700/60 bg-slate-800/40 p-7">
+        <div class="pcard p-7">
           <h3 class="mb-4 text-base font-semibold text-white">เทคนิคจำ (Keyword)</h3>
           <ul class="space-y-3 text-sm leading-relaxed text-slate-300">
             <li class="flex gap-3"><span class="mt-1 h-1.5 w-1.5 flex-none rounded-full bg-emerald2"></span><span><b class="text-white">ราคาตราสารหนี้ ↔ ดอกเบี้ย = ผกผัน</b> เสมอ (ออกแน่)</span></li>
@@ -328,7 +446,7 @@
         </div>
 
         <!-- exam-day tips (gold accent) -->
-        <div class="rounded-2xl border border-gold/30 bg-gold/[0.06] p-7">
+        <div class="pcard pcard-gold p-7">
           <h3 class="mb-4 text-base font-semibold text-gold-soft">โฟกัสจุดออกสอบบ่อย</h3>
           <ul class="space-y-3 text-sm leading-relaxed text-slate-300">
             <li class="flex gap-3"><span class="mt-1 h-1.5 w-1.5 flex-none rounded-full bg-gold"></span><span>อ่านโจทย์หา keyword <b class="text-white">"ผกผัน / มากที่สุด / ไม่ใช่ / ยกเว้น"</b> ให้ดี</span></li>
@@ -343,15 +461,17 @@
 
     <!-- ================= UPDATES (Sep 2023 content) ================= -->
     <section id="updates" class="mx-auto max-w-6xl px-5 py-14 scroll-mt-20">
-      <div class="flex flex-wrap items-center gap-2.5">
-        <span class="rounded-md bg-gold/15 px-2 py-0.5 text-xs font-semibold text-gold-soft">ฉบับล่าสุด · มีผล 1 ก.ย. 2566</span>
-        <h2 class="text-xl font-semibold text-white">อัปเดตเนื้อหา (ของใหม่ที่ออกสอบ)</h2>
+      <span class="eyebrow">What's New</span>
+      <div class="mt-2 flex flex-wrap items-center gap-2.5">
+        <h2 class="text-2xl font-bold tracking-tight text-white">อัปเดตเนื้อหา (ของใหม่ที่ออกสอบ)</h2>
+        <span class="rounded-full border border-gold/30 bg-gold/15 px-2.5 py-0.5 text-xs font-semibold text-gold-soft">ฉบับล่าสุด · มีผล 1 ก.ย. 2566</span>
       </div>
-      <p class="mt-1.5 max-w-2xl text-sm text-slate-400">เนื้อหาที่ตลาดหลักทรัพย์ฯ ปรับปรุง/เพิ่มเติม (จากเอกสาร update P1) — เน้นจุดที่ตำราเก่ายังไม่มี และมักออกสอบในข้อใหม่</p>
+      <p class="mt-2 max-w-2xl text-sm text-slate-400">เนื้อหาที่ตลาดหลักทรัพย์ฯ ปรับปรุง/เพิ่มเติม (จากเอกสาร update P1) — เน้นจุดที่ตำราเก่ายังไม่มี และมักออกสอบในข้อใหม่</p>
+      <div class="sec-rule mt-5"></div>
 
       <div class="mt-7 grid gap-4 md:grid-cols-2">
 
-        <div class="rounded-2xl border border-slate-700/60 bg-slate-800/40 p-5">
+        <div class="pcard p-6">
           <h3 class="mb-2 text-base font-semibold text-white">🏛️ ตลาดรอง &amp; สถานที่ซื้อขาย</h3>
           <ul class="space-y-1.5 text-sm leading-relaxed text-slate-300">
             <li>• <b>ศูนย์ซื้อขายทางการ (organized exchange):</b> SET (ทุนชำระแล้วหลัง IPO ≥ 300 ลบ.) · mai (≥ 20 ลบ.) · <b>LiVEx</b> (สำหรับ SME/Startup เปิด 31 มี.ค. 2565)</li>
@@ -361,7 +481,7 @@
           </ul>
         </div>
 
-        <div class="rounded-2xl border border-slate-700/60 bg-slate-800/40 p-5">
+        <div class="pcard p-6">
           <h3 class="mb-2 text-base font-semibold text-white">💻 ระบบซื้อขายของ SET (พัฒนาการ)</h3>
           <ul class="space-y-1.5 text-sm leading-relaxed text-slate-300">
             <li>• เคาะกระดาน (2518) → <b>ASSET</b> (2534) → <b>ARMS</b> (2551) → <b>SET CONNECT</b>/Cinnober (2555)</li>
@@ -371,7 +491,7 @@
           </ul>
         </div>
 
-        <div class="rounded-2xl border border-slate-700/60 bg-slate-800/40 p-5">
+        <div class="pcard p-6">
           <h3 class="mb-2 text-base font-semibold text-white">🚀 LiVEx (เจาะลึก)</h3>
           <ul class="space-y-1.5 text-sm leading-relaxed text-slate-300">
             <li>• 3 แนวคิด: <b>Light-Touch Supervision · Investor Protection · Information-Based</b></li>
@@ -382,7 +502,7 @@
           </ul>
         </div>
 
-        <div class="rounded-2xl border border-slate-700/60 bg-slate-800/40 p-5">
+        <div class="pcard p-6">
           <h3 class="mb-2 text-base font-semibold text-white">🪙 สินทรัพย์ดิจิทัล (Digital Asset)</h3>
           <ul class="space-y-1.5 text-sm leading-relaxed text-slate-300">
             <li>• ตาม พ.ร.ก. สินทรัพย์ดิจิทัล พ.ศ. 2561 = <b>คริปโทเคอร์เรนซี</b> + <b>โทเคนดิจิทัล</b></li>
@@ -393,7 +513,7 @@
           </ul>
         </div>
 
-        <div class="rounded-2xl border border-slate-700/60 bg-slate-800/40 p-5">
+        <div class="pcard p-6">
           <h3 class="mb-2 text-base font-semibold text-white">🌱 การลงทุนอย่างยั่งยืน (ESG)</h3>
           <ul class="space-y-1.5 text-sm leading-relaxed text-slate-300">
             <li>• Sustainable Investment พิจารณา 3 มิติ: <b>E</b> สิ่งแวดล้อม · <b>S</b> สังคม · <b>G</b> บรรษัทภิบาล</li>
@@ -403,7 +523,7 @@
           </ul>
         </div>
 
-        <div class="rounded-2xl border border-slate-700/60 bg-slate-800/40 p-5">
+        <div class="pcard p-6">
           <h3 class="mb-2 text-base font-semibold text-white">🌏 DR vs DRx (ตราสารแสดงสิทธิหลักทรัพย์ต่างประเทศ)</h3>
           <ul class="space-y-1.5 text-sm leading-relaxed text-slate-300">
             <li>• <b>DRx = fractional DR</b> ซื้อขายเป็นเศษหน่วย/จำนวนเงินได้ (ขั้นต่ำ 0.0001 DRx)</li>
@@ -413,7 +533,7 @@
           </ul>
         </div>
 
-        <div class="rounded-2xl border border-slate-700/60 bg-slate-800/40 p-5 md:col-span-2">
+        <div class="pcard p-6 md:col-span-2">
           <h3 class="mb-2 text-base font-semibold text-white">⚖️ การซื้อขายที่ไม่เป็นธรรม (Market Misconduct)</h3>
           <div class="grid gap-x-6 gap-y-1.5 text-sm leading-relaxed text-slate-300 sm:grid-cols-2">
             <div>
@@ -445,11 +565,12 @@
     <section id="exam" class="mx-auto max-w-6xl px-5 py-14 scroll-mt-20">
       <div class="mb-7 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h2 class="text-xl font-semibold text-white">ข้อสอบเก่า · Mock Exam 100 ข้อ</h2>
-          <p class="mt-1.5 text-sm text-slate-400">เลือกคำตอบเพื่อดูเฉลยและคำอธิบายทันที · กรองตามหมวดเพื่อฝึกเฉพาะส่วน</p>
+          <span class="eyebrow">Mock Exam</span>
+          <h2 class="mt-2 text-2xl font-bold tracking-tight text-white">ข้อสอบเก่า · Mock Exam 100 ข้อ</h2>
+          <p class="mt-2 text-sm text-slate-400">เลือกคำตอบเพื่อดูเฉลยและคำอธิบายทันที · กรองตามหมวดเพื่อฝึกเฉพาะส่วน</p>
         </div>
         <div class="flex flex-col items-start gap-3 sm:items-end">
-          <div class="rounded-xl border border-slate-700/70 bg-slate-800/40 px-5 py-3 text-sm">
+          <div class="pcard pcard-static px-5 py-3 text-sm">
             <span class="text-slate-400">ตอบถูก</span>
             <span id="score" class="ml-1 font-bold text-emerald2-soft">0</span>
             <span class="text-slate-500">/ <span id="answered">0</span> ตอบแล้ว</span>
@@ -484,7 +605,7 @@
       </div>
 
       <!-- ===== live scoreboard (per-category, reflects real pass rule) ===== -->
-      <div id="quiz-scoreboard" class="mx-auto mb-7 max-w-3xl rounded-2xl border border-slate-700/60 bg-slate-800/40 p-5">
+      <div id="quiz-scoreboard" class="pcard pcard-static mx-auto mb-7 max-w-3xl p-5">
         <div class="flex items-center gap-5">
           <div class="relative h-[72px] w-[72px] flex-none">
             <svg viewBox="0 0 72 72" class="h-[72px] w-[72px] -rotate-90">
@@ -544,11 +665,12 @@
 
     <!-- ================= OFFICIAL PRACTICE (SET sample) ================= -->
     <section id="official" class="mx-auto max-w-6xl px-5 py-14 scroll-mt-20">
-      <div class="flex items-center gap-2.5">
-        <span class="rounded-md bg-gold/15 px-2 py-0.5 text-xs font-semibold text-gold-soft">ทางการ</span>
-        <h2 class="text-xl font-semibold text-white">ข้อสอบตัวอย่างทางการ · เฉลยละเอียด</h2>
+      <span class="eyebrow">Official Practice</span>
+      <div class="mt-2 flex items-center gap-2.5">
+        <h2 class="text-2xl font-bold tracking-tight text-white">ข้อสอบตัวอย่างทางการ · เฉลยละเอียด</h2>
+        <span class="rounded-full border border-gold/30 bg-gold/15 px-2.5 py-0.5 text-xs font-semibold text-gold-soft">ทางการ</span>
       </div>
-      <p class="mt-1.5 max-w-2xl text-sm text-slate-400">ชุดข้อสอบตัวอย่างจากตลาดหลักทรัพย์แห่งประเทศไทย 50 ข้อ พร้อมเฉลย คำอธิบาย หนังสืออ้างอิง และวัตถุประสงค์การเรียนรู้ (LOS) — เลือกคำตอบเพื่อดูเฉลยทันที</p>
+      <p class="mt-2 max-w-2xl text-sm text-slate-400">ชุดข้อสอบตัวอย่างจากตลาดหลักทรัพย์แห่งประเทศไทย 50 ข้อ พร้อมเฉลย คำอธิบาย หนังสืออ้างอิง และวัตถุประสงค์การเรียนรู้ (LOS) — เลือกคำตอบเพื่อดูเฉลยทันที</p>
 
       <div class="mt-4 mb-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-slate-300">
         <span>ถูก <span id="o-score" class="font-semibold text-emerald2-soft">0</span> <span class="text-slate-500">/ <span id="o-answered">0</span> ตอบแล้ว · จาก 50</span></span>
@@ -576,14 +698,71 @@
       </div>
     </section>
 
+    <!-- ================= FLASHCARDS (ท่องจำหมวด 2) ================= -->
+    <section id="flashcards" class="mx-auto max-w-6xl px-5 py-14 scroll-mt-20">
+      <span class="eyebrow">Flashcards</span>
+      <div class="mt-2 flex flex-wrap items-center gap-2.5">
+        <h2 class="text-2xl font-bold tracking-tight text-white">ท่องจำหมวด 2 · กฎระเบียบ & จรรยาบรรณ</h2>
+        <span class="rounded-full border border-gold/30 bg-gold/15 px-2.5 py-0.5 text-xs font-semibold text-gold-soft">จุดตัดผ่าน ≥ 14/20</span>
+      </div>
+      <p class="mt-2 max-w-2xl text-sm text-slate-400">คลิกการ์ดเพื่อพลิกดูคำตอบ · กด "จำได้" เพื่อตัดออกจากรอบถัดไป — ระบบจะวนเฉพาะใบที่ยังจำไม่ได้ และบันทึกความคืบหน้าให้อัตโนมัติ</p>
+      <div class="sec-rule mt-5"></div>
+
+      <div class="mx-auto mt-8 max-w-2xl">
+        <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
+          <div class="flex flex-wrap gap-2">
+            <button data-fmode="due" class="fmode-btn rounded-lg border border-slate-600 bg-slate-700/60 px-3 py-1.5 text-xs font-medium text-white">ยังไม่จำ (<span id="fc-due-count">0</span>)</button>
+            <button data-fmode="all" class="fmode-btn rounded-lg border border-slate-700 px-3 py-1.5 text-xs text-slate-400 transition hover:text-white">ทั้งหมด (<span id="fc-all-count">0</span>)</button>
+            <button id="fc-shuffle" class="rounded-lg border border-slate-700 px-3 py-1.5 text-xs text-slate-400 transition hover:text-white" aria-pressed="false">⤨ สลับ</button>
+          </div>
+          <div class="flex items-center gap-3 text-sm text-slate-300">
+            <span>จำได้ <span id="fc-known" class="font-bold text-emerald2-soft">0</span><span class="text-slate-500">/<span id="fc-total">0</span></span></span>
+            <button id="fc-reset" class="text-xs text-slate-400 underline-offset-2 transition hover:text-white hover:underline">เริ่มใหม่</button>
+          </div>
+        </div>
+        <div class="mb-6 h-1.5 w-full overflow-hidden rounded-full bg-slate-700/50">
+          <div id="fc-bar" class="h-full rounded-full bg-gradient-to-r from-gold to-emerald2-soft transition-all duration-500" style="width:0%"></div>
+        </div>
+
+        <div id="fc-scene" class="fc-scene">
+          <div id="fc-card" class="fc-card" role="button" tabindex="0" aria-label="พลิกการ์ดเพื่อดูคำตอบ">
+            <div class="fc-face pcard pcard-static">
+              <span id="fc-front-tag" class="fc-tag"></span>
+              <p id="fc-front-text"></p>
+              <span class="fc-hint">คลิกการ์ดเพื่อดูคำตอบ ↻</span>
+            </div>
+            <div class="fc-face fc-back pcard pcard-static pcard-gold">
+              <span class="fc-tag !text-gold-soft">คำตอบ</span>
+              <p id="fc-back-text"></p>
+              <span class="fc-hint">คลิกเพื่อกลับไปดูคำถาม ↻</span>
+            </div>
+          </div>
+        </div>
+
+        <div id="fc-ctrl" class="mt-6 grid grid-cols-3 gap-3">
+          <button id="fc-again" class="rounded-xl border border-rose-400/40 bg-rose-500/10 px-4 py-3 text-sm font-semibold text-rose-300 transition hover:bg-rose-500/20">✗ ยังไม่ได้</button>
+          <button id="fc-flip" class="rounded-xl border border-slate-600 bg-slate-800/60 px-4 py-3 text-sm font-medium text-slate-200 transition hover:border-slate-400">พลิกการ์ด</button>
+          <button id="fc-got" class="rounded-xl border border-emerald2/50 bg-emerald2/15 px-4 py-3 text-sm font-semibold text-emerald2-soft transition hover:bg-emerald2/25">✓ จำได้</button>
+        </div>
+        <p id="fc-meta" class="mt-3 text-center text-xs text-slate-500">ใบที่ <span id="fc-pos">0</span>/<span id="fc-count">0</span> ในรอบนี้</p>
+
+        <div id="fc-done" class="pcard pcard-gold pcard-static hidden p-8 text-center">
+          <div class="text-3xl">🎉</div>
+          <p class="mt-3 text-base font-semibold text-white">จำครบทุกใบแล้ว!</p>
+          <p class="mt-1.5 text-sm text-slate-400">สลับไปโหมด "ทั้งหมด" เพื่อทบทวนซ้ำ หรือกด "เริ่มใหม่" เพื่อล้างความคืบหน้า</p>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <!-- ================= FOOTER ================= -->
-  <footer class="border-t border-slate-800/80 bg-slate-900">
-    <div class="mx-auto max-w-6xl px-5 py-10">
+  <footer class="relative bg-slate-950/60">
+    <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent"></div>
+    <div class="mx-auto max-w-6xl px-5 py-12">
       <div class="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
         <div class="flex items-center gap-2.5">
-          <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-gold to-gold-soft text-slate-900 font-bold text-xs">IC</span>
+          <span class="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-gold to-gold-soft text-slate-900 font-bold text-xs shadow-lg shadow-gold/20 ring-1 ring-white/20">IC</span>
           <span class="text-sm font-medium text-slate-300">IC Plain (P1) · คลังความรู้เตรียมสอบ</span>
         </div>
         <div class="flex gap-5 text-sm text-slate-500">
@@ -594,6 +773,7 @@
           <a href="#updates" class="transition hover:text-slate-300">อัปเดตล่าสุด</a>
           <a href="#exam" class="transition hover:text-slate-300">ข้อสอบเก่า</a>
           <a href="#official" class="transition hover:text-slate-300">ข้อสอบทางการ</a>
+          <a href="#flashcards" class="transition hover:text-slate-300">ท่องจำ</a>
         </div>
       </div>
       <p class="mt-7 text-xs leading-relaxed text-slate-600">
@@ -612,7 +792,7 @@
   </footer>
 
   <!-- back-to-top -->
-  <button id="to-top" class="fixed bottom-6 right-6 z-50 hidden h-11 w-11 items-center justify-center rounded-full border border-slate-700 bg-slate-800/90 text-lg text-slate-300 shadow-lg shadow-black/30 backdrop-blur transition hover:border-slate-500 hover:text-white" aria-label="กลับขึ้นบนสุด">↑</button>
+  <button id="to-top" class="fixed bottom-6 right-6 z-50 hidden h-11 w-11 items-center justify-center rounded-full border border-slate-700 bg-slate-900/90 text-lg text-slate-300 shadow-lg shadow-black/40 backdrop-blur transition hover:border-gold/60 hover:text-gold-soft hover:shadow-gold/10" aria-label="กลับขึ้นบนสุด">↑</button>
 
   <!-- ================= MODAL ================= -->
   <div id="modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
@@ -881,9 +1061,9 @@ const TOPICS = [
 /* ---------- Render cards ---------- */
 const grid = document.getElementById('kb-grid');
 const catStyle = {
-  '1': { ring:'border-slate-700/60', dot:'bg-emerald2' },
-  '2': { ring:'border-gold/30',      dot:'bg-gold' },
-  '3': { ring:'border-slate-700/60', dot:'bg-emerald2' },
+  '1': { ring:'border-slate-200', dot:'bg-emerald2' },
+  '2': { ring:'border-gold/40',   dot:'bg-gold' },
+  '3': { ring:'border-slate-200', dot:'bg-emerald2' },
 };
 
 function renderCards(filter){
@@ -891,7 +1071,7 @@ function renderCards(filter){
   TOPICS.filter(t => filter === 'all' || t.cat === filter).forEach((t, i) => {
     const s = catStyle[t.cat];
     const el = document.createElement('button');
-    el.className = `kb-card fade-in group flex flex-col rounded-xl border ${s.ring} bg-gray-50 p-6 text-left`;
+    el.className = `kb-card fade-in group flex flex-col rounded-2xl border ${s.ring} bg-gradient-to-b from-white to-slate-50 p-6 text-left shadow-xl shadow-black/25`;
     el.style.animationDelay = (i * 30) + 'ms';
     el.innerHTML = `
       <div class="flex items-center gap-2">
@@ -1160,15 +1340,15 @@ function renderQuiz(){
   }
   list.forEach(q => {
     const card = document.createElement('div');
-    card.className = 'fade-in rounded-xl border border-slate-200 bg-gray-50 p-6';
+    card.className = 'fade-in rounded-2xl border border-slate-200 bg-gradient-to-b from-white to-slate-50 p-6 shadow-xl shadow-black/25';
     const opts = q.o.map((opt, i) => `
-      <button data-q="${q.n}" data-i="${i}" class="opt group flex w-full items-start gap-3 rounded-lg border border-slate-200 bg-white px-4 py-3 text-left text-sm text-slate-700 transition hover:border-slate-300 hover:bg-slate-50">
+      <button data-q="${q.n}" data-i="${i}" class="opt group flex w-full items-start gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 text-left text-sm text-slate-700 transition hover:border-slate-300 hover:bg-slate-50">
         <span class="flex h-6 w-6 flex-none items-center justify-center rounded-md bg-slate-100 text-xs font-semibold text-slate-500">${CHO[i]}</span>
         <span class="pt-0.5">${opt}</span>
       </button>`).join('');
     card.innerHTML = `
       <div class="mb-3 flex items-center gap-2">
-        <span class="flex h-7 min-w-7 items-center justify-center rounded-md bg-slate-800 px-1.5 text-xs font-bold text-white">${q.n}</span>
+        <span class="flex h-7 min-w-7 items-center justify-center rounded-lg bg-gradient-to-br from-slate-800 to-slate-950 px-1.5 text-xs font-bold text-white ring-1 ring-slate-600/60">${q.n}</span>
         <span class="text-xs font-medium uppercase tracking-wider text-slate-400">หมวด ${q.cat}</span>
       </div>
       <p class="mb-4 text-[15px] font-medium leading-relaxed text-slate-900">${q.q}</p>
@@ -1380,9 +1560,11 @@ updateScore();
 #print-doc .pd-table .font-mono{ font-family:ui-monospace,'Cascadia Code',monospace; }
 
 /* กลยุทธ์/อัปเดต (clone จากหน้าเว็บ) */
-#print-doc .pd-clone [class*="rounded-2xl"], #print-doc .pd-clone [class*="rounded-xl"]{
+#print-doc .pd-clone [class*="rounded-2xl"], #print-doc .pd-clone [class*="rounded-xl"], #print-doc .pcard{
   background:#f8fafc !important; border:1px solid #e3e8ef !important; border-radius:10px !important;
-  padding:14px 16px !important; margin:0 0 12px !important; break-inside:avoid; }
+  padding:14px 16px !important; margin:0 0 12px !important; break-inside:avoid;
+  box-shadow:none !important; -webkit-backdrop-filter:none !important; backdrop-filter:none !important; transform:none !important; opacity:1 !important; }
+#print-doc .sec-rule, #print-doc .eyebrow{ display:none !important; }
 #print-doc .pd-clone .grid{ display:block !important; }
 #print-doc .pd-clone span[class*="rounded-full"]{ background:#a87b1b !important; }
 #print-doc .pd-clone h3{ font-size:14px; font-weight:700; color:#0f1b2e !important; margin-bottom:8px; }
@@ -1967,9 +2149,9 @@ updateScore();
     if(!list.length){ oList.innerHTML='<div class="rounded-xl border border-dashed border-slate-700 bg-slate-800/30 px-6 py-12 text-center text-sm text-slate-400">ไม่พบข้อสอบที่ตรงเงื่อนไข — ลองปรับตัวกรอง/คำค้น</div>'; return; }
     list.forEach(function(q){
       var card=document.createElement('div');
-      card.className='fade-in rounded-xl border border-slate-200 bg-gray-50 p-6';
-      var opts=q.o.map(function(opt,i){ return '<button data-q="'+q.n+'" data-i="'+i+'" class="oopt group flex w-full items-start gap-3 rounded-lg border border-slate-200 bg-white px-4 py-3 text-left text-sm text-slate-700 transition hover:border-slate-300 hover:bg-slate-50"><span class="flex h-6 w-6 flex-none items-center justify-center rounded-md bg-slate-100 text-xs font-semibold text-slate-500">'+CHO[i]+'</span><span class="pt-0.5">'+opt+'</span></button>'; }).join('');
-      card.innerHTML='<div class="mb-3 flex flex-wrap items-center gap-2"><span class="flex h-7 min-w-7 items-center justify-center rounded-md bg-slate-800 px-1.5 text-xs font-bold text-white">'+q.n+'</span><span class="rounded-md bg-slate-100 px-2 py-0.5 text-xs font-medium text-slate-500">หมวด '+q.cat+'</span><span class="text-xs text-slate-400">'+q.topic+'</span></div><p class="mb-4 text-[15px] font-medium leading-relaxed text-slate-900">'+q.q+'</p><div class="flex flex-col gap-2.5">'+opts+'</div><div class="oexplain mt-4 hidden rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm leading-relaxed text-slate-600"></div>';
+      card.className='fade-in rounded-2xl border border-slate-200 bg-gradient-to-b from-white to-slate-50 p-6 shadow-xl shadow-black/25';
+      var opts=q.o.map(function(opt,i){ return '<button data-q="'+q.n+'" data-i="'+i+'" class="oopt group flex w-full items-start gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 text-left text-sm text-slate-700 transition hover:border-slate-300 hover:bg-slate-50"><span class="flex h-6 w-6 flex-none items-center justify-center rounded-md bg-slate-100 text-xs font-semibold text-slate-500">'+CHO[i]+'</span><span class="pt-0.5">'+opt+'</span></button>'; }).join('');
+      card.innerHTML='<div class="mb-3 flex flex-wrap items-center gap-2"><span class="flex h-7 min-w-7 items-center justify-center rounded-lg bg-gradient-to-br from-slate-800 to-slate-950 px-1.5 text-xs font-bold text-white ring-1 ring-slate-600/60">'+q.n+'</span><span class="rounded-md bg-slate-100 px-2 py-0.5 text-xs font-medium text-slate-500">หมวด '+q.cat+'</span><span class="text-xs text-slate-400">'+q.topic+'</span></div><p class="mb-4 text-[15px] font-medium leading-relaxed text-slate-900">'+q.q+'</p><div class="flex flex-col gap-2.5">'+opts+'</div><div class="oexplain mt-4 hidden rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm leading-relaxed text-slate-600"></div>';
       oList.appendChild(card);
     });
     oList.querySelectorAll('div.fade-in').forEach(function(card){
@@ -1995,6 +2177,216 @@ updateScore();
   var oReset=document.getElementById('official-reset');
   if(oReset) oReset.addEventListener('click',function(){ if(Object.keys(oAns).length && !confirm('ล้างคำตอบข้อสอบทางการทั้งหมด เริ่มทำใหม่?')) return; oAns={}; oCho={}; try{ localStorage.removeItem(OLS); }catch(e){} oUpdateScore(); renderOfficial(); });
   oLoad(); renderOfficial(); oUpdateScore();
+})();
+</script>
+<!-- ===== Flashcards หมวด 2 (เพิ่ม 2026-06-11) — บล็อกอิสระ: DOM/localStorage ของตัวเอง ===== -->
+<script>
+(function(){
+  var KEY = 'ic-plain-flash-v1';
+  var CARDS = [
+    { t:'กำกับดูแล', f:'หน่วยงานใดเป็นผู้ให้/เพิกถอน "ความเห็นชอบ" ผู้แนะนำการลงทุน (IC)?', b:'ก.ล.ต. (SEC) — และ IC ต้องสังกัดบริษัทหลักทรัพย์/ตัวกลาง จึงจะให้คำแนะนำได้' },
+    { t:'กำกับดูแล', f:'ตลาดหลักทรัพย์ฯ (SET) ทำหน้าที่อะไรในการกำกับดูแล?', b:'เป็นศูนย์ซื้อขาย กำกับการซื้อขายและบริษัทจดทะเบียน (ส่วน ก.ล.ต. กำกับภาพรวมตลาดทุนและคุ้มครองผู้ลงทุน)' },
+    { t:'กำกับดูแล', f:'กฎหมายหลักของตลาดทุนไทยคือฉบับใด?', b:'พ.ร.บ.หลักทรัพย์และตลาดหลักทรัพย์ พ.ศ. 2535' },
+    { t:'KYC/Suitability', f:'KYC/CDD ต้องทำเมื่อใด?', b:'ก่อนเปิดบัญชี/ให้บริการ — พิสูจน์ตัวตนและเก็บข้อมูลลูกค้า ห้ามให้บริการลูกค้าที่ปกปิดตัวตนหรือใช้ชื่อปลอม' },
+    { t:'KYC/Suitability', f:'Suitability Test ต้องทบทวนอย่างน้อยทุกกี่ปี?', b:'อย่างน้อยทุก 2 ปี' },
+    { t:'KYC/Suitability', f:'ลูกค้าอยากลงทุนในผลิตภัณฑ์ที่เสี่ยง "เกิน" ระดับที่รับได้ ต้องทำอย่างไร?', b:'เตือนลูกค้าถึงความเสี่ยง และให้ลูกค้าลงนามรับทราบ — ไม่ใช่ตัดสินใจแทนหรือปฏิเสธโดยไม่อธิบาย' },
+    { t:'ประเภทลูกค้า', f:'ลูกค้าประเภทใดได้รับความคุ้มครอง "สูงสุด"?', b:'ผู้ลงทุนรายย่อย (Retail) — ผู้ลงทุนสถาบันได้รับความคุ้มครองน้อยกว่าเพราะมีความรู้/ประสบการณ์มากกว่า' },
+    { t:'เปิดเผยข้อมูล', f:'Fund Fact Sheet คืออะไร?', b:'เอกสารสรุปข้อมูลกองทุน 1 หน้า — นโยบายลงทุน ระดับความเสี่ยง ผลตอบแทนย้อนหลัง และค่าธรรมเนียม' },
+    { t:'เปิดเผยข้อมูล', f:'Prospectus ต่างจาก Fund Fact Sheet อย่างไร?', b:'หนังสือชี้ชวน (Prospectus) = ข้อมูลผลิตภัณฑ์ฉบับเต็ม · Fund Fact Sheet = ฉบับสรุป 1 หน้า' },
+    { t:'เปิดเผยข้อมูล', f:'เมื่อนำเสนอผลตอบแทนย้อนหลัง ต้องระบุข้อความใดเสมอ?', b:'"ผลตอบแทนในอดีตไม่ได้รับประกันผลตอบแทนในอนาคต"' },
+    { t:'เปิดเผยข้อมูล', f:'การให้ข้อมูล/โฆษณาต่อลูกค้าต้องมีลักษณะอย่างไร?', b:'ครบถ้วน ถูกต้อง เป็นปัจจุบัน ไม่ปิดบังข้อเท็จจริงสำคัญ และไม่โฆษณาเกินจริง' },
+    { t:'จรรยาบรรณ', f:'หลักจรรยาบรรณข้อสำคัญที่สุดของ IC คือ?', b:'ซื่อสัตย์สุจริต และรักษาผลประโยชน์ของ "ลูกค้า" เป็นสำคัญ — มาก่อนประโยชน์ของตนเองและบริษัทเสมอ' },
+    { t:'จรรยาบรรณ', f:'รับประกันผลตอบแทน หรือรับประกันว่าไม่ขาดทุน ได้หรือไม่?', b:'ไม่ได้เด็ดขาด — เป็นข้อห้ามที่ออกสอบบ่อยที่สุดข้อหนึ่ง' },
+    { t:'จรรยาบรรณ', f:'Churning คืออะไร?', b:'การซื้อขายในบัญชีลูกค้า "บ่อยเกินจำเป็น" เพื่อหวังค่าคอมมิชชัน — ต้องห้าม' },
+    { t:'จรรยาบรรณ', f:'ตัดสินใจซื้อขายแทนลูกค้าได้เมื่อใด?', b:'เมื่อได้รับมอบหมายเป็น "ลายลักษณ์อักษร" เท่านั้น — ห้ามทำโดยพลการแม้ลูกค้าจะเคยพูดอนุญาตปากเปล่า' },
+    { t:'จรรยาบรรณ', f:'ยืมเงิน/รับฝากเงินหรือทรัพย์สินของลูกค้าไว้กับตนเอง ได้หรือไม่?', b:'ไม่ได้ — เป็นข้อห้ามสำคัญของผู้แนะนำการลงทุน' },
+    { t:'จรรยาบรรณ', f:'Conflict of Interest ต้องจัดการอย่างไร?', b:'จัดการอย่างเป็นธรรม และ "เปิดเผย" ให้ลูกค้าทราบ' },
+    { t:'จรรยาบรรณ', f:'ความลับของลูกค้า เปิดเผยได้ในกรณีใด?', b:'เมื่อกฎหมายกำหนดหรือหน่วยงานกำกับสั่งเท่านั้น — ห้ามนำข้อมูลลูกค้าไปแสวงหาประโยชน์' },
+    { t:'Market Misconduct', f:'Insider Trading คืออะไร?', b:'การใช้ข้อมูลภายในที่ยังไม่เปิดเผยต่อสาธารณะเพื่อหาประโยชน์ — ผิด พ.ร.บ.หลักทรัพย์ฯ (ม.242–244)' },
+    { t:'Market Misconduct', f:'Front Running คืออะไร?', b:'การส่งคำสั่งซื้อขายของตนเอง "ตัดหน้า" คำสั่งของลูกค้าเพื่อหากำไร (ม.244/1–2)' },
+    { t:'Market Misconduct', f:'Wash Sale คืออะไร?', b:'การซื้อขายที่ "ผู้ซื้อและผู้ขายเป็นคนเดียวกัน" เพื่อสร้างปริมาณ/ราคาลวง — false market ตามข้อบังคับ SET' },
+    { t:'Market Misconduct', f:'Cornering คืออะไร?', b:'การกักตุนหลักทรัพย์ไว้จนผู้อื่นไม่สามารถหาส่งมอบได้' },
+    { t:'Market Misconduct', f:'Pool คืออะไร?', b:'การสมรู้ร่วมคิดกันซื้อขายเพื่อประโยชน์ร่วมกัน — สร้างตลาดลวง' },
+    { t:'Market Misconduct', f:'การกระทำไม่เป็นธรรม 4 ลักษณะตาม พ.ร.บ.หลักทรัพย์ฯ 2535 มีอะไรบ้าง?', b:'1) Misstatement ข่าว/ข้อความเท็จ · 2) Insider trading · 3) Front running · 4) Market manipulation (ปั่นหุ้น)' },
+    { t:'AML/CFT', f:'ธุรกรรมที่มีเหตุอันควรสงสัย ต้องรายงานต่อหน่วยงานใด?', b:'ปปง. (AMLO) — รวมถึงธุรกรรมเงินสด/ทรัพย์สินตามเกณฑ์ที่กำหนด' },
+    { t:'AML/CFT', f:'หน้าที่หลักด้าน AML/CFT ของผู้แนะนำการลงทุน?', b:'พิสูจน์ทราบตัวตนลูกค้า · รายงานธุรกรรมตามเกณฑ์ต่อ ปปง. · ไม่รับลูกค้าที่ปกปิดตัวตน/ใช้ชื่อปลอม' },
+    { t:'เทคนิคสอบ', f:'เกณฑ์ผ่านของหมวด 2 คือเท่าไร?', b:'ต้องตอบถูก ≥ 14 จาก 20 ข้อ (และคะแนนรวมทุกหมวด ≥ 70/100) จึงจะสอบผ่าน' },
+    { t:'เทคนิคสอบ', f:'คีย์เวิร์ดในตัวเลือกที่มักเป็น "ข้อผิด" ของข้อจรรยาบรรณ?', b:'"รับประกัน…" · "ทำแทนลูกค้า…" · "เห็นแก่ประโยชน์ตนเอง/ค่าคอมฯ" — เจอแบบนี้ให้สงสัยไว้ก่อนว่าเป็นข้อที่ผิด' }
+  ];
+
+  var $ = function(id){ return document.getElementById(id); };
+  var card = $('fc-card');
+  if (!card) return;
+
+  var known = {};
+  try { known = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch(e){ known = {}; }
+  var mode = 'due', order = [], pos = 0, flipped = false, shuffled = false;
+
+  function save(){ try { localStorage.setItem(KEY, JSON.stringify(known)); } catch(e){} }
+  function knownCount(){ var n = 0; for (var i = 0; i < CARDS.length; i++) if (known[i]) n++; return n; }
+  function rebuild(){
+    order = [];
+    for (var i = 0; i < CARDS.length; i++) if (mode === 'all' || !known[i]) order.push(i);
+    if (shuffled){
+      for (var k = order.length - 1; k > 0; k--){
+        var j = Math.floor(Math.random() * (k + 1));
+        var tmp = order[k]; order[k] = order[j]; order[j] = tmp;
+      }
+    }
+    pos = 0;
+  }
+  function render(){
+    var kn = knownCount();
+    $('fc-known').textContent = kn;
+    $('fc-total').textContent = CARDS.length;
+    $('fc-all-count').textContent = CARDS.length;
+    $('fc-due-count').textContent = CARDS.length - kn;
+    $('fc-bar').style.width = (kn / CARDS.length * 100) + '%';
+
+    var empty = !order.length;
+    $('fc-done').classList.toggle('hidden', !empty);
+    $('fc-scene').classList.toggle('hidden', empty);
+    $('fc-ctrl').classList.toggle('hidden', empty);
+    $('fc-meta').classList.toggle('hidden', empty);
+    if (empty) return;
+
+    if (pos >= order.length) pos = 0;
+    var c = CARDS[order[pos]];
+    flipped = false; card.classList.remove('flip');
+    $('fc-front-tag').textContent = c.t;
+    $('fc-front-text').textContent = c.f;
+    $('fc-back-text').textContent = c.b;
+    $('fc-pos').textContent = pos + 1;
+    $('fc-count').textContent = order.length;
+  }
+  function flip(){ flipped = !flipped; card.classList.toggle('flip', flipped); }
+
+  card.addEventListener('click', flip);
+  card.addEventListener('keydown', function(e){
+    if (e.key === ' ' || e.key === 'Enter'){ e.preventDefault(); flip(); }
+  });
+  $('fc-flip').addEventListener('click', flip);
+
+  $('fc-got').addEventListener('click', function(){
+    if (!order.length) return;
+    known[order[pos]] = true; save();
+    if (mode === 'due') order.splice(pos, 1); else pos++;
+    if (pos >= order.length) pos = 0;
+    render();
+  });
+  $('fc-again').addEventListener('click', function(){
+    if (!order.length) return;
+    if (known[order[pos]]){ delete known[order[pos]]; save(); }
+    pos++;
+    if (pos >= order.length) pos = 0;
+    render();
+  });
+  $('fc-shuffle').addEventListener('click', function(){
+    shuffled = !shuffled;
+    this.setAttribute('aria-pressed', String(shuffled));
+    this.classList.toggle('border-slate-500', shuffled);
+    this.classList.toggle('text-white', shuffled);
+    this.classList.toggle('text-slate-400', !shuffled);
+    rebuild(); render();
+  });
+  $('fc-reset').addEventListener('click', function(){
+    if (knownCount() && !confirm('ล้างความคืบหน้าการท่องจำทั้งหมด เริ่มใหม่?')) return;
+    known = {}; save(); rebuild(); render();
+  });
+  document.querySelectorAll('.fmode-btn').forEach(function(b){
+    b.addEventListener('click', function(){
+      document.querySelectorAll('.fmode-btn').forEach(function(x){
+        x.classList.remove('border-slate-600','bg-slate-700/60','text-white','font-medium');
+        x.classList.add('border-slate-700','text-slate-400');
+      });
+      b.classList.add('border-slate-600','bg-slate-700/60','text-white','font-medium');
+      b.classList.remove('border-slate-700','text-slate-400');
+      mode = b.dataset.fmode;
+      rebuild(); render();
+    });
+  });
+
+  rebuild(); render();
+})();
+</script>
+
+<!-- ===== UX layer: tab mode — one section per view, hash-routed (2026-06-11, additive only) ===== -->
+<script>
+(function(){
+  var TABS = ['overview','knowledge','formulas','strategy','updates','exam','official','flashcards'];
+  var hero = document.querySelector('main > section:not([id])'); // hero แสดงเฉพาะแท็บภาพรวม
+
+  function currentValid(h){
+    h = (h || '').replace('#','');
+    return TABS.indexOf(h) !== -1 ? h : 'overview';
+  }
+
+  function showTab(id, push){
+    TABS.forEach(function(s){
+      var el = document.getElementById(s);
+      if (el) el.classList.toggle('hidden', s !== id);
+    });
+    if (hero) hero.classList.toggle('hidden', id !== 'overview');
+
+    // active state บนเมนู + chips
+    document.querySelectorAll('.nav-link, .mchip').forEach(function(a){
+      a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+    });
+
+    // เล่นแอนิเมชันเข้าเบา ๆ (section เป็น <section> ไม่ชนกับ selector div.fade-in ของควิซ)
+    var sec = document.getElementById(id);
+    if (sec){ sec.classList.remove('fade-in'); void sec.offsetWidth; sec.classList.add('fade-in'); }
+
+    if (push){ try { history.pushState(null, '', '#' + id); } catch(e){ location.hash = id; } }
+    window.scrollTo({ top: 0 });
+  }
+
+  // ดักทุกลิงก์ภายในหน้า (#overview … #official และโลโก้ #top)
+  document.addEventListener('click', function(e){
+    var a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    var h = a.getAttribute('href').slice(1);
+    if (h === 'top'){ e.preventDefault(); showTab('overview', true); return; }
+    if (TABS.indexOf(h) !== -1){ e.preventDefault(); showTab(h, true); }
+  });
+
+  window.addEventListener('hashchange', function(){ showTab(currentValid(location.hash), false); });
+  window.addEventListener('popstate',  function(){ showTab(currentValid(location.hash), false); });
+
+  showTab(currentValid(location.hash), false);
+})();
+</script>
+
+<!-- ===== UX layer: scrollspy nav highlight + reveal-on-scroll (redesign 2026-06-11, additive only) ===== -->
+<script>
+(function(){
+  if (!('IntersectionObserver' in window)) return;
+
+  // 1) active-section highlight in header nav + mobile chips
+  var ids = ['overview','knowledge','formulas','strategy','updates','exam','official','flashcards'];
+  var links = document.querySelectorAll('.nav-link, .mchip');
+  function setActive(id){
+    links.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href') === '#' + id); });
+  }
+  var spy = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if (e.isIntersecting) setActive(e.target.id); });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  ids.forEach(function(id){ var el = document.getElementById(id); if (el) spy.observe(el); });
+
+  // 2) gentle reveal-on-scroll for static premium cards (never touches JS-injected quiz cards)
+  var rv = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting){
+        e.target.classList.add('in'); rv.unobserve(e.target);
+        setTimeout(function(){ e.target.style.transitionDelay = ''; }, 900);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('#overview .pcard, #strategy .pcard, #updates .pcard').forEach(function(el, i){
+    el.classList.add('reveal');
+    el.style.transitionDelay = Math.min(i % 3 * 70, 140) + 'ms';
+    rv.observe(el);
+  });
 })();
 </script>
 </body>
