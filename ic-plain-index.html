@@ -267,6 +267,7 @@
         <a href="#exam"      class="nav-link rounded-lg px-3 py-2 text-sm text-slate-400 transition hover:bg-white/[0.04] hover:text-slate-100">ข้อสอบเก่า</a>
         <a href="#official"  class="nav-link rounded-lg px-3 py-2 text-sm text-slate-400 transition hover:bg-white/[0.04] hover:text-slate-100">ข้อสอบทางการ</a>
         <a href="#flashcards" class="nav-link rounded-lg px-3 py-2 text-sm text-slate-400 transition hover:bg-white/[0.04] hover:text-slate-100">ท่องจำ</a>
+        <a href="#stats" class="nav-link rounded-lg px-3 py-2 text-sm text-slate-400 transition hover:bg-white/[0.04] hover:text-slate-100">สถิติ</a>
       </div>
 
       <a href="#knowledge" class="btn-glow rounded-xl bg-gradient-to-br from-emerald2 to-emerald2-soft px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-emerald2/30 ring-1 ring-white/15 transition hover:shadow-emerald2/50">
@@ -286,6 +287,7 @@
         <a href="#exam"      class="mchip shrink-0 rounded-full border border-slate-700/70 bg-slate-800/50 px-3.5 py-1.5 text-xs font-medium text-slate-300 transition active:bg-emerald2 active:text-white">ข้อสอบเก่า</a>
         <a href="#official"  class="mchip shrink-0 rounded-full border border-slate-700/70 bg-slate-800/50 px-3.5 py-1.5 text-xs font-medium text-slate-300 transition active:bg-emerald2 active:text-white">ข้อสอบทางการ</a>
         <a href="#flashcards" class="mchip shrink-0 rounded-full border border-slate-700/70 bg-slate-800/50 px-3.5 py-1.5 text-xs font-medium text-slate-300 transition active:bg-emerald2 active:text-white">ท่องจำ</a>
+        <a href="#stats" class="mchip shrink-0 rounded-full border border-slate-700/70 bg-slate-800/50 px-3.5 py-1.5 text-xs font-medium text-slate-300 transition active:bg-emerald2 active:text-white">สถิติ</a>
       </div>
     </div>
   </header>
@@ -756,6 +758,15 @@
           <p class="mt-1.5 text-sm text-slate-400">สลับไปโหมด "ทั้งหมด" เพื่อทบทวนซ้ำ หรือกด "เริ่มใหม่" เพื่อล้างความคืบหน้า</p>
         </div>
       </div>
+    </section>
+
+    <!-- ================= STATS (สถิติ & จุดอ่อน) ================= -->
+    <section id="stats" class="mx-auto max-w-6xl px-5 py-14 scroll-mt-20">
+      <span class="eyebrow">Performance</span>
+      <h2 class="mt-2 text-2xl font-bold tracking-tight text-white">สถิติของคุณ — คะแนนรายหมวด & จุดที่ควรทบทวน</h2>
+      <p class="mt-2 max-w-2xl text-sm text-slate-400">คำนวณจากคำตอบที่บันทึกไว้ในเครื่องของคุณ (Mock 100 ข้อ + ข้อสอบทางการ 50 ข้อ) — อัปเดตอัตโนมัติทุกครั้งที่เปิดแท็บนี้</p>
+      <div class="sec-rule mt-5"></div>
+      <div id="stats-body" class="mt-8"></div>
     </section>
 
   </main>
@@ -2304,10 +2315,120 @@ updateScore();
 })();
 </script>
 
+<!-- ===== Stats tab (เพิ่ม 2026-06-12) — อ่าน localStorage ของควิซ ไม่แตะ state ใด ๆ ===== -->
+<script>
+(function(){
+  var body = document.getElementById('stats-body');
+  if (!body) return;
+
+  function read(key){
+    try { var d = JSON.parse(localStorage.getItem(key) || '{}') || {}; return d.a || {}; } catch(e){ return {}; }
+  }
+  function pct(a, b){ return b ? Math.round(a / b * 100) : 0; }
+  function barColor(p){ return p >= 80 ? 'bg-emerald2' : (p >= 60 ? 'bg-gold' : 'bg-rose-400'); }
+  function txtColor(p){ return p >= 80 ? 'text-emerald2-soft' : (p >= 60 ? 'text-gold-soft' : 'text-rose-300'); }
+
+  function catBlock(label, done, ok, total, extra){
+    var acc = pct(ok, done);
+    return '<div class="rounded-xl border border-slate-700/60 bg-slate-900/40 p-4">' +
+      '<div class="flex items-center justify-between text-xs"><span class="font-medium text-slate-300">' + label + '</span>' +
+      '<span class="text-slate-400">ถูก <b class="' + txtColor(acc) + '">' + ok + '</b>/' + done + ' ทำแล้ว · จาก ' + total + (done ? ' · แม่นยำ ' + acc + '%' : '') + '</span></div>' +
+      '<div class="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-slate-700/50"><div class="h-full rounded-full ' + barColor(acc) + '" style="width:' + (done ? acc : 0) + '%"></div></div>' +
+      (extra ? '<p class="mt-2 text-[11px] text-slate-500">' + extra + '</p>' : '') + '</div>';
+  }
+
+  function compute(){
+    var CATN = { '1':'หมวด 1 · การเงินและการลงทุน', '2':'หมวด 2 · กฎระเบียบ/จรรยาบรรณ', '3':'หมวด 3 · ผลิตภัณฑ์' };
+    var mockA = read('ic-plain-quiz-v1');
+    var offA  = read('ic-plain-official-v1');
+    var hasMock = (typeof QUESTIONS !== 'undefined');
+    var hasOff  = !!window.OFFICIAL;
+
+    var anyData = Object.keys(mockA).length || Object.keys(offA).length;
+    if (!anyData){
+      body.innerHTML = '<div class="rounded-xl border border-dashed border-slate-700 bg-slate-800/30 px-6 py-12 text-center text-sm text-slate-400">ยังไม่มีข้อมูล — ไปทำ <a href="#exam" class="font-medium text-gold-soft underline underline-offset-2">ข้อสอบเก่า</a> หรือ <a href="#official" class="font-medium text-gold-soft underline underline-offset-2">ข้อสอบทางการ</a> ก่อน แล้วกลับมาดูสถิติที่นี่</div>';
+      return;
+    }
+
+    var html = '<div class="grid gap-5 lg:grid-cols-2">';
+
+    // ---- mock per-cat ----
+    if (hasMock){
+      var m = { '1':{d:0,k:0,t:0}, '2':{d:0,k:0,t:0}, '3':{d:0,k:0,t:0} };
+      QUESTIONS.forEach(function(q){
+        m[q.cat].t++;
+        if (mockA[q.n] !== undefined){ m[q.cat].d++; if (mockA[q.n]) m[q.cat].k++; }
+      });
+      var mDone = m['1'].d + m['2'].d + m['3'].d, mOk = m['1'].k + m['2'].k + m['3'].k;
+      html += '<div class="pcard pcard-static p-6"><h3 class="text-base font-semibold text-white">📝 Mock Exam 100 ข้อ</h3>' +
+        '<p class="mt-1 text-xs text-slate-500">ทำแล้ว ' + mDone + '/100 · ถูก ' + mOk + (mDone ? ' (' + pct(mOk, mDone) + '%)' : '') + ' · เกณฑ์ผ่าน: รวม ≥ 70 และหมวด 2 ≥ 14/20</p>' +
+        '<div class="mt-4 space-y-3">' +
+        catBlock(CATN['1'], m['1'].d, m['1'].k, 30) +
+        catBlock(CATN['2'], m['2'].d, m['2'].k, 20, m['2'].d >= 20 ? (m['2'].k >= 14 ? '✓ ผ่านเกณฑ์หมวด 2 แล้ว (' + m['2'].k + '/20)' : '⚠️ หมวด 2 ได้ ' + m['2'].k + '/20 — ต้อง ≥ 14 จึงจะผ่าน') : 'หมวดตัดผ่าน — ต้องถูก ≥ 14 จาก 20') +
+        catBlock(CATN['3'], m['3'].d, m['3'].k, 50) +
+        '</div></div>';
+    }
+
+    // ---- official per-cat ----
+    if (hasOff){
+      var o = { '1':{d:0,k:0,t:0}, '2':{d:0,k:0,t:0}, '3':{d:0,k:0,t:0} };
+      window.OFFICIAL.forEach(function(q){
+        o[q.cat].t++;
+        if (offA[q.n] !== undefined){ o[q.cat].d++; if (offA[q.n]) o[q.cat].k++; }
+      });
+      var oDone = o['1'].d + o['2'].d + o['3'].d, oOk = o['1'].k + o['2'].k + o['3'].k;
+      html += '<div class="pcard pcard-static p-6"><h3 class="text-base font-semibold text-white">🏛️ ข้อสอบทางการ 50 ข้อ</h3>' +
+        '<p class="mt-1 text-xs text-slate-500">ทำแล้ว ' + oDone + '/50 · ถูก ' + oOk + (oDone ? ' (' + pct(oOk, oDone) + '%)' : '') + '</p>' +
+        '<div class="mt-4 space-y-3">' +
+        catBlock(CATN['1'], o['1'].d, o['1'].k, o['1'].t) +
+        catBlock(CATN['2'], o['2'].d, o['2'].k, o['2'].t) +
+        catBlock(CATN['3'], o['3'].d, o['3'].k, o['3'].t) +
+        '</div></div>';
+    }
+    html += '</div>';
+
+    // ---- weak topics (จากข้อสอบทางการที่มี topic) ----
+    if (hasOff){
+      var topics = {};
+      window.OFFICIAL.forEach(function(q){
+        if (offA[q.n] === undefined || !q.topic) return;
+        var t = topics[q.topic] || (topics[q.topic] = { d:0, k:0 });
+        t.d++; if (offA[q.n]) t.k++;
+      });
+      var rows = Object.keys(topics).map(function(name){
+        var t = topics[name];
+        return { name: name, d: t.d, k: t.k, acc: pct(t.k, t.d) };
+      }).filter(function(r){ return r.d > 0; });
+      rows.sort(function(a, b){ return a.acc - b.acc || b.d - a.d; });
+
+      if (rows.length){
+        html += '<div class="pcard pcard-gold pcard-static mt-5 p-6"><h3 class="text-base font-semibold text-gold-soft">🎯 หัวข้อที่ควรทบทวน (เรียงจากแม่นยำน้อยสุด)</h3><div class="mt-4 grid gap-2.5 sm:grid-cols-2">';
+        rows.slice(0, 10).forEach(function(r){
+          html += '<div class="flex items-center justify-between gap-3 rounded-lg border border-slate-700/50 bg-slate-900/40 px-3.5 py-2.5 text-sm">' +
+            '<span class="min-w-0 truncate text-slate-300" title="' + r.name + '">' + r.name + '</span>' +
+            '<span class="flex-none font-semibold ' + txtColor(r.acc) + '">' + r.k + '/' + r.d + ' · ' + r.acc + '%</span></div>';
+        });
+        html += '</div><p class="mt-3 text-xs text-slate-500">เคล็ดลับ: หัวข้อสีแดง (&lt; 60%) กลับไปอ่านสรุปใน "คลังความรู้" แล้วใช้โหมด "ทบทวนข้อผิด" ในแท็บข้อสอบ · หมวด 2 ใช้แท็บ "ท่องจำ" ช่วยได้</p></div>';
+      }
+    }
+
+    body.innerHTML = html;
+  }
+
+  compute();
+  window.addEventListener('hashchange', function(){
+    if ((location.hash || '').replace('#','') === 'stats') compute();
+  });
+  document.querySelectorAll('a[href="#stats"]').forEach(function(a){
+    a.addEventListener('click', function(){ setTimeout(compute, 50); });
+  });
+})();
+</script>
+
 <!-- ===== UX layer: tab mode — one section per view, hash-routed (2026-06-11, additive only) ===== -->
 <script>
 (function(){
-  var TABS = ['overview','knowledge','formulas','strategy','updates','exam','official','flashcards'];
+  var TABS = ['overview','knowledge','formulas','strategy','updates','exam','official','flashcards','stats'];
   var hero = document.querySelector('main > section:not([id])'); // hero แสดงเฉพาะแท็บภาพรวม
 
   function currentValid(h){
@@ -2357,7 +2478,7 @@ updateScore();
   if (!('IntersectionObserver' in window)) return;
 
   // 1) active-section highlight in header nav + mobile chips
-  var ids = ['overview','knowledge','formulas','strategy','updates','exam','official','flashcards'];
+  var ids = ['overview','knowledge','formulas','strategy','updates','exam','official','flashcards','stats'];
   var links = document.querySelectorAll('.nav-link, .mchip');
   function setActive(id){
     links.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href') === '#' + id); });
