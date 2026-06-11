@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>IC P2 · เตรียมสอบตราสารซับซ้อน: ตราสารหนี้และกองทุนรวม</title>
+<meta name="description" content="เตรียมสอบ IC P2 (Complex Products: Bond and Mutual Fund) — สรุปเนื้อหาตราสารหนี้และกองทุนรวมซับซ้อน พร้อมข้อสอบตัวอย่างทางการ 25 ข้อ เฉลยละเอียด ฟรี" />
+<meta name="author" content="veekeancodemaipen" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23c9a86a'/><text x='16' y='23' font-family='Arial,sans-serif' font-size='16' font-weight='bold' text-anchor='middle' fill='%230f172a'>IC</text></svg>" />
+<link rel="canonical" href="https://ic-plain-prep-yossavees-projects.vercel.app/p2" />
+<meta name="robots" content="index, follow" />
+<meta name="theme-color" content="#0f172a" />
+<meta property="og:title" content="IC P2 · เตรียมสอบตราสารซับซ้อน: ตราสารหนี้และกองทุนรวม" />
+<meta property="og:description" content="สรุปเนื้อหา + ข้อสอบตัวอย่างทางการ 25 ข้อ พร้อมเฉลยละเอียด — ฟรี" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://ic-plain-prep-yossavees-projects.vercel.app/p2" />
+<meta property="og:locale" content="th_TH" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: { sans: ['Prompt', 'sans-serif'] },
+        colors: {
+          gold: { DEFAULT: '#c9a86a', soft: '#d9c191' },
+          emerald2: { DEFAULT: '#3f9d7e', soft: '#5cb89a' }
+        }
+      }
+    }
+  }
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Prompt', sans-serif; -webkit-font-smoothing: antialiased;
+    background:
+      radial-gradient(1100px 720px at 88% -8%, rgba(201,168,106,.075), transparent 62%),
+      radial-gradient(950px 650px at -8% 12%, rgba(63,157,126,.07), transparent 56%),
+      linear-gradient(180deg, #0a1020 0%, #0f172a 55%, #0c1424 100%);
+    background-attachment: fixed;
+  }
+  ::selection { background: #c9a86a; color: #0f172a; }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: #0c1424; }
+  ::-webkit-scrollbar-thumb { background: #2b3a52; border-radius: 9999px; border: 2px solid #0c1424; }
+  ::-webkit-scrollbar-thumb:hover { background: #c9a86a; }
+
+  .pcard {
+    position: relative; border-radius: 1.25rem;
+    border: 1px solid rgba(148,163,184,.14);
+    background: linear-gradient(165deg, rgba(30,41,59,.55), rgba(15,23,42,.35));
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.045), 0 12px 32px -20px rgba(0,0,0,.65);
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .pcard:hover {
+    transform: translateY(-3px); border-color: rgba(201,168,106,.35);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 26px 52px -26px rgba(0,0,0,.75), 0 0 0 1px rgba(201,168,106,.07);
+  }
+  .pcard-gold { border-color: rgba(201,168,106,.32); background: linear-gradient(165deg, rgba(201,168,106,.11), rgba(15,23,42,.42)); }
+  .pcard-static, .pcard-static:hover { transform: none; }
+
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: .5rem;
+    font-size: .68rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: #d9c191;
+  }
+  .eyebrow::before { content: ""; width: 1.4rem; height: 1px; background: linear-gradient(90deg, transparent, #c9a86a); }
+  .sec-rule { height: 1px; background: linear-gradient(90deg, rgba(201,168,106,.45), rgba(148,163,184,.12) 40%, transparent 80%); }
+
+  .grad-gold {
+    background: linear-gradient(100deg, #d9c191 0%, #c9a86a 32%, #f3e3ba 50%, #c9a86a 68%, #d9c191 100%);
+    background-size: 220% 100%;
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    animation: shimmer 7s linear infinite;
+  }
+  @keyframes shimmer { to { background-position: -220% 0; } }
+
+  .btn-glow { position: relative; overflow: hidden; }
+  .btn-glow::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(110deg, transparent 25%, rgba(255,255,255,.22) 50%, transparent 75%);
+    background-size: 250% 100%; background-position: 200% 0;
+    transition: background-position .7s ease; pointer-events: none;
+  }
+  .btn-glow:hover::after { background-position: -50% 0; }
+
+  .header-glass::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(201,168,106,.4) 30%, rgba(92,184,154,.35) 70%, transparent);
+    pointer-events: none;
+  }
+  .nav-link { position: relative; }
+  .nav-link.active { color: #fff; background: rgba(201,168,106,.10); }
+  .nav-link.active::after {
+    content: ""; position: absolute; left: .75rem; right: .75rem; bottom: .3rem; height: 2px; border-radius: 99px;
+    background: linear-gradient(90deg, #c9a86a, #5cb89a);
+  }
+  .mchip.active { border-color: rgba(201,168,106,.55) !important; background: rgba(201,168,106,.14) !important; color: #fff !important; }
+
+  .hero-aurora {
+    background:
+      radial-gradient(58% 52% at 50% 0%, rgba(63,157,126,.13), transparent 70%),
+      radial-gradient(40% 38% at 78% 18%, rgba(201,168,106,.10), transparent 70%);
+  }
+  .fade-in { animation: fade .4s ease both; }
+  @keyframes fade { from { opacity: 0; transform: translateY(8px);} to { opacity:1; transform:none;} }
+  @media (prefers-reduced-motion: reduce) { .grad-gold { animation: none; } }
+  .mnav-scroll { scrollbar-width: none; -ms-overflow-style: none; }
+  .mnav-scroll::-webkit-scrollbar { display: none; }
+</style>
+</head>
+
+<body class="bg-slate-900 text-slate-200 antialiased">
+
+  <!-- maker credit -->
+  <a href="https://github.com/veekeancodemaipen" target="_blank" rel="noopener noreferrer"
+     class="group block border-b border-slate-800/70 bg-slate-950/95">
+    <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-2 gap-y-0.5 px-5 py-1.5 text-xs text-slate-400">
+      <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor" aria-hidden="true" class="text-slate-300">
+        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/>
+      </svg>
+      <span>จัดทำโดย <span class="font-semibold text-slate-200 transition group-hover:text-gold-soft">veekeancodemaipen</span></span>
+      <span class="text-slate-600">·</span>
+      <span class="text-slate-500 transition group-hover:text-slate-300">ดูซอร์สโค้ดบน GitHub ↗</span>
+    </div>
+  </a>
+
+  <!-- header -->
+  <header class="header-glass sticky top-0 z-40 bg-slate-900/70 backdrop-blur-xl">
+    <nav class="mx-auto flex max-w-6xl items-center justify-between px-5 py-3.5">
+      <div class="flex items-center gap-3">
+        <a href="/" title="กลับหน้ารวมหลักสูตร IC" class="hidden h-8 items-center rounded-lg border border-slate-700/70 px-2.5 text-xs text-slate-400 transition hover:border-gold/50 hover:text-gold-soft sm:flex">← Hub</a>
+        <a href="#overview" class="group flex items-center gap-2.5">
+          <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-gold to-gold-soft text-slate-900 font-bold text-sm shadow-lg shadow-gold/20 ring-1 ring-white/20 transition group-hover:shadow-gold/40">IC</span>
+          <span class="text-sm font-semibold tracking-wide text-slate-100">IC&nbsp;Complex <span class="text-slate-500 font-normal">· P2</span></span>
+        </a>
+      </div>
+
+      <div class="hidden items-center gap-0.5 md:flex">
+        <a href="#overview"  class="nav-link rounded-lg px-3 py-2 text-sm text-slate-400 transition hover:bg-white/[0.04] hover:text-slate-100">ภาพรวม</a>
+        <a href="#knowledge" class="nav-link rounded-lg px-3 py-2 text-sm text-slate-400 transition hover:bg-white/[0.04] hover:text-slate-100">คลังความรู้</a>
+        <a href="#exam"      class="nav-link rounded-lg px-3 py-2 text-sm text-slate-400 transition hover:bg-white/[0.04] hover:text-slate-100">ข้อสอบทางการ</a>
+      </div>
+
+      <a href="#exam" class="btn-glow rounded-xl bg-gradient-to-br from-emerald2 to-emerald2-soft px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-emerald2/30 ring-1 ring-white/15 transition hover:shadow-emerald2/50">
+        ทำข้อสอบ
+      </a>
+    </nav>
+
+    <div class="md:hidden border-t border-slate-800/70">
+      <div class="mnav-scroll flex items-center gap-2 overflow-x-auto px-4 py-2.5">
+        <a href="/" class="shrink-0 rounded-full border border-gold/30 bg-gold/10 px-3.5 py-1.5 text-xs font-medium text-gold-soft">← Hub</a>
+        <a href="#overview"  class="mchip shrink-0 rounded-full border border-slate-700/70 bg-slate-800/50 px-3.5 py-1.5 text-xs font-medium text-slate-300 transition">ภาพรวม</a>
+        <a href="#knowledge" class="mchip shrink-0 rounded-full border border-slate-700/70 bg-slate-800/50 px-3.5 py-1.5 text-xs font-medium text-slate-300 transition">คลังความรู้</a>
+        <a href="#exam"      class="mchip shrink-0 rounded-full border border-slate-700/70 bg-slate-800/50 px-3.5 py-1.5 text-xs font-medium text-slate-300 transition">ข้อสอบทางการ</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- hero (แสดงเฉพาะแท็บภาพรวม) -->
+    <section class="relative overflow-hidden">
+      <div class="hero-aurora pointer-events-none absolute inset-0"></div>
+      <div class="relative mx-auto max-w-6xl px-5 pt-20 pb-14 text-center">
+        <span class="inline-flex items-center gap-2 rounded-full border border-gold/25 bg-gold/[0.07] px-4 py-1.5 text-xs font-medium tracking-wide text-gold-soft">
+          Complex Products: Bond and Mutual Fund · หลักสูตรที่ 2
+        </span>
+        <h1 class="mx-auto mt-7 max-w-3xl text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl">
+          เตรียมสอบ <span class="grad-gold">IC P2</span><br class="hidden sm:block" />
+          ตราสารหนี้ & กองทุนรวมซับซ้อน
+        </h1>
+        <p class="mx-auto mt-5 max-w-xl text-base leading-relaxed text-slate-400">
+          สรุปเนื้อหา 3 องค์ความรู้ + ข้อสอบตัวอย่างทางการจาก SET <span class="font-semibold text-slate-100">25 ข้อ</span> พร้อมเฉลยละเอียด — สอบผ่านรวมกับ P1 ได้ใบอนุญาต <b class="text-gold-soft">IC Complex 2</b>
+        </p>
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+          <a href="#exam" class="btn-glow rounded-xl bg-gradient-to-br from-emerald2 to-emerald2-soft px-7 py-3.5 text-sm font-semibold text-white shadow-xl shadow-emerald2/30 ring-1 ring-white/15 transition hover:-translate-y-0.5 hover:shadow-emerald2/50">เริ่มทำข้อสอบ →</a>
+          <a href="#knowledge" class="rounded-xl border border-slate-700/80 bg-white/[0.03] px-7 py-3.5 text-sm font-medium text-slate-200 backdrop-blur transition hover:-translate-y-0.5 hover:border-gold/50 hover:text-white">อ่านสรุปเนื้อหา</a>
+        </div>
+        <div class="mx-auto mt-12 grid max-w-2xl grid-cols-2 gap-3 sm:grid-cols-4">
+          <div class="pcard px-4 py-5"><div class="text-3xl font-bold tracking-tight text-gold-soft">25</div><div class="mt-1 text-xs text-slate-400">ข้อสอบจริง</div></div>
+          <div class="pcard px-4 py-5"><div class="text-3xl font-bold tracking-tight text-gold-soft">40</div><div class="mt-1 text-xs text-slate-400">นาที</div></div>
+          <div class="pcard px-4 py-5"><div class="text-3xl font-bold tracking-tight text-emerald2-soft">70%</div><div class="mt-1 text-xs text-slate-400">เกณฑ์ผ่าน (≥18 ข้อ)</div></div>
+          <div class="pcard px-4 py-5"><div class="text-3xl font-bold tracking-tight text-gold-soft">850.-</div><div class="mt-1 text-xs text-slate-400">ค่าสอบจริง</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= OVERVIEW ================= -->
+    <section id="overview" class="mx-auto max-w-6xl px-5 py-14 scroll-mt-20">
+      <span class="eyebrow">Exam Blueprint</span>
+      <h2 class="mt-2 text-2xl font-bold tracking-tight text-white">โครงสร้างข้อสอบ P2</h2>
+      <p class="mt-2 text-sm text-slate-400">25 ข้อ · 40 นาที · ผ่าน ≥ 70% — แบ่งเป็น 3 ส่วนตามองค์ความรู้ของ SET</p>
+      <div class="sec-rule mt-5"></div>
+
+      <div class="mt-8 grid gap-5 sm:grid-cols-3">
+        <div class="pcard p-6">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-medium uppercase tracking-wider text-slate-500">ส่วน 1</span>
+            <span class="rounded-md bg-slate-700/50 px-2.5 py-1 text-xs font-semibold text-slate-200">10 ข้อ</span>
+          </div>
+          <h3 class="mt-3 text-base font-semibold text-white">ตราสารหนี้ที่มีความเสี่ยงสูง / ซับซ้อน</h3>
+          <p class="mt-2 text-sm leading-relaxed text-slate-400">Hybrid bond · ตราสารเลื่อนจ่ายดอกเบี้ย · Basel III · Perpetual bond · Structured notes (ELN / อ้างอิงดอกเบี้ย / อ้างอิง FX) · Unrated &amp; Non-investment grade</p>
+        </div>
+        <div class="pcard p-6">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-medium uppercase tracking-wider text-slate-500">ส่วน 2</span>
+            <span class="rounded-md bg-slate-700/50 px-2.5 py-1 text-xs font-semibold text-slate-200">10 ข้อ</span>
+          </div>
+          <h3 class="mt-3 text-base font-semibold text-white">กองทุนรวมที่มีความเสี่ยงสูง / ซับซ้อน</h3>
+          <p class="mt-2 text-sm leading-relaxed text-slate-400">กองทุน High Yield · Complex Return · กองทุนโภคภัณฑ์ผ่านสัญญาซื้อขายล่วงหน้า · Hedge Fund · กองทุนที่ใช้อนุพันธ์แบบซับซ้อน</p>
+        </div>
+        <div class="pcard pcard-gold p-6">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-medium uppercase tracking-wider text-gold-soft">ส่วน 3</span>
+            <span class="rounded-md bg-gold/20 px-2.5 py-1 text-xs font-semibold text-gold-soft">5 ข้อ</span>
+          </div>
+          <h3 class="mt-3 text-base font-semibold text-white">การให้คำแนะนำการลงทุน</h3>
+          <p class="mt-2 text-sm leading-relaxed text-slate-300">แนวปฏิบัติเสนอขายผลิตภัณฑ์เสี่ยงสูง — ข้อสอบเชิงสถานการณ์ ออกแนว "ใครทำถูก/ผิด" เก็บคะแนนได้ง่ายถ้าจำหลักได้</p>
+        </div>
+      </div>
+
+      <div class="mt-8 grid gap-5 lg:grid-cols-2">
+        <div class="pcard pcard-static p-7">
+          <h3 class="text-base font-semibold text-white">สอบ P2 แล้วได้อะไร</h3>
+          <ul class="mt-3 space-y-2.5 text-sm leading-relaxed text-slate-300">
+            <li class="flex gap-2.5"><span class="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-emerald2"></span><span><b class="text-white">P1 + P2 = ใบอนุญาต IC Complex 2</b> — เพิ่มสิทธิ์แนะนำตราสารหนี้และกองทุนรวมที่มีความเสี่ยงสูง/ซับซ้อน</span></li>
+            <li class="flex gap-2.5"><span class="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-emerald2"></span><span>เก็บ P3 (อนุพันธ์) เพิ่มอีกหลักสูตรเดียว จะได้ <b class="text-white">IC Complex 1</b> แนะนำได้ทุกผลิตภัณฑ์</span></li>
+            <li class="flex gap-2.5"><span class="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-emerald2"></span><span>สมัครสอบที่ศูนย์ทดสอบ <a href="http://www.ati-asco.org/" target="_blank" rel="noopener" class="font-medium text-gold-soft underline underline-offset-2">ATI</a> หรือ <a href="https://www.aimc.or.th" target="_blank" rel="noopener" class="font-medium text-gold-soft underline underline-offset-2">AIMC</a></span></li>
+          </ul>
+        </div>
+        <div class="pcard pcard-gold pcard-static p-7">
+          <h3 class="text-base font-semibold text-gold-soft">จุดที่ออกสอบบ่อย (จากข้อสอบตัวอย่าง)</h3>
+          <ul class="mt-3 space-y-2.5 text-sm leading-relaxed text-slate-300">
+            <li class="flex gap-2.5"><span class="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-gold"></span><span>สิทธิเลื่อน/งดจ่ายดอกเบี้ยเป็นของ <b class="text-white">"ผู้ออก"</b> ไม่ใช่ผู้ถือ — หลอกบ่อยที่สุด</span></li>
+            <li class="flex gap-2.5"><span class="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-gold"></span><span>ตราสารซับซ้อนส่วนใหญ่: <b class="text-white">อายุไม่แน่นอน · yield สูงกว่า · สภาพคล่องต่ำกว่า</b> ตราสารหนี้ปกติ</span></li>
+            <li class="flex gap-2.5"><span class="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-gold"></span><span><b class="text-white">Convertible / Callable / Puttable bond = ตราสารหนี้ปกติ</b> ไม่ใช่ตราสารซับซ้อน</span></li>
+            <li class="flex gap-2.5"><span class="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-gold"></span><span>ข้อคำนวณ payoff ของ structured notes — แทนค่าตามเงื่อนไขตรง ๆ ได้คะแนนฟรี</span></li>
+            <li class="flex gap-2.5"><span class="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-gold"></span><span>การให้คำแนะนำ: <b class="text-white">ต้องเตือนความเสี่ยงเสมอ</b> แม้ลูกค้ามีประสบการณ์ · ห้ามทำแบบทดสอบแทน · ห้ามเน้นแต่จุดเด่น</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= KNOWLEDGE ================= -->
+    <section id="knowledge" class="mx-auto max-w-6xl px-5 py-14 scroll-mt-20">
+      <span class="eyebrow">Knowledge Base</span>
+      <h2 class="mt-2 text-2xl font-bold tracking-tight text-white">สรุปเนื้อหา P2</h2>
+      <p class="mt-2 text-sm text-slate-400">เก็บประเด็นหลักครบ 3 องค์ความรู้ — อิงหนังสือ "ความรู้เกี่ยวกับผลิตภัณฑ์ตลาดทุน: ตราสารที่มีความซับซ้อน (ตราสารหนี้และกองทุนรวม)" ของ SET</p>
+      <div class="sec-rule mt-5"></div>
+
+      <h3 class="mt-9 mb-4 text-sm font-semibold uppercase tracking-wider text-gold-soft">องค์ความรู้ 1 · ตราสารหนี้ที่มีความเสี่ยงสูง/ซับซ้อน</h3>
+      <div class="grid gap-4 md:grid-cols-2">
+        <div class="pcard p-5">
+          <h4 class="mb-2 text-base font-semibold text-white">🧭 ลักษณะร่วมของตราสารหนี้ซับซ้อน</h4>
+          <ul class="space-y-1.5 text-sm leading-relaxed text-slate-300">
+            <li>• จ่ายกระแสเงินสด <b>ไม่แน่นอน</b> — <b>ผู้ออก</b> (ไม่ใช่ผู้ถือ) มีสิทธิเลื่อน/งดจ่ายดอกเบี้ยตามข้อกำหนด</li>
+            <li>• <b>อายุไม่ชัดเจน</b> บางกรณีไม่กำหนดอายุ · ลำดับสิทธิรับชำระหนี้ <b>ด้อยกว่า</b> ตราสารหนี้แท้</li>
+            <li>• ผลตอบแทน <b>สูงกว่า</b> ตราสารหนี้ปกติ (ชดเชยความเสี่ยง) · สภาพคล่องตลาดรอง <b>ต่ำ</b></li>
+            <li>• ⚠️ <b>Callable / Puttable / Convertible bond = ตราสารหนี้ปกติ</b> ไม่นับเป็นตราสารซับซ้อน</li>
+          </ul>
+        </div>
+        <div class="pcard p-5">
+          <h4 class="mb-2 text-base font-semibold text-white">🔀 Hybrid Securities & ตราสารเลื่อนจ่ายดอกเบี้ย</h4>
+          <ul class="space-y-1.5 text-sm leading-relaxed text-slate-300">
+            <li>• คล้ายตราสารทุนแต่ <b>จ่ายดอกเบี้ย</b> (ไม่จ่ายปันผล) · อายุยาว/ไม่แน่นอน</li>
+            <li>• ลำดับสิทธิด้อยกว่า <b>เจ้าหนี้บุริมสิทธิและเจ้าหนี้สามัญ</b> → yield สูงกว่าปกติ</li>
+            <li>• สิทธิเลื่อนจ่ายดอกเบี้ยเป็นของ <b>ผู้ออกฝ่ายเดียว</b> — ทำตามเงื่อนไขครบ = <b>ไม่ถือว่าผิดนัด</b></li>
+            <li>• มักมีข้อกำหนด: เลื่อนจ่ายดอกเบี้ยแล้ว <b>ห้ามจ่ายปันผลผู้ถือหุ้น</b> (คุ้มครองผู้ลงทุน)</li>
+          </ul>
+        </div>
+        <div class="pcard p-5">
+          <h4 class="mb-2 text-base font-semibold text-white">🏦 ตราสาร Basel III & Perpetual Bond</h4>
+          <ul class="space-y-1.5 text-sm leading-relaxed text-slate-300">
+            <li>• <b>Basel III:</b> ออกโดย <b>ธนาคารพาณิชย์เท่านั้น</b> เป็นหุ้นกู้ <b>ด้อยสิทธิ</b> นับเป็นเงินกองทุน</li>
+            <li>• มีข้อกำหนด <b>แปลงเป็นหุ้นสามัญหรือตัดหนี้สูญ</b> เมื่อเกิด trigger events · สภาพคล่องต่ำมาก</li>
+            <li>• <b>Perpetual:</b> ผู้ออกเป็นได้ทั้งบริษัททั่วไป/สถาบันการเงิน · ชำระ<b>เงินต้น</b>ครั้งเดียวเมื่อเลิกกิจการ แต่<b>ดอกเบี้ย</b>จ่ายตามสัญญา</li>
+            <li>• มักให้สิทธิผู้ออก <b>ไถ่ถอนก่อนกำหนด</b> เมื่อพ้นระยะเวลาที่ระบุในหนังสือชี้ชวน</li>
+          </ul>
+        </div>
+        <div class="pcard p-5">
+          <h4 class="mb-2 text-base font-semibold text-white">🧮 หุ้นกู้อนุพันธ์ (Structured Notes)</h4>
+          <ul class="space-y-1.5 text-sm leading-relaxed text-slate-300">
+            <li>• จ่ายผลตอบแทนส่วนเพิ่ม <b>แปรผันตามตัวแปรอ้างอิง</b> · คุ้มครองเงินต้น <b>ทั้งหมดหรือบางส่วน</b> ก็ได้</li>
+            <li>• <b>ELN:</b> ราคาหุ้น &gt; strike → เงินต้น+ดอกเบี้ย · ≤ strike → รับหุ้นที่ราคา strike</li>
+            <li>• <b>อ้างอิงดอกเบี้ย:</b> แทนค่าสูตร payoff ตรง ๆ เช่น ต้น + ต้น×max(1%, 10%−MLR)</li>
+            <li>• <b>อ้างอิง FX:</b> USD แข็งกว่า strike → ได้เงินบาทคืน · อ่อนกว่า/เท่ากับ → ได้ USD = หน้าตั๋ว/strike</li>
+          </ul>
+        </div>
+        <div class="pcard p-5 md:col-span-2">
+          <h4 class="mb-2 text-base font-semibold text-white">📉 ตราสารหนี้ที่มีความเสี่ยงสูง (High Yield)</h4>
+          <ul class="space-y-1.5 text-sm leading-relaxed text-slate-300">
+            <li>• คือตราสารหนี้ที่ <b>อันดับเครดิตต่ำกว่า BBB−</b> (non-investment grade) หรือ <b>ไม่มีการจัดอันดับ (unrated)</b> — ไม่ใช่ต่ำกว่า B−</li>
+            <li>• เสี่ยงผิดนัดสูงกว่าปกติ <b>แม้ผู้ออกจะเป็นบริษัทใหญ่</b> → ห้ามบอกลูกค้าว่า "ไม่กระทบเงินต้น"</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 class="mt-10 mb-4 text-sm font-semibold uppercase tracking-wider text-gold-soft">องค์ความรู้ 2 · กองทุนรวมที่มีความเสี่ยงสูง/ซับซ้อน</h3>
+      <div class="grid gap-4 md:grid-cols-2">
+        <div class="pcard p-5">
+          <h4 class="mb-2 text-base font-semibold text-white">📊 นิยาม & กองทุน High Yield</h4>
+          <ul class="space-y-1.5 text-sm leading-relaxed text-slate-300">
+            <li>• ลงทุนตราสารหนี้ต่ำกว่าระดับลงทุนได้/unrated <b>เกินกว่า 60% ของ NAV</b> (เลขเกณฑ์ออกสอบ!)</li>
+            <li>• จ่ายผลตอบแทนตาม <b>สูตร/เงื่อนไขที่เข้าใจยาก</b> · <b>ไม่จำกัดอัตราส่วน</b>ลงทุน (กระจุกตัวได้) · ใช้อนุพันธ์เพื่อ<b>สร้างผลตอบแทน</b></li>
+            <li>• ลงทุน <b>Junk bond ได้</b> · ผลตอบแทนมาในรูป<b>ดอกเบี้ย</b> · เสี่ยงผิดนัดสูงกว่ากองทุนทั่วไป</li>
+            <li>• เหมาะกับ<b>สถาบัน/รายใหญ่</b>ที่เข้าใจและรับความเสี่ยงได้ · real return เป็นบวก เหมาะภาวะดอกเบี้ยต่ำ</li>
+          </ul>
+        </div>
+        <div class="pcard p-5">
+          <h4 class="mb-2 text-base font-semibold text-white">🎯 กองทุนรวม Complex Return</h4>
+          <ul class="space-y-1.5 text-sm leading-relaxed text-slate-300">
+            <li>• ผลตอบแทนขึ้นกับ<b>เงื่อนไขของอนุพันธ์/ตราสารที่มีอนุพันธ์แฝง</b> ที่กองทุนลงทุน</li>
+            <li>• <b>Asian Option</b> = จ่ายตามส่วนต่าง strike กับ <b>ราคาเฉลี่ย</b> ของสินทรัพย์อ้างอิงในช่วงเวลา</li>
+            <li>• <b>Binary Option</b> = จ่าย <b>คงที่</b> เมื่อสัญญามีมูลค่า / ไม่ได้อะไรเลยเมื่อไม่มีมูลค่า — ข้อสอบชอบสลับนิยามสองตัวนี้</li>
+            <li>• โครงสร้างทั่วไป: ตราสารหนี้ ~96.5% + ออปชัน ~3.5% แล้วจ่ายผลตอบแทนเป็นขั้นตามราคาอ้างอิง</li>
+          </ul>
+        </div>
+        <div class="pcard p-5">
+          <h4 class="mb-2 text-base font-semibold text-white">🛢️ กองทุนโภคภัณฑ์ (ทอง/น้ำมัน ผ่านอนุพันธ์)</h4>
+          <ul class="space-y-1.5 text-sm leading-relaxed text-slate-300">
+            <li>• ผลตอบแทน <b>ไม่เท่ากับ spot</b> — สัญญามีวันหมดอายุ + ต้นทุนเปลี่ยนสัญญา (rollover)</li>
+            <li>• <b>Basis Risk</b> = ราคาฟิวเจอร์สเคลื่อนไม่สัมพันธ์กับราคา spot</li>
+            <li>• <b>Rollover Risk สูง</b> ในการถือยาว จากต้นทุนธุรกรรม + ภาวะ <b>Contango / Backwardation</b></li>
+            <li>• ปัจจัยอุปทานเช่น <b>เชลล์ออยล์</b> กระทบราคากองทุนน้ำมัน · กอง ETF น้ำมันมีผลตอบแทนจากส่วนต่างราคา + ปันผล (ถ้ามี)</li>
+          </ul>
+        </div>
+        <div class="pcard p-5">
+          <h4 class="mb-2 text-base font-semibold text-white">♟️ Hedge Fund & กองทุนใช้อนุพันธ์ซับซ้อน</h4>
+          <ul class="space-y-1.5 text-sm leading-relaxed text-slate-300">
+            <li>• Hedge Fund: <b>ไม่จำกัดอัตราส่วนลงทุน</b> เสี่ยงสูง · <b>short sell และกู้ยืมเงิน</b>มาลงทุนได้ · กำกับดูแลน้อยกว่า</li>
+            <li>• ปัจจุบันเสนอขายเฉพาะ <b>ผู้ลงทุนรายใหญ่พิเศษ (UHNW)</b> เท่านั้น</li>
+            <li>• กลยุทธ์: <b>Tactical Trading</b> = เก็งกำไรการเคลื่อนไหวราคา · <b>Relative Value</b> = ซื้อขายหลักทรัพย์ที่สัมพันธ์กัน ≥ 2 ตัว</li>
+            <li>• Hedging ต้องทำสัญญา <b>ไม่เกินมูลค่าความเสี่ยง</b>ที่มี — เกิน = <b>Over hedge</b> (เพิ่มความเสี่ยงแทน)</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 class="mt-10 mb-4 text-sm font-semibold uppercase tracking-wider text-gold-soft">องค์ความรู้ 3 · การให้คำแนะนำการลงทุน</h3>
+      <div class="grid gap-4 md:grid-cols-2">
+        <div class="pcard pcard-gold p-5">
+          <h4 class="mb-2 text-base font-semibold text-white">✅ หลักการเสนอขายผลิตภัณฑ์เสี่ยงสูง</h4>
+          <ul class="space-y-1.5 text-sm leading-relaxed text-slate-300">
+            <li>• ต้องคัดเลือกบุคลากรที่ <b>เข้าใจผลิตภัณฑ์</b> ที่จะเสนอขาย</li>
+            <li>• <b>เตือนความเสี่ยงทุกครั้ง</b> — แม้ลูกค้ามีประสบการณ์ลงทุนมา 20 ปี</li>
+            <li>• เสนอขาย Basel III ต้องอธิบาย <b>worst case scenario</b> ก่อนลงทุน</li>
+            <li>• ลูกค้าไม่ผ่านแบบทดสอบความรู้ → <b>ไม่ให้ลงทุน</b> (ห้ามทำแบบทดสอบแทนเด็ดขาด)</li>
+            <li>• ให้ข้อมูลครบทั้งจุดเด่นจุดด้อย แม้กระทบยอดขาย — <b>ห้ามเน้นแต่จุดเด่น</b>จนลูกค้าเข้าใจผิดว่าคุ้มครองเงินต้น</li>
+          </ul>
+        </div>
+        <div class="pcard p-5">
+          <h4 class="mb-2 text-base font-semibold text-white">⚖️ การผิดนัดชำระหนี้ & ผู้แทนผู้ถือหุ้นกู้</h4>
+          <ul class="space-y-1.5 text-sm leading-relaxed text-slate-300">
+            <li>• <b>ถือเป็นการผิดนัด:</b> ไม่รักษาอัตราส่วนการเงินตามข้อตกลง (เช่น D/E) · นำทรัพย์สินไปค้ำประกันเจ้าหนี้อื่นทั้งที่ตกลงว่าจะไม่ก่อภาระหลักประกัน</li>
+            <li>• หุ้นกู้ที่มี <b>ผู้แทนผู้ถือหุ้นกู้</b> — การใช้สิทธิเรียกร้องต้องทำ <b>ผ่านผู้แทนฯ</b> ตามกฎหมาย</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= EXAM ================= -->
+    <section id="exam" class="mx-auto max-w-6xl px-5 py-14 scroll-mt-20">
+      <span class="eyebrow">Official Practice</span>
+      <div class="mt-2 flex flex-wrap items-center gap-2.5">
+        <h2 class="text-2xl font-bold tracking-tight text-white">ข้อสอบตัวอย่างทางการ P2 · เฉลยละเอียด</h2>
+        <span class="rounded-full border border-gold/30 bg-gold/15 px-2.5 py-0.5 text-xs font-semibold text-gold-soft">ทางการ · เท่าข้อสอบจริง</span>
+      </div>
+      <p class="mt-2 max-w-2xl text-sm text-slate-400">ข้อสอบตัวอย่างจากตลาดหลักทรัพย์ฯ 25 ข้อ (เท่าจำนวนและเวลาข้อสอบจริง 40 นาที) — เลือกคำตอบเพื่อดูเฉลยและคำอธิบายทันที บันทึกผลอัตโนมัติ</p>
+      <div class="sec-rule mt-5"></div>
+
+      <div class="mt-6 mb-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-slate-300">
+        <span>ถูก <span id="p2-score" class="font-semibold text-emerald2-soft">0</span> <span class="text-slate-500">/ <span id="p2-answered">0</span> ตอบแล้ว · จาก 25 (ผ่าน ≥ 18)</span></span>
+        <span id="p2-pass" class="rounded-md bg-slate-700/60 px-2.5 py-1 text-xs font-medium text-slate-300">ทำครบ 25 ข้อเพื่อประเมินผล</span>
+        <button id="p2-reset" class="text-slate-400 underline-offset-2 transition hover:text-white hover:underline">เริ่มใหม่</button>
+      </div>
+
+      <div class="mb-3 flex flex-wrap gap-2">
+        <button data-pfilter="all" class="pfilter-btn rounded-lg border border-slate-600 bg-slate-700/60 px-3 py-1.5 text-xs text-white transition">ทั้งหมด (25)</button>
+        <button data-pfilter="1" class="pfilter-btn rounded-lg border border-slate-700 px-3 py-1.5 text-xs text-slate-400 transition hover:text-white">ส่วน 1 · ตราสารหนี้ซับซ้อน (10)</button>
+        <button data-pfilter="2" class="pfilter-btn rounded-lg border border-slate-700 px-3 py-1.5 text-xs text-slate-400 transition hover:text-white">ส่วน 2 · กองทุนซับซ้อน (10)</button>
+        <button data-pfilter="3" class="pfilter-btn rounded-lg border border-slate-700 px-3 py-1.5 text-xs text-slate-400 transition hover:text-white">ส่วน 3 · การให้คำแนะนำ (5)</button>
+      </div>
+      <div class="mb-6 flex flex-wrap items-center gap-2">
+        <button data-pmode="all" class="pmode-btn rounded-lg border border-slate-600 bg-slate-700/60 px-3 py-1.5 text-xs text-white transition">ทุกข้อ</button>
+        <button data-pmode="unanswered" class="pmode-btn rounded-lg border border-slate-700 px-3 py-1.5 text-xs text-slate-400 transition hover:text-white">ยังไม่ได้ทำ <span id="p2-unans" class="text-slate-500">(25)</span></button>
+        <button data-pmode="wrong" class="pmode-btn rounded-lg border border-slate-700 px-3 py-1.5 text-xs text-slate-400 transition hover:text-white">ทบทวนข้อผิด <span id="p2-wrong" class="text-slate-500">(0)</span></button>
+      </div>
+
+      <div id="p2-list" class="mx-auto flex max-w-3xl flex-col gap-5"></div>
+    </section>
+
+  </main>
+
+  <!-- footer -->
+  <footer class="relative bg-slate-950/60">
+    <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent"></div>
+    <div class="mx-auto max-w-6xl px-5 py-12">
+      <div class="flex items-center gap-2.5">
+        <span class="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-gold to-gold-soft text-slate-900 font-bold text-xs shadow-lg shadow-gold/20 ring-1 ring-white/20">IC</span>
+        <span class="text-sm font-medium text-slate-300">IC P2 · เตรียมสอบตราสารซับซ้อน: ตราสารหนี้และกองทุนรวม</span>
+      </div>
+      <p class="mt-7 text-xs leading-relaxed text-slate-600">
+        จัดทำเพื่อการเตรียมสอบเท่านั้น ข้อสอบตัวอย่างอ้างอิงจากแบบฝึกหัดเตรียมสอบทางการของตลาดหลักทรัพย์แห่งประเทศไทย โปรดตรวจสอบหลักเกณฑ์และเงื่อนไขฉบับล่าสุดจาก SET และ ก.ล.ต. ก่อนสอบจริง
+      </p>
+      <p class="mt-4 flex flex-wrap items-center gap-1.5 text-xs text-slate-600">
+        <span>จัดทำและดูแลโดย</span>
+        <a href="https://github.com/veekeancodemaipen" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-400 underline-offset-2 transition hover:text-gold-soft hover:underline">veekeancodemaipen</a>
+        <span class="text-slate-700">·</span>
+        <a href="/" class="text-slate-500 underline-offset-2 transition hover:text-slate-300 hover:underline">← กลับหน้ารวมหลักสูตร IC</a>
+      </p>
+    </div>
+  </footer>
+
+<script>
+/* ================= P2 official questions (25 ข้อ จากแบบฝึกหัดทางการ SET) ================= */
+/* cat: '1' ตราสารหนี้ซับซ้อน (1-10) · '2' กองทุนซับซ้อน (11-20) · '3' การให้คำแนะนำ (21-25) · a = 0-based */
+window.P2Q = [
+{n:1,cat:'1',q:'ตัวเลือกใดถูกต้องเกี่ยวกับลักษณะของตราสารหนี้ที่มีความเสี่ยงสูงหรือมีความซับซ้อน',o:['มีการจ่ายกระแสเงินสดไม่แน่นอน โดยผู้ถือตราสารมีสิทธิเลื่อนหรืองดรับดอกเบี้ยตามที่ระบุไว้ในข้อกำหนดของตราสาร','มีการกำหนดอายุของตราสารที่ชัดเจน ส่วนใหญ่มีอายุระหว่าง 5–10 ปี','มีลำดับสิทธิในการรับชำระหนี้คืนด้อยกว่าเจ้าหนี้ผู้ถือตราสารหนี้ที่มีลักษณะเป็นตราสารหนี้แท้','Callable Bond ที่ให้สิทธิผู้ออกตราสารไถ่ถอนก่อนกำหนด ถือว่าเป็นตราสารหนี้ที่มีความเสี่ยงสูงหรือมีความซับซ้อน'],a:2,e:'สิทธิเลื่อน/งดจ่ายดอกเบี้ยเป็นของ "ผู้ออกตราสาร" ไม่ใช่ผู้ถือ · อายุตราสารไม่ชัดเจนแน่นอน (บางกรณีไม่กำหนดอายุ) · Callable Bond ถือเป็นตราสารหนี้ปกติ — ที่ถูกคือลำดับสิทธิรับชำระหนี้ด้อยกว่าเจ้าหนี้ตราสารหนี้แท้'},
+{n:2,cat:'1',q:'ตัวเลือกใดถูกต้องเกี่ยวกับตราสารหนี้ที่ความซับซ้อนเกิดจากการมีลักษณะคล้ายตราสารทุน (Hybrid Securities)',o:['มีการจ่ายผลตอบแทนที่อยู่ในรูปแบบทั้งดอกเบี้ยจ่ายและเงินปันผล','มีการกำหนดอายุของตราสารที่ชัดเจน ส่วนใหญ่มีอายุสั้นระหว่าง 1–3 ปี','มีลำดับสิทธิในการรับชำระหนี้คืนด้อยกว่าเจ้าหนี้บุริมสิทธิและเจ้าหนี้สามัญ','มีอัตราผลตอบแทนที่ต่ำกว่าตราสารหนี้ปกติที่มีอายุเท่ากันและอันดับความน่าเชื่อถือระดับเดียวกัน'],a:2,e:'Hybrid Securities จ่ายดอกเบี้ยเหมือนหุ้นกู้ทั่วไป (ไม่จ่ายปันผล) · อายุยาว/ไม่แน่นอน · ผลตอบแทน "สูงกว่า" ตราสารหนี้ปกติเพื่อชดเชยความเสี่ยง — ที่ถูกคือลำดับสิทธิด้อยกว่าเจ้าหนี้บุริมสิทธิและเจ้าหนี้สามัญ'},
+{n:3,cat:'1',q:'ตัวเลือกใดถูกต้องเกี่ยวกับตราสารหนี้ที่ผู้ออกตราสารมีสิทธิเลื่อนการจ่ายดอกเบี้ย',o:['สิทธิในการเลื่อนจ่ายดอกเบี้ยต้องได้รับการเห็นชอบร่วมกันทั้งจากผู้ออกและผู้ถือตราสาร','ภายหลังเลื่อนชำระดอกเบี้ย แม้ผู้ออกปฏิบัติตามเงื่อนไขครบถ้วน ก็ยังถือเป็น "การผิดนัดชำระหนี้ตามข้อกำหนดสิทธิ"','มักมีข้อกำหนดเพิ่มเติมว่า หากประกาศเลื่อนจ่ายดอกเบี้ยแล้ว ห้ามจ่ายปันผลให้แก่ผู้ถือหุ้น','มีอัตราผลตอบแทนต่ำกว่าตราสารหนี้ปกติที่มีอายุเท่ากันและอันดับความน่าเชื่อถือระดับเดียวกัน'],a:2,e:'สิทธิเลื่อนจ่ายดอกเบี้ยเป็นของบริษัทผู้ออกฝ่ายเดียว · หากปฏิบัติตามเงื่อนไขครบถ้วนจะ "ไม่ถือว่าผิดนัด" · ผลตอบแทนสูงกว่าปกติเพื่อชดเชยความเสี่ยง — ข้อกำหนดห้ามจ่ายปันผลเป็นกลไกคุ้มครองผู้ลงทุน'},
+{n:4,cat:'1',q:'ตัวเลือกใดถูกต้องเกี่ยวกับตราสาร Basel III',o:['ผู้ออกตราสารสามารถเป็นได้ทั้งบริษัททั่วไปและสถาบันการเงิน','เป็นตราสารหนี้ไม่ด้อยสิทธิเพื่อผู้ออกตราสาร ใช้นับเป็นเงินกองทุนตามเกณฑ์ Basel','มีข้อกำหนดที่จะแปลงเป็นหุ้นสามัญหรือตัดหนี้สูญเมื่อเกิดเหตุการณ์ trigger events','มีสภาพคล่องการซื้อขายเปลี่ยนมือสูงกว่าตราสารหนี้ทั่วไป เนื่องจากมีเกณฑ์มาตรฐานสากลรองรับ'],a:2,e:'ธนาคารพาณิชย์เท่านั้นเป็นผู้ออกตราสาร Basel III · เป็นหุ้นกู้ "ด้อยสิทธิ" ที่นับเป็นเงินกองทุน · สภาพคล่องต่ำมากเพราะออกจำกัดและเสี่ยงสูง — จุดสำคัญคือเงื่อนไขแปลงเป็นหุ้นสามัญ/ตัดหนี้สูญเมื่อเกิด trigger events'},
+{n:5,cat:'1',q:'ตัวเลือกใดถูกต้องเกี่ยวกับตราสารหนี้ที่ครบกำหนดไถ่ถอนเมื่อมีการเลิกบริษัท (Perpetual bond)',o:['ผู้ออกตราสารเป็นธนาคารพาณิชย์เท่านั้น','เป็นตราสารหนี้ที่ไม่กำหนดเวลาไถ่ถอนชัดเจน โดยผู้ออกจะชำระเงินต้นและดอกเบี้ยเพียงครั้งเดียวเมื่อเลิกกิจการ','โดยทั่วไปมักมีข้อกำหนดให้สิทธิผู้ออกตราสารไถ่ถอนคืนก่อนกำหนด เมื่อพ้นระยะเวลาที่ระบุไว้ในหนังสือชี้ชวน','มีสภาพคล่องสำหรับการซื้อขายเปลี่ยนมือสูงกว่าตราสารหนี้ทั่วไป'],a:2,e:'ผู้ออก Perpetual bond เป็นได้ทั้งบริษัททั่วไปและสถาบันการเงิน · เงินต้นจ่ายครั้งเดียวเมื่อเลิกกิจการ แต่ "ดอกเบี้ยจ่ายตามกำหนดในสัญญา" · สภาพคล่องต่ำมาก — ที่ถูกคือมักให้สิทธิผู้ออกไถ่ถอนก่อนกำหนดตามที่ระบุในหนังสือชี้ชวน'},
+{n:6,cat:'1',q:'ตัวเลือกใดถูกต้องเกี่ยวกับตราสารหนี้ที่ความซับซ้อนเกิดจากการมีอนุพันธ์แฝง (หุ้นกู้อนุพันธ์)',o:['Convertible Bond ที่ให้สิทธิผู้ถือแปลงสภาพเป็นหุ้นสามัญของผู้ออก ถือเป็นตราสารหนี้ที่มีอนุพันธ์แฝงประเภทหนึ่ง','Puttable Bond ที่ให้สิทธิผู้ถือเรียกให้ผู้ออกชำระหนี้คืนก่อนกำหนด ถือเป็นตราสารหนี้ที่มีอนุพันธ์แฝงประเภทหนึ่ง','ตราสารหนี้ประเภทนี้มีเงื่อนไขจ่ายผลตอบแทนส่วนเพิ่ม โดยแปรผันตามราคาของตัวแปรอ้างอิง','ตราสารหนี้ประเภทนี้ต้องจัดโครงสร้างที่คุ้มครองเงินต้นทั้งจำนวนเท่านั้น เพื่อลดความเสี่ยงของผู้ถือ'],a:2,e:'Convertible Bond และ Puttable Bond ถือเป็นตราสารหนี้ปกติทั่วไป ไม่ใช่ตราสารที่มีอนุพันธ์แฝง · โครงสร้างคุ้มครองเงินต้นจัดได้หลายลักษณะ (ทั้งหมดหรือบางส่วน) — หัวใจของหุ้นกู้อนุพันธ์คือผลตอบแทนส่วนเพิ่มแปรผันตามตัวแปรอ้างอิง'},
+{n:7,cat:'1',q:'หุ้นกู้อนุพันธ์อ้างอิงหุ้นสามัญ (Equity-linked notes: ELN) มูลค่า 10,000 บาท อายุ 3 เดือน เงื่อนไข: หากราคาหุ้นวันสุดท้ายสูงกว่า 100 บาท ได้รับเงินต้นพร้อมดอกเบี้ย 1.2% ต่อไตรมาส (3 เดือน) · หากต่ำกว่าหรือเท่ากับ 100 บาท ได้หุ้นจำนวน 100 หุ้น ราคาหุ้นละ 100 บาท — ตัวเลือกใดแสดงจำนวนเงินหรือหุ้นที่จะได้รับเมื่อครบกำหนดอายุสัญญาได้ถูกต้อง',o:['หากราคาหุ้นสามัญเท่ากับ 98 บาท จะได้รับเงินสดคืน 10,120 บาท','หากราคาหุ้นสามัญเท่ากับ 98 บาท จะได้หุ้น โดยจ่ายเงินชำระค่าหุ้นเท่ากับ 10,000 บาท','หากราคาหุ้นสามัญเท่ากับ 105 บาท จะได้รับเงินสดคืน 10,500 บาท','หากราคาหุ้นสามัญเท่ากับ 105 บาท จะได้หุ้น โดยจ่ายเงินชำระค่าหุ้นเท่ากับ 10,500 บาท'],a:1,e:'ราคา 98 บาท (ต่ำกว่า 100) → เข้าเงื่อนไขรับหุ้น: ได้หุ้น 100 หุ้น × ราคาหุ้นละ 100 บาท = ชำระเงินค่าหุ้น 10,000 บาท · ส่วนกรณีราคาสูงกว่า 100 จะได้เงินสด 10,000 × 1.012 = 10,120 บาท (ไม่ใช่ 10,500)'},
+{n:8,cat:'1',q:'หุ้นกู้อนุพันธ์อ้างอิงดอกเบี้ยในตลาดเงิน (interest rate-linked notes) มูลค่า 1,000 บาท อายุ 1 ปี จ่ายผลตอบแทนปีละครั้ง เงื่อนไขชำระคืนเมื่อครบกำหนด: จำนวนเงินที่ได้รับ = มูลค่าที่ตราไว้ + { มูลค่าที่ตราไว้ × [ max(1%, (10% − MLR เฉลี่ย)) ] } — ตัวเลือกใดถูกต้อง',o:['หาก MLR เฉลี่ยเท่ากับ 5% จะได้รับเงินสดคืน 1,060 บาท','หาก MLR เฉลี่ยเท่ากับ 6% จะได้รับเงินสดคืน 1,060 บาท','หาก MLR เฉลี่ยเท่ากับ 11% จะได้รับเงินสดคืน 1,110 บาท','หาก MLR เฉลี่ยเท่ากับ 12% จะได้รับเงินสดคืน 1,010 บาท'],a:3,e:'MLR 12% → (10% − 12%) = −2% → ใช้ขั้นต่ำ 1% → 1,000 + (1,000 × 1%) = 1,010 บาท ✓ · เทียบ: MLR 5% ควรได้ 1,050 · MLR 6% ควรได้ 1,040 · MLR 11% ควรได้ 1,010 — ตัวเลือกอื่นจึงผิดทั้งหมด'},
+{n:9,cat:'1',q:'หุ้นกู้อนุพันธ์อ้างอิงอัตราแลกเปลี่ยน (Foreign exchange rate-linked notes) มูลค่า 1,000 บาท อายุ 1 ปี เสนอขายที่อัตราคิดลด 97% ของมูลค่าที่ตราไว้ ราคาใช้สิทธิ THB/USD = 40 บาท เงื่อนไข: หาก USD แข็งค่ามากกว่าราคาใช้สิทธิ ได้เงินคืน 1,000 บาท · หาก USD อ่อนค่าต่ำกว่าหรือเท่ากับราคาใช้สิทธิ ได้เงิน USD = 1,000/40 = 25 ดอลลาร์ — ตัวเลือกใดถูกต้อง',o:['หากอัตราแลกเปลี่ยน THB/USD เท่ากับ 38 บาท จะได้รับเงินคืน 26.31 ดอลลาร์สหรัฐ','หากอัตราแลกเปลี่ยน THB/USD เท่ากับ 39 บาท จะได้รับเงินคืน 1,000 บาท','หากอัตราแลกเปลี่ยน THB/USD เท่ากับ 42 บาท จะได้รับเงินคืน 1,000 บาท','หากอัตราแลกเปลี่ยน THB/USD เท่ากับ 45 บาท จะได้รับเงินคืน 22.22 ดอลลาร์สหรัฐ'],a:2,e:'ที่ 42 บาท/USD ดอลลาร์ "แข็งค่ากว่า" ราคาใช้สิทธิ (40) → ได้เงินคืน 1,000 บาท ✓ · ฝั่งอ่อนค่า (≤40 เช่น 38, 39) จะได้คงที่ 25 USD (ไม่ใช่ 26.31 หรือเงินบาท) · ที่ 45 บาท (แข็งค่า) ต้องได้ 1,000 บาท ไม่ใช่ดอลลาร์'},
+{n:10,cat:'1',q:'ตัวเลือกใดถูกต้องเกี่ยวกับตราสารหนี้ที่มีความเสี่ยงสูง — I. ตราสารหนี้ที่ได้รับจัดอันดับความน่าเชื่อถือสูงกว่าอันดับที่สามารถลงทุนได้ · II. ตราสารหนี้ที่ไม่ได้รับจัดอันดับความน่าเชื่อถือ (Unrated bond) · III. ตราสารหนี้ที่อันดับความน่าเชื่อถือต่ำกว่า B− · IV. ตราสารหนี้ที่อันดับความน่าเชื่อถือต่ำกว่า BBB−',o:['I และ III','I และ IV','II และ III','II และ IV'],a:3,e:'ตราสารหนี้เสี่ยงสูง = อันดับเครดิต "ต่ำกว่า BBB−" (non-investment grade ไม่ใช่ต่ำกว่า B−) หรือไม่ได้รับการจัดอันดับ (unrated) → II และ IV ถูก'},
+{n:11,cat:'2',q:'ตัวเลือกใดถูกต้องเกี่ยวกับกองทุนรวมที่มีความเสี่ยงสูงหรือซับซ้อน',o:['มีนโยบายลงทุนในตราสารหนี้ที่อันดับเครดิตต่ำกว่าระดับลงทุนได้ และ/หรือไม่มีอันดับเครดิต เกินกว่า 50% ของมูลค่าทรัพย์สินสุทธิ','มีการจ่ายผลตอบแทนโดยวิธีคำนวณที่ผันแปรตามสูตรหรือเงื่อนไขใด ๆ ที่ไม่สามารถเข้าใจได้โดยง่าย','มีนโยบายการลงทุนที่จำกัดอัตราส่วนการลงทุน เพื่อป้องกันการกระจุกตัวของการลงทุน','มีการลงทุนในสัญญาซื้อขายล่วงหน้า เพื่อป้องกันความเสี่ยงของทรัพย์สินที่กองทุนลงทุน'],a:1,e:'เกณฑ์ที่ถูกคือเกินกว่า "60%" ของ NAV (ไม่ใช่ 50%) · กองทุนประเภทนี้ไม่จำกัดอัตราส่วนการลงทุน (กระจุกตัวได้) · และใช้อนุพันธ์เพื่อ "สร้างผลตอบแทน" — ลักษณะสำคัญคือจ่ายผลตอบแทนตามสูตร/เงื่อนไขที่เข้าใจได้ยาก'},
+{n:12,cat:'2',q:'ตัวเลือกใดถูกต้องเกี่ยวกับกองทุนรวมที่มีนโยบายลงทุนในตราสารหนี้ที่มีอันดับความน่าเชื่อถือต่ำหรือไม่มีอันดับความน่าเชื่อถือ',o:['สามารถลงทุนในตราสารหนี้ที่อันดับเครดิตต่ำหรือไม่มีอันดับเครดิตได้ ไม่เกิน 60% ของมูลค่าทรัพย์สินสุทธิ','สามารถลงทุนในตราสารหนี้ที่จัดอยู่ในกลุ่ม Junk bond ได้','มีผลตอบแทนและลำดับสิทธิได้รับชำระเงินสูงกว่ากองทุนรวมตราสารทุนทั่วไป','มีความเสี่ยงจากการผิดนัดชำระหนี้ต่ำกว่ากองทุนรวมทั่วไป'],a:1,e:'กองทุนประเภทนี้ลงทุนในตราสารต่ำกว่าอันดับ/unrated ได้ "เกินกว่า 60%" ของ NAV (ไม่ใช่ไม่เกิน) จึงลงทุน Junk bond ได้ ✓ · ผลตอบแทนต่ำกว่ากองทุนหุ้น (แต่ลำดับสิทธิสูงกว่า) · ความเสี่ยงผิดนัดสูงกว่ากองทุนทั่วไป'},
+{n:13,cat:'2',q:'ตัวเลือกใดถูกต้องเกี่ยวกับกองทุนรวมที่มีนโยบายลงทุนในตราสารหนี้ที่มีอันดับความน่าเชื่อถือต่ำหรือไม่มีอันดับความน่าเชื่อถือ',o:['มีโอกาสได้รับผลตอบแทนสูงในรูปเงินปันผล และสิทธิการเพิ่มทุน','มีอัตราผลตอบแทนสูง แต่ความเสี่ยงผิดนัดชำระหนี้ลดลงเมื่อเทียบกับกองทุนทั่วไป เพราะทักษะการคัดเลือกหลักทรัพย์ของผู้จัดการกองทุน','เหมาะสมกับนักลงทุนรายย่อยที่เคยลงทุนตราสารหนี้มาบ้าง','มีอัตราผลตอบแทนที่แท้จริงหลังปรับเงินเฟ้อ (real return) เป็นบวก เหมาะกับการลงทุนในภาวะที่อัตราดอกเบี้ยอยู่ในระดับต่ำ'],a:3,e:'ผลตอบแทนของกองทุนประเภทนี้มาในรูป "ดอกเบี้ย" · ความเสี่ยงผิดนัด "สูงขึ้น" ไม่ได้ลดลง · เหมาะกับผู้ลงทุนสถาบัน/รายใหญ่ที่เข้าใจและรับความเสี่ยงได้ — ที่ถูกคือ real return เป็นบวก เหมาะกับภาวะดอกเบี้ยต่ำ'},
+{n:14,cat:'2',q:'ตัวเลือกใดถูกต้องเกี่ยวกับกองทุนรวม Complex Return',o:['กองทุนรวมประเภทนี้ได้รับผลตอบแทนขึ้นกับเงื่อนไขการจ่ายผลตอบแทนของสัญญาซื้อขายล่วงหน้า หรือตราสารที่มีสัญญาซื้อขายล่วงหน้าแฝง','กองทุนรวมที่ลงทุนในออปชันประเภท Binary Option จะได้รับผลตอบแทนขึ้นกับส่วนต่างระหว่างราคาใช้สิทธิกับราคาเฉลี่ยของสินทรัพย์อ้างอิงในช่วงเวลาที่กำหนด','กองทุนรวมที่ลงทุนในออปชันประเภท Asian Option จะได้รับผลตอบแทนคงที่ในกรณีที่สัญญาออปชันมีมูลค่า และไม่ได้รับผลตอบแทนในกรณีที่สัญญาไม่มีมูลค่า','ถูกทุกตัวเลือก'],a:0,e:'ข้อสอบสลับนิยาม: Asian Option = จ่ายตามส่วนต่าง strike กับ "ราคาเฉลี่ย" ของสินทรัพย์อ้างอิง · Binary Option = จ่าย "คงที่" เมื่อสัญญามีมูลค่า — ที่ถูกคือผลตอบแทนของกองทุน Complex Return ขึ้นกับเงื่อนไขของอนุพันธ์/ตราสารที่มีอนุพันธ์แฝง'},
+{n:15,cat:'2',q:'นายสมภพซื้อกองทุนรวม Equity Complex Return มูลค่า 100,000 บาท อายุ 1 ปี (ลงทุนตราสารหนี้ 96.5% + คอลออปชันหุ้นสามัญ ABC 3.5%) เงื่อนไขผลตอบแทนต่อปี: ราคาหุ้น ABC น้อยกว่า 105 → 0% · 105–110 → 5% · มากกว่า 110 → 10% — ตัวเลือกใดถูกต้องเมื่อครบกำหนดอายุโครงการ',o:['หากราคาหุ้น ABC เท่ากับ 99 บาท สมภพจะไม่ได้รับเงินคืนจากกองทุนรวมเลย','หากราคาหุ้น ABC เท่ากับ 104 บาท สมภพจะได้รับเงินคืน 104,000 บาท','หากราคาหุ้น ABC เท่ากับ 107 บาท สมภพจะได้รับเงินคืน 105,000 บาท','หากราคาหุ้น ABC เท่ากับ 115 บาท สมภพจะได้รับเงินคืน 115,000 บาท'],a:2,e:'107 บาทอยู่ในช่วง 105–110 → ได้ผลตอบแทน 5% = 100,000 × 1.05 = 105,000 บาท ✓ · ที่ 99 หรือ 104 (<105) ได้เงินต้นคืน 100,000 บาท (ไม่ใช่ศูนย์/104,000) · ที่ 115 (>110) ได้ 10% = 110,000 บาท (ไม่ใช่ 115,000)'},
+{n:16,cat:'2',q:'ตัวเลือกใดถูกต้องเกี่ยวกับกองทุนรวมสินค้าโภคภัณฑ์ที่ลงทุนในสัญญาซื้อขายล่วงหน้า',o:['กองทุนรวมทองคำที่ลงทุนผ่านสัญญาซื้อขายล่วงหน้าทองคำ จะมีผลตอบแทนเทียบเท่ากับการลงทุนทองคำในตลาดโลก (Gold Spot Price) ทุกสิ้นวันจนครบอายุสัญญา','กองทุนรวมน้ำมันที่ลงทุนผ่านสัญญาซื้อขายล่วงหน้าน้ำมัน จะมีความเสี่ยงเท่ากับการลงทุนในน้ำมันตลาดโลก (Crude Oil Spot Price)','กองทุนรวมน้ำมันที่ลงทุนใน Exchange Traded Funds ผ่านสัญญาซื้อขายล่วงหน้า จะมีผลตอบแทนจากส่วนต่างราคาและเงินปันผล (ถ้ามี)','ถูกทุกตัวเลือก'],a:2,e:'ผลตอบแทน/ความเสี่ยงของกองทุนผ่านฟิวเจอร์ส "แตกต่าง" จาก spot — เพราะสัญญามีวันหมดอายุ มีต้นทุนเปลี่ยนสัญญา และมี basis risk — ที่ถูกคือกอง ETF น้ำมันได้ผลตอบแทนจากส่วนต่างราคาและเงินปันผล (ถ้ามี)'},
+{n:17,cat:'2',q:'ตัวเลือกใดถูกต้องเกี่ยวกับกองทุนรวมสินค้าโภคภัณฑ์ที่ลงทุนในสัญญาซื้อขายล่วงหน้า',o:['Basis Risk คือความเสี่ยงที่ลงทุนในสินค้าโภคภัณฑ์ที่ไม่มีการส่งมอบจริง','การลงทุนระยะยาวของกองทุนรวมน้ำมันผ่านสัญญาซื้อขายล่วงหน้า จะมีความเสี่ยงการเปลี่ยนสัญญาใหม่ (Rollover Risk) ใกล้เคียงศูนย์','เทคโนโลยีล่าสุดที่สกัดน้ำมันจากชั้นหินดินดาน หรือ "เชลล์ออยล์" มีผลต่อราคากองทุนรวมน้ำมัน','ถูกทุกตัวเลือก'],a:2,e:'Basis Risk = ความเสี่ยงที่ราคาฟิวเจอร์สต่างจากราคาซื้อขายทันที (spot) · Rollover Risk "สูงขึ้น" ในการถือยาว จากต้นทุนธุรกรรมและภาวะ Contango/Backwardation — ที่ถูกคือเชลล์ออยล์เพิ่มอุปทานน้ำมันโลก จึงกระทบราคากองทุนน้ำมัน'},
+{n:18,cat:'2',q:'ตัวเลือกใดถูกต้องเกี่ยวกับกองทุนรวมที่มีนโยบายไม่จำกัดอัตราส่วนการลงทุน (Hedge Fund)',o:['เป็นกองทุนที่มีความเสี่ยงต่ำ เนื่องจากมีการป้องกันความเสี่ยงไว้แล้ว','มีข้อจำกัดการลงทุนมากกว่ากองทุนรวมปกติ เนื่องจากการลงทุนมีความเสี่ยงสูงมาก','สามารถยืมหุ้นมาขายก่อน (Short Sell) และสามารถกู้ยืมเงินมาลงทุนได้','เหมาะกับผู้ลงทุนที่ต้องการจำกัดความเสี่ยงในการลงทุน เช่น ผู้ลงทุนรายย่อย'],a:2,e:'Hedge Fund มีความเสี่ยงสูงเพราะไม่จำกัดอัตราส่วนการลงทุน · ข้อจำกัดการลงทุน "น้อยกว่า" กองทุนปกติ (ต้องการความคล่องตัว) · ปัจจุบันเสนอขายเฉพาะผู้ลงทุนรายใหญ่พิเศษ (UHNW) — ที่ถูกคือ short sell และกู้ยืมเงินมาลงทุนได้'},
+{n:19,cat:'2',q:'ตัวเลือกใดถูกต้องเกี่ยวกับกองทุนรวมที่มีนโยบายไม่จำกัดอัตราส่วนการลงทุน (Hedge Fund)',o:['Hedge Fund และกองทุนรวมทั่วไปมีการกำกับดูแลที่เท่าเทียมกันจากทางการ','นักลงทุนรายย่อยสามารถลงทุนใน Hedge Fund ได้ แต่ต้องติดตามการดำเนินงานอย่างใกล้ชิด','Tactical Trading Strategy เป็นกลยุทธ์ที่ใช้ความสามารถในการเก็งกำไรการเคลื่อนไหวของราคาทรัพย์สิน','Relative Value Strategy เป็นกลยุทธ์ที่ใช้ประโยชน์จากการลงทุนในกรณีที่บริษัทตกอยู่ในสภาวะพิเศษ'],a:2,e:'Hedge Fund ถูกกำกับดูแล/คุ้มครองน้อยกว่ากองทุนปกติ · เสนอขายเฉพาะรายใหญ่พิเศษ (UHNW) ไม่ใช่รายย่อย · Relative Value = ซื้อขายหลักทรัพย์ที่สัมพันธ์กันตั้งแต่ 2 หลักทรัพย์ขึ้นไป — ที่ถูกคือนิยามของ Tactical Trading Strategy'},
+{n:20,cat:'2',q:'ตัวเลือกใดถูกต้องเกี่ยวกับกองทุนรวมที่มีการลงทุนในสัญญาซื้อขายล่วงหน้าและตราสารที่มีสัญญาซื้อขายล่วงหน้าแฝงแบบซับซ้อน',o:['กองทุนรวมที่ทำธุรกรรมสัญญาซื้อขายล่วงหน้าเพื่อลดความเสี่ยง (Hedging) สามารถทำสัญญาเกินมูลค่าความเสี่ยงของทรัพย์สินที่ถือครองได้','ประโยชน์หนึ่งของกองทุนประเภทนี้ คือสามารถลงทุนในรูปแบบใหม่ เช่น กลยุทธ์ที่ทำให้ผลตอบแทนของกองทุนไม่เคลื่อนไหวไปในทิศทางเดียวกับตลาด','กองทุนรวมประเภทนี้มีความเสี่ยงใกล้เคียงกองทุนรวมทั่วไป','ถูกทุกตัวเลือก'],a:1,e:'Hedging ต้องทำสัญญา "ไม่เกิน" มูลค่าความเสี่ยงที่มี มิฉะนั้นเป็น Over hedge (เพิ่มความเสี่ยงแทนที่จะลด) · กองทุนประเภทนี้เสี่ยงสูงกว่ากองทุนทั่วไป — ที่ถูกคือเปิดโอกาสใช้กลยุทธ์ใหม่ เช่น ผลตอบแทนไม่เคลื่อนไหวตามตลาด'},
+{n:21,cat:'3',q:'ตัวเลือกใด "ไม่ใช่" ผลิตภัณฑ์ในตลาดทุนที่มีความเสี่ยงสูงหรือซับซ้อน',o:['กองทุนรวมที่จ่ายผลตอบแทนแก่ผู้ถือหน่วยลงทุน โดยวิธีคำนวณผลประโยชน์ผันแปรตามสูตรหรือเงื่อนไขที่ผู้ลงทุนทั่วไปไม่สามารถเข้าใจได้โดยง่าย','ตราสารหนี้ที่ให้สิทธิผู้ถือแปลงสภาพเป็นหุ้นทุนของบริษัทผู้ออก โดยราคาแปลงสภาพคงที่และอัตราผลตอบแทนคงที่ตลอดอายุสัญญา','ตราสารกึ่งหนี้กึ่งทุนที่มีกำหนดชำระหนี้เกินกว่า 270 วัน และมีข้อกำหนดให้ผู้ออกมีสิทธิเลื่อนหรืองดจ่ายดอกเบี้ย','หุ้นกู้ที่ครบกำหนดไถ่ถอนเมื่อมีการเลิกกิจการ'],a:1,e:'ตราสารหนี้ที่ให้สิทธิผู้ถือแปลงสภาพเป็นหุ้นทุน คือหุ้นกู้แปลงสภาพ (Convertible bond) ซึ่งเป็นตราสารหนี้ปกติ ไม่ถือเป็นผลิตภัณฑ์เสี่ยงสูง/ซับซ้อน — ส่วนอีกสามตัวเลือกเป็นผลิตภัณฑ์ซับซ้อนทั้งหมด'},
+{n:22,cat:'3',q:'ตัวเลือกใด "ไม่ถูกต้อง" เกี่ยวกับแนวทางการให้คำแนะนำการลงทุนในผลิตภัณฑ์ที่มีความเสี่ยงสูงหรือมีความซับซ้อน',o:['ผู้ประกอบธุรกิจต้องมีกระบวนการคัดเลือกบุคลากรที่มีความรู้ความเข้าใจในผลิตภัณฑ์ที่จะเสนอขาย','ลูกค้าที่มีประสบการณ์ลงทุนในหุ้นสามัญมาแล้ว 20 ปี ถือว่าเข้าใจผลิตภัณฑ์เสี่ยงสูง ผู้แนะนำไม่จำเป็นต้องเตือนเกี่ยวกับผลิตภัณฑ์ที่ลูกค้ากำลังจะลงทุน','การเสนอขายตราสารหนี้ด้อยสิทธิเพื่อนับเป็นเงินกองทุน (Basel III) ผู้แนะนำต้องจัดทำข้อมูลเพิ่มเติมอธิบายผลขาดทุนกรณี worst case scenario ให้ลูกค้าทราบก่อนลงทุน','ทุกตัวเลือกไม่ถูกต้อง'],a:1,e:'แม้ลูกค้ามีประสบการณ์ลงทุนหุ้นมา 20 ปี ผู้แนะนำ "ยังคงต้องเตือน" ความเสี่ยงและเงื่อนไขเฉพาะตัวของผลิตภัณฑ์เสี่ยงสูงทุกครั้งก่อนการลงทุน — ข้อ 2 จึงเป็นแนวทางที่ไม่ถูกต้อง'},
+{n:23,cat:'3',q:'ตัวเลือกใดถูกต้องเกี่ยวกับการให้คำแนะนำการลงทุนในผลิตภัณฑ์ที่มีความเสี่ยงสูงหรือมีความซับซ้อน',o:['นายเกษมแจ้งลูกค้าว่าหุ้นกู้ที่ครบกำหนดไถ่ถอนเมื่อเลิกกิจการ มีความเสี่ยงเทียบเท่าตราสารหนี้ทั่วไป','นางสาวอังคณาแจ้งลูกค้าว่าหุ้นกู้ที่ครบกำหนดไถ่ถอนเมื่อเลิกกิจการ มีความเสี่ยงด้านสภาพคล่องใกล้เคียงตราสารหนี้ทั่วไป','นายวิชัยแจ้งลูกค้าว่าตราสารหนี้ที่มีอนุพันธ์แฝง มีโอกาสที่จะไม่ได้รับเงินลงทุนคืน เนื่องจากอนุพันธ์ที่แฝงมีเงื่อนไขจ่ายผลตอบแทนซับซ้อนที่อ้างอิงกับราคาสินทรัพย์อ้างอิง','นางกัลยาแจ้งลูกค้าว่าตราสารหนี้ที่ไม่มีการจัดอันดับความน่าเชื่อถือ มีความเสี่ยงผิดนัดเท่าตราสารหนี้ทั่วไป เพราะผู้ออกเป็นบริษัทใหญ่ที่มั่นคง'],a:2,e:'Perpetual bond มีความเสี่ยงและสภาพคล่อง "แย่กว่า" ตราสารหนี้ทั่วไป (ไถ่ถอนไม่ได้เมื่อจำเป็นต้องใช้เงิน) · unrated bond เสี่ยงผิดนัดสูงกว่าปกติแม้ผู้ออกเป็นบริษัทใหญ่ — คำแนะนำของนายวิชัยถูกต้องตามความเสี่ยงจริงของหุ้นกู้อนุพันธ์'},
+{n:24,cat:'3',q:'ตัวเลือกใดถูกต้องเกี่ยวกับการผิดนัดชำระหนี้ของตราสารหนี้',o:['ผู้ออกหุ้นกู้ไม่รักษาอัตราส่วนทางการเงินตามที่ตกลงไว้ เช่น อัตราส่วนหนี้สินต่อทุน ยังไม่ถือเป็น "การผิดนัดชำระหนี้"','บริษัทผู้ออกหุ้นกู้นำทรัพย์สินไปเป็นหลักประกันแก่เจ้าหนี้รายอื่น ทั้งที่ข้อกำหนดสิทธิตกลงว่าจะไม่นำทรัพย์สินไปก่อภาระหลักประกัน ยังไม่ถือเป็น "การผิดนัดชำระหนี้"','หากการออกหุ้นกู้มีการแต่งตั้งผู้แทนผู้ถือหุ้นกู้ ซึ่งมีอำนาจหน้าที่ตามกฎหมายดำเนินการแทนผู้ถือหุ้นกู้ การใช้สิทธิเรียกร้องที่เกี่ยวกับหุ้นกู้ต้องกระทำผ่านผู้แทนผู้ถือหุ้นกู้','ถูกทุกตัวเลือก'],a:2,e:'ทั้งการไม่รักษาอัตราส่วนทางการเงินตามข้อตกลง และการนำทรัพย์สินไปค้ำประกันทั้งที่ตกลงว่าจะไม่ก่อภาระหลักประกัน "ถือเป็นการผิดนัดชำระหนี้" ตามข้อกำหนดสิทธิ — ที่ถูกคือเมื่อมีผู้แทนผู้ถือหุ้นกู้ การใช้สิทธิเรียกร้องต้องทำผ่านผู้แทนฯ'},
+{n:25,cat:'3',q:'ตัวเลือกใดถูกต้องเกี่ยวกับการให้คำแนะนำการลงทุนในกองทุนรวมที่มีความเสี่ยงสูงหรือมีความซับซ้อน',o:['ลูกค้าไม่ผ่านแบบทดสอบประเมินความรู้เกี่ยวกับการลงทุน นายเกษมจึงทำแบบทดสอบแทนลูกค้า เพื่อให้ลูกค้าลงทุนในกองทุนเสี่ยงสูงได้','นางอังคณาเสนอขายกองทุนรวมทองคำแบบ trigger fund 10% โดยแจ้งลูกค้าเฉพาะจุดเด่นว่าจะได้ผลตอบแทน 10% ซึ่งสูงกว่าดอกเบี้ยเงินฝากธนาคาร','นายวิชัยเสนอขายกองทุนรวมน้ำมันโดยแจ้งลูกค้าว่า ผลตอบแทนขึ้นกับการตัดสินใจทำสัญญาซื้อขายล่วงหน้าของผู้จัดการกองทุน ซึ่งอาจทำให้ราคากองทุนไม่เคลื่อนไหวตามราคาน้ำมันโลก แม้ส่งผลให้ขายกองทุนได้น้อยมาก','นางกัลยาเสนอขายกองทุนตราสารหนี้ที่ลงทุนในตราสารไม่จัดอันดับเครดิตแต่เลือกเฉพาะผู้ออกที่เป็นบริษัทใหญ่ โดยแจ้งลูกค้าว่าเป็นการลงทุนที่ไม่กระทบเงินต้น'],a:2,e:'ต้องให้ข้อมูลความเสี่ยงครบถ้วนตรงไปตรงมาแม้กระทบยอดขาย (นายวิชัยทำถูก) · ห้ามทำแบบทดสอบแทนลูกค้า · การเน้นเฉพาะจุดเด่นทำให้ลูกค้าเข้าใจผิดว่าคุ้มครองเงินต้นเหมือนเงินฝาก · unrated bond มีความเสี่ยงกระทบเงินต้นแม้ผู้ออกเป็นบริษัทใหญ่'}
+];
+</script>
+
+<script>
+/* ================= P2 quiz renderer (self-contained) ================= */
+(function(){
+  var LS = 'ic-p2-quiz-v1';
+  var CHO = ['ก','ข','ค','ง'];
+  var list = document.getElementById('p2-list');
+  if (!list || !window.P2Q) return;
+  var Q = window.P2Q;
+
+  var st = { cat:'all', mode:'all' };
+  var ans = {}, chosen = {};
+  try { var sv = JSON.parse(localStorage.getItem(LS) || '{}'); ans = sv.a || {}; chosen = sv.c || {}; } catch(e){}
+  function save(){ try { localStorage.setItem(LS, JSON.stringify({ a:ans, c:chosen })); } catch(e){} }
+
+  function matchQ(q){
+    if (st.cat !== 'all' && q.cat !== st.cat) return false;
+    if (st.mode === 'unanswered' && ans[q.n] !== undefined) return false;
+    if (st.mode === 'wrong' && ans[q.n] !== false) return false;
+    return true;
+  }
+
+  function updateScore(){
+    var done = 0, ok = 0, wrong = 0;
+    Q.forEach(function(q){
+      if (ans[q.n] !== undefined){ done++; if (ans[q.n]) ok++; else wrong++; }
+    });
+    document.getElementById('p2-score').textContent = ok;
+    document.getElementById('p2-answered').textContent = done;
+    document.getElementById('p2-unans').textContent = '(' + (Q.length - done) + ')';
+    document.getElementById('p2-wrong').textContent = '(' + wrong + ')';
+    var pass = document.getElementById('p2-pass');
+    if (done >= Q.length){
+      var passed = ok >= 18;
+      pass.textContent = passed ? '🎉 ผ่านเกณฑ์! ได้ ' + ok + '/25' : 'ยังไม่ผ่านเกณฑ์ — ได้ ' + ok + '/25 (ต้อง ≥ 18)';
+      pass.className = 'rounded-md px-2.5 py-1 text-xs font-semibold ' + (passed ? 'bg-emerald2/20 text-emerald2-soft' : 'bg-rose-500/15 text-rose-300');
+    } else {
+      pass.textContent = 'ทำครบ 25 ข้อเพื่อประเมินผล';
+      pass.className = 'rounded-md bg-slate-700/60 px-2.5 py-1 text-xs font-medium text-slate-300';
+    }
+  }
+
+  function lockCard(card, n){
+    var q = Q.find(function(x){ return x.n === n; });
+    card.querySelectorAll('.popt').forEach(function(o){
+      o.disabled = true;
+      o.classList.add('cursor-default');
+      o.classList.remove('hover:border-slate-300','hover:bg-slate-50');
+      if (parseInt(o.dataset.i) === q.a){
+        o.classList.add('border-emerald-400','bg-emerald-50');
+        o.querySelector('span').classList.add('!bg-emerald-500','!text-white');
+      }
+    });
+    var ex = card.querySelector('.pexplain');
+    ex.classList.remove('hidden');
+    ex.innerHTML = '<span class="font-semibold text-slate-900">เฉลย: ' + CHO[q.a] + '</span> — ' + q.e;
+  }
+
+  function render(){
+    list.innerHTML = '';
+    var items = Q.filter(matchQ);
+    if (!items.length){
+      list.innerHTML = '<div class="rounded-xl border border-dashed border-slate-700 bg-slate-800/30 px-6 py-12 text-center text-sm text-slate-400">ไม่พบข้อสอบที่ตรงเงื่อนไข — ลองปรับตัวกรอง หรือกด "ทุกข้อ"</div>';
+      return;
+    }
+    var PART = { '1':'ส่วน 1 · ตราสารหนี้ซับซ้อน', '2':'ส่วน 2 · กองทุนซับซ้อน', '3':'ส่วน 3 · การให้คำแนะนำ' };
+    items.forEach(function(q){
+      var card = document.createElement('div');
+      card.className = 'p2card fade-in rounded-2xl border border-slate-200 bg-gradient-to-b from-white to-slate-50 p-6 shadow-xl shadow-black/25';
+      var opts = q.o.map(function(opt, i){
+        return '<button data-q="' + q.n + '" data-i="' + i + '" class="popt group flex w-full items-start gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 text-left text-sm text-slate-700 transition hover:border-slate-300 hover:bg-slate-50">' +
+               '<span class="flex h-6 w-6 flex-none items-center justify-center rounded-md bg-slate-100 text-xs font-semibold text-slate-500">' + CHO[i] + '</span>' +
+               '<span class="pt-0.5">' + opt + '</span></button>';
+      }).join('');
+      card.innerHTML =
+        '<div class="mb-3 flex flex-wrap items-center gap-2">' +
+        '<span class="flex h-7 min-w-7 items-center justify-center rounded-lg bg-gradient-to-br from-slate-800 to-slate-950 px-1.5 text-xs font-bold text-white ring-1 ring-slate-600/60">' + q.n + '</span>' +
+        '<span class="rounded-md bg-slate-100 px-2 py-0.5 text-xs font-medium text-slate-500">' + PART[q.cat] + '</span></div>' +
+        '<p class="mb-4 text-[15px] font-medium leading-relaxed text-slate-900">' + q.q + '</p>' +
+        '<div class="flex flex-col gap-2.5">' + opts + '</div>' +
+        '<div class="pexplain mt-4 hidden rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-relaxed text-slate-600"></div>';
+      list.appendChild(card);
+      if (ans[q.n] !== undefined){
+        lockCard(card, q.n);
+        var ch = chosen[q.n];
+        if (ch !== undefined && ch !== q.a){
+          var wr = card.querySelector('.popt[data-i="' + ch + '"]');
+          if (wr){ wr.classList.add('border-rose-300','bg-rose-50'); wr.querySelector('span').classList.add('!bg-rose-500','!text-white'); }
+        }
+      }
+    });
+  }
+
+  list.addEventListener('click', function(e){
+    var btn = e.target.closest('.popt');
+    if (!btn || btn.disabled) return;
+    var n = parseInt(btn.dataset.q), i = parseInt(btn.dataset.i);
+    var q = Q.find(function(x){ return x.n === n; });
+    var card = btn.closest('.p2card');
+    if (i !== q.a){
+      btn.classList.add('border-rose-300','bg-rose-50');
+      btn.querySelector('span').classList.add('!bg-rose-500','!text-white');
+    }
+    lockCard(card, n);
+    if (ans[n] === undefined){ ans[n] = (i === q.a); chosen[n] = i; save(); updateScore(); }
+  });
+
+  function activate(btn, group){
+    document.querySelectorAll(group).forEach(function(b){
+      b.classList.remove('border-slate-600','bg-slate-700/60','text-white');
+      b.classList.add('border-slate-700','text-slate-400');
+    });
+    btn.classList.add('border-slate-600','bg-slate-700/60','text-white');
+    btn.classList.remove('border-slate-700','text-slate-400');
+  }
+  document.querySelectorAll('.pfilter-btn').forEach(function(b){
+    b.addEventListener('click', function(){ activate(b, '.pfilter-btn'); st.cat = b.dataset.pfilter; render(); });
+  });
+  document.querySelectorAll('.pmode-btn').forEach(function(b){
+    b.addEventListener('click', function(){ activate(b, '.pmode-btn'); st.mode = b.dataset.pmode; render(); });
+  });
+  document.getElementById('p2-reset').addEventListener('click', function(){
+    if (Object.keys(ans).length && !confirm('ล้างคำตอบและคะแนนทั้งหมด เริ่มทำใหม่?')) return;
+    ans = {}; chosen = {};
+    try { localStorage.removeItem(LS); } catch(e){}
+    updateScore(); render();
+  });
+
+  render(); updateScore();
+})();
+</script>
+
+<script>
+/* ================= tab mode (one section per view, hash-routed) ================= */
+(function(){
+  var TABS = ['overview','knowledge','exam'];
+  var hero = document.querySelector('main > section:not([id])');
+
+  function valid(h){ h = (h || '').replace('#',''); return TABS.indexOf(h) !== -1 ? h : 'overview'; }
+
+  function showTab(id, push){
+    TABS.forEach(function(s){
+      var el = document.getElementById(s);
+      if (el) el.classList.toggle('hidden', s !== id);
+    });
+    if (hero) hero.classList.toggle('hidden', id !== 'overview');
+    document.querySelectorAll('.nav-link, .mchip').forEach(function(a){
+      a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+    });
+    var sec = document.getElementById(id);
+    if (sec){ sec.classList.remove('fade-in'); void sec.offsetWidth; sec.classList.add('fade-in'); }
+    if (push){ try { history.pushState(null, '', '#' + id); } catch(e){ location.hash = id; } }
+    window.scrollTo({ top: 0 });
+  }
+
+  document.addEventListener('click', function(e){
+    var a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    var h = a.getAttribute('href').slice(1);
+    if (TABS.indexOf(h) !== -1){ e.preventDefault(); showTab(h, true); }
+  });
+  window.addEventListener('hashchange', function(){ showTab(valid(location.hash), false); });
+  window.addEventListener('popstate',  function(){ showTab(valid(location.hash), false); });
+  showTab(valid(location.hash), false);
+})();
+</script>
+</body>
+</html>
