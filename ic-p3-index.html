@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>IC P3 · เตรียมสอบตราสารซับซ้อน: สัญญาซื้อขายล่วงหน้า</title>
+<meta name="description" content="เตรียมสอบ IC P3 (Complex Products: Derivatives) — สรุปเนื้อหาอนุพันธ์ ฟิวเจอร์ส ออปชัน กลไกตลาด TFEX พร้อมข้อสอบตัวอย่างทางการ 25 ข้อ เฉลยละเอียด ฟรี" />
+<meta name="author" content="veekeancodemaipen" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23c9a86a'/><text x='16' y='23' font-family='Arial,sans-serif' font-size='16' font-weight='bold' text-anchor='middle' fill='%230f172a'>IC</text></svg>" />
+<link rel="canonical" href="https://ic-plain-prep-yossavees-projects.vercel.app/p3" />
+<meta name="robots" content="index, follow" />
+<meta name="theme-color" content="#0f172a" />
+<meta property="og:title" content="IC P3 · เตรียมสอบตราสารซับซ้อน: สัญญาซื้อขายล่วงหน้า" />
+<meta property="og:description" content="สรุปเนื้อหาอนุพันธ์ครบ 5 องค์ความรู้ + ข้อสอบตัวอย่างทางการ 25 ข้อ พร้อมเฉลยละเอียด — ฟรี" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://ic-plain-prep-yossavees-projects.vercel.app/p3" />
+<meta property="og:locale" content="th_TH" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: { sans: ['Prompt', 'sans-serif'] },
+        colors: {
+          gold: { DEFAULT: '#c9a86a', soft: '#d9c191' },
+          emerald2: { DEFAULT: '#3f9d7e', soft: '#5cb89a' }
+        }
+      }
+    }
+  }
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Prompt', sans-serif; -webkit-font-smoothing: antialiased;
+    background:
+      radial-gradient(1100px 720px at 88% -8%, rgba(201,168,106,.075), transparent 62%),
+      radial-gradient(950px 650px at -8% 12%, rgba(63,157,126,.07), transparent 56%),
+      linear-gradient(180deg, #0a1020 0%, #0f172a 55%, #0c1424 100%);
+    background-attachment: fixed;
+  }
+  ::selection { background: #c9a86a; color: #0f172a; }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: #0c1424; }
+  ::-webkit-scrollbar-thumb { background: #2b3a52; border-radius: 9999px; border: 2px solid #0c1424; }
+  ::-webkit-scrollbar-thumb:hover { background: #c9a86a; }
+  .pcard {
+    position: relative; border-radius: 1.25rem;
+    border: 1px solid rgba(148,163,184,.14);
+    background: linear-gradient(165deg, rgba(30,41,59,.55), rgba(15,23,42,.35));
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.045), 0 12px 32px -20px rgba(0,0,0,.65);
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .pcard:hover {
+    transform: translateY(-3px); border-color: rgba(201,168,106,.35);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 26px 52px -26px rgba(0,0,0,.75), 0 0 0 1px rgba(201,168,106,.07);
+  }
+  .pcard-gold { border-color: rgba(201,168,106,.32); background: linear-gradient(165deg, rgba(201,168,106,.11), rgba(15,23,42,.42)); }
+  .pcard-static, .pcard-static:hover { transform: none; }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: .5rem;
+    font-size: .68rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: #d9c191;
+  }
+  .eyebrow::before { content: ""; width: 1.4rem; height: 1px; background: linear-gradient(90deg, transparent, #c9a86a); }
+  .sec-rule { height: 1px; background: linear-gradient(90deg, rgba(201,168,106,.45), rgba(148,163,184,.12) 40%, transparent 80%); }
+  .grad-gold {
+    background: linear-gradient(100deg, #d9c191 0%, #c9a86a 32%, #f3e3ba 50%, #c9a86a 68%, #d9c191 100%);
+    background-size: 220% 100%;
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    animation: shimmer 7s linear infinite;
+  }
+  @keyframes shimmer { to { background-position: -220% 0; } }
+  .btn-glow { position: relative; overflow: hidden; }
+  .btn-glow::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(110deg, transparent 25%, rgba(255,255,255,.22) 50%, transparent 75%);
+    background-size: 250% 100%; background-position: 200% 0;
+    transition: background-position .7s ease; pointer-events: none;
+  }
+  .btn-glow:hover::after { background-position: -50% 0; }
+  .header-glass::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(201,168,106,.4) 30%, rgba(92,184,154,.35) 70%, transparent);
+    pointer-events: none;
+  }
+  .nav-link { position: relative; }
+  .nav-link.active { color: #fff; background: rgba(201,168,106,.10); }
+  .nav-link.active::after {
+    content: ""; position: absolute; left: .75rem; right: .75rem; bottom: .3rem; height: 2px; border-radius: 99px;
+    background: linear-gradient(90deg, #c9a86a, #5cb89a);
+  }
+  .mchip.active { border-color: rgba(201,168,106,.55) !important; background: rgba(201,168,106,.14) !important; color: #fff !important; }
+  .hero-aurora {
+    background:
+      radial-gradient(58% 52% at 50% 0%, rgba(63,157,126,.13), transparent 70%),
+      radial-gradient(40% 38% at 78% 18%, rgba(201,168,106,.10), transparent 70%);
+  }
+  .fade-in { animation: fade .4s ease both; }
+  @keyframes fade { from { opacity: 0; transform: translateY(8px);} to { opacity:1; transform:none;} }
+  @media (prefers-reduced-motion: reduce) { .grad-gold { animation: none; } }
+  .mnav-scroll { scrollbar-width: none; -ms-overflow-style: none; }
+  .mnav-scroll::-webkit-scrollbar { display: none; }
+</style>
+</head>
+
+<body class="bg-slate-900 text-slate-200 antialiased">
+
+  <a href="https://github.com/veekeancodemaipen" target="_blank" rel="noopener noreferrer"
+     class="group block border-b border-slate-800/70 bg-slate-950/95">
+    <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-2 gap-y-0.5 px-5 py-1.5 text-xs text-slate-400">
+      <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor" aria-hidden="true" class="text-slate-300">
+        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/>
+      </svg>
+      <span>จัดทำโดย <span class="font-semibold text-slate-200 transition group-hover:text-gold-soft">veekeancodemaipen</span></span>
+      <span class="text-slate-600">·</span>
+      <span class="text-slate-500 transition group-hover:text-slate-300">ดูซอร์สโค้ดบน GitHub ↗</span>
+    </div>
+  </a>
+
+  <header class="header-glass sticky top-0 z-40 bg-slate-900/70 backdrop-blur-xl">
+    <nav class="mx-auto flex max-w-6xl items-center justify-between px-5 py-3.5">
+      <div class="flex items-center gap-3">
+        <a href="/" title="กลับหน้ารวมหลักสูตร IC" class="hidden h-8 items-center rounded-lg border border-slate-700/70 px-2.5 text-xs text-slate-400 transition hover:border-gold/50 hover:text-gold-soft sm:flex">← Hub</a>
+        <a href="#overview" class="group flex items-center gap-2.5">
+          <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-gold to-gold-soft text-slate-900 font-bold text-sm shadow-lg shadow-gold/20 ring-1 ring-white/20 transition group-hover:shadow-gold/40">IC</span>
+          <span class="text-sm font-semibold tracking-wide text-slate-100">IC&nbsp;Complex <span class="text-slate-500 font-normal">· P3</span></span>
+        </a>
+      </div>
+      <div class="hidden items-center gap-0.5 md:flex">
+        <a href="#overview"  class="nav-link rounded-lg px-3 py-2 text-sm text-slate-400 transition hover:bg-white/[0.04] hover:text-slate-100">ภาพรวม</a>
+        <a href="#knowledge" class="nav-link rounded-lg px-3 py-2 text-sm text-slate-400 transition hover:bg-white/[0.04] hover:text-slate-100">คลังความรู้</a>
+        <a href="#exam"      class="nav-link rounded-lg px-3 py-2 text-sm text-slate-400 transition hover:bg-white/[0.04] hover:text-slate-100">ข้อสอบทางการ</a>
+      </div>
+      <a href="#exam" class="btn-glow rounded-xl bg-gradient-to-br from-emerald2 to-emerald2-soft px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-emerald2/30 ring-1 ring-white/15 transition hover:shadow-emerald2/50">
+        ทำข้อสอบ
+      </a>
+    </nav>
+    <div class="md:hidden border-t border-slate-800/70">
+      <div class="mnav-scroll flex items-center gap-2 overflow-x-auto px-4 py-2.5">
+        <a href="/" class="shrink-0 rounded-full border border-gold/30 bg-gold/10 px-3.5 py-1.5 text-xs font-medium text-gold-soft">← Hub</a>
+        <a href="#overview"  class="mchip shrink-0 rounded-full border border-slate-700/70 bg-slate-800/50 px-3.5 py-1.5 text-xs font-medium text-slate-300 transition">ภาพรวม</a>
+        <a href="#knowledge" class="mchip shrink-0 rounded-full border border-slate-700/70 bg-slate-800/50 px-3.5 py-1.5 text-xs font-medium text-slate-300 transition">คลังความรู้</a>
+        <a href="#exam"      class="mchip shrink-0 rounded-full border border-slate-700/70 bg-slate-800/50 px-3.5 py-1.5 text-xs font-medium text-slate-300 transition">ข้อสอบทางการ</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- hero (แสดงเฉพาะแท็บภาพรวม) -->
+    <section class="relative overflow-hidden">
+      <div class="hero-aurora pointer-events-none absolute inset-0"></div>
+      <div class="relative mx-auto max-w-6xl px-5 pt-20 pb-14 text-center">
+        <span class="inline-flex items-center gap-2 rounded-full border border-gold/25 bg-gold/[0.07] px-4 py-1.5 text-xs font-medium tracking-wide text-gold-soft">
+          Complex Products: Derivatives · หลักสูตรที่ 3
+        </span>
+        <h1 class="mx-auto mt-7 max-w-3xl text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl">
+          เตรียมสอบ <span class="grad-gold">IC P3</span><br class="hidden sm:block" />
+          สัญญาซื้อขายล่วงหน้า
+        </h1>
+        <p class="mx-auto mt-5 max-w-xl text-base leading-relaxed text-slate-400">
+          สรุปเนื้อหา 5 องค์ความรู้ + ข้อสอบตัวอย่างทางการจาก SET <span class="font-semibold text-slate-100">25 ข้อ</span> พร้อมเฉลยละเอียด — สอบผ่านครบ P1+P2+P3 ได้ใบอนุญาต <b class="text-gold-soft">IC Complex 1</b> แนะนำได้ทุกผลิตภัณฑ์
+        </p>
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+          <a href="#exam" class="btn-glow rounded-xl bg-gradient-to-br from-emerald2 to-emerald2-soft px-7 py-3.5 text-sm font-semibold text-white shadow-xl shadow-emerald2/30 ring-1 ring-white/15 transition hover:-translate-y-0.5 hover:shadow-emerald2/50">เริ่มทำข้อสอบ →</a>
+          <a href="#knowledge" class="rounded-xl border border-slate-700/80 bg-white/[0.03] px-7 py-3.5 text-sm font-medium text-slate-200 backdrop-blur transition hover:-translate-y-0.5 hover:border-gold/50 hover:text-white">อ่านสรุปเนื้อหา</a>
+        </div>
+        <div class="mx-auto mt-12 grid max-w-2xl grid-cols-2 gap-3 sm:grid-cols-4">
+          <div class="pcard px-4 py-5"><div class="text-3xl font-bold tracking-tight text-gold-soft">50</div><div class="mt-1 text-xs text-slate-400">ข้อสอบจริง · 80 นาที</div></div>
+          <div class="pcard px-4 py-5"><div class="text-3xl font-bold tracking-tight text-gold-soft">25</div><div class="mt-1 text-xs text-slate-400">ข้อสอบตัวอย่างทางการ</div></div>
+          <div class="pcard px-4 py-5"><div class="text-3xl font-bold tracking-tight text-emerald2-soft">70%</div><div class="mt-1 text-xs text-slate-400">เกณฑ์ผ่าน</div></div>
+          <div class="pcard px-4 py-5"><div class="text-3xl font-bold tracking-tight text-gold-soft">950.-</div><div class="mt-1 text-xs text-slate-400">ค่าสอบจริง</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= OVERVIEW ================= -->
+    <section id="overview" class="mx-auto max-w-6xl px-5 py-14 scroll-mt-20">
+      <span class="eyebrow">Exam Blueprint</span>
+      <h2 class="mt-2 text-2xl font-bold tracking-tight text-white">โครงสร้างหลักสูตร P3</h2>
+      <p class="mt-2 text-sm text-slate-400">ข้อสอบจริง 50 ข้อ · 80 นาที · ผ่าน ≥ 70% — เนื้อหาแบ่งเป็น 5 องค์ความรู้ (ข้อสอบตัวอย่างทางการมี 25 ข้อ = ครึ่งหนึ่งของข้อสอบจริง)</p>
+      <div class="sec-rule mt-5"></div>
+
+      <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        <div class="pcard p-5"><span class="text-xs font-medium uppercase tracking-wider text-slate-500">องค์ความรู้ 1</span><h3 class="mt-2 text-sm font-semibold text-white">ภาพรวมสัญญาซื้อขายล่วงหน้า</h3><p class="mt-1.5 text-xs leading-relaxed text-slate-400">นิยาม ประเภท ประโยชน์ ผู้เล่นในตลาด</p></div>
+        <div class="pcard p-5"><span class="text-xs font-medium uppercase tracking-wider text-slate-500">องค์ความรู้ 2</span><h3 class="mt-2 text-sm font-semibold text-white">สัญญาฟิวเจอร์ส</h3><p class="mt-1.5 text-xs leading-relaxed text-slate-400">vs ฟอร์เวิร์ด · payoff · ราคา · เบสิส/สเปรด · กลยุทธ์</p></div>
+        <div class="pcard p-5"><span class="text-xs font-medium uppercase tracking-wider text-slate-500">องค์ความรู้ 3</span><h3 class="mt-2 text-sm font-semibold text-white">สัญญาออปชัน</h3><p class="mt-1.5 text-xs leading-relaxed text-slate-400">Call/Put · Intrinsic value · ปัจจัยราคา</p></div>
+        <div class="pcard p-5"><span class="text-xs font-medium uppercase tracking-wider text-slate-500">องค์ความรู้ 4</span><h3 class="mt-2 text-sm font-semibold text-white">กลไกการซื้อขายใน TFEX</h3><p class="mt-1.5 text-xs leading-relaxed text-slate-400">หลักประกัน · Mark to Market · การชำระราคา/ส่งมอบ</p></div>
+        <div class="pcard p-5"><span class="text-xs font-medium uppercase tracking-wider text-slate-500">องค์ความรู้ 5</span><h3 class="mt-2 text-sm font-semibold text-white">สินค้าในตลาดสัญญาฯ</h3><p class="mt-1.5 text-xs leading-relaxed text-slate-400">SET50/Stock/Gold/Currency Futures · สัญลักษณ์</p></div>
+      </div>
+
+      <div class="mt-8 grid gap-5 lg:grid-cols-2">
+        <div class="pcard pcard-static p-7">
+          <h3 class="text-base font-semibold text-white">สอบ P3 แล้วได้อะไร</h3>
+          <ul class="mt-3 space-y-2.5 text-sm leading-relaxed text-slate-300">
+            <li class="flex gap-2.5"><span class="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-emerald2"></span><span><b class="text-white">P1 + P3 = IC Complex 3</b> — เพิ่มสิทธิ์แนะนำสัญญาซื้อขายล่วงหน้า (futures · options · swap)</span></li>
+            <li class="flex gap-2.5"><span class="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-emerald2"></span><span><b class="text-white">P1 + P2 + P3 = IC Complex 1</b> — แนะนำได้ทุกผลิตภัณฑ์ในตลาดทุน จุดสูงสุดของสาย IC</span></li>
+            <li class="flex gap-2.5"><span class="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-emerald2"></span><span>สมัครสอบที่ศูนย์ทดสอบ <a href="http://www.ati-asco.org/" target="_blank" rel="noopener" class="font-medium text-gold-soft underline underline-offset-2">ATI</a> หรือ <a href="https://www.aimc.or.th" target="_blank" rel="noopener" class="font-medium text-gold-soft underline underline-offset-2">AIMC</a> · ค่าสอบ 950 บาท</span></li>
+          </ul>
+        </div>
+        <div class="pcard pcard-gold pcard-static p-7">
+          <h3 class="text-base font-semibold text-gold-soft">จุดที่ออกสอบบ่อย (จากข้อสอบตัวอย่าง)</h3>
+          <ul class="mt-3 space-y-2.5 text-sm leading-relaxed text-slate-300">
+            <li class="flex gap-2.5"><span class="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-gold"></span><span>ฟิวเจอร์ส vs ฟอร์เวิร์ด: <b class="text-white">Exchange/มาตรฐาน/สำนักหักบัญชี/Mark to Market</b> vs OTC/customized/เสี่ยงคู่สัญญาสูง</span></li>
+            <li class="flex gap-2.5"><span class="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-gold"></span><span><b class="text-white">ออปชันเป็นสัญญาแบบ "สิทธิเรียกร้อง"</b> — ฟอร์เวิร์ด/ฟิวเจอร์ส/สวอป เป็นพันธะผูกพัน</span></li>
+            <li class="flex gap-2.5"><span class="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-gold"></span><span>คำนวณ payoff Long/Short + <b class="text-white">margin call เติมกลับถึง "หลักประกันขั้นต้น"</b> เสมอ</span></li>
+            <li class="flex gap-2.5"><span class="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-gold"></span><span>วันครบกำหนด: <b class="text-white">ราคาฟิวเจอร์สบรรจบกับ spot → เบสิส = 0</b></span></li>
+            <li class="flex gap-2.5"><span class="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-gold"></span><span>สินค้าใน TFEX เกือบทั้งหมด <b class="text-white">ชำระเงินสด (เป็นเงินบาท)</b> — ยกเว้นยาง RSS3 ส่งมอบจริง</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= KNOWLEDGE ================= -->
+    <section id="knowledge" class="mx-auto max-w-6xl px-5 py-14 scroll-mt-20">
+      <span class="eyebrow">Knowledge Base</span>
+      <h2 class="mt-2 text-2xl font-bold tracking-tight text-white">สรุปเนื้อหา P3</h2>
+      <p class="mt-2 text-sm text-slate-400">เก็บประเด็นหลักครบ 5 องค์ความรู้ — อิงหนังสือ "ความรู้เกี่ยวกับผลิตภัณฑ์ตลาดทุน: ตราสารที่มีความซับซ้อน (สัญญาซื้อขายล่วงหน้า)" ของ SET</p>
+      <div class="sec-rule mt-5"></div>
+
+      <div class="mt-8 grid gap-4 md:grid-cols-2">
+        <div class="pcard p-5">
+          <h4 class="mb-2 text-base font-semibold text-white">🧭 ภาพรวมอนุพันธ์</h4>
+          <ul class="space-y-1.5 text-sm leading-relaxed text-slate-300">
+            <li>• สัญญาตกลงซื้อขายสินค้าอ้างอิง <b>ณ เวลาในอนาคต</b> ด้วยจำนวน/ราคาที่กำหนดวันนี้ · อายุจำกัด · ใช้เงินลงทุนน้อยกว่าซื้อสินค้าตรง (leverage)</li>
+            <li>• สินค้าอ้างอิงเป็นได้ทั้ง <b>สินค้ามีตัวตน</b> และ <b>ตัวแปร</b> (ดัชนี, ดอกเบี้ย) — ตัวแปรไม่ต้องส่งมอบจริง ใช้ <b>Cash Settlement</b></li>
+            <li>• ประเภท: <b>พันธะผูกพัน</b> = ฟอร์เวิร์ด ฟิวเจอร์ส สวอป · <b>สิทธิเรียกร้อง (Contingent Claim)</b> = ออปชัน</li>
+            <li>• ประโยชน์: บริหารความเสี่ยงราคา · ทำกำไรจากการเปลี่ยนแปลงราคา · สะท้อนราคาในอนาคต (price discovery) — <b>ไม่ใช่แหล่งระดมทุน</b></li>
+            <li>• ผู้เล่น: <b>Hedger</b> (ถือของจริง+เปิดสถานะตรงข้าม เช่น ถือหุ้น SET50 → Short SET50 Futures) · Speculator · Arbitrageur · Market Maker</li>
+          </ul>
+        </div>
+        <div class="pcard p-5">
+          <h4 class="mb-2 text-base font-semibold text-white">⚡ ฟิวเจอร์ส vs ฟอร์เวิร์ด (ออกสอบทุกชุด)</h4>
+          <ul class="space-y-1.5 text-sm leading-relaxed text-slate-300">
+            <li>• <b>ฟิวเจอร์ส:</b> ซื้อขายใน Exchange · สัญญามาตรฐาน (contract specification) · <b>สำนักหักบัญชีเป็นคู่สัญญา</b> → เสี่ยงผิดนัดต่ำ · <b>Mark to Market ทุกวัน</b> · สภาพคล่องสูง · มี Daily Price Limit ตามประกาศตลาด</li>
+            <li>• <b>ฟอร์เวิร์ด:</b> ตกลงกันเองใน OTC · customized · เสี่ยงคู่สัญญาสูงกว่า · ชำระครั้งเดียววันครบกำหนด</li>
+            <li>• เปลี่ยนมือในตลาดรองได้โดย <b>ไม่ต้องขอความยินยอม</b> จากคู่สัญญาเดิม</li>
+          </ul>
+        </div>
+        <div class="pcard p-5">
+          <h4 class="mb-2 text-base font-semibold text-white">🧮 Payoff & การกำหนดราคาฟิวเจอร์ส</h4>
+          <ul class="space-y-1.5 text-sm leading-relaxed text-slate-300">
+            <li>• <b>กำไร/ขาดทุน = (ราคาขาย − ราคาซื้อ) × ขนาดสัญญา × จำนวนสัญญา</b> · Short ได้กำไรเมื่อราคาลง / Long ได้กำไรเมื่อราคาขึ้น</li>
+            <li>• ราคายุติธรรม ณ วันทำสัญญา → มูลค่าสุทธิของสัญญา = <b>ศูนย์</b> ทั้งสองฝ่าย</li>
+            <li>• <b>Cost of Carry: F = S + C − Y</b> (C = ต้นทุนถือครอง/เก็บรักษา/ขนส่ง · Y = ประโยชน์เช่นเงินปันผล) — เงินปันผลเป็นปัจจัยของฟิวเจอร์ส "หุ้น" ไม่ใช่โภคภัณฑ์</li>
+            <li>• <b>Convergence:</b> ณ วันส่งมอบ ราคาฟิวเจอร์ส = ราคา spot · อายุสัญญาต่างกัน → ราคาต่างกัน</li>
+          </ul>
+        </div>
+        <div class="pcard p-5">
+          <h4 class="mb-2 text-base font-semibold text-white">📐 เบสิส & สเปรด</h4>
+          <ul class="space-y-1.5 text-sm leading-relaxed text-slate-300">
+            <li>• <b>Basis = F − S</b> (ผลต่าง ไม่ใช่ผลรวม) → วันครบกำหนด <b>= 0</b> · F ขึ้นมากกว่า S → เบสิส "กว้างขึ้น" · ปันผลเพิ่ม/ต้นทุน C ลด → F ลด → เบสิส "แคบลง"</li>
+            <li>• <b>Calendar Spread</b> = ผลต่างราคาฟิวเจอร์ส 2 สัญญา สินค้าเดียวกันต่างเดือน (F2 − F1) · ต้องมี <b>≥ 2 สถานะ</b> (ซื้อหนึ่ง + ขายหนึ่ง)</li>
+            <li>• <b>Bull Spread</b> = คาดว่าเดือนส่งมอบ "ไกล" จะขึ้นแรงกว่าเดือนใกล้ · เบสิสกว้างขึ้นต่อเนื่อง → <b>ซื้อเดือนไกล + ขายเดือนใกล้</b></li>
+            <li>• การลงทุนสเปรด/เบสิส <b>ไม่สนทิศทางราคา</b> — สนการเปลี่ยนแปลงที่ไม่เท่ากันของแต่ละเดือน/ตลาด</li>
+          </ul>
+        </div>
+        <div class="pcard p-5">
+          <h4 class="mb-2 text-base font-semibold text-white">🎯 กลยุทธ์: Hedge · เก็งกำไร · Arbitrage</h4>
+          <ul class="space-y-1.5 text-sm leading-relaxed text-slate-300">
+            <li>• เป้าหมาย Hedge = คุมความเสี่ยงให้อยู่ระดับที่ยอมรับได้ (ไม่ใช่ผลตอบแทนสูงสุด) · ถือหุ้นกลัวลง → <b>Short Single Stock Futures</b></li>
+            <li>• <b>Partial Hedge</b> = ป้องกันเพียงบางส่วนของมูลค่าพอร์ต · <b>Beta = ความเสี่ยงที่เป็นระบบ</b></li>
+            <li>• <b>Directional Bet / สเปรด = เก็งกำไร (Speculation)</b> · กำไรปราศจากความเสี่ยง = <b>Arbitrage</b></li>
+            <li>• คาดทองลง → Short Gold Futures · คาดหุ้นขึ้น → Long Stock Futures</li>
+          </ul>
+        </div>
+        <div class="pcard p-5">
+          <h4 class="mb-2 text-base font-semibold text-white">🎫 ออปชัน (Options)</h4>
+          <ul class="space-y-1.5 text-sm leading-relaxed text-slate-300">
+            <li>• <b>Call</b> = สิทธิ "ซื้อ" / <b>Put</b> = สิทธิ "ขาย" สินค้าอ้างอิง ณ <b>ราคาใช้สิทธิ (Exercise price)</b> — ผู้ซื้อจ่ายพรีเมียมให้ผู้ขายออปชันประเภทเดียวกัน</li>
+            <li>• เมื่อ <b>Spot &gt; Strike</b>: ผู้ซื้อ Call ได้ประโยชน์ (ITM, intrinsic &gt; 0) · ผู้ซื้อ Put เสียประโยชน์ (intrinsic = 0)</li>
+            <li>• ปัจจัยดันราคา Call ขึ้น: ราคาหุ้น↑ · อายุคงเหลือ↑ · ความผันผวน↑ · <b>เงินปันผล↓</b> (สัมพันธ์เชิงลบ)</li>
+            <li>• มูลค่าออปชันขึ้นกับ strike, ความผันผวน, เวลา ฯลฯ — <b>ไม่เกี่ยวกับระดับการยอมรับความเสี่ยงของผู้ลงทุน</b></li>
+          </ul>
+        </div>
+        <div class="pcard p-5">
+          <h4 class="mb-2 text-base font-semibold text-white">🏦 กลไกตลาด TFEX: หลักประกัน & ส่งมอบ</h4>
+          <ul class="space-y-1.5 text-sm leading-relaxed text-slate-300">
+            <li>• วาง <b>หลักประกันขั้นต้น (IM)</b> ก่อนเทรด · Mark to Market ทุกสิ้นวัน · ต่ำกว่า <b>หลักประกันขั้นต่ำ (MM)</b> → ถูก Call Margin <b>เติมกลับถึง IM</b></li>
+            <li>• ตัวอย่าง: Long 1 สัญญา @100 (1,000 หุ้น) IM 10,000/MM 7,000 → สิ้นวัน 96 → ขาดทุน 4,000 เหลือ 6,000 &lt; MM → เติม 4,000</li>
+            <li>• <b>ปิดฐานะ</b> = เปิดสัญญาทิศทางตรงข้าม "สินค้าเดียวกัน + เดือนส่งมอบเดียวกัน" (Long GFZ18 → Short GFZ18)</li>
+            <li>• Cash Settlement = ชำระส่วนต่างเงินสด · <b>ยาง RSS3 = Physical Delivery</b> ส่งมอบจริง ณ ที่ TFEX กำหนด</li>
+          </ul>
+        </div>
+        <div class="pcard p-5">
+          <h4 class="mb-2 text-base font-semibold text-white">📦 สินค้า & สัญลักษณ์ + แนวปฏิบัติการขาย</h4>
+          <ul class="space-y-1.5 text-sm leading-relaxed text-slate-300">
+            <li>• <b>S50</b> = SET50 Index Futures · <b>S50C/S50P</b> = SET50 Call/Put Options · <b>GF</b> = Gold Futures · เดือน: H=มี.ค. M=มิ.ย. U=ก.ย. Z=ธ.ค. (GFM18 = ส่งมอบ มิ.ย. 2018)</li>
+            <li>• SET50/Stock/Gold/Currency Futures ชำระ <b>เงินสดเป็นเงินบาท</b> · ราคาชำระ Stock Futures = ค่าเฉลี่ยถ่วงน้ำหนัก <b>15 นาทีสุดท้าย</b> + ณ เวลาปิด (ทศนิยม 2 ตำแหน่ง)</li>
+            <li>• แนวปฏิบัติ: ส่งคำสั่ง <b>ตามลำดับก่อน-หลัง</b> ไม่ใช่ตามความสำคัญลูกค้า · KYC ต้องมีหลักฐานแหล่งที่มารายได้เสมอ · ลูกค้าบางประเภทได้รับ <b>ยกเว้น suitability ตามเกณฑ์ ก.ล.ต.</b></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= EXAM ================= -->
+    <section id="exam" class="mx-auto max-w-6xl px-5 py-14 scroll-mt-20">
+      <span class="eyebrow">Official Practice</span>
+      <div class="mt-2 flex flex-wrap items-center gap-2.5">
+        <h2 class="text-2xl font-bold tracking-tight text-white">ข้อสอบตัวอย่างทางการ P3 · เฉลยละเอียด</h2>
+        <span class="rounded-full border border-gold/30 bg-gold/15 px-2.5 py-0.5 text-xs font-semibold text-gold-soft">ทางการ · ครึ่งหนึ่งของข้อสอบจริง</span>
+      </div>
+      <p class="mt-2 max-w-2xl text-sm text-slate-400">ข้อสอบตัวอย่างจากตลาดหลักทรัพย์ฯ 25 ข้อ (ข้อสอบจริง 50 ข้อ 80 นาที) — เลือกคำตอบเพื่อดูเฉลยและคำอธิบายทันที บันทึกผลอัตโนมัติ</p>
+      <div class="sec-rule mt-5"></div>
+
+      <div class="mt-6 mb-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-slate-300">
+        <span>ถูก <span id="p3-score" class="font-semibold text-emerald2-soft">0</span> <span class="text-slate-500">/ <span id="p3-answered">0</span> ตอบแล้ว · จาก 25 (เทียบเกณฑ์ 70% = ≥ 18)</span></span>
+        <span id="p3-pass" class="rounded-md bg-slate-700/60 px-2.5 py-1 text-xs font-medium text-slate-300">ทำครบ 25 ข้อเพื่อประเมินผล</span>
+        <button id="p3-reset" class="text-slate-400 underline-offset-2 transition hover:text-white hover:underline">เริ่มใหม่</button>
+      </div>
+
+      <div class="mb-3 flex flex-wrap gap-2">
+        <button data-pfilter="all" class="pfilter-btn rounded-lg border border-slate-600 bg-slate-700/60 px-3 py-1.5 text-xs text-white transition">ทั้งหมด (25)</button>
+        <button data-pfilter="1" class="pfilter-btn rounded-lg border border-slate-700 px-3 py-1.5 text-xs text-slate-400 transition hover:text-white">ภาพรวมอนุพันธ์ (5)</button>
+        <button data-pfilter="2" class="pfilter-btn rounded-lg border border-slate-700 px-3 py-1.5 text-xs text-slate-400 transition hover:text-white">ฟิวเจอร์ส (11)</button>
+        <button data-pfilter="3" class="pfilter-btn rounded-lg border border-slate-700 px-3 py-1.5 text-xs text-slate-400 transition hover:text-white">ออปชัน (4)</button>
+        <button data-pfilter="4" class="pfilter-btn rounded-lg border border-slate-700 px-3 py-1.5 text-xs text-slate-400 transition hover:text-white">กลไกตลาด TFEX (5)</button>
+      </div>
+      <div class="mb-6 flex flex-wrap items-center gap-2">
+        <button data-pmode="all" class="pmode-btn rounded-lg border border-slate-600 bg-slate-700/60 px-3 py-1.5 text-xs text-white transition">ทุกข้อ</button>
+        <button data-pmode="unanswered" class="pmode-btn rounded-lg border border-slate-700 px-3 py-1.5 text-xs text-slate-400 transition hover:text-white">ยังไม่ได้ทำ <span id="p3-unans" class="text-slate-500">(25)</span></button>
+        <button data-pmode="wrong" class="pmode-btn rounded-lg border border-slate-700 px-3 py-1.5 text-xs text-slate-400 transition hover:text-white">ทบทวนข้อผิด <span id="p3-wrong" class="text-slate-500">(0)</span></button>
+      </div>
+
+      <div id="p3-list" class="mx-auto flex max-w-3xl flex-col gap-5"></div>
+    </section>
+
+  </main>
+
+  <footer class="relative bg-slate-950/60">
+    <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent"></div>
+    <div class="mx-auto max-w-6xl px-5 py-12">
+      <div class="flex items-center gap-2.5">
+        <span class="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-gold to-gold-soft text-slate-900 font-bold text-xs shadow-lg shadow-gold/20 ring-1 ring-white/20">IC</span>
+        <span class="text-sm font-medium text-slate-300">IC P3 · เตรียมสอบตราสารซับซ้อน: สัญญาซื้อขายล่วงหน้า</span>
+      </div>
+      <p class="mt-7 text-xs leading-relaxed text-slate-600">
+        จัดทำเพื่อการเตรียมสอบเท่านั้น ข้อสอบตัวอย่างอ้างอิงจากแบบฝึกหัดเตรียมสอบทางการของตลาดหลักทรัพย์แห่งประเทศไทย โปรดตรวจสอบหลักเกณฑ์และเงื่อนไขฉบับล่าสุดจาก SET และ ก.ล.ต. ก่อนสอบจริง
+      </p>
+      <p class="mt-4 flex flex-wrap items-center gap-1.5 text-xs text-slate-600">
+        <span>จัดทำและดูแลโดย</span>
+        <a href="https://github.com/veekeancodemaipen" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-400 underline-offset-2 transition hover:text-gold-soft hover:underline">veekeancodemaipen</a>
+        <span class="text-slate-700">·</span>
+        <a href="/" class="text-slate-500 underline-offset-2 transition hover:text-slate-300 hover:underline">← กลับหน้ารวมหลักสูตร IC</a>
+      </p>
+    </div>
+  </footer>
+
+<script>
+/* ================= P3 official questions (25 ข้อ จากแบบฝึกหัดทางการ SET) ================= */
+/* cat: '1' ภาพรวม (1-5) · '2' ฟิวเจอร์ส (6-16) · '3' ออปชัน (17-20) · '4' กลไกตลาด (21-25) · a = 0-based */
+window.P3Q = [
+{n:1,cat:'1',q:'ตัวเลือกใด "ไม่ถูกต้อง" เกี่ยวกับสัญญาซื้อขายล่วงหน้า',o:['สัญญาที่กำหนดให้คู่สัญญาฝ่ายหนึ่งส่งมอบสินค้าให้คู่สัญญาอีกฝ่ายซึ่งเป็นผู้ชำระราคา ณ เวลาใดเวลาหนึ่งในอนาคต โดยมีจำนวนและราคาตามที่กำหนดในสัญญา','สินค้าอ้างอิงต้องเป็นสินค้าที่มีตัวตนเท่านั้น เนื่องจากต้องมีขั้นตอนการส่งมอบสินค้าภายหลังครบอายุสัญญา','สัญญาซื้อขายล่วงหน้าเป็นสัญญาทางการเงินที่มีอายุจำกัด','มีการใช้เงินลงทุนน้อยกว่าเมื่อเทียบกับเงินที่ใช้ลงทุนโดยตรงในสินค้าอ้างอิง'],a:1,e:'สินค้าอ้างอิงเป็นได้ทั้งสินค้าที่มีตัวตนและ "ตัวแปร" เช่น ดัชนีการเงิน อัตราดอกเบี้ย ซึ่งไม่จำเป็นต้องส่งมอบจริง (Physical delivery) แต่ใช้การชำระส่วนต่างเป็นเงินสด (Cash settlement) แทน'},
+{n:2,cat:'1',q:'ตัวเลือกใดกล่าวถึงความแตกต่างระหว่างสัญญาฟอร์เวิร์ดและสัญญาฟิวเจอร์สได้ถูกต้อง',o:['สัญญาฟอร์เวิร์ดซื้อขายในศูนย์กลางซื้อขายที่ตั้งขึ้นเป็นทางการ (Exchange) แต่สัญญาฟิวเจอร์สมักซื้อขายในตลาดที่ไม่เป็นทางการ (OTC)','สัญญาฟอร์เวิร์ดมีลักษณะความเป็นมาตรฐานมากกว่าสัญญาฟิวเจอร์ส','สัญญาฟอร์เวิร์ดมีความเสี่ยงของคู่สัญญาสูงกว่าสัญญาฟิวเจอร์ส','สัญญาฟอร์เวิร์ดจำเป็นต้องปรับมูลค่าตามราคาตลาดทุกสิ้นวัน (Mark to Market) ในขณะที่สัญญาฟิวเจอร์สไม่จำเป็นต้องปรับ'],a:2,e:'ฟิวเจอร์สซื้อขายใน Exchange เป็นสัญญามาตรฐาน มีสำนักหักบัญชีเป็นคู่สัญญา และ Mark to Market ทุกวัน · ฟอร์เวิร์ดตกลงกันเองใน OTC (customized) จึงมีความเสี่ยงคู่สัญญาสูงกว่า'},
+{n:3,cat:'1',q:'ตัวเลือกใด "ไม่ถูกต้อง" เกี่ยวกับประเภทของสัญญาซื้อขายล่วงหน้า',o:['สัญญาฟอร์เวิร์ด เป็นสัญญาแบบพันธะผูกพัน','สัญญาออปชัน เป็นสัญญาแบบสิทธิเรียกร้อง (Contingent Claim)','สัญญาฟิวเจอร์ส เป็นสัญญาแบบสิทธิเรียกร้อง','สัญญาสวอป เป็นสัญญาแบบพันธะผูกพัน'],a:2,e:'ฟอร์เวิร์ด ฟิวเจอร์ส และสวอป เป็นสัญญาแบบ "พันธะผูกพัน" — มีเพียงออปชันที่เป็นสัญญาแบบสิทธิเรียกร้อง (Contingent Claim)'},
+{n:4,cat:'1',q:'ตัวเลือกใด "ไม่ใช่" ประโยชน์ของสัญญาซื้อขายล่วงหน้า',o:['ใช้บริหารความเสี่ยงจากราคา','ใช้ทำกำไรจากการเปลี่ยนแปลงของราคา','ใช้เป็นเครื่องมือสะท้อนราคาของสินค้าอ้างอิงในอนาคต','ใช้เป็นแหล่งระดมทุนสำหรับบริษัท'],a:3,e:'ประโยชน์ของสัญญาซื้อขายล่วงหน้าคือบริหารความเสี่ยงด้านราคา ทำกำไรจากการเปลี่ยนแปลงราคา และสะท้อนราคาในอนาคต (price discovery) — แต่ไม่ใช่แหล่งระดมทุนของบริษัท'},
+{n:5,cat:'1',q:'นาย ก. ลงทุนในหุ้นที่อยู่ใน SET50 ต่อมาคาดการณ์ว่าราคาหุ้นจะปรับลดลงในอีก 2-3 เดือนข้างหน้า จึงขายชอร์ต SET50 Index Futures — การกระทำดังกล่าวแสดงว่านาย ก. เป็นผู้ลงทุนในตลาดสัญญาซื้อขายล่วงหน้าประเภทใด',o:['ผู้เก็งกำไร','ผู้ประกันความเสี่ยง','ผู้ค้ากำไร','ผู้ดูแลสภาพคล่อง'],a:1,e:'นาย ก. ถือหุ้นจริงอยู่และเปิดสถานะตรงข้าม (Short SET50 Index Futures) เพื่อให้กำไร/ขาดทุนจากฟิวเจอร์สหักล้างกับพอร์ตหุ้น = ผู้ประกันความเสี่ยง (Hedger)'},
+{n:6,cat:'2',q:'ตัวเลือกใดถูกต้องเกี่ยวกับสัญญาฟิวเจอร์ส',o:['มีลักษณะเป็นการต่อรองโดยตรงระหว่างผู้ซื้อและผู้ขายในตลาดที่ไม่เป็นทางการ (OTC)','สัญญาฟิวเจอร์สถูกออกแบบให้เป็นสัญญาที่สามารถตกลงตามความต้องการของคู่สัญญาได้','สัญญาฟิวเจอร์สมีความเสี่ยงต่ำที่จะเกิดการผิดนัดการชำระราคาและส่งมอบของคู่สัญญา','มีสภาพคล่องต่ำในการซื้อขายเปลี่ยนมือ'],a:2,e:'ฟิวเจอร์สซื้อขายใน Exchange เป็นสัญญามาตรฐาน สภาพคล่องสูง — ที่ถูกคือความเสี่ยงผิดนัดต่ำ เพราะมีสำนักหักบัญชี (Clearing House) เป็นคู่สัญญา'},
+{n:7,cat:'2',q:'ตัวเลือกใด "ไม่ถูกต้อง" เกี่ยวกับสัญญาฟิวเจอร์ส',o:['เป็นสัญญามาตรฐานที่ระบุข้อกำหนดชัดเจน ผู้ซื้อขายต่อรองเพียงราคาและจำนวนสัญญาเท่านั้น','ฟิวเจอร์สอ้างอิงสินค้าเกษตรต้องกำหนดคุณภาพ/เกรดสินค้าที่ส่งมอบ หากคุณภาพต่างไปจะมีสูตรปรับราคาให้สอดคล้อง','สัญญาฟิวเจอร์สไม่มีกำหนดช่วงการเปลี่ยนแปลงของราคาสูงสุดในแต่ละวัน (Daily Price Limit) แต่ขึ้นกับการต่อรองของผู้ซื้อผู้ขายเป็นสำคัญ','สามารถซื้อขายเปลี่ยนมือในตลาดรองได้โดยไม่ต้องได้รับความยินยอมจากคู่สัญญาเดิม'],a:2,e:'สัญญาฟิวเจอร์สมีการกำหนดช่วงการเปลี่ยนแปลงราคาสูงสุดต่อวัน (Daily Price Limit) ตามประเภทสินค้าที่ตลาดอนุพันธ์ประกาศ — ไม่ได้ขึ้นกับการต่อรองของผู้ซื้อผู้ขาย'},
+{n:8,cat:'2',q:'นายเกษมขายสัญญาฟิวเจอร์สของหุ้นสามัญ ABC จำนวน 1 สัญญา ที่ราคาฟิวเจอร์ส 100 บาทต่อหุ้น สัญญามีอายุ 3 เดือน — ตัวเลือกใดถูกต้องเกี่ยวกับผลตอบแทนและความเสี่ยงของสัญญาฟิวเจอร์ส',o:['หากสิ้นวัน ราคาฟิวเจอร์สของหุ้น ABC เท่ากับ 90 บาท นายเกษมจะได้กำไรจากการถือสัญญาฟิวเจอร์ส','หากราคาหุ้น ABC ปรับตัวลดลง นายเกษมมีความเสี่ยงที่จะขาดทุนจากการขายสัญญาฟิวเจอร์ส','หากในวันหมดอายุสัญญา ราคาหุ้น ABC เท่ากับ 110 บาท นายเกษมจะมีกำไรจากการขายสัญญาฟิวเจอร์ส','ทุกตัวเลือกถูกต้อง'],a:0,e:'Short ที่ 100 บาท: สิ้นวันราคา 90 → กำไร = ขาย(100) − ซื้อ(90) = +10 บาท/หุ้น ✓ · ราคาลง ผู้ "ขาย" ฟิวเจอร์สได้กำไร (ไม่ใช่ขาดทุน) · วันหมดอายุราคา 110 → ขาดทุน 100 − 110 = −10 บาท/หุ้น'},
+{n:9,cat:'2',q:'ตัวเลือกใดถูกต้องเกี่ยวกับการกำหนดราคาสัญญาฟิวเจอร์ส',o:['ราคาฟิวเจอร์สที่เป็นราคายุติธรรม ต้องทำให้มูลค่าสุทธิของสัญญา ณ วันทำสัญญา เป็นบวก ทั้งมุมมองผู้ซื้อและผู้ขาย','ราคาฟอร์เวิร์ดที่เป็นราคายุติธรรม ต้องทำให้มูลค่าสุทธิของสัญญา ณ วันทำสัญญา เป็นลบ ทั้งมุมมองผู้ซื้อและผู้ขาย','ราคาฟิวเจอร์สที่มีสินทรัพย์อ้างอิงเหมือนกัน คุณภาพเหมือนกัน แม้อายุสัญญาต่างกัน จะมีราคาเท่ากัน','ณ ดุลยภาพราคา ณ วันส่งมอบ ราคาฟิวเจอร์สจะมีค่าเท่ากับราคาสินค้าอ้างอิง (Spot price)'],a:3,e:'ราคายุติธรรมของฟิวเจอร์ส/ฟอร์เวิร์ด ณ วันทำสัญญา ต้องทำให้มูลค่าสุทธิเป็น "ศูนย์" ทั้งสองฝ่าย · อายุสัญญาต่างกันราคาย่อมต่างกัน — ที่ถูกคือ ณ วันส่งมอบ ราคาฟิวเจอร์สบรรจบเท่ากับราคา spot (Convergence) จึงไม่มีโอกาสอาบิทราจ'},
+{n:10,cat:'2',q:'ตัวเลือกใด "ไม่ใช่" ปัจจัยในการกำหนดราคาฟิวเจอร์สของสินค้าโภคภัณฑ์',o:['ประโยชน์จากการถือครองสินทรัพย์อ้างอิง','เงินปันผล','ต้นทุนค่าเก็บรักษาสินค้า','ต้นทุนค่าขนส่งสินค้า'],a:1,e:'เงินปันผลเป็นปัจจัยกำหนดราคาฟิวเจอร์สของ "หุ้นสามัญ" ไม่ใช่สินค้าโภคภัณฑ์ — ปัจจัยของโภคภัณฑ์คือประโยชน์จากการถือครอง ต้นทุนเก็บรักษา และค่าขนส่ง'},
+{n:11,cat:'2',q:'ค่าเบสิส (Basis) ของสัญญาฟิวเจอร์สของตราสารทางการเงิน เมื่อถึงวันครบกำหนดอายุของสัญญา มีค่าเท่าใด',o:['มีค่าเป็นบวก','มีค่าเป็นลบ','มีค่าเท่ากับศูนย์','มีค่าเท่ากับราคาสินค้าอ้างอิง'],a:2,e:'Basis = F − S เมื่อถึงวันครบกำหนดอายุ ราคาฟิวเจอร์สบรรจบกับราคาปัจจุบัน (Convergence) ค่าเบสิสจึงเท่ากับศูนย์'},
+{n:12,cat:'2',q:'ตัวเลือกใดถูกต้องเกี่ยวกับเบสิสของสัญญาฟิวเจอร์ส',o:['เบสิส คือผลรวมของราคาสัญญาฟิวเจอร์สกับราคาสินทรัพย์อ้างอิง (Spot price)','หากราคาสัญญาฟิวเจอร์สเพิ่มขึ้นมากกว่าราคาสินทรัพย์อ้างอิง จะทำให้เบสิสกว้างขึ้น','หากอัตราจ่ายเงินปันผลเพิ่มขึ้นโดยปัจจัยอื่นคงที่ จะทำให้เบสิสของฟิวเจอร์สหุ้นสามัญกว้างขึ้น','หากต้นทุนค่าขนส่งและค่าเก็บรักษาลดลงโดยปัจจัยอื่นคงที่ จะทำให้เบสิสของฟิวเจอร์สสินค้าเกษตรกว้างขึ้น'],a:1,e:'เบสิสคือ "ผลต่าง" F − S ไม่ใช่ผลรวม · จากสูตร F = S + C − Y: ปันผล (Y) เพิ่ม → F ลด → เบสิสแคบลง · ต้นทุน (C) ลด → F ลด → เบสิสแคบลง — ที่ถูกคือ F เพิ่มมากกว่า S → เบสิสกว้างขึ้น'},
+{n:13,cat:'2',q:'ตัวเลือกใดถูกต้องเกี่ยวกับสเปรดของสัญญาฟิวเจอร์ส',o:['Calendar Spread คือผลรวมของราคาสัญญาฟิวเจอร์ส 2 สัญญา ที่มีสินค้าอ้างอิงประเภทเดียวกัน แต่แตกต่างที่วันหมดอายุ','Bull Spread จะใช้เมื่อคาดการณ์ว่าราคาฟิวเจอร์สเดือนส่งมอบใกล้จะมีราคาสูงขึ้น เมื่อเทียบกับเดือนส่งมอบไกล','การสร้างสเปรดต้องมีสถานะบนสัญญาฟิวเจอร์สอย่างน้อย 2 สถานะ โดยซื้อสัญญาหนึ่งพร้อมกับขายอีกสัญญาหนึ่ง','ถูกทุกตัวเลือก'],a:2,e:'Calendar Spread = "ผลต่าง" ราคาฟิวเจอร์ส 2 สัญญาต่างเดือน (F2 − F1) · Bull Spread ใช้เมื่อคาดว่าเดือนส่งมอบ "ไกล" จะขึ้นเทียบกับเดือนใกล้ — ที่ถูกคือสเปรดต้องมีอย่างน้อย 2 สถานะ (ซื้อหนึ่ง + ขายหนึ่ง)'},
+{n:14,cat:'2',q:'ตัวเลือกใดถูกต้องเกี่ยวกับการประยุกต์ใช้สัญญาฟิวเจอร์ส',o:['การสร้างผลกำไรจากทิศทางตลาด (Directional Bet) เป็นการใช้ฟิวเจอร์สเพื่อการถัวความเสี่ยง (Hedging)','การสร้างผลกำไรจากการเปิดสถานะบนสเปรด (Spread) เป็นการใช้ฟิวเจอร์สเพื่อการเก็งกำไร (Speculation)','การสร้างผลกำไรโดยปราศจากความเสี่ยง เป็นการใช้ฟิวเจอร์สเพื่อการถัวความเสี่ยง (Hedging)','ถูกทุกตัวเลือก'],a:1,e:'Directional Bet = การเก็งกำไร (ไม่ใช่ Hedging) · กำไรปราศจากความเสี่ยง = อาบิทราจ (Arbitrage) — ที่ถูกคือการเปิดสถานะบนสเปรดเป็นการเก็งกำไร (Speculation)'},
+{n:15,cat:'2',q:'ตัวเลือกใดถูกต้องเกี่ยวกับการใช้สัญญาฟิวเจอร์สเพื่อถัวความเสี่ยงจากการลงทุน',o:['วัตถุประสงค์หลักในการถัวความเสี่ยงคือเพื่อให้ได้ผลตอบแทนที่สูงสุด','นักลงทุนที่ซื้อหุ้นสามัญและกังวลว่าราคาจะปรับลดลง จะถัวความเสี่ยงด้วยการ Short Single Stock Futures','Beta เป็นเครื่องชี้วัดความเสี่ยงที่ไม่เป็นระบบ','Partial hedge คือการกำจัดความเสี่ยงเฉพาะความเสี่ยงด้านการผิดนัดการชำระราคาและส่งมอบ'],a:1,e:'เป้าหมายของการ hedge คือบริหารความเสี่ยงให้อยู่ในระดับที่ยอมรับได้ · Beta วัดความเสี่ยงที่ "เป็นระบบ" · Partial hedge = ป้องกันความเสี่ยงด้านราคาเพียงบางส่วนของมูลค่าพอร์ต — ที่ถูกคือถือหุ้นกลัวราคาลง → Short Single Stock Futures'},
+{n:16,cat:'2',q:'ตัวเลือกใดถูกต้องเกี่ยวกับการใช้สัญญาฟิวเจอร์สเพื่อเก็งกำไร',o:['หากคาดการณ์ว่าราคาทองคำจะลดลงในอนาคต นักลงทุนจะเก็งกำไรโดยการ Long Gold Futures','หากเบสิสมีแนวโน้มกว้างขึ้นต่อเนื่อง นักลงทุนจะเก็งกำไรโดยการซื้อสัญญาฟิวเจอร์สเดือนไกล พร้อมกับขายสัญญาฟิวเจอร์สเดือนใกล้','การลงทุนสเปรดและเบสิส จะมุ่งเน้นเก็งกำไรทิศทางราคา (Directional Bet) เป็นสำคัญ','หากคาดการณ์ว่าราคาหุ้นสามัญจะปรับตัวขึ้นต่อเนื่อง นักลงทุนจะเก็งกำไรโดยการ Long Gold Futures'],a:1,e:'คาดทองลง → ต้อง Short Gold Futures · สเปรด/เบสิสไม่สนทิศทางราคา สนการเปลี่ยนแปลงที่ไม่เท่ากันของแต่ละเดือน/ตลาด · คาดหุ้นขึ้น → Long "Stock" Futures — ที่ถูกคือเบสิสกว้างขึ้นต่อเนื่อง → ซื้อเดือนไกล + ขายเดือนใกล้'},
+{n:17,cat:'3',q:'ตัวเลือกใดถูกต้องเกี่ยวกับสัญญาออปชัน',o:['คอลออปชัน เป็นสัญญาที่ให้สิทธิแก่ผู้ถือในการซื้อสินค้าอ้างอิง ณ ราคาตลาด','พุทออปชัน เป็นสัญญาที่ให้สิทธิแก่ผู้ถือในการซื้อสินค้าอ้างอิง ณ ราคาใช้สิทธิ','ผู้ซื้อพุทออปชัน ต้องเสียค่าพรีเมียมให้ผู้ขายคอลออปชัน','ผู้ซื้อคอลออปชัน ต้องเสียค่าพรีเมียมให้ผู้ขายคอลออปชัน'],a:3,e:'คอล = สิทธิซื้อ ณ "ราคาใช้สิทธิ" (Exercise price ไม่ใช่ราคาตลาด) · พุท = สิทธิ "ขาย" ณ ราคาใช้สิทธิ · ผู้ซื้อพุทจ่ายพรีเมียมให้ผู้ขายพุท — ที่ถูกคือผู้ซื้อคอลจ่ายพรีเมียมให้ผู้ขายคอล'},
+{n:18,cat:'3',q:'ตัวเลือกใดถูกต้องเกี่ยวกับสัญญาออปชัน หากราคาสินทรัพย์อ้างอิง (Spot) สูงกว่าราคาใช้สิทธิ (Exercise price)',o:['ผู้ซื้อคอลออปชัน อยู่ในสถานะได้ประโยชน์','ผู้ซื้อพุทออปชัน อยู่ในสถานะได้ประโยชน์','ผู้ซื้อพุทออปชัน จะมี Intrinsic Value มากกว่าศูนย์','ผู้ซื้อคอลออปชัน จะมี Intrinsic Value เท่ากับศูนย์'],a:0,e:'เมื่อ Spot > Strike: ผู้ซื้อคอลได้ประโยชน์ (in-the-money, intrinsic value > 0) ส่วนผู้ซื้อพุทเสียประโยชน์ (intrinsic value = 0)'},
+{n:19,cat:'3',q:'ปัจจัยใดมีผลทำให้ราคาคอลออปชันบนหุ้นสามัญปรับตัวเพิ่มขึ้น หากกำหนดให้ปัจจัยอื่นคงที่',o:['ราคาหุ้นสามัญลดลง','อายุคงเหลือของสัญญาออปชันลดลง','ความผันผวนของราคาหุ้นสามัญลดลง','อัตราการจ่ายเงินปันผลลดลง'],a:3,e:'ราคาหุ้น อายุคงเหลือ และความผันผวน สัมพันธ์ "เชิงบวก" กับราคาคอล (ลดลง → คอลถูกลง) ส่วนเงินปันผลสัมพันธ์ "เชิงลบ" — ปันผลลดลงจึงทำให้ราคาคอลออปชันเพิ่มขึ้น'},
+{n:20,cat:'3',q:'ปัจจัยตามตัวเลือกใด "ไม่เกี่ยวข้อง" กับการคิดมูลค่าของออปชัน',o:['ราคาใช้สิทธิ','ความผันผวนของราคาสินทรัพย์อ้างอิง','ระยะเวลาใช้สิทธิ','ระดับการยอมรับความเสี่ยงของผู้ลงทุน'],a:3,e:'มูลค่าออปชันขึ้นกับราคาใช้สิทธิ ความผันผวน ระยะเวลา ราคาสินทรัพย์อ้างอิง ฯลฯ — แต่ไม่เกี่ยวข้องกับระดับการยอมรับความเสี่ยงของผู้ลงทุนแต่ละคน'},
+{n:21,cat:'4',q:'นักลงทุนซื้อสัญญาฟิวเจอร์สหุ้นสามัญ ABC (Long Single Stock Futures) จำนวน 1 สัญญา ที่ราคา 100 บาทต่อหุ้น ขนาดสัญญา 1,000 หุ้น หลักประกันขั้นต้น 10,000 บาท หลักประกันขั้นต่ำ 7,000 บาท — หาก ณ สิ้นวัน ราคาสัญญาฟิวเจอร์สอยู่ที่ 96 บาท นักลงทุนต้องวางหลักประกันเพิ่มเท่ากับเท่าใด',o:['4 บาท','1,000 บาท','4,000 บาท','ไม่ต้องเพิ่มหลักประกัน เนื่องจากมีเพียงพอ'],a:2,e:'ผลขาดทุน = (96 − 100) × 1,000 หุ้น × 1 สัญญา = −4,000 บาท → หลักประกันเหลือ 10,000 − 4,000 = 6,000 บาท ต่ำกว่าหลักประกันขั้นต่ำ (7,000) → ต้องวางเพิ่มจนกลับถึง "หลักประกันขั้นต้น" คือเติม 4,000 บาท'},
+{n:22,cat:'4',q:'ตัวเลือกใดถูกต้องเกี่ยวกับการชำระราคาและส่งมอบ',o:['นาย ก. ต้องการปิดฐานะ Long GFZ18 (Gold Futures) โดยการ Short GFH18','นาย ข. เปิด Short GFZ18 และต้องการชำระราคาด้วยเงินสด (Cash Settlement) โดยการส่งมอบทองคำให้คู่สัญญาในวันหมดอายุสัญญา','นาย ค. เปิด Short RSS3Z18 (Rubber Futures) ต้องการส่งมอบสินค้าอ้างอิง (Physical Delivery) โดยส่งมอบยางแผ่นรมควันชั้น 3 ณ คลังสินค้าท่าเรือกรุงเทพ ในวันหมดอายุสัญญา','ถูกทุกตัวเลือก'],a:2,e:'การปิดฐานะต้องเปิดสัญญาตรงข้ามใน "สินค้าและเดือนส่งมอบเดียวกัน" (Long GFZ18 → Short GFZ18 ไม่ใช่ GFH18) · Cash Settlement = ชำระส่วนต่างเงินสด ไม่มีการส่งมอบทอง — ที่ถูกคือ Rubber Futures (RSS3) ใช้การส่งมอบสินค้าจริง ณ สถานที่ที่ TFEX กำหนด'},
+{n:23,cat:'4',q:'ตัวเลือกใดถูกต้องเกี่ยวกับแนวปฏิบัติในการขายและการให้บริการด้านผลิตภัณฑ์ตราสารทุนและสัญญาซื้อขายล่วงหน้า',o:['ลูกค้ารายใหญ่ที่ซื้อขายบ่อย จะได้รับความสำคัญเป็นลำดับแรกเสมอในการส่งคำสั่งซื้อ/ขาย','ลูกค้าที่มาจากตระกูลใหญ่ไม่จำเป็นต้องขอหลักฐานแหล่งที่มาของรายได้ เพราะเป็นที่ทราบโดยทั่วกัน','ลูกค้ารายใหญ่พิเศษที่แสดงเจตนาเป็นลายลักษณ์อักษรชัดเจน ไม่จำเป็นต้องประเมินความเหมาะสมในการลงทุน','ถูกทุกตัวเลือก'],a:2,e:'คำสั่งซื้อขายต้องส่งตาม "ลำดับก่อน-หลัง" ไม่ใช่ตามความสำคัญของลูกค้า · KYC ต้องมีหลักฐานแหล่งที่มารายได้ชัดเจนเสมอ — ที่ถูกคือลูกค้าบางประเภทอยู่ในเกณฑ์ที่ ก.ล.ต. ยกเว้นการประเมิน suitability ได้ เพราะมีความรู้ดูแลตนเองได้'},
+{n:24,cat:'4',q:'ตัวเลือกใดถูกต้องเกี่ยวกับสัญญาซื้อขายล่วงหน้า',o:['SET50 เป็นชื่อย่อสัญญาของดัชนี SET50 Index Futures','S50P เป็นชื่อย่อสัญญาของดัชนี SET50 Index Put Options','GFM18 แทนสัญลักษณ์สัญญาฟิวเจอร์สทองคำส่งมอบเดือนมีนาคม 2018','GFM18 มีการส่งมอบทองคำจริง ณ วันหมดอายุสัญญา'],a:1,e:'ชื่อย่อ SET50 Index Futures คือ "S50" (ไม่ใช่ SET50) · GFM18 = Gold Futures ส่งมอบเดือน "มิถุนายน" 2018 (M = มิ.ย.) และชำระด้วยเงินสด ไม่มีการส่งมอบทองจริง — ที่ถูกคือ S50P = SET50 Index Put Options'},
+{n:25,cat:'4',q:'ตัวเลือกใดถูกต้องเกี่ยวกับสัญญาซื้อขายล่วงหน้า',o:['ราคาที่ใช้ชำระ Single Stock Futures คำนวณจากค่าเฉลี่ยถ่วงน้ำหนักการซื้อขายของหุ้นอ้างอิงในช่วง 15 นาทีสุดท้าย และ ณ เวลาปิดทำการของหุ้นอ้างอิงในวันซื้อขายวันสุดท้าย โดยใช้ทศนิยม 2 ตำแหน่ง','ดัชนี SET50 Index Futures ใช้การชำระราคาด้วยการส่งมอบสินค้าจริง','Currency Futures เมื่อครบอายุสัญญา ใช้การชำระราคาเป็นเงินสดด้วยเงินตราต่างประเทศ','Single Stock Futures ใช้การชำระราคาด้วยการส่งมอบหุ้นสามัญ'],a:0,e:'SET50 Futures และ Single Stock Futures ชำระด้วย "เงินสด" (ไม่ส่งมอบหุ้น/สินค้าจริง) · Currency Futures ชำระเงินสดเป็น "เงินบาท" — ที่ถูกคือราคาชำระของ Stock Futures ใช้ค่าเฉลี่ยถ่วงน้ำหนัก 15 นาทีสุดท้าย + ณ เวลาปิด ของวันซื้อขายสุดท้าย (ทศนิยม 2 ตำแหน่ง)'}
+];
+</script>
+
+<script>
+/* ================= P3 quiz renderer (self-contained) ================= */
+(function(){
+  var LS = 'ic-p3-quiz-v1';
+  var CHO = ['ก','ข','ค','ง'];
+  var list = document.getElementById('p3-list');
+  if (!list || !window.P3Q) return;
+  var Q = window.P3Q;
+
+  var st = { cat:'all', mode:'all' };
+  var ans = {}, chosen = {};
+  try { var sv = JSON.parse(localStorage.getItem(LS) || '{}'); ans = sv.a || {}; chosen = sv.c || {}; } catch(e){}
+  function save(){ try { localStorage.setItem(LS, JSON.stringify({ a:ans, c:chosen })); } catch(e){} }
+
+  function matchQ(q){
+    if (st.cat !== 'all' && q.cat !== st.cat) return false;
+    if (st.mode === 'unanswered' && ans[q.n] !== undefined) return false;
+    if (st.mode === 'wrong' && ans[q.n] !== false) return false;
+    return true;
+  }
+
+  function updateScore(){
+    var done = 0, ok = 0, wrong = 0;
+    Q.forEach(function(q){
+      if (ans[q.n] !== undefined){ done++; if (ans[q.n]) ok++; else wrong++; }
+    });
+    document.getElementById('p3-score').textContent = ok;
+    document.getElementById('p3-answered').textContent = done;
+    document.getElementById('p3-unans').textContent = '(' + (Q.length - done) + ')';
+    document.getElementById('p3-wrong').textContent = '(' + wrong + ')';
+    var pass = document.getElementById('p3-pass');
+    if (done >= Q.length){
+      var passed = ok >= 18;
+      pass.textContent = passed ? '🎉 ผ่านเกณฑ์! ได้ ' + ok + '/25' : 'ยังไม่ผ่านเกณฑ์ — ได้ ' + ok + '/25 (เทียบ 70% ต้อง ≥ 18)';
+      pass.className = 'rounded-md px-2.5 py-1 text-xs font-semibold ' + (passed ? 'bg-emerald2/20 text-emerald2-soft' : 'bg-rose-500/15 text-rose-300');
+    } else {
+      pass.textContent = 'ทำครบ 25 ข้อเพื่อประเมินผล';
+      pass.className = 'rounded-md bg-slate-700/60 px-2.5 py-1 text-xs font-medium text-slate-300';
+    }
+  }
+
+  function lockCard(card, n){
+    var q = Q.find(function(x){ return x.n === n; });
+    card.querySelectorAll('.popt').forEach(function(o){
+      o.disabled = true;
+      o.classList.add('cursor-default');
+      o.classList.remove('hover:border-slate-300','hover:bg-slate-50');
+      if (parseInt(o.dataset.i) === q.a){
+        o.classList.add('border-emerald-400','bg-emerald-50');
+        o.querySelector('span').classList.add('!bg-emerald-500','!text-white');
+      }
+    });
+    var ex = card.querySelector('.pexplain');
+    ex.classList.remove('hidden');
+    ex.innerHTML = '<span class="font-semibold text-slate-900">เฉลย: ' + CHO[q.a] + '</span> — ' + q.e;
+  }
+
+  function render(){
+    list.innerHTML = '';
+    var items = Q.filter(matchQ);
+    if (!items.length){
+      list.innerHTML = '<div class="rounded-xl border border-dashed border-slate-700 bg-slate-800/30 px-6 py-12 text-center text-sm text-slate-400">ไม่พบข้อสอบที่ตรงเงื่อนไข — ลองปรับตัวกรอง หรือกด "ทุกข้อ"</div>';
+      return;
+    }
+    var PART = { '1':'ภาพรวมอนุพันธ์', '2':'ฟิวเจอร์ส', '3':'ออปชัน', '4':'กลไกตลาด TFEX' };
+    items.forEach(function(q){
+      var card = document.createElement('div');
+      card.className = 'p3card fade-in rounded-2xl border border-slate-200 bg-gradient-to-b from-white to-slate-50 p-6 shadow-xl shadow-black/25';
+      var opts = q.o.map(function(opt, i){
+        return '<button data-q="' + q.n + '" data-i="' + i + '" class="popt group flex w-full items-start gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 text-left text-sm text-slate-700 transition hover:border-slate-300 hover:bg-slate-50">' +
+               '<span class="flex h-6 w-6 flex-none items-center justify-center rounded-md bg-slate-100 text-xs font-semibold text-slate-500">' + CHO[i] + '</span>' +
+               '<span class="pt-0.5">' + opt + '</span></button>';
+      }).join('');
+      card.innerHTML =
+        '<div class="mb-3 flex flex-wrap items-center gap-2">' +
+        '<span class="flex h-7 min-w-7 items-center justify-center rounded-lg bg-gradient-to-br from-slate-800 to-slate-950 px-1.5 text-xs font-bold text-white ring-1 ring-slate-600/60">' + q.n + '</span>' +
+        '<span class="rounded-md bg-slate-100 px-2 py-0.5 text-xs font-medium text-slate-500">' + PART[q.cat] + '</span></div>' +
+        '<p class="mb-4 text-[15px] font-medium leading-relaxed text-slate-900">' + q.q + '</p>' +
+        '<div class="flex flex-col gap-2.5">' + opts + '</div>' +
+        '<div class="pexplain mt-4 hidden rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-relaxed text-slate-600"></div>';
+      list.appendChild(card);
+      if (ans[q.n] !== undefined){
+        lockCard(card, q.n);
+        var ch = chosen[q.n];
+        if (ch !== undefined && ch !== q.a){
+          var wr = card.querySelector('.popt[data-i="' + ch + '"]');
+          if (wr){ wr.classList.add('border-rose-300','bg-rose-50'); wr.querySelector('span').classList.add('!bg-rose-500','!text-white'); }
+        }
+      }
+    });
+  }
+
+  list.addEventListener('click', function(e){
+    var btn = e.target.closest('.popt');
+    if (!btn || btn.disabled) return;
+    var n = parseInt(btn.dataset.q), i = parseInt(btn.dataset.i);
+    var q = Q.find(function(x){ return x.n === n; });
+    var card = btn.closest('.p3card');
+    if (i !== q.a){
+      btn.classList.add('border-rose-300','bg-rose-50');
+      btn.querySelector('span').classList.add('!bg-rose-500','!text-white');
+    }
+    lockCard(card, n);
+    if (ans[n] === undefined){ ans[n] = (i === q.a); chosen[n] = i; save(); updateScore(); }
+  });
+
+  function activate(btn, group){
+    document.querySelectorAll(group).forEach(function(b){
+      b.classList.remove('border-slate-600','bg-slate-700/60','text-white');
+      b.classList.add('border-slate-700','text-slate-400');
+    });
+    btn.classList.add('border-slate-600','bg-slate-700/60','text-white');
+    btn.classList.remove('border-slate-700','text-slate-400');
+  }
+  document.querySelectorAll('.pfilter-btn').forEach(function(b){
+    b.addEventListener('click', function(){ activate(b, '.pfilter-btn'); st.cat = b.dataset.pfilter; render(); });
+  });
+  document.querySelectorAll('.pmode-btn').forEach(function(b){
+    b.addEventListener('click', function(){ activate(b, '.pmode-btn'); st.mode = b.dataset.pmode; render(); });
+  });
+  document.getElementById('p3-reset').addEventListener('click', function(){
+    if (Object.keys(ans).length && !confirm('ล้างคำตอบและคะแนนทั้งหมด เริ่มทำใหม่?')) return;
+    ans = {}; chosen = {};
+    try { localStorage.removeItem(LS); } catch(e){}
+    updateScore(); render();
+  });
+
+  render(); updateScore();
+})();
+</script>
+
+<script>
+/* ================= tab mode (one section per view, hash-routed) ================= */
+(function(){
+  var TABS = ['overview','knowledge','exam'];
+  var hero = document.querySelector('main > section:not([id])');
+  function valid(h){ h = (h || '').replace('#',''); return TABS.indexOf(h) !== -1 ? h : 'overview'; }
+  function showTab(id, push){
+    TABS.forEach(function(s){
+      var el = document.getElementById(s);
+      if (el) el.classList.toggle('hidden', s !== id);
+    });
+    if (hero) hero.classList.toggle('hidden', id !== 'overview');
+    document.querySelectorAll('.nav-link, .mchip').forEach(function(a){
+      a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+    });
+    var sec = document.getElementById(id);
+    if (sec){ sec.classList.remove('fade-in'); void sec.offsetWidth; sec.classList.add('fade-in'); }
+    if (push){ try { history.pushState(null, '', '#' + id); } catch(e){ location.hash = id; } }
+    window.scrollTo({ top: 0 });
+  }
+  document.addEventListener('click', function(e){
+    var a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    var h = a.getAttribute('href').slice(1);
+    if (TABS.indexOf(h) !== -1){ e.preventDefault(); showTab(h, true); }
+  });
+  window.addEventListener('hashchange', function(){ showTab(valid(location.hash), false); });
+  window.addEventListener('popstate',  function(){ showTab(valid(location.hash), false); });
+  showTab(valid(location.hash), false);
+})();
+</script>
+</body>
+</html>
