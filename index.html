@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>IC Prep Hub · ศูนย์รวมเตรียมสอบใบอนุญาตผู้แนะนำการลงทุน (P1 · P2 · P3)</title>
+<meta name="description" content="ศูนย์รวมเตรียมสอบใบอนุญาตผู้แนะนำการลงทุน (IC License) — เข้าใจเส้นทางใบอนุญาต Plain / Complex และเตรียมสอบ P1, P2, P3 ฟรี" />
+<meta name="author" content="veekeancodemaipen" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23c9a86a'/><text x='16' y='23' font-family='Arial,sans-serif' font-size='16' font-weight='bold' text-anchor='middle' fill='%230f172a'>IC</text></svg>" />
+<link rel="canonical" href="https://ic-plain-prep-yossavees-projects.vercel.app/" />
+<meta name="robots" content="index, follow" />
+<meta name="theme-color" content="#0f172a" />
+<meta property="og:title" content="IC Prep Hub · ศูนย์รวมเตรียมสอบใบอนุญาต IC (P1 · P2 · P3)" />
+<meta property="og:description" content="เข้าใจเส้นทางใบอนุญาตผู้แนะนำการลงทุน และเตรียมสอบ P1, P2, P3 ฟรี" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://ic-plain-prep-yossavees-projects.vercel.app/" />
+<meta property="og:locale" content="th_TH" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "IC Prep Hub · ศูนย์รวมเตรียมสอบใบอนุญาตผู้แนะนำการลงทุน",
+  "url": "https://ic-plain-prep-yossavees-projects.vercel.app/",
+  "description": "ศูนย์รวมเตรียมสอบใบอนุญาตผู้แนะนำการลงทุน (IC License) P1 P2 P3",
+  "inLanguage": "th"
+}
+</script>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: { sans: ['Prompt', 'sans-serif'] },
+        colors: {
+          gold: { DEFAULT: '#c9a86a', soft: '#d9c191' },
+          emerald2: { DEFAULT: '#3f9d7e', soft: '#5cb89a' }
+        }
+      }
+    }
+  }
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Prompt', sans-serif; -webkit-font-smoothing: antialiased;
+    background:
+      radial-gradient(1100px 720px at 88% -8%, rgba(201,168,106,.075), transparent 62%),
+      radial-gradient(950px 650px at -8% 12%, rgba(63,157,126,.07), transparent 56%),
+      radial-gradient(900px 600px at 50% 110%, rgba(201,168,106,.045), transparent 60%),
+      linear-gradient(180deg, #0a1020 0%, #0f172a 55%, #0c1424 100%);
+    background-attachment: fixed;
+  }
+  ::selection { background: #c9a86a; color: #0f172a; }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: #0c1424; }
+  ::-webkit-scrollbar-thumb { background: #2b3a52; border-radius: 9999px; border: 2px solid #0c1424; }
+  ::-webkit-scrollbar-thumb:hover { background: #c9a86a; }
+
+  .pcard {
+    position: relative; border-radius: 1.25rem;
+    border: 1px solid rgba(148,163,184,.14);
+    background: linear-gradient(165deg, rgba(30,41,59,.55), rgba(15,23,42,.35));
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.045), 0 12px 32px -20px rgba(0,0,0,.65);
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .pcard:hover {
+    transform: translateY(-3px);
+    border-color: rgba(201,168,106,.35);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 26px 52px -26px rgba(0,0,0,.75), 0 0 0 1px rgba(201,168,106,.07);
+  }
+  .pcard-gold { border-color: rgba(201,168,106,.32); background: linear-gradient(165deg, rgba(201,168,106,.11), rgba(15,23,42,.42)); }
+  .pcard-gold:hover { border-color: rgba(201,168,106,.55); }
+  .pcard-static, .pcard-static:hover { transform: none; }
+
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: .5rem;
+    font-size: .68rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: #d9c191;
+  }
+  .eyebrow::before { content: ""; width: 1.4rem; height: 1px; background: linear-gradient(90deg, transparent, #c9a86a); }
+  .sec-rule { height: 1px; background: linear-gradient(90deg, rgba(201,168,106,.45), rgba(148,163,184,.12) 40%, transparent 80%); }
+
+  .grad-gold {
+    background: linear-gradient(100deg, #d9c191 0%, #c9a86a 32%, #f3e3ba 50%, #c9a86a 68%, #d9c191 100%);
+    background-size: 220% 100%;
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    animation: shimmer 7s linear infinite;
+  }
+  @keyframes shimmer { to { background-position: -220% 0; } }
+
+  .btn-glow { position: relative; overflow: hidden; }
+  .btn-glow::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(110deg, transparent 25%, rgba(255,255,255,.22) 50%, transparent 75%);
+    background-size: 250% 100%; background-position: 200% 0;
+    transition: background-position .7s ease; pointer-events: none;
+  }
+  .btn-glow:hover::after { background-position: -50% 0; }
+
+  .header-glass::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(201,168,106,.4) 30%, rgba(92,184,154,.35) 70%, transparent);
+    pointer-events: none;
+  }
+
+  .hero-aurora {
+    background:
+      radial-gradient(58% 52% at 50% 0%, rgba(63,157,126,.13), transparent 70%),
+      radial-gradient(40% 38% at 78% 18%, rgba(201,168,106,.10), transparent 70%),
+      radial-gradient(34% 30% at 18% 26%, rgba(92,184,154,.07), transparent 70%);
+  }
+  .hero-grid-lines {
+    background-image:
+      linear-gradient(rgba(148,163,184,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(148,163,184,.05) 1px, transparent 1px);
+    background-size: 44px 44px;
+    -webkit-mask-image: radial-gradient(60% 55% at 50% 18%, #000 30%, transparent 75%);
+            mask-image: radial-gradient(60% 55% at 50% 18%, #000 30%, transparent 75%);
+  }
+
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .65s ease, transform .65s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .grad-gold { animation: none; }
+  }
+
+  .soon { filter: saturate(.6); }
+  .soon:hover { transform: none; border-color: rgba(148,163,184,.2); }
+</style>
+</head>
+
+<body class="bg-slate-900 text-slate-200 antialiased">
+
+  <!-- maker credit -->
+  <a href="https://github.com/veekeancodemaipen" target="_blank" rel="noopener noreferrer"
+     class="group block border-b border-slate-800/70 bg-slate-950/95">
+    <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-2 gap-y-0.5 px-5 py-1.5 text-xs text-slate-400">
+      <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor" aria-hidden="true" class="text-slate-300">
+        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/>
+      </svg>
+      <span>จัดทำโดย <span class="font-semibold text-slate-200 transition group-hover:text-gold-soft">veekeancodemaipen</span></span>
+      <span class="text-slate-600">·</span>
+      <span class="text-slate-500 transition group-hover:text-slate-300">ดูซอร์สโค้ดบน GitHub ↗</span>
+    </div>
+  </a>
+
+  <!-- header -->
+  <header class="header-glass sticky top-0 z-40 bg-slate-900/70 backdrop-blur-xl">
+    <nav class="mx-auto flex max-w-6xl items-center justify-between px-5 py-3.5">
+      <a href="/" class="group flex items-center gap-2.5">
+        <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-gold to-gold-soft text-slate-900 font-bold text-sm shadow-lg shadow-gold/20 ring-1 ring-white/20 transition group-hover:shadow-gold/40">IC</span>
+        <span class="text-sm font-semibold tracking-wide text-slate-100">IC&nbsp;Prep&nbsp;Hub</span>
+      </a>
+      <div class="hidden items-center gap-0.5 md:flex">
+        <a href="#licenses" class="rounded-lg px-3 py-2 text-sm text-slate-400 transition hover:bg-white/[0.04] hover:text-slate-100">เส้นทางใบอนุญาต</a>
+        <a href="#papers" class="rounded-lg px-3 py-2 text-sm text-slate-400 transition hover:bg-white/[0.04] hover:text-slate-100">หลักสูตรสอบ</a>
+        <a href="#journey" class="rounded-lg px-3 py-2 text-sm text-slate-400 transition hover:bg-white/[0.04] hover:text-slate-100">เส้นทางสู่ IC</a>
+      </div>
+      <a href="/p1" class="btn-glow rounded-xl bg-gradient-to-br from-emerald2 to-emerald2-soft px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-emerald2/30 ring-1 ring-white/15 transition hover:shadow-emerald2/50">
+        เริ่มเตรียมสอบ P1
+      </a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- hero -->
+    <section class="relative overflow-hidden">
+      <div class="hero-aurora pointer-events-none absolute inset-0"></div>
+      <div class="hero-grid-lines pointer-events-none absolute inset-0"></div>
+      <div class="relative mx-auto max-w-6xl px-5 pt-24 pb-20 text-center">
+        <span class="inline-flex items-center gap-2 rounded-full border border-gold/25 bg-gold/[0.07] px-4 py-1.5 text-xs font-medium tracking-wide text-gold-soft shadow-[0_0_24px_-8px_rgba(201,168,106,0.45)]">
+          <span class="relative flex h-1.5 w-1.5"><span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald2-soft opacity-75"></span><span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald2"></span></span>
+          Investment Consultant License · ใบอนุญาตผู้แนะนำการลงทุน
+        </span>
+
+        <h1 class="mx-auto mt-8 max-w-3xl text-[2.5rem] font-bold leading-[1.18] tracking-tight text-white sm:text-6xl">
+          ศูนย์รวมเตรียมสอบ<br class="hidden sm:block" />
+          <span class="grad-gold">IC License</span> ครบทุกระดับ
+        </h1>
+
+        <p class="mx-auto mt-6 max-w-xl text-base leading-relaxed text-slate-400 sm:text-lg">
+          เข้าใจเส้นทางใบอนุญาต แล้วเตรียมสอบ <span class="font-semibold text-slate-100">P1 · P2 · P3</span> ในที่เดียว — สรุปเนื้อหา ข้อสอบพร้อมเฉลย และเครื่องมือฝึกครบ ใช้ฟรี
+        </p>
+
+        <div class="mt-9 flex flex-wrap items-center justify-center gap-3">
+          <a href="/p1" class="btn-glow rounded-xl bg-gradient-to-br from-emerald2 to-emerald2-soft px-7 py-3.5 text-sm font-semibold text-white shadow-xl shadow-emerald2/30 ring-1 ring-white/15 transition hover:-translate-y-0.5 hover:shadow-emerald2/50">เข้าสู่คลัง P1 (พร้อมใช้งาน) →</a>
+          <a href="#licenses" class="rounded-xl border border-slate-700/80 bg-white/[0.03] px-7 py-3.5 text-sm font-medium text-slate-200 backdrop-blur transition hover:-translate-y-0.5 hover:border-gold/50 hover:text-white">IC แต่ละระดับคืออะไร?</a>
+        </div>
+
+        <div class="mx-auto mt-14 grid max-w-2xl grid-cols-2 gap-3 sm:grid-cols-4">
+          <div class="pcard px-4 py-5"><div class="text-3xl font-bold tracking-tight text-gold-soft">3</div><div class="mt-1 text-xs text-slate-400">หลักสูตรสอบ (P1–P3)</div></div>
+          <div class="pcard px-4 py-5"><div class="text-3xl font-bold tracking-tight text-gold-soft">4</div><div class="mt-1 text-xs text-slate-400">ระดับใบอนุญาต</div></div>
+          <div class="pcard px-4 py-5"><div class="text-3xl font-bold tracking-tight text-emerald2-soft">70%</div><div class="mt-1 text-xs text-slate-400">เกณฑ์ผ่านทุกหลักสูตร</div></div>
+          <div class="pcard px-4 py-5"><div class="text-3xl font-bold tracking-tight text-emerald2-soft">ฟรี</div><div class="mt-1 text-xs text-slate-400">ทุกเครื่องมือบนเว็บนี้</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- licenses -->
+    <section id="licenses" class="mx-auto max-w-6xl scroll-mt-20 px-5 py-14">
+      <span class="eyebrow">License Path</span>
+      <h2 class="mt-2 text-2xl font-bold tracking-tight text-white">เส้นทางใบอนุญาต IC — สอบอะไร ได้สิทธิ์แนะนำอะไร</h2>
+      <p class="mt-2 max-w-2xl text-sm text-slate-400">ใบอนุญาตผู้แนะนำการลงทุนมี 4 ระดับ ต่อยอดจากกัน — <b class="text-slate-200">ทุกเส้นทางเริ่มที่ P1</b> แล้วเลือกสอบเพิ่มตามผลิตภัณฑ์ที่ต้องการแนะนำ</p>
+      <div class="sec-rule mt-5"></div>
+
+      <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="pcard pcard-gold p-6">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-medium uppercase tracking-wider text-gold-soft">เริ่มที่นี่</span>
+            <span class="rounded-md bg-gold/20 px-2.5 py-1 text-xs font-semibold text-gold-soft">สอบ P1</span>
+          </div>
+          <h3 class="mt-3 text-base font-semibold text-white">IC Plain</h3>
+          <p class="mt-2 text-sm leading-relaxed text-slate-300">แนะนำผลิตภัณฑ์ไม่ซับซ้อน: หุ้น · กองทุนรวมทั่วไป · ตราสารหนี้ทั่วไป · REIT · ETF · DW</p>
+        </div>
+        <div class="pcard p-6">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-medium uppercase tracking-wider text-slate-500">ระดับ 2</span>
+            <span class="rounded-md bg-slate-700/50 px-2.5 py-1 text-xs font-semibold text-slate-200">P1 + P2</span>
+          </div>
+          <h3 class="mt-3 text-base font-semibold text-white">IC Complex 2</h3>
+          <p class="mt-2 text-sm leading-relaxed text-slate-400">เพิ่มสิทธิ์แนะนำ <b class="text-slate-200">ตราสารหนี้และกองทุนรวมที่ซับซ้อน</b> เช่น hybrid bond, Basel III, structured notes, hedge fund</p>
+        </div>
+        <div class="pcard p-6">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-medium uppercase tracking-wider text-slate-500">ระดับ 3</span>
+            <span class="rounded-md bg-slate-700/50 px-2.5 py-1 text-xs font-semibold text-slate-200">P1 + P3</span>
+          </div>
+          <h3 class="mt-3 text-base font-semibold text-white">IC Complex 3</h3>
+          <p class="mt-2 text-sm leading-relaxed text-slate-400">เพิ่มสิทธิ์แนะนำ <b class="text-slate-200">สัญญาซื้อขายล่วงหน้า</b> — futures, options, swap ในตลาด TFEX</p>
+        </div>
+        <div class="pcard p-6">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-medium uppercase tracking-wider text-emerald2-soft">สูงสุด</span>
+            <span class="rounded-md bg-emerald2/20 px-2.5 py-1 text-xs font-semibold text-emerald2-soft">P1 + P2 + P3</span>
+          </div>
+          <h3 class="mt-3 text-base font-semibold text-white">IC Complex 1</h3>
+          <p class="mt-2 text-sm leading-relaxed text-slate-400">แนะนำได้ <b class="text-slate-200">ทุกผลิตภัณฑ์ในตลาดทุน</b> ทั้งทั่วไปและซับซ้อน — เป้าหมายปลายทางของสาย IC</p>
+        </div>
+      </div>
+
+      <p class="mt-5 text-xs text-slate-500">* สอบผ่านแล้วต้องยื่นขอความเห็นชอบจากสำนักงาน ก.ล.ต. ก่อนเริ่มปฏิบัติงานจริง · อ้างอิงโครงสร้างจาก <a href="https://www.set.or.th/th/education-research/education/professional/ic/main" target="_blank" rel="noopener" class="underline underline-offset-2 hover:text-gold-soft">ตลาดหลักทรัพย์ฯ (SET)</a></p>
+    </section>
+
+    <!-- papers -->
+    <section id="papers" class="mx-auto max-w-6xl scroll-mt-20 px-5 py-14">
+      <span class="eyebrow">Exam Papers</span>
+      <h2 class="mt-2 text-2xl font-bold tracking-tight text-white">เลือกหลักสูตรที่จะเตรียมสอบ</h2>
+      <p class="mt-2 max-w-2xl text-sm text-slate-400">P1 พร้อมใช้งานเต็มรูปแบบแล้ว · P2 และ P3 กำลังทยอยตามมา</p>
+      <div class="sec-rule mt-5"></div>
+
+      <div class="mt-8 grid gap-5 lg:grid-cols-3">
+
+        <!-- P1 -->
+        <a href="/p1" class="pcard pcard-gold group flex flex-col p-7">
+          <div class="flex items-center justify-between">
+            <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-gold to-gold-soft text-base font-bold text-slate-900 shadow-lg shadow-gold/20 ring-1 ring-white/20">P1</span>
+            <span class="rounded-full bg-emerald2/20 px-3 py-1 text-xs font-semibold text-emerald2-soft">✓ พร้อมใช้งาน · ฟรี</span>
+          </div>
+          <h3 class="mt-4 text-lg font-semibold text-white">Plain Products · ตราสารทั่วไป</h3>
+          <p class="mt-1 text-xs text-slate-400">ข้อสอบ 100 ข้อ · 3 หมวด · ผ่าน ≥ 70% และหมวด 2 ≥ 14/20</p>
+          <ul class="mt-4 flex-1 space-y-2 text-sm leading-relaxed text-slate-300">
+            <li class="flex gap-2.5"><span class="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-emerald2"></span>สรุปเนื้อหาครบ 3 หมวด + สูตรคำนวณ</li>
+            <li class="flex gap-2.5"><span class="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-emerald2"></span>ข้อสอบ 150 ข้อ พร้อมเฉลยละเอียด</li>
+            <li class="flex gap-2.5"><span class="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-emerald2"></span>Flashcards หมวด 2 · ตัวจับเวลา · บันทึก PDF</li>
+            <li class="flex gap-2.5"><span class="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-emerald2"></span>บันทึกความคืบหน้าอัตโนมัติ</li>
+          </ul>
+          <span class="btn-glow mt-6 inline-flex items-center justify-center gap-1.5 rounded-xl bg-gradient-to-br from-emerald2 to-emerald2-soft px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-emerald2/30 ring-1 ring-white/15 transition group-hover:shadow-emerald2/50">
+            เข้าสู่คลังความรู้ P1 <span aria-hidden="true">→</span>
+          </span>
+        </a>
+
+        <!-- P2 -->
+        <div class="pcard soon flex flex-col p-7">
+          <div class="flex items-center justify-between">
+            <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-800 text-base font-bold text-slate-400 ring-1 ring-slate-700">P2</span>
+            <span class="rounded-full border border-slate-700 bg-slate-800/60 px-3 py-1 text-xs font-semibold text-slate-400">🚧 Coming Soon</span>
+          </div>
+          <h3 class="mt-4 text-lg font-semibold text-slate-200">Complex Products · ตราสารหนี้และกองทุนรวมซับซ้อน</h3>
+          <p class="mt-1 text-xs text-slate-500">ข้อสอบ 25 ข้อ · 40 นาที · ผ่าน ≥ 70%</p>
+          <ul class="mt-4 flex-1 space-y-2 text-sm leading-relaxed text-slate-400">
+            <li class="flex gap-2.5"><span class="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-slate-600"></span>ตราสารหนี้ซับซ้อน: hybrid bond · Basel III · structured notes · perpetual / unrated bond</li>
+            <li class="flex gap-2.5"><span class="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-slate-600"></span>กองทุนซับซ้อน: hedge fund · complex return · กองทองคำ/น้ำมันไม่ track spot</li>
+            <li class="flex gap-2.5"><span class="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-slate-600"></span>การให้คำแนะนำผลิตภัณฑ์เสี่ยงสูง</li>
+          </ul>
+          <a href="https://www.set.or.th/th/education-research/education/professional/ic/complex-products-2" target="_blank" rel="noopener"
+             class="mt-6 inline-flex items-center justify-center gap-1.5 rounded-xl border border-slate-700 px-5 py-3 text-sm font-medium text-slate-300 transition hover:border-gold/50 hover:text-white">
+            ระหว่างรอ ดูหลักสูตรทางการ (SET) ↗
+          </a>
+        </div>
+
+        <!-- P3 -->
+        <div class="pcard soon flex flex-col p-7">
+          <div class="flex items-center justify-between">
+            <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-800 text-base font-bold text-slate-400 ring-1 ring-slate-700">P3</span>
+            <span class="rounded-full border border-slate-700 bg-slate-800/60 px-3 py-1 text-xs font-semibold text-slate-400">🚧 Coming Soon</span>
+          </div>
+          <h3 class="mt-4 text-lg font-semibold text-slate-200">Complex Products · สัญญาซื้อขายล่วงหน้า</h3>
+          <p class="mt-1 text-xs text-slate-500">ข้อสอบ 50 ข้อ · 80 นาที · ผ่าน ≥ 70%</p>
+          <ul class="mt-4 flex-1 space-y-2 text-sm leading-relaxed text-slate-400">
+            <li class="flex gap-2.5"><span class="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-slate-600"></span>ภาพรวมอนุพันธ์ · พื้นฐาน futures และ options</li>
+            <li class="flex gap-2.5"><span class="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-slate-600"></span>กลไกการซื้อขายในตลาด TFEX</li>
+            <li class="flex gap-2.5"><span class="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-slate-600"></span>ลักษณะและเงื่อนไขของสินค้าในตลาดสัญญาฯ</li>
+          </ul>
+          <a href="https://www.set.or.th/th/education-research/education/professional/ic/complex-products-3" target="_blank" rel="noopener"
+             class="mt-6 inline-flex items-center justify-center gap-1.5 rounded-xl border border-slate-700 px-5 py-3 text-sm font-medium text-slate-300 transition hover:border-gold/50 hover:text-white">
+            ระหว่างรอ ดูหลักสูตรทางการ (SET) ↗
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- journey -->
+    <section id="journey" class="mx-auto max-w-6xl scroll-mt-20 px-5 py-14">
+      <span class="eyebrow">Journey</span>
+      <h2 class="mt-2 text-2xl font-bold tracking-tight text-white">เส้นทางสู่การเป็นผู้แนะนำการลงทุน</h2>
+      <div class="sec-rule mt-5"></div>
+
+      <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="pcard p-6">
+          <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-gold/15 text-sm font-bold text-gold-soft ring-1 ring-gold/30">1</span>
+          <h3 class="mt-3 text-sm font-semibold text-white">เตรียมตัวและสอบ</h3>
+          <p class="mt-1.5 text-sm leading-relaxed text-slate-400">เริ่มจาก P1 — สมัครสอบกับศูนย์ทดสอบ <b class="text-slate-200">ATI</b> หรือ <b class="text-slate-200">AIMC</b></p>
+        </div>
+        <div class="pcard p-6">
+          <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-gold/15 text-sm font-bold text-gold-soft ring-1 ring-gold/30">2</span>
+          <h3 class="mt-3 text-sm font-semibold text-white">ขอความเห็นชอบ ก.ล.ต.</h3>
+          <p class="mt-1.5 text-sm leading-relaxed text-slate-400">ยื่นผ่านระบบ ORAP ค่าธรรมเนียม 2,140 บาท (รวม VAT) — พิจารณาภายใน ~5 วันทำการ</p>
+        </div>
+        <div class="pcard p-6">
+          <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-gold/15 text-sm font-bold text-gold-soft ring-1 ring-gold/30">3</span>
+          <h3 class="mt-3 text-sm font-semibold text-white">เริ่มทำงานในตลาดทุน</h3>
+          <p class="mt-1.5 text-sm leading-relaxed text-slate-400">บล. · บลจ. · ธนาคารพาณิชย์ · บริษัทประกัน ฯลฯ และสอบ P2/P3 เพิ่มเพื่อขยายสิทธิ์</p>
+        </div>
+        <div class="pcard p-6">
+          <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-gold/15 text-sm font-bold text-gold-soft ring-1 ring-gold/30">4</span>
+          <h3 class="mt-3 text-sm font-semibold text-white">ต่ออายุทุก 2 ปี</h3>
+          <p class="mt-1.5 text-sm leading-relaxed text-slate-400">อบรม 15 ชม./2 ปี (กฎระเบียบ-จรรยาบรรณ 3 ชม. + ESG 3 ชม. + อื่น ๆ 9 ชม.) ค่าต่ออายุ 1,070 บาท</p>
+        </div>
+      </div>
+
+      <div class="pcard pcard-static mt-8 p-6 sm:p-7">
+        <h3 class="text-sm font-semibold text-gold-soft">คำถามที่พบบ่อย: ควรเริ่มสอบอะไรก่อน?</h3>
+        <p class="mt-2 text-sm leading-relaxed text-slate-300">เริ่มที่ <b class="text-white">P1 เสมอ</b> — เพราะเป็นฐานบังคับของใบอนุญาตทุกระดับ สอบผ่าน P1 ก็ขึ้นทะเบียนเป็น IC Plain เริ่มทำงานได้เลย แล้วค่อยเก็บ P2 (ตราสารหนี้/กองทุนซับซ้อน) หรือ P3 (อนุพันธ์) เพิ่มภายหลังตามสายงาน</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- footer -->
+  <footer class="relative bg-slate-950/60">
+    <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent"></div>
+    <div class="mx-auto max-w-6xl px-5 py-12">
+      <div class="flex items-center gap-2.5">
+        <span class="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-gold to-gold-soft text-slate-900 font-bold text-xs shadow-lg shadow-gold/20 ring-1 ring-white/20">IC</span>
+        <span class="text-sm font-medium text-slate-300">IC Prep Hub · ศูนย์รวมเตรียมสอบใบอนุญาตผู้แนะนำการลงทุน</span>
+      </div>
+      <p class="mt-7 text-xs leading-relaxed text-slate-600">
+        เว็บไซต์นี้จัดทำเพื่อการเตรียมสอบเท่านั้น โปรดตรวจสอบหลักเกณฑ์ จำนวนข้อ ค่าธรรมเนียม และเงื่อนไขฉบับล่าสุดจากเว็บไซต์ตลาดหลักทรัพย์ฯ (SET) และสำนักงาน ก.ล.ต. ก่อนสอบจริง
+      </p>
+      <p class="mt-4 flex flex-wrap items-center gap-1.5 text-xs text-slate-600">
+        <span>จัดทำและดูแลโดย</span>
+        <a href="https://github.com/veekeancodemaipen" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 font-medium text-slate-400 underline-offset-2 transition hover:text-gold-soft hover:underline">veekeancodemaipen</a>
+        <span class="text-slate-700">·</span>
+        <a href="https://github.com/veekeancodemaipen/ic-plain-prep" target="_blank" rel="noopener noreferrer" class="text-slate-500 underline-offset-2 transition hover:text-slate-300 hover:underline">ดูซอร์สโค้ดบน GitHub</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      if (!('IntersectionObserver' in window)) return;
+      var rv = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if (e.isIntersecting){
+            e.target.classList.add('in'); rv.unobserve(e.target);
+            setTimeout(function(){ e.target.style.transitionDelay = ''; }, 900);
+          }
+        });
+      }, { threshold: 0.08 });
+      document.querySelectorAll('main .pcard').forEach(function(el, i){
+        el.classList.add('reveal');
+        el.style.transitionDelay = Math.min(i % 4 * 60, 180) + 'ms';
+        rv.observe(el);
+      });
+    })();
+  </script>
+</body>
+</html>
