@@ -1,6 +1,6 @@
 {
   "rewrites": [
-    { "source": "/", "destination": "/ic-plain-index.html" }
+    { "source": "/p1", "destination": "/ic-plain-index.html" }
   ],
   "headers": [
     {
@@ -13,6 +13,12 @@
     },
     {
       "source": "/ic-plain-index.html",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=300, stale-while-revalidate=60" }
+      ]
+    },
+    {
+      "source": "/index.html",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=300, stale-while-revalidate=60" }
       ]
