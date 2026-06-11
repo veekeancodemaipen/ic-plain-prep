@@ -111,6 +111,25 @@
   @media (prefers-reduced-motion: reduce) { .grad-gold { animation: none; } }
   .mnav-scroll { scrollbar-width: none; -ms-overflow-style: none; }
   .mnav-scroll::-webkit-scrollbar { display: none; }
+
+  /* ---- flashcards ---- */
+  .fc-scene { perspective: 1400px; }
+  .fc-card {
+    position: relative; width: 100%; min-height: 300px;
+    transform-style: preserve-3d; cursor: pointer;
+    transition: transform .55s cubic-bezier(.2,.7,.3,1);
+  }
+  .fc-card.flip { transform: rotateY(180deg); }
+  .fc-face {
+    position: absolute; inset: 0; display: flex; flex-direction: column; gap: .75rem;
+    padding: 1.75rem; overflow-y: auto;
+    -webkit-backface-visibility: hidden; backface-visibility: hidden;
+  }
+  .fc-face p { margin: auto 0; font-size: 1.05rem; line-height: 1.85; font-weight: 500; color: #e8eef7; text-align: center; }
+  .fc-back { transform: rotateY(180deg); }
+  .fc-tag { font-size: .64rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: #94a3b8; }
+  .fc-hint { font-size: .7rem; color: #64748b; text-align: center; }
+  @media (prefers-reduced-motion: reduce) { .fc-card { transition: none; } }
 </style>
 </head>
 
@@ -144,6 +163,7 @@
         <a href="#overview"  class="nav-link rounded-lg px-3 py-2 text-sm text-slate-400 transition hover:bg-white/[0.04] hover:text-slate-100">ภาพรวม</a>
         <a href="#knowledge" class="nav-link rounded-lg px-3 py-2 text-sm text-slate-400 transition hover:bg-white/[0.04] hover:text-slate-100">คลังความรู้</a>
         <a href="#exam"      class="nav-link rounded-lg px-3 py-2 text-sm text-slate-400 transition hover:bg-white/[0.04] hover:text-slate-100">ข้อสอบทางการ</a>
+        <a href="#flashcards" class="nav-link rounded-lg px-3 py-2 text-sm text-slate-400 transition hover:bg-white/[0.04] hover:text-slate-100">ท่องจำ</a>
       </div>
 
       <a href="#exam" class="btn-glow rounded-xl bg-gradient-to-br from-emerald2 to-emerald2-soft px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-emerald2/30 ring-1 ring-white/15 transition hover:shadow-emerald2/50">
@@ -157,6 +177,7 @@
         <a href="#overview"  class="mchip shrink-0 rounded-full border border-slate-700/70 bg-slate-800/50 px-3.5 py-1.5 text-xs font-medium text-slate-300 transition">ภาพรวม</a>
         <a href="#knowledge" class="mchip shrink-0 rounded-full border border-slate-700/70 bg-slate-800/50 px-3.5 py-1.5 text-xs font-medium text-slate-300 transition">คลังความรู้</a>
         <a href="#exam"      class="mchip shrink-0 rounded-full border border-slate-700/70 bg-slate-800/50 px-3.5 py-1.5 text-xs font-medium text-slate-300 transition">ข้อสอบทางการ</a>
+        <a href="#flashcards" class="mchip shrink-0 rounded-full border border-slate-700/70 bg-slate-800/50 px-3.5 py-1.5 text-xs font-medium text-slate-300 transition">ท่องจำ</a>
       </div>
     </div>
   </header>
@@ -393,6 +414,62 @@
       <div id="p2-list" class="mx-auto flex max-w-3xl flex-col gap-5"></div>
     </section>
 
+    <!-- ================= FLASHCARDS P2 ================= -->
+    <section id="flashcards" class="mx-auto max-w-6xl px-5 py-14 scroll-mt-20">
+      <span class="eyebrow">Flashcards</span>
+      <div class="mt-2 flex flex-wrap items-center gap-2.5">
+        <h2 class="text-2xl font-bold tracking-tight text-white">ท่องจำ P2 · ประเด็นที่ออกสอบ</h2>
+        <span class="rounded-full border border-gold/30 bg-gold/15 px-2.5 py-0.5 text-xs font-semibold text-gold-soft">24 ใบ</span>
+      </div>
+      <p class="mt-2 max-w-2xl text-sm text-slate-400">คลิกการ์ดเพื่อพลิกดูคำตอบ · กด "จำได้" เพื่อตัดออกจากรอบถัดไป — ระบบจะวนเฉพาะใบที่ยังจำไม่ได้ และบันทึกความคืบหน้าให้อัตโนมัติ</p>
+      <div class="sec-rule mt-5"></div>
+
+      <div class="mx-auto mt-8 max-w-2xl">
+        <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
+          <div class="flex flex-wrap gap-2">
+            <button data-fmode="due" class="fmode-btn rounded-lg border border-slate-600 bg-slate-700/60 px-3 py-1.5 text-xs font-medium text-white">ยังไม่จำ (<span id="fc-due-count">0</span>)</button>
+            <button data-fmode="all" class="fmode-btn rounded-lg border border-slate-700 px-3 py-1.5 text-xs text-slate-400 transition hover:text-white">ทั้งหมด (<span id="fc-all-count">0</span>)</button>
+            <button id="fc-shuffle" class="rounded-lg border border-slate-700 px-3 py-1.5 text-xs text-slate-400 transition hover:text-white" aria-pressed="false">⤨ สลับ</button>
+          </div>
+          <div class="flex items-center gap-3 text-sm text-slate-300">
+            <span>จำได้ <span id="fc-known" class="font-bold text-emerald2-soft">0</span><span class="text-slate-500">/<span id="fc-total">0</span></span></span>
+            <button id="fc-reset" class="text-xs text-slate-400 underline-offset-2 transition hover:text-white hover:underline">เริ่มใหม่</button>
+          </div>
+        </div>
+        <div class="mb-6 h-1.5 w-full overflow-hidden rounded-full bg-slate-700/50">
+          <div id="fc-bar" class="h-full rounded-full bg-gradient-to-r from-gold to-emerald2-soft transition-all duration-500" style="width:0%"></div>
+        </div>
+
+        <div id="fc-scene" class="fc-scene">
+          <div id="fc-card" class="fc-card" role="button" tabindex="0" aria-label="พลิกการ์ดเพื่อดูคำตอบ">
+            <div class="fc-face pcard pcard-static">
+              <span id="fc-front-tag" class="fc-tag"></span>
+              <p id="fc-front-text"></p>
+              <span class="fc-hint">คลิกการ์ดเพื่อดูคำตอบ ↻</span>
+            </div>
+            <div class="fc-face fc-back pcard pcard-static pcard-gold">
+              <span class="fc-tag !text-gold-soft">คำตอบ</span>
+              <p id="fc-back-text"></p>
+              <span class="fc-hint">คลิกเพื่อกลับไปดูคำถาม ↻</span>
+            </div>
+          </div>
+        </div>
+
+        <div id="fc-ctrl" class="mt-6 grid grid-cols-3 gap-3">
+          <button id="fc-again" class="rounded-xl border border-rose-400/40 bg-rose-500/10 px-4 py-3 text-sm font-semibold text-rose-300 transition hover:bg-rose-500/20">✗ ยังไม่ได้</button>
+          <button id="fc-flip" class="rounded-xl border border-slate-600 bg-slate-800/60 px-4 py-3 text-sm font-medium text-slate-200 transition hover:border-slate-400">พลิกการ์ด</button>
+          <button id="fc-got" class="rounded-xl border border-emerald2/50 bg-emerald2/15 px-4 py-3 text-sm font-semibold text-emerald2-soft transition hover:bg-emerald2/25">✓ จำได้</button>
+        </div>
+        <p id="fc-meta" class="mt-3 text-center text-xs text-slate-500">ใบที่ <span id="fc-pos">0</span>/<span id="fc-count">0</span> ในรอบนี้</p>
+
+        <div id="fc-done" class="pcard pcard-gold pcard-static hidden p-8 text-center">
+          <div class="text-3xl">🎉</div>
+          <p class="mt-3 text-base font-semibold text-white">จำครบทุกใบแล้ว!</p>
+          <p class="mt-1.5 text-sm text-slate-400">สลับไปโหมด "ทั้งหมด" เพื่อทบทวนซ้ำ หรือกด "เริ่มใหม่" เพื่อล้างความคืบหน้า</p>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <!-- footer -->
@@ -579,9 +656,133 @@ window.P2Q = [
 </script>
 
 <script>
+/* ================= Flashcards P2 (บล็อกอิสระ) ================= */
+(function(){
+  var KEY = 'ic-p2-flash-v1';
+  var CARDS = [
+    { t:'ตราสารหนี้ซับซ้อน', f:'ใครมีสิทธิเลื่อน/งดจ่ายดอกเบี้ยของตราสารหนี้ซับซ้อน?', b:'"ผู้ออกตราสาร" ฝ่ายเดียว (ไม่ใช่ผู้ถือ) — และถ้าปฏิบัติตามเงื่อนไขครบถ้วน ไม่ถือว่าผิดนัดชำระหนี้' },
+    { t:'ตราสารหนี้ซับซ้อน', f:'Callable / Puttable / Convertible bond เป็นตราสารซับซ้อนหรือไม่?', b:'ไม่ — ทั้งสามถือเป็นตราสารหนี้ "ปกติ" (จุดหลอกที่ออกสอบบ่อยที่สุด)' },
+    { t:'ตราสารหนี้ซับซ้อน', f:'ลักษณะร่วม 3 ข้อของตราสารหนี้ซับซ้อน เทียบกับตราสารหนี้ปกติ?', b:'อายุไม่แน่นอน · ผลตอบแทนสูงกว่า (ชดเชยความเสี่ยง) · สภาพคล่องต่ำกว่า' },
+    { t:'ตราสารหนี้ซับซ้อน', f:'Hybrid Securities จ่ายผลตอบแทนแบบใด และลำดับสิทธิเป็นอย่างไร?', b:'จ่าย "ดอกเบี้ย" เหมือนหุ้นกู้ (ไม่จ่ายปันผล) · ลำดับสิทธิด้อยกว่าเจ้าหนี้บุริมสิทธิและเจ้าหนี้สามัญ' },
+    { t:'ตราสารหนี้ซับซ้อน', f:'ข้อกำหนดคุ้มครองผู้ลงทุน เมื่อผู้ออกประกาศเลื่อนจ่ายดอกเบี้ย?', b:'ห้ามบริษัทจ่ายเงินปันผลให้ผู้ถือหุ้น จนกว่าจะกลับมาจ่ายดอกเบี้ยตามปกติ' },
+    { t:'ตราสารหนี้ซับซ้อน', f:'ตราสาร Basel III ใครออกได้ และมีเงื่อนไขพิเศษอะไร?', b:'ธนาคารพาณิชย์เท่านั้น · เป็นหุ้นกู้ด้อยสิทธินับเป็นเงินกองทุน · แปลงเป็นหุ้นสามัญหรือตัดหนี้สูญเมื่อเกิด trigger events · สภาพคล่องต่ำมาก' },
+    { t:'ตราสารหนี้ซับซ้อน', f:'Perpetual bond จ่ายเงินต้นและดอกเบี้ยอย่างไร?', b:'เงินต้นจ่ายครั้งเดียวเมื่อเลิกกิจการ แต่ "ดอกเบี้ยจ่ายตามกำหนดในสัญญา" · มักให้สิทธิผู้ออกไถ่ถอนก่อนกำหนดตามหนังสือชี้ชวน' },
+    { t:'ตราสารหนี้ซับซ้อน', f:'ELN: ถ้าราคาหุ้นวันสุดท้าย "ต่ำกว่าหรือเท่ากับ" ราคาใช้สิทธิ จะได้อะไร?', b:'ได้หุ้นตามจำนวนที่กำหนด ณ ราคาใช้สิทธิ (เช่น 100 หุ้น × 100 บาท = ชำระ 10,000 บาท) · ถ้าสูงกว่า ได้เงินต้น + ดอกเบี้ย' },
+    { t:'ตราสารหนี้ซับซ้อน', f:'ตราสารหนี้ "เสี่ยงสูง" นิยามด้วยอันดับเครดิตระดับใด?', b:'ต่ำกว่า BBB− (non-investment grade) หรือไม่มีการจัดอันดับ (unrated) — ระวังตัวหลอก "ต่ำกว่า B−"' },
+    { t:'ตราสารหนี้ซับซ้อน', f:'หุ้นกู้อนุพันธ์ต้องคุ้มครองเงินต้นเต็มจำนวนเสมอหรือไม่?', b:'ไม่ — จัดโครงสร้างได้หลายแบบ ทั้งคุ้มครองทั้งหมดหรือบางส่วน · จุดสำคัญคือผลตอบแทนส่วนเพิ่มแปรผันตามตัวแปรอ้างอิง' },
+    { t:'กองทุนซับซ้อน', f:'กองทุนเสี่ยงสูงลงทุนในตราสารหนี้ต่ำกว่าอันดับ/unrated ได้เท่าไรของ NAV?', b:'"เกินกว่า 60%" ของมูลค่าทรัพย์สินสุทธิ (ตัวเลขเกณฑ์ที่ออกสอบ — ตัวหลอกคือ 50%) จึงลงทุน Junk bond ได้' },
+    { t:'กองทุนซับซ้อน', f:'Asian Option vs Binary Option จ่ายผลตอบแทนต่างกันอย่างไร?', b:'Asian = ตามส่วนต่าง strike กับ "ราคาเฉลี่ย" ของช่วงเวลา · Binary = จ่าย "คงที่" เมื่อสัญญามีมูลค่า — ข้อสอบชอบสลับนิยามสองตัวนี้' },
+    { t:'กองทุนซับซ้อน', f:'ทำไมกองทองคำ/น้ำมันที่ลงทุนผ่านฟิวเจอร์ส ผลตอบแทนไม่เท่าราคา spot?', b:'สัญญามีวันหมดอายุ + มีต้นทุนเปลี่ยนสัญญา (rollover) + มี basis risk' },
+    { t:'กองทุนซับซ้อน', f:'Basis Risk และ Rollover Risk คืออะไร?', b:'Basis = ราคาฟิวเจอร์สเคลื่อนไม่สัมพันธ์กับราคา spot · Rollover = ความเสี่ยง/ต้นทุนตอนต่อสัญญาใหม่ สูงขึ้นเมื่อถือยาว (Contango / Backwardation)' },
+    { t:'กองทุนซับซ้อน', f:'Hedge Fund เสนอขายให้ใครได้ และทำอะไรได้ที่กองทุนปกติทำไม่ได้?', b:'เฉพาะผู้ลงทุนรายใหญ่พิเศษ (UHNW) · short sell และกู้ยืมเงินมาลงทุนได้ · ไม่จำกัดอัตราส่วนการลงทุน และถูกกำกับดูแลน้อยกว่า' },
+    { t:'กองทุนซับซ้อน', f:'กลยุทธ์ Tactical Trading ต่างจาก Relative Value อย่างไร?', b:'Tactical Trading = เก็งกำไรการเคลื่อนไหวของราคาทรัพย์สิน · Relative Value = ซื้อขายหลักทรัพย์ที่สัมพันธ์กันตั้งแต่ 2 หลักทรัพย์ขึ้นไป' },
+    { t:'กองทุนซับซ้อน', f:'Over hedge คืออะไร?', b:'การทำสัญญาอนุพันธ์ "เกิน" มูลค่าความเสี่ยงที่มีอยู่ — กลายเป็นการเพิ่มความเสี่ยงแทนที่จะลด (hedging ที่ถูกต้องทำได้ไม่เกินมูลค่าความเสี่ยง)' },
+    { t:'กองทุนซับซ้อน', f:'กองทุนตราสารหนี้เสี่ยงสูง (High Yield) เหมาะกับผู้ลงทุนแบบใด?', b:'สถาบัน/รายใหญ่ที่เข้าใจและรับความเสี่ยงได้ — ไม่เหมาะกับรายย่อย · จุดเด่นคือ real return เป็นบวก เหมาะกับภาวะดอกเบี้ยต่ำ' },
+    { t:'การให้คำแนะนำ', f:'ลูกค้ามีประสบการณ์ลงทุนหุ้นมา 20 ปี ยังต้องเตือนความเสี่ยงไหม?', b:'ต้องเตือน "ทุกครั้ง" — ความเสี่ยงและเงื่อนไขเฉพาะของผลิตภัณฑ์ซับซ้อนต่างจากหุ้น ประสบการณ์เดิมทดแทนไม่ได้' },
+    { t:'การให้คำแนะนำ', f:'ลูกค้าไม่ผ่านแบบทดสอบประเมินความรู้ (knowledge test) ต้องทำอย่างไร?', b:'ไม่ให้ลงทุนในผลิตภัณฑ์นั้น — ห้ามทำแบบทดสอบแทนลูกค้าเด็ดขาด' },
+    { t:'การให้คำแนะนำ', f:'การเสนอขายตราสาร Basel III ต้องอธิบายอะไรเป็นพิเศษ?', b:'ผลขาดทุนที่อาจเกิดขึ้นในกรณีเลวร้ายที่สุด (worst case scenario) ให้ลูกค้าทราบก่อนการลงทุน' },
+    { t:'การให้คำแนะนำ', f:'นอกจากไม่จ่ายเงิน เหตุการณ์ใดถือเป็น "การผิดนัดชำระหนี้" ของหุ้นกู้?', b:'ไม่รักษาอัตราส่วนทางการเงินตามข้อตกลง (เช่น D/E) · นำทรัพย์สินไปค้ำประกันเจ้าหนี้อื่นทั้งที่ตกลงว่าจะไม่ก่อภาระหลักประกัน' },
+    { t:'การให้คำแนะนำ', f:'หุ้นกู้ที่มีการแต่งตั้งผู้แทนผู้ถือหุ้นกู้ การใช้สิทธิเรียกร้องทำอย่างไร?', b:'ต้องกระทำ "ผ่านผู้แทนผู้ถือหุ้นกู้" ซึ่งมีอำนาจหน้าที่ตามกฎหมายดำเนินการแทนผู้ถือหุ้นกู้' },
+    { t:'การให้คำแนะนำ', f:'ขายกองทุน trigger fund โดยเน้นแจ้งเฉพาะจุดเด่นได้หรือไม่?', b:'ไม่ได้ — จะทำให้ลูกค้าเข้าใจผิดว่าคุ้มครองเงินต้นเหมือนเงินฝาก ต้องให้ข้อมูลความเสี่ยงครบถ้วน แม้กระทบยอดขาย' }
+  ];
+
+  var $ = function(id){ return document.getElementById(id); };
+  var card = $('fc-card');
+  if (!card) return;
+
+  var known = {};
+  try { known = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch(e){ known = {}; }
+  var mode = 'due', order = [], pos = 0, flipped = false, shuffled = false;
+
+  function save(){ try { localStorage.setItem(KEY, JSON.stringify(known)); } catch(e){} }
+  function knownCount(){ var n = 0; for (var i = 0; i < CARDS.length; i++) if (known[i]) n++; return n; }
+  function rebuild(){
+    order = [];
+    for (var i = 0; i < CARDS.length; i++) if (mode === 'all' || !known[i]) order.push(i);
+    if (shuffled){
+      for (var k = order.length - 1; k > 0; k--){
+        var j = Math.floor(Math.random() * (k + 1));
+        var tmp = order[k]; order[k] = order[j]; order[j] = tmp;
+      }
+    }
+    pos = 0;
+  }
+  function render(){
+    var kn = knownCount();
+    $('fc-known').textContent = kn;
+    $('fc-total').textContent = CARDS.length;
+    $('fc-all-count').textContent = CARDS.length;
+    $('fc-due-count').textContent = CARDS.length - kn;
+    $('fc-bar').style.width = (kn / CARDS.length * 100) + '%';
+    var empty = !order.length;
+    $('fc-done').classList.toggle('hidden', !empty);
+    $('fc-scene').classList.toggle('hidden', empty);
+    $('fc-ctrl').classList.toggle('hidden', empty);
+    $('fc-meta').classList.toggle('hidden', empty);
+    if (empty) return;
+    if (pos >= order.length) pos = 0;
+    var c = CARDS[order[pos]];
+    flipped = false; card.classList.remove('flip');
+    $('fc-front-tag').textContent = c.t;
+    $('fc-front-text').textContent = c.f;
+    $('fc-back-text').textContent = c.b;
+    $('fc-pos').textContent = pos + 1;
+    $('fc-count').textContent = order.length;
+  }
+  function flip(){ flipped = !flipped; card.classList.toggle('flip', flipped); }
+
+  card.addEventListener('click', flip);
+  card.addEventListener('keydown', function(e){
+    if (e.key === ' ' || e.key === 'Enter'){ e.preventDefault(); flip(); }
+  });
+  $('fc-flip').addEventListener('click', flip);
+  $('fc-got').addEventListener('click', function(){
+    if (!order.length) return;
+    known[order[pos]] = true; save();
+    if (mode === 'due') order.splice(pos, 1); else pos++;
+    if (pos >= order.length) pos = 0;
+    render();
+  });
+  $('fc-again').addEventListener('click', function(){
+    if (!order.length) return;
+    if (known[order[pos]]){ delete known[order[pos]]; save(); }
+    pos++;
+    if (pos >= order.length) pos = 0;
+    render();
+  });
+  $('fc-shuffle').addEventListener('click', function(){
+    shuffled = !shuffled;
+    this.setAttribute('aria-pressed', String(shuffled));
+    this.classList.toggle('border-slate-500', shuffled);
+    this.classList.toggle('text-white', shuffled);
+    this.classList.toggle('text-slate-400', !shuffled);
+    rebuild(); render();
+  });
+  $('fc-reset').addEventListener('click', function(){
+    if (knownCount() && !confirm('ล้างความคืบหน้าการท่องจำทั้งหมด เริ่มใหม่?')) return;
+    known = {}; save(); rebuild(); render();
+  });
+  document.querySelectorAll('.fmode-btn').forEach(function(b){
+    b.addEventListener('click', function(){
+      document.querySelectorAll('.fmode-btn').forEach(function(x){
+        x.classList.remove('border-slate-600','bg-slate-700/60','text-white','font-medium');
+        x.classList.add('border-slate-700','text-slate-400');
+      });
+      b.classList.add('border-slate-600','bg-slate-700/60','text-white','font-medium');
+      b.classList.remove('border-slate-700','text-slate-400');
+      mode = b.dataset.fmode;
+      rebuild(); render();
+    });
+  });
+
+  rebuild(); render();
+})();
+</script>
+
+<script>
 /* ================= tab mode (one section per view, hash-routed) ================= */
 (function(){
-  var TABS = ['overview','knowledge','exam'];
+  var TABS = ['overview','knowledge','exam','flashcards'];
   var hero = document.querySelector('main > section:not([id])');
 
   function valid(h){ h = (h || '').replace('#',''); return TABS.indexOf(h) !== -1 ? h : 'overview'; }
