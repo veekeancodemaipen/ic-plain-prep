@@ -131,6 +131,48 @@
   .fc-hint { font-size: .7rem; color: #64748b; text-align: center; }
   @media (prefers-reduced-motion: reduce) { .fc-card { transition: none; } }
 </style>
+<script>/* ic prepaint theme */(function(){try{if(localStorage.getItem('ic-theme')==='light')document.documentElement.classList.add('light');}catch(e){}})();</script>
+<style id="ic-lightmode">
+html.light{color-scheme:light;}
+html.light body{background:
+  radial-gradient(1100px 720px at 88% -8%, rgba(201,168,106,.10), transparent 62%),
+  radial-gradient(950px 650px at -8% 12%, rgba(63,157,126,.08), transparent 56%),
+  linear-gradient(180deg,#f6f4ee 0%,#eef1f4 60%,#f4f2ec 100%) !important;}
+/* text */
+html.light .text-white,html.light .text-slate-100{color:#1e293b !important;}
+html.light .text-slate-200{color:#334155 !important;}
+html.light .text-slate-300{color:#475569 !important;}
+html.light .text-slate-400,html.light .text-slate-500{color:#64748b !important;}
+html.light .text-gold-soft,html.light .text-gold{color:#8a6d34 !important;}
+html.light .text-emerald2-soft,html.light .text-emerald2{color:#2f7d63 !important;}
+/* surfaces */
+html.light [class*="bg-slate-950"],html.light [class*="bg-slate-900"]{background-color:rgba(255,255,255,.82) !important;}
+html.light [class*="bg-slate-800"]{background-color:rgba(248,250,252,.75) !important;}
+html.light [class*="bg-slate-700"]{background-color:rgba(241,245,249,.92) !important;}
+html.light [class*="bg-white/"]{background-color:rgba(15,23,42,.04) !important;}
+/* borders + rings */
+html.light [class*="border-slate-700"],html.light [class*="border-slate-800"]{border-color:rgba(15,23,42,.12) !important;}
+html.light [class*="border-slate-600"],html.light [class*="border-slate-500"],html.light [class*="border-slate-400"]{border-color:rgba(15,23,42,.18) !important;}
+html.light [class*="ring-white/"]{--tw-ring-color:rgba(15,23,42,.12) !important;}
+html.light [class*="ring-slate-600"]{--tw-ring-color:rgba(15,23,42,.15) !important;}
+/* custom components */
+html.light .pcard{border-color:rgba(15,23,42,.10) !important;background:linear-gradient(165deg,rgba(255,255,255,.94),rgba(248,250,252,.84)) !important;box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 12px 30px -22px rgba(15,23,42,.35) !important;}
+html.light .pcard-gold{border-color:rgba(201,168,106,.45) !important;background:linear-gradient(165deg,rgba(201,168,106,.15),rgba(255,255,255,.9)) !important;}
+html.light .header-glass{background:rgba(255,255,255,.80) !important;}
+html.light .eyebrow{color:#8a6d34 !important;}
+html.light .mchip.active{background:rgba(201,168,106,.18) !important;color:#6b4f22 !important;}
+html.light .grad-gold{background:linear-gradient(100deg,#a9863f,#8a6d34 50%,#a9863f) !important;-webkit-background-clip:text;background-clip:text;color:transparent !important;animation:none !important;}
+html.light ::selection{background:#c9a86a;color:#1e293b;}
+html.light ::-webkit-scrollbar-track{background:#e7eaef;}
+html.light ::-webkit-scrollbar-thumb{background:#c2cad6;border:2px solid #e7eaef;}
+html.light ::-webkit-scrollbar-thumb:hover{background:#c9a86a;}
+/* toggle button */
+#ic-theme-toggle{position:fixed;z-index:60;right:18px;bottom:18px;height:44px;width:44px;border-radius:9999px;display:flex;align-items:center;justify-content:center;font-size:18px;line-height:1;cursor:pointer;border:1px solid rgba(201,168,106,.5);background:rgba(15,23,42,.7);color:#fff;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);box-shadow:0 8px 24px -10px rgba(0,0,0,.6);transition:transform .2s ease,background .2s ease;}
+#ic-theme-toggle:hover{transform:translateY(-2px) scale(1.05);}
+html.light #ic-theme-toggle{background:rgba(255,255,255,.88);border-color:rgba(201,168,106,.6);box-shadow:0 8px 24px -12px rgba(15,23,42,.35);}
+@media print{#ic-theme-toggle{display:none !important;}}
+</style>
+<script>/* ic theme toggle */(function(){var KEY='ic-theme';function cur(){return document.documentElement.classList.contains('light')?'light':'dark';}function apply(t){document.documentElement.classList.toggle('light',t==='light');var m=document.querySelector('meta[name=theme-color]');if(m)m.setAttribute('content',t==='light'?'#f4f2ec':'#0f172a');}document.addEventListener('DOMContentLoaded',function(){var btn=document.createElement('button');btn.id='ic-theme-toggle';btn.setAttribute('aria-label','สลับโหมดสว่าง/มืด');btn.title='สลับโหมดสว่าง/มืด';function icon(){btn.textContent=cur()==='light'?'🌙':'☀️';}icon();btn.addEventListener('click',function(){var t=cur()==='light'?'dark':'light';try{localStorage.setItem(KEY,t);}catch(e){}apply(t);icon();});document.body.appendChild(btn);});})();</script>
 </head>
 
 <body class="bg-slate-900 text-slate-200 antialiased">
